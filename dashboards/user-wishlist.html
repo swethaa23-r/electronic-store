@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - STACKLY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <div class="admin-overlay"></div>
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-layer-group"></i> STACKLY
+                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class=""><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li class=""><a href="user-orders.html"><i class="fa-solid fa-box"></i> My Orders</a></li>
+                    <li class="active"><a href="user-wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
+                    <li class=""><a href="user-addresses.html"><i class="fa-solid fa-location-dot"></i> Addresses</a></li>
+                    <li class=""><a href="user-profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
+                    <li class=""><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+            </div>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
+                </div>
+                <div class="topbar-right">
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <div class="admin-profile">
+                        <div class="avatar">US</div>
+                        <span>Customer</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="admin-content">
+                
+<!-- 1. Wishlist Header -->
+<section class="page-header"><div class="header-left"><h1>My Wishlist</h1></div></section>
+
+<!-- 2. Wishlist Statistics -->
+<section class="statistics-grid grid-4-stats">
+    <div class="stat-card"><p class="stat-label">Total Items</p><h3 class="stat-val">5</h3></div>
+    <div class="stat-card"><p class="stat-label">Available</p><h3 class="stat-val">4</h3></div>
+    <div class="stat-card"><p class="stat-label">Out of Stock</p><h3 class="stat-val">1</h3></div>
+    <div class="stat-card"><p class="stat-label">Price Drops</p><h3 class="stat-val">1</h3></div>
+</section>
+
+<!-- 3. Wishlist Product Grid & 4. Product Actions -->
+<section class="wishlist-grid">
+    <div class="wishlist-card">
+        <div class="wishlist-img-wrap">Product 1</div>
+        <h4>Book Air 14</h4><p class="price">$799.00</p>
+        <div class="wishlist-actions"><button class="btn-primary-admin">Add to Cart</button><button class="btn-secondary-admin">Remove</button><button class="btn-secondary-admin">View Product</button></div>
+    </div>
+    <div class="wishlist-card">
+        <div class="wishlist-img-wrap">Product 2</div>
+        <h4>Mechanical Keys</h4><p class="price">$129.00</p>
+        <div class="wishlist-actions"><button class="btn-primary-admin">Add to Cart</button><button class="btn-secondary-admin">Remove</button><button class="btn-secondary-admin">View Product</button></div>
+    </div>
+    <div class="wishlist-card">
+        <div class="wishlist-img-wrap">Product 3</div>
+        <h4>Play One Console</h4><p class="price">$449.00 <span class="badge badge-cancelled">Out of Stock</span></p>
+        <div class="wishlist-actions"><button class="btn-secondary-admin">Remove</button><button class="btn-secondary-admin">View Product</button></div>
+    </div>
+</section>
+
+<!-- 5. Recommendations -->
+<section class="card">
+    <div class="card-header"><h2>Recommended for You</h2></div>
+    <div class="wishlist-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="wishlist-card"><h4>Mousepad XL</h4><p class="price">$39.00</p></div>
+        <div class="wishlist-card"><h4>USB-C Hub</h4><p class="price">$59.00</p></div>
+    </div>
+</section>
+
+            </main>
+        </div>
+    </div>
+    <script src="../js/user.js"></script>
+    <script src="../js/global-validation.js"></script>
+</body>
+</html>

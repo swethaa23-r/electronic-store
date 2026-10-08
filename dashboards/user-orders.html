@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - STACKLY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <div class="admin-overlay"></div>
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-layer-group"></i> STACKLY
+                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class=""><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li class="active"><a href="user-orders.html"><i class="fa-solid fa-box"></i> My Orders</a></li>
+                    <li class=""><a href="user-wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
+                    <li class=""><a href="user-addresses.html"><i class="fa-solid fa-location-dot"></i> Addresses</a></li>
+                    <li class=""><a href="user-profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
+                    <li class=""><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+            </div>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
+                </div>
+                <div class="topbar-right">
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <div class="admin-profile">
+                        <div class="avatar">US</div>
+                        <span>Customer</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="admin-content">
+                
+<!-- 1. Orders Header -->
+<section class="page-header">
+    <div class="header-left"><h1>My Orders</h1></div>
+    <div class="header-right"><div class="filter-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search orders..."></div></div>
+</section>
+
+<!-- 2. Order Statistics -->
+<section class="statistics-grid grid-4-stats">
+    <div class="stat-card"><p class="stat-label">Total Orders</p><h3 class="stat-val">12</h3></div>
+    <div class="stat-card"><p class="stat-label">Delivered</p><h3 class="stat-val">10</h3></div>
+    <div class="stat-card"><p class="stat-label">Pending</p><h3 class="stat-val">2</h3></div>
+    <div class="stat-card"><p class="stat-label">Cancelled</p><h3 class="stat-val">0</h3></div>
+</section>
+
+<!-- 3. Order Filters -->
+<section class="filters-section card">
+    <div class="filters-bar" style="justify-content: flex-start;">
+        <input type="date" class="filter-date">
+        <select><option>All Statuses</option><option>Delivered</option><option>Pending</option></select>
+        <select><option>All Payments</option><option>Credit Card</option><option>PayPal</option></select>
+    </div>
+</section>
+
+<!-- 4. Orders List -->
+<section class="products-table-section card">
+    <div class="table-responsive">
+        <table class="admin-table">
+            <thead>
+                <tr><th>Order ID</th><th>Product</th><th>Amount</th><th>Status</th><th>Date</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>#ORD-889</td><td>Pro Display X1</td><td>$899.00</td><td><span class="badge badge-paid">Delivered</span></td><td>Oct 2, 2026</td><td><button class="action-btn view-order-btn">View Details</button></td></tr>
+                <tr><td>#ORD-890</td><td>Mechanical Keys</td><td>$129.00</td><td><span class="badge badge-pending">Pending</span></td><td>Oct 7, 2026</td><td><button class="action-btn view-order-btn">View Details</button></td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- 5. Order Details Modal -->
+<div class="modal-overlay-ui" id="order-modal">
+    <div class="modal-container order-modal-container">
+        <div class="modal-header">
+            <div><h2>Order #ORD-889</h2><span class="badge badge-paid mt-1" style="display:inline-block; margin-top:5px;">Delivered</span></div>
+            <button class="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="order-details-grid">
+                <div class="detail-box"><h4>Shipping Address</h4><p>123 Tech Avenue</p><p>New York, NY 10001</p></div>
+                <div class="detail-box"><h4>Payment & Tracking</h4><p><strong>Payment:</strong> Credit Card</p><p><strong>Tracking:</strong> TRK-998877</p></div>
+            </div>
+            <div class="order-products-table">
+                <h4>Products</h4>
+                <table class="admin-table">
+                    <thead><tr><th>Product</th><th>Qty</th><th>Price</th></tr></thead>
+                    <tbody><tr><td>Pro Display X1</td><td>1</td><td>$899.00</td></tr></tbody>
+                </table>
+            </div>
+            <div class="order-summary">
+                <div class="summary-line"><span>Subtotal</span><span>$899.00</span></div>
+                <div class="summary-line total-line"><span>Total</span><span>$899.00</span></div>
+            </div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn-secondary-admin close-modal-btn">Close</button></div>
+    </div>
+</div>
+
+            </main>
+        </div>
+    </div>
+    <script src="../js/user.js"></script>
+    <script src="../js/global-validation.js"></script>
+</body>
+</html>

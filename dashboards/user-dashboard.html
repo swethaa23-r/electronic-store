@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - STACKLY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <div class="admin-overlay"></div>
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-layer-group"></i> STACKLY
+                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li class=""><a href="user-orders.html"><i class="fa-solid fa-box"></i> My Orders</a></li>
+                    <li class=""><a href="user-wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
+                    <li class=""><a href="user-addresses.html"><i class="fa-solid fa-location-dot"></i> Addresses</a></li>
+                    <li class=""><a href="user-profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
+                    <li class=""><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+            </div>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
+                </div>
+                <div class="topbar-right">
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <div class="admin-profile">
+                        <div class="avatar">US</div>
+                        <span>Customer</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="admin-content">
+                
+<!-- 1. Welcome -->
+<div class="user-profile-header">
+    <div class="user-avatar-large">SJ</div>
+    <div class="user-info-text">
+        <h2>Welcome back, Sarah Jenkins</h2>
+        <p>Manage your orders, wishlist and account preferences.</p>
+    </div>
+</div>
+
+<!-- 2. Account Statistics -->
+<section class="statistics-grid grid-4-stats">
+    <div class="stat-card"><p class="stat-label">Total Orders</p><h3 class="stat-val">12</h3></div>
+    <div class="stat-card"><p class="stat-label">Wishlist Items</p><h3 class="stat-val">5</h3></div>
+    <div class="stat-card"><p class="stat-label">Delivered Orders</p><h3 class="stat-val">10</h3></div>
+    <div class="stat-card"><p class="stat-label">Pending Orders</p><h3 class="stat-val">2</h3></div>
+</section>
+
+<!-- 3. Recent Orders -->
+<section class="products-table-section card">
+    <div class="card-header"><h2>Recent Orders</h2></div>
+    <div class="table-responsive">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th><th>Products</th><th>Amount</th><th>Status</th><th>Date</th><th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>#ORD-889</td><td>Pro Display X1</td><td>$899.00</td><td><span class="badge badge-paid">Delivered</span></td><td>Oct 2, 2026</td><td><button class="action-btn">View</button></td></tr>
+                <tr><td>#ORD-890</td><td>Mechanical Keys</td><td>$129.00</td><td><span class="badge badge-pending">Pending</span></td><td>Oct 7, 2026</td><td><button class="action-btn">View</button></td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- 4. Wishlist Preview -->
+<section class="card">
+    <div class="card-header"><h2>Wishlist</h2></div>
+    <div class="wishlist-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="wishlist-card">
+            <div class="wishlist-img-wrap">Product Image 1</div>
+            <h4>Book Air 14</h4><p class="price">$799.00</p>
+            <div class="wishlist-actions"><button class="btn-primary-admin">Add to Cart</button><button class="btn-secondary-admin">Remove</button></div>
+        </div>
+        <div class="wishlist-card">
+            <div class="wishlist-img-wrap">Product Image 2</div>
+            <h4>Gaming Mouse X</h4><p class="price">$89.00</p>
+            <div class="wishlist-actions"><button class="btn-primary-admin">Add to Cart</button><button class="btn-secondary-admin">Remove</button></div>
+        </div>
+        <div class="wishlist-card">
+            <div class="wishlist-img-wrap">Product Image 3</div>
+            <h4>Noise Cancelling Headphones</h4><p class="price">$249.00</p>
+            <div class="wishlist-actions"><button class="btn-primary-admin">Add to Cart</button><button class="btn-secondary-admin">Remove</button></div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Quick Actions -->
+<section class="card">
+    <div class="card-header"><h2>Quick Actions</h2></div>
+    <div class="quick-actions-grid">
+        <a href="../index.html" class="btn-primary-admin">Shop Products</a>
+        <a href="user-orders.html" class="btn-secondary-admin">View Orders</a>
+        <a href="user-wishlist.html" class="btn-secondary-admin">View Wishlist</a>
+        <a href="user-profile.html" class="btn-secondary-admin">Edit Profile</a>
+    </div>
+</section>
+
+            </main>
+        </div>
+    </div>
+    <script src="../js/user.js"></script>
+    <script src="../js/global-validation.js"></script>
+</body>
+</html>

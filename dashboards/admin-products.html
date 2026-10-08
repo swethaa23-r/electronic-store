@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Admin Dashboard</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <div class="admin-layout">
+        
+        <!-- Mobile Overlay -->
+        <div class="admin-overlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-layer-group"></i> STACKLY
+                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li class="active"><a href="admin-products.html"><i class="fa-solid fa-box"></i> Products</a></li>
+                    <li><a href="admin-orders.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
+                    <li><a href="admin-customers.html"><i class="fa-solid fa-users"></i> Customers</a></li>
+                    <li><a href="admin-categories.html"><i class="fa-solid fa-tags"></i> Categories</a></li>
+                    <li><a href="admin-reports.html"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
+                    <li><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="admin-main">
+            <!-- Topbar -->
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
+                    <div class="search-bar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search orders, products...">
+                    </div>
+                </div>
+                <div class="topbar-right">
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <div class="admin-profile">
+                        <div class="avatar">AD</div>
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="admin-content">
+                
+                <!-- Section 1 - Page Header -->
+                <section class="page-header">
+                    <div class="header-left">
+                        <div class="breadcrumb">
+                            <a href="admin-dashboard.html">Dashboard</a> <span>/</span> <strong>Products</strong>
+                        </div>
+                        <h1>Products</h1>
+                    </div>
+                    <div class="header-right">
+                        <button id="add-product-btn" class="btn-primary-admin"><i class="fa-solid fa-plus"></i> Add Product</button>
+                    </div>
+                </section>
+
+                <!-- Section 2 - Product Statistics -->
+                <section class="statistics-grid grid-4-stats">
+                    <div class="stat-card">
+                        <p class="stat-label">Total Products</p>
+                        <h3 class="stat-val">425</h3>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Active Products</p>
+                        <h3 class="stat-val">380</h3>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Low Stock</p>
+                        <h3 class="stat-val">40</h3>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Out of Stock</p>
+                        <h3 class="stat-val">5</h3>
+                    </div>
+                </section>
+
+                <!-- Section 3 - Product Search & Filter -->
+                <section class="filters-section card">
+                    <div class="filters-bar">
+                        <div class="filter-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Search product name or ID...">
+                        </div>
+                        <div class="filter-dropdowns">
+                            <select>
+                                <option value="">Category</option>
+                                <option value="laptops">Laptops</option>
+                                <option value="monitors">Monitors</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                            <select>
+                                <option value="">Price</option>
+                                <option value="low">Under $100</option>
+                                <option value="medium">$100 - $500</option>
+                                <option value="high">Over $500</option>
+                            </select>
+                            <select>
+                                <option value="">Stock</option>
+                                <option value="in">In Stock</option>
+                                <option value="low">Low Stock</option>
+                                <option value="out">Out of Stock</option>
+                            </select>
+                            <select>
+                                <option value="">Status</option>
+                                <option value="active">Active</option>
+                                <option value="draft">Draft</option>
+                                <option value="archived">Archived</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4 - Product Table -->
+                <section class="products-table-section card">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Status</th>
+                                    <th>Date Added</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="product-col">
+                                            <div class="prod-img"></div>
+                                            <span>Pro Display X1</span>
+                                        </div>
+                                    </td>
+                                    <td>Monitors</td>
+                                    <td>$899.00</td>
+                                    <td>124</td>
+                                    <td><span class="badge badge-paid">Active</span></td>
+                                    <td>Oct 1, 2026</td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <button class="icon-btn-small" title="View"><i class="fa-regular fa-eye"></i></button>
+                                            <button class="icon-btn-small" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="icon-btn-small" title="Delete"><i class="fa-regular fa-trash-can"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-col">
+                                            <div class="prod-img"></div>
+                                            <span>Book Air 14 Laptop</span>
+                                        </div>
+                                    </td>
+                                    <td>Laptops</td>
+                                    <td>$799.00</td>
+                                    <td>85</td>
+                                    <td><span class="badge badge-paid">Active</span></td>
+                                    <td>Sep 28, 2026</td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <button class="icon-btn-small" title="View"><i class="fa-regular fa-eye"></i></button>
+                                            <button class="icon-btn-small" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="icon-btn-small" title="Delete"><i class="fa-regular fa-trash-can"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-col">
+                                            <div class="prod-img"></div>
+                                            <span>Mechanical Keys</span>
+                                        </div>
+                                    </td>
+                                    <td>Accessories</td>
+                                    <td>$129.00</td>
+                                    <td><strong style="color: #333333;">3</strong></td>
+                                    <td><span class="badge badge-pending">Low Stock</span></td>
+                                    <td>Sep 15, 2026</td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <button class="icon-btn-small" title="View"><i class="fa-regular fa-eye"></i></button>
+                                            <button class="icon-btn-small" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="icon-btn-small" title="Delete"><i class="fa-regular fa-trash-can"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-col">
+                                            <div class="prod-img"></div>
+                                            <span>Play One Console</span>
+                                        </div>
+                                    </td>
+                                    <td>Gaming</td>
+                                    <td>$449.00</td>
+                                    <td>0</td>
+                                    <td><span class="badge badge-cancelled">Out of Stock</span></td>
+                                    <td>Aug 22, 2026</td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <button class="icon-btn-small" title="View"><i class="fa-regular fa-eye"></i></button>
+                                            <button class="icon-btn-small" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="icon-btn-small" title="Delete"><i class="fa-regular fa-trash-can"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Section 5 - Product Add/Edit Modal -->
+    <div class="modal-overlay-ui" id="product-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Add New Product</h2>
+                <button class="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="product-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" id="prod-name" placeholder="Enter product name">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="prod-category">
+                                <option value="">Select Category</option>
+                                <option value="laptops">Laptops</option>
+                                <option value="monitors">Monitors</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price ($)</label>
+                            <input type="number" id="prod-price" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <input type="number" id="prod-stock" placeholder="0">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Status</label>
+                            <select id="prod-status">
+                                <option value="active">Active</option>
+                                <option value="draft">Draft</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Product Image URL</label>
+                            <input type="text" id="prod-img" placeholder="assets/img/product.webp">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Description</label>
+                            <textarea id="prod-desc" rows="4" placeholder="Enter product details"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-feedback-ui">
+                        <span class="validation-error" id="form-error"><i class="fa-solid fa-circle-exclamation"></i> Please fill out all required fields.</span>
+                        <span class="validation-success" id="form-success"><i class="fa-solid fa-circle-check"></i> Product saved successfully.</span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary-admin close-modal-btn">Cancel</button>
+                        <button type="submit" class="btn-primary-admin">Save Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="../js/admin-products.js"></script>
+    <script src="../js/global-validation.js"></script>
+</body>
+</html>

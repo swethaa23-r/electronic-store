@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <div class="admin-overlay"></div>
+        <aside class="admin-sidebar">
+            <div class="sidebar-header"><i class="fa-solid fa-layer-group"></i> STACKLY<button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li><a href="admin-products.html"><i class="fa-solid fa-box"></i> Products</a></li>
+                    <li><a href="admin-orders.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
+                    <li><a href="admin-customers.html"><i class="fa-solid fa-users"></i> Customers</a></li>
+                    <li><a href="admin-categories.html"><i class="fa-solid fa-tags"></i> Categories</a></li>
+                    <li><a href="admin-reports.html"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
+                    <li class="active"><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer"><a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></div>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-topbar">
+                <div class="topbar-left"><button class="hamburger"><i class="fa-solid fa-bars"></i></button></div>
+                <div class="topbar-right"><div class="admin-profile"><div class="avatar">AD</div><span>Admin</span></div></div>
+            </header>
+
+            <main class="admin-content">
+                <section class="page-header">
+                    <div class="header-left">
+                        <div class="breadcrumb"><a href="admin-dashboard.html">Dashboard</a> <span>/</span> <strong>Settings</strong></div>
+                        <h1>Settings</h1>
+                    </div>
+                </section>
+
+                <div class="card" style="max-width: 800px; padding: 40px;">
+                    <form id="settings-form">
+                        
+                        <!-- Section 1 - General Settings -->
+                        <div class="settings-section">
+                            <h2>General Settings</h2>
+                            <div class="form-grid">
+                                <div class="form-group"><label>Store Name</label><input type="text" value="STACKLY"></div>
+                                <div class="form-group"><label>Email Address</label><input type="email" value="support@stackly.com"></div>
+                                <div class="form-group"><label>Phone Number</label><input type="tel" id="user-phone" value="+1 (555) 123-4567" required></div>
+                                <div class="form-group"><label>Store Address</label><input type="text" value="123 Tech Avenue, NY"></div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2 - Store Settings -->
+                        <div class="settings-section">
+                            <h2>Store Settings</h2>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Currency</label>
+                                    <select><option>USD ($)</option><option>EUR (€)</option><option>GBP (£)</option></select>
+                                </div>
+                                <div class="form-group"><label>Tax Rate (%)</label><input type="number" value="8.875"></div>
+                                <div class="form-group">
+                                    <label>Default Shipping</label>
+                                    <select><option>Free Shipping</option><option>Flat Rate</option><option>Calculated</option></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Order Settings</label>
+                                    <select><option>Auto-fulfill</option><option>Manual Review</option></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3 - Notification Settings -->
+                        <div class="settings-section">
+                            <h2>Notification Settings</h2>
+                            <div class="setting-row">
+                                <div class="setting-info"><h4>Order Notifications</h4><p>Receive an email for every new order.</p></div>
+                                <label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label>
+                            </div>
+                            <div class="setting-row">
+                                <div class="setting-info"><h4>Customer Notifications</h4><p>Receive an email when a new customer registers.</p></div>
+                                <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label>
+                            </div>
+                            <div class="setting-row">
+                                <div class="setting-info"><h4>Stock Alerts</h4><p>Get notified when a product is low on stock.</p></div>
+                                <label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label>
+                            </div>
+                            <div class="setting-row" style="border-bottom: none;">
+                                <div class="setting-info"><h4>Security Alerts</h4><p>Get notified of suspicious login attempts.</p></div>
+                                <label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label>
+                            </div>
+                        </div>
+
+                        <!-- Section 4 - Security Settings -->
+                        <div class="settings-section">
+                            <h2>Security Settings</h2>
+                            <div class="form-grid" style="margin-bottom: 20px;">
+                                <div class="form-group"><label>Change Password</label><input type="password" placeholder="Enter new password"></div>
+                                <div class="form-group"><label>Confirm Password</label><input type="password" placeholder="Confirm new password"></div>
+                            </div>
+                            <div class="setting-row">
+                                <div class="setting-info"><h4>Two-Factor Authentication</h4><p>Require an extra security code during login.</p></div>
+                                <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label>
+                            </div>
+                            <div class="setting-row">
+                                <div class="setting-info"><h4>Login Alerts</h4><p>Send an email for logins from new devices.</p></div>
+                                <label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label>
+                            </div>
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label>Session Timeout (Minutes)</label>
+                                <input type="number" value="30" style="max-width: 150px;">
+                            </div>
+                        </div>
+
+                        <!-- Section 5 - Account Management -->
+                        <div class="settings-section" style="border-top: 1px solid var(--border); padding-top: 30px; margin-bottom: 0;">
+                            <h2>Account Management</h2>
+                            <p style="color: #666; font-size: 0.9rem; margin-bottom: 20px;">Manage your account data and export settings.</p>
+                            
+                            <div class="export-grid" style="margin-bottom: 30px;">
+                                <button type="button" class="btn-secondary-admin"><i class="fa-solid fa-download"></i> Backup Data</button>
+                                <button type="button" class="btn-secondary-admin"><i class="fa-solid fa-file-export"></i> Export Settings</button>
+                                <a href="../login.html" class="btn-secondary-admin" style="color: var(--primary);"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout Current Session</a>
+                            </div>
+
+                            <div style="display: flex; gap: 15px; justify-content: flex-end;">
+                                <button type="button" class="btn-secondary-admin">Discard Changes</button>
+                                <button type="submit" class="btn-primary-admin" id="save-settings-btn"><i class="fa-solid fa-check"></i> Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="../js/admin-settings.js"></script>
+    <script src="../js/global-validation.js"></script>
+</body>
+</html>
