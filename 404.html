@@ -3,116 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found - STACKLY</title>
+    <title>404 - Page Not Found | STACKLY Electronic Store</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- AOS Animation CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="page-404-standalone">
 
-    <!-- Navigation -->
-    <nav class="navbar" data-aos="fade-down">
-        <div class="logo">
-            <i class="fa-solid fa-layer-group"></i> STACKLY
+    <!-- Premium Preloader -->
+    <div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading STACKLY store">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>STACKLY</span>
+            </div>
+            <div class="preloader-indicator">
+                <div class="preloader-progress-bar"></div>
+            </div>
+            <p class="preloader-text">Preparing Your Experience...</p>
         </div>
-        <ul class="nav-links desktop-only">
-            <li><a href="javascript:void(0)">Home</a></li>
-            <li><a href="javascript:void(0)">Shop</a></li>
-            <li><a href="javascript:void(0)">Shipping Returns & Tracking</a></li>
-            <li><a href="javascript:void(0)">Our Mission</a></li>
-            <li><a href="javascript:void(0)">Buying Guides</a></li>
-        </ul>
-        <div class="nav-icons">
-            <a href="javascript:void(0)" class="icon-link"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="javascript:void(0)" class="icon-link"><i class="fa-regular fa-user"></i></a>
-            <a href="javascript:void(0)" class="cart-icon icon-link"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">0</span></a>
-            <a href="javascript:void(0)" class="mobile-toggle icon-link"><i class="fa-solid fa-bars"></i></a>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-overlay"></div>
-    <div class="mobile-menu">
-        <div class="mobile-menu-header">
-            <div class="logo"><i class="fa-solid fa-layer-group"></i> STACKLY</div>
-            <button class="close-mobile"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <ul class="mobile-nav-links">
-            <li><a href="javascript:void(0)">Home</a></li>
-            <li><a href="javascript:void(0)">Shop</a></li>
-            <li><a href="javascript:void(0)">Shipping Returns & Tracking</a></li>
-            <li><a href="javascript:void(0)">Our Mission</a></li>
-            <li><a href="javascript:void(0)">Buying Guides</a></li>
-        </ul>
     </div>
 
-    <!-- 404 Main Content -->
-    <main class="error-page-container">
-        <!-- Section 1 - Minimal Error Hero -->
-        <section class="error-hero" data-aos="fade-up">
-            <h1 class="error-404">404</h1>
-            <h2>Page not found.</h2>
-            <p class="error-desc">The page you're looking for may have moved, been removed, or is temporarily unavailable.</p>
-            
-            <div class="error-actions">
-                <a href="index.html" class="btn btn-primary">BACK TO HOME &rarr;</a>
-                <button onclick="history.back()" class="btn btn-secondary">GO BACK</button>
-            </div>
-        </section>
-    </main>
+    <!-- 404 Error Content (Header and Footer completely removed as requested) -->
+    <main class="error-page-wrapper standalone-error">
+        <!-- Minimal Brand Header Pill for Context -->
+        <div class="standalone-brand-bar">
+            <a href="index.html#hero" class="logo">
+                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
+            </a>
+        </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <h1 class="footer-logo" data-aos="zoom-in">STACKLY</h1>
-            <div class="footer-grid">
-                <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
-                    <h4>STACKLY</h4>
-                    <p>Good tech. Endless possibilities. Made for your everyday.</p>
-                    <div class="social-links mt-2">
-                        <a href="javascript:void(0)"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="javascript:void(0)"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="javascript:void(0)"><i class="fa-brands fa-facebook"></i></a>
+        <div class="container error-container">
+            <div class="error-content">
+                <div class="error-badge">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>ERROR 404 &bull; CIRCUIT DISCONNECTED</span>
+                </div>
+                <h1 class="error-code">404</h1>
+                <h2 class="error-title">Oops! Page Not Found</h2>
+                <p class="error-description">
+                    Looks like this page has gone offline. Let’s get you back to the latest tech.
+                </p>
+                <div class="error-actions">
+                    <a href="index.html#hero" class="btn btn-error-primary" id="btn-back-home">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Go to Home</span>
+                    </a>
+                    <button type="button" class="btn btn-error-secondary" id="btn-go-back" onclick="if (document.referrer && document.referrer.indexOf(window.location.host) !== -1) { history.back(); } else if (window.history.length > 1) { history.back(); } else { window.location.href = 'index.html#hero'; }">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Go Back</span>
+                    </button>
+                </div>
+
+                <div class="error-suggestions">
+                    <span class="suggestions-label">Popular Destinations:</span>
+                    <div class="suggestion-links">
+                        <a href="index.html#freshly-dropped">New Arrivals</a>
+                        <span class="sep">&bull;</span>
+                        <a href="index.html#categories">Categories</a>
+                        <span class="sep">&bull;</span>
+                        <a href="index.html#handpicked">Recommended</a>
                     </div>
                 </div>
-                <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
-                    <h4>SHOP</h4>
-                    <ul>
-                        <li><a href="javascript:void(0)">Laptops</a></li>
-                        <li><a href="javascript:void(0)">Gaming</a></li>
-                        <li><a href="javascript:void(0)">Monitors</a></li>
-                        <li><a href="javascript:void(0)">Accessories</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col" data-aos="fade-up" data-aos-delay="300">
-                    <h4>SUPPORT</h4>
-                    <ul>
-                        <li><a href="javascript:void(0)">Shipping & Returns</a></li>
-                        <li><a href="javascript:void(0)">Track Order</a></li>
-                        <li><a href="javascript:void(0)">FAQs</a></li>
-                        <li><a href="javascript:void(0)">Contact Information</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col" data-aos="fade-up" data-aos-delay="400">
-                    <h4>COMPANY</h4>
-                    <ul>
-                        <li><a href="javascript:void(0)">Our Story</a></li>
-                        <li><a href="javascript:void(0)">Buying Guides</a></li>
-                        <li><a href="javascript:void(0)">Careers</a></li>
-                        <li><a href="javascript:void(0)">Sustainability</a></li>
-                    </ul>
+            </div>
+
+            <div class="error-visual">
+                <div class="tech-card-3d">
+                    <div class="circuit-glow"></div>
+                    
+                    <!-- Floating Tech Chips -->
+                    <div class="tech-chip chip-top">
+                        <i class="fa-solid fa-microchip"></i>
+                        <div>
+                            <strong>Core Link 404</strong>
+                            <small>Signal Terminated</small>
+                        </div>
+                    </div>
+                    
+                    <!-- SVG Disconnected Circuit & Hardware Visual -->
+                    <div class="circuit-illustration-box">
+                        <svg class="circuit-svg" viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Disconnected circuit illustration" role="img">
+                            <!-- Circuit Traces Background -->
+                            <path d="M40 180 H90 L120 150 H180" stroke="rgba(255,255,255,0.12)" stroke-width="2" stroke-dasharray="4 4" />
+                            <path d="M40 70 H100 L130 100 H160" stroke="rgba(255,255,255,0.12)" stroke-width="2" stroke-dasharray="4 4" />
+                            <path d="M280 60 H220 L190 90 H170" stroke="rgba(255,255,255,0.12)" stroke-width="2" />
+                            <path d="M280 180 H230 L200 150 H170" stroke="rgba(255,255,255,0.12)" stroke-width="2" />
+                            
+                            <!-- Central Device / Processor Base -->
+                            <rect x="95" y="65" width="130" height="110" rx="16" fill="#181920" stroke="rgba(255,255,255,0.18)" stroke-width="2" />
+                            <rect x="110" y="80" width="100" height="80" rx="10" fill="#111217" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+                            
+                            <!-- Processor Core Die -->
+                            <rect x="130" y="98" width="60" height="44" rx="6" fill="#23252E" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="2 2" />
+                            <text x="160" y="125" text-anchor="middle" fill="#FBBF24" font-family="'Inter', sans-serif" font-weight="800" font-size="14" letter-spacing="1">404</text>
+                            
+                            <!-- Connection Nodes -->
+                            <circle cx="95" cy="120" r="5" fill="#EF4444" />
+                            <circle cx="225" cy="120" r="5" fill="#EF4444" />
+                            
+                            <!-- Disconnected Cable Left -->
+                            <path d="M40 120 H80" stroke="#EF4444" stroke-width="3" stroke-linecap="round" />
+                            <!-- Disconnected Sparks / Gap -->
+                            <circle cx="85" cy="120" r="2" fill="#F87171" class="pulse-spark" />
+                            
+                            <!-- Disconnected Cable Right -->
+                            <path d="M240 120 H280" stroke="rgba(255,255,255,0.3)" stroke-width="3" stroke-linecap="round" />
+                            
+                            <!-- Live Status Indicator -->
+                            <circle cx="160" cy="165" r="3" fill="#EF4444" class="status-blinker" />
+                        </svg>
+                    </div>
+
+                    <div class="tech-chip chip-bottom">
+                        <i class="fa-solid fa-satellite-dish"></i>
+                        <div>
+                            <strong>Route Unreachable</strong>
+                            <small>HTTP 404 &bull; Offline</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </main>
 
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Custom JS -->
     <script src="js/script.js"></script>
 </body>

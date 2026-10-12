@@ -6,159 +6,230 @@
     <title>STACKLY - Tech For Your Everyday</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- AOS Animation CSS -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar" data-aos="fade-down">
-        <div class="logo">
-            <i class="fa-solid fa-layer-group"></i> STACKLY
+    <!-- Premium Preloader -->
+    <div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading STACKLY store">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>STACKLY</span>
+            </div>
+            <div class="preloader-indicator">
+                <div class="preloader-progress-bar"></div>
+            </div>
+            <p class="preloader-text">Preparing Your Experience...</p>
         </div>
-        <ul class="nav-links desktop-only">
-            <li><a href="javascript:void(0)">Home</a></li>
-            <li><a href="javascript:void(0)">Shop</a></li>
-            <li><a href="javascript:void(0)">Shipping Returns & Tracking</a></li>
-            <li><a href="javascript:void(0)">Our Mission</a></li>
-            <li><a href="javascript:void(0)">Buying Guides</a></li>
-        </ul>
-        <div class="nav-icons">
-            <a href="javascript:void(0)" class="icon-link"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="javascript:void(0)" class="icon-link"><i class="fa-regular fa-user"></i></a>
-            <a href="javascript:void(0)" class="cart-icon icon-link"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">0</span></a>
-            <a href="javascript:void(0)" class="mobile-toggle icon-link"><i class="fa-solid fa-bars"></i></a>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-overlay"></div>
-    <div class="mobile-menu">
-        <div class="mobile-menu-header">
-            <div class="logo"><i class="fa-solid fa-layer-group"></i> STACKLY</div>
-            <button class="close-mobile"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <ul class="mobile-nav-links">
-            <li><a href="javascript:void(0)">Home</a></li>
-            <li><a href="javascript:void(0)">Shop</a></li>
-            <li><a href="javascript:void(0)">Shipping Returns & Tracking</a></li>
-            <li><a href="javascript:void(0)">Our Mission</a></li>
-            <li><a href="javascript:void(0)">Buying Guides</a></li>
-        </ul>
     </div>
 
+    <!-- Header & Navigation -->
+    <header class="site-header" id="header">
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
+            </a>
+            
+            <ul class="nav-links desktop-only">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#freshly-dropped" class="scroll-link">Shop</a></li>
+                <li><a href="javascript:void(0)" class="info-modal-link" data-info="shipping">Shipping Returns &amp; Tracking</a></li>
+                <li><a href="javascript:void(0)" class="info-modal-link" data-info="mission">Our Mission</a></li>
+                <li><a href="#articles" class="scroll-link">Buying Guides</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="search-box-wrapper" id="search-box-wrapper">
+                    <input type="text" id="header-search-input" placeholder="Search gadgets..." aria-label="Search products">
+                    <button type="button" class="search-submit-btn" id="search-submit-btn" aria-label="Submit search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <button type="button" class="icon-link search-toggle-btn" id="search-toggle-btn" aria-label="Search products" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <a href="#freshly-dropped" class="icon-link wishlist-icon scroll-link" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="wishlist-count" id="nav-wishlist-count">0</span>
+                </a>
+                <a href="#freshly-dropped" class="icon-link cart-icon scroll-link" id="nav-cart-btn" aria-label="Shopping Cart" title="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="dashboards/user-profile.html" class="nav-login-btn desktop-only" aria-label="Login">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Login</span>
+                </a>
+                <button type="button" class="mobile-toggle icon-link" id="mobile-toggle" aria-label="Open mobile navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay & Drawer -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
+        <div class="mobile-menu-header">
+            <a href="#" class="logo">
+                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
+            </a>
+            <button class="close-mobile" id="close-mobile" aria-label="Close mobile navigation"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="mobile-search-bar">
+            <input type="text" id="mobile-search-input" placeholder="Search products...">
+            <button type="button" id="mobile-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#" class="mobile-nav-item">Home</a></li>
+            <li><a href="#freshly-dropped" class="mobile-nav-item scroll-link">Shop</a></li>
+            <li><a href="javascript:void(0)" class="mobile-nav-item info-modal-link" data-info="shipping">Shipping Returns &amp; Tracking</a></li>
+            <li><a href="javascript:void(0)" class="mobile-nav-item info-modal-link" data-info="mission">Our Mission</a></li>
+            <li><a href="#articles" class="mobile-nav-item scroll-link">Buying Guides</a></li>
+            <li><a href="#freshly-dropped" class="mobile-nav-item scroll-link"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
+            <li><a href="#freshly-dropped" class="mobile-nav-item scroll-link"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
+            <li><a href="dashboards/user-profile.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
+        </ul>
+        <div class="mobile-menu-footer">
+            <div class="mobile-contact-pill">
+                <i class="fa-solid fa-headset"></i> 24/7 Support Available
+            </div>
+        </div>
+    </aside>
+
     <!-- 1. Hero Section -->
-    <section class="hero">
-        <div class="hero-content" data-aos="fade-up" data-aos-delay="100">
-            <p class="hero-eyebrow">STACKLY &bull; TECH FOR YOUR EVERYDAY</p>
-            <h1>Work. Play. Connect.</h1>
-            <p class="hero-support">Discover thoughtfully selected technology for work, gaming, entertainment and everyday life.</p>
-            
-            <div class="hero-buttons">
-                <a href="#freshly-dropped" class="btn btn-primary scroll-link">SHOP ALL GADGETS</a>
-                <a href="#categories" class="btn btn-secondary scroll-link">EXPLORE COLLECTION</a>
-            </div>
+    <section class="hero hero-centered" id="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-ambient-glow glow-primary"></div>
+        <div class="hero-ambient-glow glow-secondary"></div>
+        
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-eyebrow">
+                    <span class="hero-badge-dot"></span>
+                    <span>STACKLY &bull; TECH FOR YOUR EVERYDAY</span>
+                </div>
+                <h1>
+                    Work. Play.<br>
+                    <span class="hero-highlight">Connect.</span>
+                </h1>
+                <p class="hero-support">
+                    Discover thoughtfully selected technology for work, gaming, entertainment and everyday life. Crafted for performance, designed for comfort.
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="#freshly-dropped" class="btn btn-hero-primary scroll-link">
+                        <span>SHOP ALL GADGETS</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#categories" class="btn btn-hero-secondary scroll-link">
+                        <span>EXPLORE COLLECTION</span>
+                    </a>
+                </div>
 
-            <div class="hero-features">
-                <div class="hf-item"><i class="fa-solid fa-briefcase"></i> Made for work</div>
-                <div class="hf-item"><i class="fa-solid fa-gamepad"></i> Built for play</div>
-                <div class="hf-item"><i class="fa-solid fa-house"></i> Designed for everyday life</div>
+                <div class="hero-features">
+                    <div class="hf-item"><i class="fa-solid fa-briefcase"></i> <span>Made for work</span></div>
+                    <div class="hf-item"><i class="fa-solid fa-gamepad"></i> <span>Built for play</span></div>
+                    <div class="hf-item"><i class="fa-solid fa-house"></i> <span>Designed for everyday</span></div>
+                </div>
             </div>
         </div>
     </section>
 
-    
-    
     <!-- Why Choose Us - Scrolling Marquee -->
-    <section class="features-marquee-container">
+    <section class="features-marquee-container" aria-label="Store Benefits">
         <div class="features-marquee-track">
-            
-        <div class="feature-box">
-            <i class="fa-solid fa-truck-fast"></i>
-            <div>
-                <h4>Fast & Free Delivery</h4>
-                <p>Free shipping on qualifying orders.</p>
+            <div class="feature-box">
+                <i class="fa-solid fa-truck-fast"></i>
+                <div>
+                    <h4>Fast & Free Delivery</h4>
+                    <p>Free shipping on qualifying orders.</p>
+                </div>
             </div>
-        </div>
-        <div class="feature-box">
-            <i class="fa-solid fa-shield-halved"></i>
-            <div>
-                <h4>Secure Payments</h4>
-                <p>Safe and protected checkout.</p>
+            <div class="feature-box">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div>
+                    <h4>Secure Payments</h4>
+                    <p>Safe and protected checkout.</p>
+                </div>
             </div>
-        </div>
-        <div class="feature-box">
-            <i class="fa-solid fa-rotate-left"></i>
-            <div>
-                <h4>Easy Returns</h4>
-                <p>Simple and convenient returns.</p>
+            <div class="feature-box">
+                <i class="fa-solid fa-rotate-left"></i>
+                <div>
+                    <h4>Easy Returns</h4>
+                    <p>Simple and convenient 30-day returns.</p>
+                </div>
             </div>
-        </div>
-        <div class="feature-box">
-            <i class="fa-solid fa-certificate"></i>
-            <div>
-                <h4>Genuine Products</h4>
-                <p>Authentic products from trusted brands.</p>
+            <div class="feature-box">
+                <i class="fa-solid fa-certificate"></i>
+                <div>
+                    <h4>Genuine Products</h4>
+                    <p>Authentic products from trusted brands.</p>
+                </div>
             </div>
-        </div>
-        <div class="feature-box">
-            <i class="fa-solid fa-headset"></i>
-            <div>
-                <h4>24/7 Support</h4>
-                <p>We're here whenever you need help.</p>
+            <div class="feature-box">
+                <i class="fa-solid fa-headset"></i>
+                <div>
+                    <h4>24/7 Support</h4>
+                    <p>We're here whenever you need help.</p>
+                </div>
             </div>
-        </div>
-            
-        <div class="feature-box">
-            <i class="fa-solid fa-truck-fast"></i>
-            <div>
-                <h4>Fast & Free Delivery</h4>
-                <p>Free shipping on qualifying orders.</p>
+
+            <!-- Duplicated for seamless continuous infinite scroll -->
+            <div class="feature-box">
+                <i class="fa-solid fa-truck-fast"></i>
+                <div>
+                    <h4>Fast & Free Delivery</h4>
+                    <p>Free shipping on qualifying orders.</p>
+                </div>
             </div>
-        </div>
-        <div class="feature-box">
-            <i class="fa-solid fa-shield-halved"></i>
-            <div>
-                <h4>Secure Payments</h4>
-                <p>Safe and protected checkout.</p>
+            <div class="feature-box">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div>
+                    <h4>Secure Payments</h4>
+                    <p>Safe and protected checkout.</p>
+                </div>
             </div>
-        </div>
-        <div class="feature-box">
-            <i class="fa-solid fa-rotate-left"></i>
-            <div>
-                <h4>Easy Returns</h4>
-                <p>Simple and convenient returns.</p>
+            <div class="feature-box">
+                <i class="fa-solid fa-rotate-left"></i>
+                <div>
+                    <h4>Easy Returns</h4>
+                    <p>Simple and convenient 30-day returns.</p>
+                </div>
             </div>
-        </div>
-        <div class="feature-box">
-            <i class="fa-solid fa-certificate"></i>
-            <div>
-                <h4>Genuine Products</h4>
-                <p>Authentic products from trusted brands.</p>
+            <div class="feature-box">
+                <i class="fa-solid fa-certificate"></i>
+                <div>
+                    <h4>Genuine Products</h4>
+                    <p>Authentic products from trusted brands.</p>
+                </div>
             </div>
-        </div>
-        <div class="feature-box">
-            <i class="fa-solid fa-headset"></i>
-            <div>
-                <h4>24/7 Support</h4>
-                <p>We're here whenever you need help.</p>
+            <div class="feature-box">
+                <i class="fa-solid fa-headset"></i>
+                <div>
+                    <h4>24/7 Support</h4>
+                    <p>We're here whenever you need help.</p>
+                </div>
             </div>
-        </div> <!-- Duplicated for seamless scrolling -->
         </div>
     </section>
 
-
-    <!-- 2. Freshly Dropped -->
-    <section id="freshly-dropped" class="freshly-dropped container">
-        <h2 data-aos="fade-right">Freshly dropped.</h2>
-        <p class="subtitle" data-aos="fade-right" data-aos-delay="100">New arrivals to upgrade your setup.</p>
+    <!-- 2. Freshly Dropped Products -->
+    <section id="freshly-dropped" class="freshly-dropped">
+        <div class="container">
+            <div class="section-heading text-center">
+            <p class="tagline">CURATED DROPS</p>
+            <h2>Freshly dropped.</h2>
+            <p class="subtitle">New arrivals engineered to upgrade your daily setup.</p>
+        </div>
         
-        
-        <div class="product-filters" data-aos="fade-up">
+        <div class="product-filters">
             <button class="filter-btn active" data-filter="all">ALL</button>
             <button class="filter-btn" data-filter="smartphones">SMARTPHONES</button>
             <button class="filter-btn" data-filter="laptops">LAPTOPS</button>
@@ -168,386 +239,831 @@
 
         <div class="grid-4 mt-4" id="freshly-dropped-grid">
             <!-- Card 1 -->
-            <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="product-card">
                 <div class="card-actions">
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <button class="quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                    <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                    <button class="quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
                 </div>
                 <div class="badge new-badge">NEW</div>
                 <div class="img-container">
-                    <img src="assets/img/monitor.webp" alt="Monitor">
+                    <img src="assets/img/monitor.webp" alt="Pro Display X1 Monitor">
                 </div>
                 <div class="card-info">
                     <p class="category-label">Monitors</p>
-                    <h3>Pro Display X1</h3>
+                    <h3 class="product-title">Pro Display X1</h3>
                     <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span></div>
                     <p class="price">$899.00</p>
-                    <button class="btn btn-add-cart w-100 mt-2">ADD TO CART</button>
+                    <button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
                 </div>
             </div>
             <!-- Card 2 -->
-            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="product-card">
                 <div class="card-actions">
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <button class="quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                    <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                    <button class="quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
                 </div>
                 <div class="badge best-badge">BESTSELLER</div>
                 <div class="img-container">
-                    <img src="assets/img/girl-headphones.webp" alt="Console">
+                    <img src="assets/img/console.webp" alt="Play One Console">
                 </div>
                 <div class="card-info">
                     <p class="category-label">Gaming</p>
-                    <h3>Play One Console</h3>
+                    <h3 class="product-title">Play One Console</h3>
                     <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span></div>
                     <p class="price">$449.00</p>
-                    <button class="btn btn-add-cart w-100 mt-2">ADD TO CART</button>
+                    <button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
                 </div>
             </div>
             <!-- Card 3 -->
-            <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="product-card">
                 <div class="card-actions">
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <button class="quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                    <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                    <button class="quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
                 </div>
                 <div class="img-container">
-                    <img src="assets/img/laptop.webp" alt="Laptop">
+                    <img src="assets/img/laptop.webp" alt="Book Air 14 Laptop">
                 </div>
                 <div class="card-info">
                     <p class="category-label">Laptops</p>
-                    <h3>Book Air 14</h3>
+                    <h3 class="product-title">Book Air 14</h3>
                     <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> <span>(4.2)</span></div>
                     <p class="price">$799.00</p>
-                    <button class="btn btn-add-cart w-100 mt-2">ADD TO CART</button>
+                    <button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
                 </div>
             </div>
             <!-- Card 4 -->
-            <div class="product-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="product-card">
                 <div class="card-actions">
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <button class="quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                    <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                    <button class="quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
                 </div>
                 <div class="img-container">
-                    <img src="assets/img/keyboard.webp" alt="Keyboard">
+                    <img src="assets/img/keyboard.webp" alt="Mechanical Keys">
                 </div>
                 <div class="card-info">
                     <p class="category-label">Accessories</p>
-                    <h3>Mechanical Keys</h3>
+                    <h3 class="product-title">Mechanical Keys</h3>
                     <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.6)</span></div>
                     <p class="price">$129.00</p>
-                    <button class="btn btn-add-cart w-100 mt-2">ADD TO CART</button>
+                    <button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
                 </div>
             </div>
         </div>
-    </section>
 
-            <div class="text-center mt-5" data-aos="fade-up" style="margin-bottom: 60px;">
-            <a href="javascript:void(0)" class="view-all-link" style="color:#333; font-weight:600; text-decoration:none; padding-bottom:3px; border-bottom:2px solid #333;">VIEW ALL PRODUCTS</a>
+        <div class="text-center mt-5">
+            <a href="#categories" class="view-all-link scroll-link">
+                <span>VIEW ALL CATEGORIES</span>
+                <i class="fa-solid fa-arrow-down"></i>
+            </a>
+        </div>
         </div>
     </section>
 
-    <!-- 3. Categories -->
-    <section id="categories" class="categories container">
-        <div class="grid-4">
-            <div class="category-item" data-aos="flip-up" data-aos-delay="100">
-                <div class="cat-icon"><i class="fa-solid fa-desktop"></i></div>
+    <!-- 3. Redesigned Product Categories -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="section-heading text-center">
+            <p class="tagline">COLLECTIONS</p>
+            <h2>Shop by category.</h2>
+            <p class="subtitle">Find thoughtfully selected essentials tailored for your setup.</p>
+        </div>
+
+        <div class="grid-4 mt-4">
+            <!-- Cat 1 -->
+            <div class="category-item" data-category="monitors">
+                <div class="cat-img-box">
+                    <img src="assets/img/monitor.webp" alt="Monitors">
+                </div>
                 <div class="cat-info">
-                    <h4>Monitors</h4>
-                    <p>See the bigger picture.</p>
-                    <span class="product-count">12 Products</span>
-                    <a href="javascript:void(0)" class="explore-link">Explore Monitors</a>
+                    <div class="cat-header-row">
+                        <h4>Monitors</h4>
+                        <span class="product-count">12 Products</span>
+                    </div>
+                    <p>See the bigger picture with ultra-sharp displays.</p>
+                    <a href="#freshly-dropped" class="explore-link" data-filter="all">Explore Monitors <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="category-item" data-aos="flip-up" data-aos-delay="200">
-                <div class="cat-icon"><i class="fa-solid fa-gamepad"></i></div>
+
+            <!-- Cat 2 -->
+            <div class="category-item" data-category="gaming">
+                <div class="cat-img-box">
+                    <img src="assets/img/console.webp" alt="Gaming Consoles">
+                </div>
                 <div class="cat-info">
-                    <h4>Gaming Consoles</h4>
-                    <p>Your next adventure.</p>
-                    <span class="product-count">8 Products</span>
-                    <a href="javascript:void(0)" class="explore-link">Explore Gaming</a>
+                    <div class="cat-header-row">
+                        <h4>Gaming Consoles</h4>
+                        <span class="product-count">8 Products</span>
+                    </div>
+                    <p>Next-gen power and uncompromised immersion.</p>
+                    <a href="#freshly-dropped" class="explore-link" data-filter="gaming">Explore Gaming <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="category-item" data-aos="flip-up" data-aos-delay="300">
-                <div class="cat-icon"><i class="fa-solid fa-laptop"></i></div>
+
+            <!-- Cat 3 -->
+            <div class="category-item" data-category="laptops">
+                <div class="cat-img-box">
+                    <img src="assets/img/laptop.webp" alt="Laptops">
+                </div>
                 <div class="cat-info">
-                    <h4>Laptops</h4>
-                    <p>Big ideas, anywhere.</p>
-                    <span class="product-count">15 Products</span>
-                    <a href="javascript:void(0)" class="explore-link">Explore Laptops</a>
+                    <div class="cat-header-row">
+                        <h4>Laptops</h4>
+                        <span class="product-count">15 Products</span>
+                    </div>
+                    <p>Big ideas, lightweight baggage anywhere.</p>
+                    <a href="#freshly-dropped" class="explore-link" data-filter="laptops">Explore Laptops <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="category-item" data-aos="flip-up" data-aos-delay="400">
-                <div class="cat-icon"><i class="fa-solid fa-keyboard"></i></div>
+
+            <!-- Cat 4 -->
+            <div class="category-item" data-category="accessories">
+                <div class="cat-img-box">
+                    <img src="assets/img/keyboard.webp" alt="Accessories">
+                </div>
                 <div class="cat-info">
-                    <h4>Accessories</h4>
-                    <p>Complete your setup.</p>
-                    <span class="product-count">34 Products</span>
-                    <a href="javascript:void(0)" class="explore-link">Explore Accessories</a>
+                    <div class="cat-header-row">
+                        <h4>Accessories</h4>
+                        <span class="product-count">34 Products</span>
+                    </div>
+                    <p>Precision tactile tools to complete your desk.</p>
+                    <a href="#freshly-dropped" class="explore-link" data-filter="all">Explore Accessories <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="category-item" data-aos="flip-up" data-aos-delay="500">
-                <div class="cat-icon"><i class="fa-solid fa-headphones"></i></div>
+
+            <!-- Cat 5 -->
+            <div class="category-item" data-category="headphones">
+                <div class="cat-img-box">
+                    <img src="assets/img/promo.webp" alt="Headphones">
+                </div>
                 <div class="cat-info">
-                    <h4>Headphones</h4>
-                    <p>Your world, uninterrupted.</p>
-                    <span class="product-count">18 Products</span>
-                    <a href="javascript:void(0)" class="explore-link">Explore Audio</a>
+                    <div class="cat-header-row">
+                        <h4>Headphones</h4>
+                        <span class="product-count">18 Products</span>
+                    </div>
+                    <p>Your world, uninterrupted with hybrid ANC.</p>
+                    <a href="#freshly-dropped" class="explore-link" data-filter="smart-gadgets">Explore Audio <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="category-item" data-aos="flip-up" data-aos-delay="600">
-                <div class="cat-icon"><i class="fa-solid fa-ear-listen"></i></div>
+
+            <!-- Cat 6 -->
+            <div class="category-item" data-category="earbuds">
+                <div class="cat-img-box">
+                    <img src="assets/img/earbuds.webp" alt="Earbuds">
+                </div>
                 <div class="cat-info">
-                    <h4>Earbuds</h4>
-                    <p>Small size. Big sound.</p>
-                    <span class="product-count">22 Products</span>
-                    <a href="javascript:void(0)" class="explore-link">Explore Earbuds</a>
+                    <div class="cat-header-row">
+                        <h4>Earbuds</h4>
+                        <span class="product-count">22 Products</span>
+                    </div>
+                    <p>Compact size, spacious high-fidelity sound.</p>
+                    <a href="#freshly-dropped" class="explore-link" data-filter="smart-gadgets">Explore Earbuds <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="category-item" data-aos="flip-up" data-aos-delay="700">
-                <div class="cat-icon"><i class="fa-solid fa-speaker-deck"></i></div>
+
+            <!-- Cat 7 -->
+            <div class="category-item" data-category="cameras">
+                <div class="cat-img-box">
+                    <img src="assets/img/camera.webp" alt="Cameras & Vision">
+                </div>
                 <div class="cat-info">
-                    <h4>Speakers</h4>
-                    <p>Set the mood, anywhere.</p>
-                    <span class="product-count">10 Products</span>
-                    <a href="javascript:void(0)" class="explore-link">Explore Speakers</a>
+                    <div class="cat-header-row">
+                        <h4>Cameras</h4>
+                        <span class="product-count">10 Products</span>
+                    </div>
+                    <p>Capture crystal clear memories and live streams.</p>
+                    <a href="#freshly-dropped" class="explore-link" data-filter="all">Explore Cameras <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="category-item" data-aos="flip-up" data-aos-delay="800">
-                <div class="cat-icon"><i class="fa-solid fa-stopwatch"></i></div>
+
+            <!-- Cat 8 -->
+            <div class="category-item" data-category="wearables">
+                <div class="cat-img-box">
+                    <img src="assets/img/watch.webp" alt="Wearables">
+                </div>
                 <div class="cat-info">
-                    <h4>Wearables</h4>
-                    <p>A little help everyday.</p>
-                    <span class="product-count">14 Products</span>
-                    <a href="javascript:void(0)" class="explore-link">Explore Wearables</a>
+                    <div class="cat-header-row">
+                        <h4>Wearables</h4>
+                        <span class="product-count">14 Products</span>
+                    </div>
+                    <p>Intelligent health insights on your wrist.</p>
+                    <a href="#freshly-dropped" class="explore-link" data-filter="smart-gadgets">Explore Wearables <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
-    <!-- 4. Showcase Section (NEW) -->
-    <section class="showcase">
+    <!-- 4. Featured Technology Showcase -->
+    <section class="showcase" id="showcase">
         <div class="container text-center">
-            <p class="tagline" data-aos="fade-up">FEATURED TECHNOLOGY</p>
-            <h2 class="mb-4" data-aos="fade-up" data-aos-delay="100">Technology that fits your everyday.</h2>
+            <div class="section-heading">
+                <p class="tagline">FEATURED TECHNOLOGY</p>
+                <h2>Technology that fits your everyday.</h2>
+                <p class="subtitle">Engineered for seamless productivity and immersive play.</p>
+            </div>
             
             <div class="showcase-layout">
-                <div class="sc-left" data-aos="fade-right" data-aos-delay="300">
-                    <div class="sc-img-wrap"><img src="assets/img/laptop.webp" alt="Laptop"></div>
+                <!-- Left Feature -->
+                <div class="sc-side-card sc-left">
+                    <div class="sc-img-wrap">
+                        <img src="assets/img/laptop.webp" alt="Laptop Productivity">
+                    </div>
                     <div class="sc-feature">
-                        <h4>01</h4>
-                        <p>Built for productivity</p>
+                        <span class="sc-num">01</span>
+                        <h4>Built for productivity</h4>
+                        <p>Ultra-thin profiles with full-day battery life for creators on the move.</p>
                     </div>
                 </div>
                 
-                <div class="sc-center" data-aos="fade-up" data-aos-delay="200">
-                    <img src="assets/img/monitor.webp" alt="Main Display" class="sc-main-img">
+                <!-- Centerpiece Feature -->
+                <div class="sc-center-card">
+                    <div class="sc-main-visual">
+                        <img src="assets/img/monitor.webp" alt="Pro Display X1" class="sc-main-img">
+                        <div class="sc-floating-tag">
+                            <i class="fa-solid fa-shield-check"></i> 5K Retina Clarity
+                        </div>
+                    </div>
                     <div class="sc-feature center-feat">
-                        <h4>02</h4>
-                        <p>Designed for entertainment</p>
+                        <span class="sc-num">02</span>
+                        <h4>Designed for entertainment</h4>
+                        <p>True-to-life color calibration and cinema-grade dynamic range.</p>
                     </div>
-                    <a href="javascript:void(0)" class="btn btn-dark mt-4">EXPLORE COLLECTION</a>
+                    <a href="#categories" class="btn btn-dark mt-3 scroll-link">
+                        <span>EXPLORE COLLECTION</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
                 
-                <div class="sc-right" data-aos="fade-left" data-aos-delay="400">
-                    <div class="sc-img-wrap"><img src="assets/img/girl-headphones.webp" alt="Console"></div>
-                    <div class="sc-img-wrap"><img src="assets/img/keyboard.webp" alt="Keyboard"></div>
+                <!-- Right Feature -->
+                <div class="sc-side-card sc-right">
+                    <div class="sc-dual-wrap">
+                        <div class="sc-img-wrap mini"><img src="assets/img/girl-headphones.webp" alt="Sonix Wireless Audio" loading="lazy"></div>
+                        <div class="sc-img-wrap mini"><img src="assets/img/keyboard.webp" alt="Mechanical Keyboard" loading="lazy"></div>
+                    </div>
                     <div class="sc-feature">
-                        <h4>03</h4>
-                        <p>Ready for everyday use</p>
+                        <span class="sc-num">03</span>
+                        <h4>Ready for every use</h4>
+                        <p>Low-latency wireless pairing with intuitive controls tailored for modern desks.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. Setup Feature -->
-    <section class="setup-feature">
-        <div class="container text-center">
-            <p class="tagline" data-aos="fade-down">THE DETAILS MAKE THE DIFFERENCE</p>
-            <h2 data-aos="fade-down" data-aos-delay="100">A bigger view.<br>A better setup.</h2>
+    <!-- 5. Workspace Showcase ("The details make the difference") -->
+    <section class="setup-feature" id="setup-feature">
+        <div class="container">
+            <div class="section-heading text-center">
+                <p class="tagline">THE DETAILS MAKE THE DIFFERENCE</p>
+                <h2>A bigger view. A better setup.</h2>
+                <p class="subtitle">Transform your space with ergonomic balance and clean minimal aesthetics.</p>
+            </div>
             
-            <div class="setup-grid">
-                <div class="setup-points left-points">
-                    <div class="point" data-aos="fade-right" data-aos-delay="200">
-                        <h4>01</h4>
-                        <p>Built for focused work</p>
-                    </div>
-                    <div class="point" data-aos="fade-right" data-aos-delay="400">
-                        <h4>02</h4>
-                        <p>Perfect for entertainment</p>
+            <div class="setup-content-grid">
+                <div class="setup-image-column">
+                    <div class="setup-image-frame">
+                        <img src="assets/img/setup.webp" alt="Curated Workspace Setup" class="setup-img">
+                        <div class="setup-glass-chip">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Validated Ergonomics</span>
+                        </div>
                     </div>
                 </div>
-                <div class="setup-image-wrap" data-aos="zoom-in">
-                    <img src="assets/img/setup.webp" alt="Monitor Setup" class="setup-img">
-                </div>
-                <div class="setup-points right-points">
-                    <div class="point" data-aos="fade-left" data-aos-delay="300">
-                        <h4>03</h4>
-                        <p>Clean and modern workspace</p>
+
+                <div class="setup-points-column">
+                    <div class="setup-point-card">
+                        <div class="point-badge">01</div>
+                        <div class="point-body">
+                            <h4>Built for focused work</h4>
+                            <p>Distraction-free lines and balanced lighting keep your mind clear during deep work sessions.</p>
+                        </div>
                     </div>
-                    <div class="point" data-aos="fade-left" data-aos-delay="500">
-                        <h4>04</h4>
-                        <p>Designed for everyday productivity</p>
+
+                    <div class="setup-point-card">
+                        <div class="point-badge">02</div>
+                        <div class="point-body">
+                            <h4>Seamless multi-device flow</h4>
+                            <p>Single-cable docking links laptops, monitors, and peripherals with instant zero lag.</p>
+                        </div>
+                    </div>
+
+                    <div class="setup-point-card">
+                        <div class="point-badge">03</div>
+                        <div class="point-body">
+                            <h4>Clean and modern workspace</h4>
+                            <p>Thoughtful integrated cable routing eliminates clutter for a refined modern environment.</p>
+                        </div>
+                    </div>
+
+                    <div class="setup-point-card">
+                        <div class="point-badge">04</div>
+                        <div class="point-body">
+                            <h4>Designed for everyday endurance</h4>
+                            <p>Crafted from aircraft-grade aluminum and eco-conscious finishes built to last.</p>
+                        </div>
+                    </div>
+
+                    <div class="setup-action">
+                        <a href="#freshly-dropped" class="btn btn-dark scroll-link">
+                            <span>EXPLORE SETUP GEAR</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            <a href="javascript:void(0)" class="btn btn-dark mt-4" data-aos="fade-up">Explore View</a>
         </div>
     </section>
 
-    <!-- 6. Handpicked for you -->
-    <section class="handpicked container">
-        <p class="tagline" data-aos="fade-right">HANDPICKED FOR YOU</p>
-        <h2 data-aos="fade-right">Your next everyday favorite.</h2>
+    <!-- 6. Handpicked For You (Recommended Products) -->
+    <section class="handpicked" id="handpicked">
+        <div class="container">
+            <div class="section-heading">
+            <p class="tagline">HANDPICKED FOR YOU</p>
+            <h2>Your next everyday favorite.</h2>
+            <p class="subtitle">Select recommendations backed by community reviews and everyday testing.</p>
+        </div>
         
         <div class="grid-2 mt-4">
-            <div class="large-card" data-aos="fade-up" data-aos-delay="100">
+            <!-- Large Card 1 -->
+            <div class="large-card">
                 <div class="card-content">
                     <p class="category-tag">WIRELESS AUDIO</p>
-                    <h3>Premium ANC Headphones</h3>
-                    <div class="rating mb-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span></div>
+                    <h3 class="product-title">Premium ANC Headphones</h3>
+                    <div class="rating mb-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span>(5.0 &bull; 842 reviews)</span>
+                    </div>
                     <p class="price-wrap"><span class="price">$349.00</span> <span class="old-price">$399.00</span></p>
                     <p class="desc">Immersive sound meets all-day comfort. Industry-leading noise cancellation perfect for your everyday commute and deep work.</p>
-                    <div class="colors">
-                        <span class="color black"></span>
-                        <span class="color white"></span>
+                    
+                    <div class="colors" role="radiogroup" aria-label="Headphone color options">
+                        <button type="button" class="color black active" data-img="assets/img/promo.webp" data-color="Black" aria-label="Black" title="Black" aria-checked="true" role="radio"></button>
+                        <button type="button" class="color white" data-img="assets/img/girl-headphones.webp" data-color="White" aria-label="White" title="White" aria-checked="false" role="radio"></button>
                     </div>
+                    
                     <div class="card-btn-group">
-                        <button class="btn btn-dark btn-add-cart">ADD TO BAG</button>
-                        <button class="icon-btn" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
-                        <button class="icon-btn" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+                        <button class="btn btn-dark btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> ADD TO BAG</button>
+                        <button class="icon-btn wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                        <button class="icon-btn quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
                     </div>
                 </div>
-                <img src="assets/img/girl-headphones.webp" alt="Headphones">
+                <div class="large-card-img">
+                    <img src="assets/img/promo.webp" alt="Premium ANC Headphones">
+                </div>
             </div>
             
-            <div class="large-card" data-aos="fade-up" data-aos-delay="300">
+            <!-- Large Card 2 -->
+            <div class="large-card">
                 <div class="card-content">
                     <p class="category-tag">LAPTOPS</p>
-                    <h3>Book Air 14 Laptop</h3>
-                    <div class="rating mb-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                    <h3 class="product-title">Book Air 14 Laptop</h3>
+                    <div class="rating mb-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span>(4.9 &bull; 618 reviews)</span>
+                    </div>
                     <p class="price-wrap"><span class="price">$799.00</span> <span class="old-price">$849.00</span></p>
                     <p class="desc">Big ideas, lighter baggage. A slim everyday laptop for your projects, calls and creative routines, at home or on the move.</p>
-                    <div class="colors">
-                        <span class="color silver"></span>
-                        <span class="color space-gray"></span>
+                    
+                    <div class="colors" role="radiogroup" aria-label="Laptop color options">
+                        <button type="button" class="color silver active" data-img="assets/img/laptop.webp" data-color="Silver" aria-label="Silver" title="Silver" aria-checked="true" role="radio"></button>
+                        <button type="button" class="color silver-grey" data-img="assets/img/laptop-pro.webp" data-color="Silver Grey" aria-label="Silver Grey" title="Silver Grey" aria-checked="false" role="radio"></button>
                     </div>
+                    
                     <div class="card-btn-group">
-                        <button class="btn btn-dark btn-add-cart">ADD TO BAG</button>
-                        <button class="icon-btn" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
-                        <button class="icon-btn" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+                        <button class="btn btn-dark btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> ADD TO BAG</button>
+                        <button class="icon-btn wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                        <button class="icon-btn quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
                     </div>
                 </div>
-                <img src="assets/img/laptop.webp" alt="Book Air">
+                <div class="large-card-img">
+                    <img src="assets/img/laptop.webp" alt="Book Air 14 Laptop">
+                </div>
             </div>
+        </div>
         </div>
     </section>
 
-    <!-- 7. Promo Banner -->
-    <section class="promo-banner container" data-aos="fade-up">
+    <!-- 7. Promo Banner with Interactive Countdown -->
+    <section class="promo-banner container" id="promo-banner">
         <div class="promo-content">
-            <p class="tagline" style="color: #000000 !important; font-weight: bold; font-size: 0.8rem; letter-spacing: 1px;">A LITTLE MORE MUSIC. A LITTLE LESS SPEND.</p>
-            <h2 style="color: #000000 !important; font-weight: 800; font-size: 2.5rem; margin-bottom: 15px;">Good sound.<br>Great deal.</h2>
-            <p class="promo-desc" style="color: #000000 !important; font-weight: 500; font-size: 1.1rem; margin-bottom: 20px;">Your favorite Sonix Pro.<br>Now with a price worth listening to.</p>
-            <p class="price-wrap"><span class="price lg" style="color: #000000 !important; font-weight: bold;">$129</span> <span class="old-price">$199</span></p>
+            <p class="tagline">LIMITED-TIME SPECIAL OFFER</p>
+            <h2>Good sound.<br>Great deal.</h2>
+            <p class="promo-desc">Your favorite Sonix Pro Wireless ANC headphones. Now at a price worth listening to.</p>
             
-            <div class="promo-buttons mt-4">
-                <a href="javascript:void(0)" class="btn btn-dark">GRAB THE DEAL</a>
+            <!-- Live interactive Countdown -->
+            <div class="countdown-timer" id="promo-countdown">
+                <div class="cd-box"><span id="cd-days">02</span><small>Days</small></div>
+                <div class="cd-box"><span id="cd-hours">14</span><small>Hours</small></div>
+                <div class="cd-box"><span id="cd-mins">35</span><small>Mins</small></div>
+                <div class="cd-box"><span id="cd-secs">20</span><small>Secs</small></div>
+            </div>
+
+            <p class="price-wrap">
+                <span class="price lg">$129.00</span>
+                <span class="old-price">$199.00</span>
+                <span class="discount-pill">SAVE 35%</span>
+            </p>
+            
+            <div class="promo-buttons">
+                <button class="btn btn-dark btn-add-cart" id="promo-add-cart-btn">
+                    <i class="fa-solid fa-bolt"></i> GRAB THE DEAL
+                </button>
+                <a href="#categories" class="btn btn-secondary scroll-link">VIEW ALL OFFERS</a>
             </div>
         </div>
-        <img src="assets/img/promo-girl.webp" alt="Promo Headphones">
+        <div class="promo-image-wrap">
+            <img src="assets/img/promo-girl.webp" alt="Sonix Pro Headphones Promotional Offer">
+        </div>
     </section>
 
-    <!-- 8. Testimonials -->
-    <section class="testimonials">
-        <div class="container text-center">
-            <p class="tagline" data-aos="fade-up">THE STACKLY COMMUNITY</p>
-            <h2 data-aos="fade-up">Good things. Said out loud.</h2>
+    <!-- 8. Customer Reviews & Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="reviews-header">
+                <div class="reviews-header-text">
+                    <p class="tagline">THE STACKLY COMMUNITY</p>
+                    <h2>Good things. Said out loud.</h2>
+                    <p class="subtitle">Real experiences from customers elevating their everyday tech routines.</p>
+                </div>
+                
+                <div class="community-trust-badge">
+                    <div class="trust-stars-group">
+                        <span class="trust-score">4.9</span>
+                        <div class="rating-stars" aria-label="Rated 4.9 out of 5 stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="trust-meta">
+                        <strong>Verified Store Reviews</strong>
+                        <span>Real Hardware Enthusiasts</span>
+                    </div>
+                </div>
+            </div>
             
-            <div class="grid-3 mt-4">
-                <div class="test-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="rating-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="quote">"The monitor completely changed my workspace. The display quality and clean design are excellent."</p>
-                    <div class="purchased-item">Purchased: Pro Display X1</div>
-                    <div class="author mt-2">
-                        <div class="avatar">SJ</div>
-                        <div>
+            <div class="reviews-showcase mt-4">
+                <!-- Featured Prominent Review -->
+                <div class="featured-review-card">
+                    <div class="featured-card-glow"></div>
+                    <div class="featured-top-row">
+                        <span class="featured-label"><i class="fa-solid fa-crown"></i> FEATURED REVIEW</span>
+                        <span class="review-date"><i class="fa-regular fa-calendar-check"></i> Verified Oct 2026</span>
+                    </div>
+                    
+                    <div class="featured-quote-icon">
+                        <i class="fa-solid fa-quote-left"></i>
+                    </div>
+
+                    <div class="rating-stars mb-2" aria-label="Rated 5 out of 5 stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span class="rating-number">5.0</span>
+                    </div>
+
+                    <blockquote class="featured-quote">
+                        &ldquo;The monitor completely changed my workspace. The display quality, color accuracy, and clean design are unmatched.&rdquo;
+                    </blockquote>
+
+                    <!-- Product Tag with Thumbnail -->
+                    <div class="review-product-chip">
+                        <div class="product-thumb">
+                            <img src="assets/img/monitor.webp" alt="Pro Display X1">
+                        </div>
+                        <div class="product-details">
+                            <span class="verified-tag"><i class="fa-solid fa-circle-check"></i> Verified Purchase</span>
+                            <span class="product-name">Pro Display X1</span>
+                        </div>
+                    </div>
+
+                    <div class="featured-author">
+                        <div class="avatar-ring">
+                            <div class="avatar">SJ</div>
+                        </div>
+                        <div class="author-details">
                             <strong>Sarah Jenkins</strong>
-                            <span>Designer, NY</span>
+                            <span>Product Designer &bull; NY</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="test-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="rating-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="quote">"I take this laptop everywhere. It's incredibly fast, lightweight, and perfect for getting work done at coffee shops."</p>
-                    <div class="purchased-item">Purchased: Book Air 14 Laptop</div>
-                    <div class="author mt-2">
-                        <div class="avatar">MR</div>
-                        <div>
-                            <strong>Michael Reed</strong>
-                            <span>Freelancer, CA</span>
+
+                <!-- Interactive Reviews Carousel -->
+                <div class="reviews-carousel-panel">
+                    <div class="carousel-header-controls">
+                        <div class="carousel-counter-info">
+                            <span class="counter-label">COMMUNITY STORIES</span>
+                            <span class="counter-nums" id="review-counter-text">Review 1 of 6</span>
+                        </div>
+                        <div class="carousel-action-btns">
+                            <button class="review-nav-btn" id="review-prev-btn" aria-label="Previous review">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button class="review-nav-btn" id="review-next-btn" aria-label="Next review">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
                         </div>
                     </div>
-                </div>
-                
-                <div class="test-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="rating-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
-                    <p class="quote">"Finally, a gaming console that looks sleek in my living room and performs amazingly well for weekend sessions."</p>
-                    <div class="purchased-item">Purchased: Play One Console</div>
-                    <div class="author mt-2">
-                        <div class="avatar">DT</div>
-                        <div>
-                            <strong>David Torres</strong>
-                            <span>Gamer, TX</span>
+
+                    <div class="reviews-viewport" id="reviews-viewport" tabindex="0" role="region" aria-label="Customer reviews carousel, use left and right arrow keys to navigate">
+                        <div class="reviews-track" id="reviews-track">
+                            <!-- Slide 1: Michael Reed -->
+                            <div class="review-slide" data-slide="0" role="group" aria-roledescription="slide" aria-label="Review 1 of 6">
+                                <div class="review-card-inner">
+                                    <div class="review-card-head">
+                                        <div class="rating-stars" aria-label="Rated 5 out of 5 stars">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                            <span class="rating-number">5.0</span>
+                                        </div>
+                                        <span class="review-date"><i class="fa-regular fa-calendar-check"></i> Verified Oct 2026</span>
+                                    </div>
+
+                                    <div class="quote-container">
+                                        <i class="fa-solid fa-quote-left quote-watermark"></i>
+                                        <blockquote class="compact-quote">
+                                            &ldquo;I take this laptop everywhere. It's incredibly fast, lightweight, and perfect for getting demanding client work done anywhere.&rdquo;
+                                        </blockquote>
+                                    </div>
+
+                                    <div class="review-product-chip">
+                                        <div class="product-thumb">
+                                            <img src="assets/img/laptop.webp" alt="Book Air 14 Laptop">
+                                        </div>
+                                        <div class="product-details">
+                                            <span class="verified-tag"><i class="fa-solid fa-circle-check"></i> Verified Purchase</span>
+                                            <span class="product-name">Book Air 14 Laptop</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-card-footer">
+                                        <div class="avatar">MR</div>
+                                        <div class="author-details">
+                                            <strong>Michael Reed</strong>
+                                            <span>Software Engineer &bull; CA</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: David Torres -->
+                            <div class="review-slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="Review 2 of 6">
+                                <div class="review-card-inner">
+                                    <div class="review-card-head">
+                                        <div class="rating-stars" aria-label="Rated 4.5 out of 5 stars">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                                            <span class="rating-number">4.5</span>
+                                        </div>
+                                        <span class="review-date"><i class="fa-regular fa-calendar-check"></i> Verified Sep 2026</span>
+                                    </div>
+
+                                    <div class="quote-container">
+                                        <i class="fa-solid fa-quote-left quote-watermark"></i>
+                                        <blockquote class="compact-quote">
+                                            &ldquo;Finally, a gaming console that looks sleek in my modern living room and delivers phenomenal frame rates for weekend gaming.&rdquo;
+                                        </blockquote>
+                                    </div>
+
+                                    <div class="review-product-chip">
+                                        <div class="product-thumb">
+                                            <img src="assets/img/console.webp" alt="Play One Console">
+                                        </div>
+                                        <div class="product-details">
+                                            <span class="verified-tag"><i class="fa-solid fa-circle-check"></i> Verified Purchase</span>
+                                            <span class="product-name">Play One Console</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-card-footer">
+                                        <div class="avatar">DT</div>
+                                        <div class="author-details">
+                                            <strong>David Torres</strong>
+                                            <span>Digital Creator &bull; TX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: Elena Rostova -->
+                            <div class="review-slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="Review 3 of 6">
+                                <div class="review-card-inner">
+                                    <div class="review-card-head">
+                                        <div class="rating-stars" aria-label="Rated 5 out of 5 stars">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                            <span class="rating-number">5.0</span>
+                                        </div>
+                                        <span class="review-date"><i class="fa-regular fa-calendar-check"></i> Verified Sep 2026</span>
+                                    </div>
+
+                                    <div class="quote-container">
+                                        <i class="fa-solid fa-quote-left quote-watermark"></i>
+                                        <blockquote class="compact-quote">
+                                            &ldquo;The Sonix Pro ANC headphones are pure magic on long flights. Noise cancelling cuts everything out and the cushions feel like clouds.&rdquo;
+                                        </blockquote>
+                                    </div>
+
+                                    <div class="review-product-chip">
+                                        <div class="product-thumb">
+                                            <img src="assets/img/promo.webp" alt="Sonix Pro ANC">
+                                        </div>
+                                        <div class="product-details">
+                                            <span class="verified-tag"><i class="fa-solid fa-circle-check"></i> Verified Purchase</span>
+                                            <span class="product-name">Sonix Pro ANC Headphones</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-card-footer">
+                                        <div class="avatar">ER</div>
+                                        <div class="author-details">
+                                            <strong>Elena Rostova</strong>
+                                            <span>Product Designer &bull; NY</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4: Marcus Vance -->
+                            <div class="review-slide" data-slide="3" role="group" aria-roledescription="slide" aria-label="Review 4 of 6">
+                                <div class="review-card-inner">
+                                    <div class="review-card-head">
+                                        <div class="rating-stars" aria-label="Rated 5 out of 5 stars">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                            <span class="rating-number">5.0</span>
+                                        </div>
+                                        <span class="review-date"><i class="fa-regular fa-calendar-check"></i> Verified Aug 2026</span>
+                                    </div>
+
+                                    <div class="quote-container">
+                                        <i class="fa-solid fa-quote-left quote-watermark"></i>
+                                        <blockquote class="compact-quote">
+                                            &ldquo;Typing all day on this mechanical keyboard is an absolute joy. Tactile feedback is satisfying and the Bluetooth switching is instantaneous.&rdquo;
+                                        </blockquote>
+                                    </div>
+
+                                    <div class="review-product-chip">
+                                        <div class="product-thumb">
+                                            <img src="assets/img/keyboard.webp" alt="Mechanical Keys">
+                                        </div>
+                                        <div class="product-details">
+                                            <span class="verified-tag"><i class="fa-solid fa-circle-check"></i> Verified Purchase</span>
+                                            <span class="product-name">Mechanical Keys</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-card-footer">
+                                        <div class="avatar">MV</div>
+                                        <div class="author-details">
+                                            <strong>Marcus Vance</strong>
+                                            <span>Frontend Architect &bull; WA</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 5: Chloe Nguyen -->
+                            <div class="review-slide" data-slide="4" role="group" aria-roledescription="slide" aria-label="Review 5 of 6">
+                                <div class="review-card-inner">
+                                    <div class="review-card-head">
+                                        <div class="rating-stars" aria-label="Rated 4.8 out of 5 stars">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                            <span class="rating-number">4.8</span>
+                                        </div>
+                                        <span class="review-date"><i class="fa-regular fa-calendar-check"></i> Verified Aug 2026</span>
+                                    </div>
+
+                                    <div class="quote-container">
+                                        <i class="fa-solid fa-quote-left quote-watermark"></i>
+                                        <blockquote class="compact-quote">
+                                            &ldquo;The Watch Series 8 trackings are shockingly accurate during high intensity workouts. Battery easily lasts 2 full days with display on.&rdquo;
+                                        </blockquote>
+                                    </div>
+
+                                    <div class="review-product-chip">
+                                        <div class="product-thumb">
+                                            <img src="assets/img/watch.webp" alt="Watch Series 8">
+                                        </div>
+                                        <div class="product-details">
+                                            <span class="verified-tag"><i class="fa-solid fa-circle-check"></i> Verified Purchase</span>
+                                            <span class="product-name">Watch Series 8</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-card-footer">
+                                        <div class="avatar">CN</div>
+                                        <div class="author-details">
+                                            <strong>Chloe Nguyen</strong>
+                                            <span>Fitness Instructor &bull; CO</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 6: Julian Patel -->
+                            <div class="review-slide" data-slide="5" role="group" aria-roledescription="slide" aria-label="Review 6 of 6">
+                                <div class="review-card-inner">
+                                    <div class="review-card-head">
+                                        <div class="rating-stars" aria-label="Rated 5 out of 5 stars">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                            <span class="rating-number">5.0</span>
+                                        </div>
+                                        <span class="review-date"><i class="fa-regular fa-calendar-check"></i> Verified Jul 2026</span>
+                                    </div>
+
+                                    <div class="quote-container">
+                                        <i class="fa-solid fa-quote-left quote-watermark"></i>
+                                        <blockquote class="compact-quote">
+                                            &ldquo;I ordered the Creator Pro 16 for heavy 3D rendering and 4K color grading. Thermals are whisper quiet and rendering speeds blew away my expectations.&rdquo;
+                                        </blockquote>
+                                    </div>
+
+                                    <div class="review-product-chip">
+                                        <div class="product-thumb">
+                                            <img src="assets/img/laptop-pro.webp" alt="Creator Pro 16">
+                                        </div>
+                                        <div class="product-details">
+                                            <span class="verified-tag"><i class="fa-solid fa-circle-check"></i> Verified Purchase</span>
+                                            <span class="product-name">Creator Pro 16 Laptop</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-card-footer">
+                                        <div class="avatar">JP</div>
+                                        <div class="author-details">
+                                            <strong>Julian Patel</strong>
+                                            <span>VFX Artist &bull; IL</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Carousel Dots Navigation -->
+                    <div class="reviews-dots" id="reviews-dots" role="tablist" aria-label="Review slider pagination">
+                        <button class="dot-btn active" role="tab" aria-selected="true" aria-label="Show review 1" data-index="0"></button>
+                        <button class="dot-btn" role="tab" aria-selected="false" aria-label="Show review 2" data-index="1"></button>
+                        <button class="dot-btn" role="tab" aria-selected="false" aria-label="Show review 3" data-index="2"></button>
+                        <button class="dot-btn" role="tab" aria-selected="false" aria-label="Show review 4" data-index="3"></button>
+                        <button class="dot-btn" role="tab" aria-selected="false" aria-label="Show review 5" data-index="4"></button>
+                        <button class="dot-btn" role="tab" aria-selected="false" aria-label="Show review 6" data-index="5"></button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 9. Articles -->
-    <section class="articles container">
-        <p class="tagline" data-aos="fade-right">A LITTLE INSPIRATION</p>
-        <div class="section-header" data-aos="fade-right">
-            <h2>Find your everyday upgrade.</h2>
-            <a href="javascript:void(0)" class="link-explore">Explore buying guides</a>
+    <!-- 9. Buying Guides & Articles -->
+    <section class="articles" id="articles">
+        <div class="container">
+            <div class="section-header-row">
+            <div>
+                <p class="tagline">A LITTLE INSPIRATION</p>
+                <h2>Find your everyday upgrade.</h2>
+            </div>
+            <a href="javascript:void(0)" class="link-explore" id="explore-guides-link">
+                <span>Explore all buying guides</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
         
         <div class="grid-2 mt-4">
-            <div class="article-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="assets/img/article1.webp" alt="Headphones Guide">
-                <p class="tagline mt-2">BUYING GUIDE &middot; 5 MIN READ</p>
-                <h3>How to Choose the Right Audio Gear</h3>
-                <p class="desc">Over-ear or in-ear? Noise cancelling or open sound? Let's find your perfect everyday pair for work and travel.</p>
-                <a href="javascript:void(0)" class="read-btn">Read Article</a>
-            </div>
+            <article class="article-card">
+                <div class="article-img-wrap">
+                    <img src="assets/img/article1.webp" alt="How to Choose the Right Audio Gear">
+                    <span class="read-pill">5 MIN READ</span>
+                </div>
+                <div class="article-body">
+                    <p class="tagline mt-2">BUYING GUIDE &middot; AUDIO</p>
+                    <h3 class="article-title">How to Choose the Right Audio Gear</h3>
+                    <p class="desc">Over-ear or in-ear? Active noise cancelling or transparent sound? We break down how to find your perfect daily companion.</p>
+                    <a href="javascript:void(0)" class="read-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
             
-            <div class="article-card" data-aos="fade-up" data-aos-delay="300">
-                <img src="assets/img/article2.webp" alt="Setup Guide">
-                <p class="tagline mt-2">WORKSPACE &middot; 4 MIN READ</p>
-                <h3>Laptop Buying Guide for Everyday Work</h3>
-                <p class="desc">Thoughtful tech for your desk, your commute, and everything in between. Build a better setup today.</p>
-                <a href="javascript:void(0)" class="read-btn">Read Article</a>
-            </div>
+            <article class="article-card">
+                <div class="article-img-wrap">
+                    <img src="assets/img/article2.webp" alt="Laptop Buying Guide for Everyday Work">
+                    <span class="read-pill">4 MIN READ</span>
+                </div>
+                <div class="article-body">
+                    <p class="tagline mt-2">WORKSPACE &middot; COMPUTING</p>
+                    <h3 class="article-title">Laptop Buying Guide for Everyday Work</h3>
+                    <p class="desc">Thoughtful tech for your desk, your commute, and everywhere in between. Build a responsive, future-proof setup today.</p>
+                    <a href="javascript:void(0)" class="read-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
         </div>
     </section>
 
     <!-- 10. Newsletter -->
-    <section class="newsletter container" data-aos="fade-up">
+    <section class="newsletter container" id="newsletter">
         <div class="newsletter-content">
             <p class="tagline">STAY IN THE LOOP</p>
             <h2>Stay in the loop.</h2>
-            <p>Get product updates, buying guides and exclusive offers delivered to your inbox.</p>
+            <p>Get curated drops, tech buying guides, and exclusive member discounts delivered straight to your inbox.</p>
         </div>
         <div class="newsletter-form-container">
-            <form class="newsletter-form" id="newsletter-form">
-                <input type="email" id="email-input" placeholder="Enter your email address" required>
-                <button type="submit">SUBSCRIBE</button>
+            <form class="newsletter-form" id="newsletter-form" novalidate>
+                <input type="email" id="email-input" placeholder="Enter your email address" required aria-label="Email address">
+                <button type="submit" id="newsletter-submit-btn">SUBSCRIBE</button>
             </form>
-            <div class="form-feedback">
+            <div class="form-feedback" aria-live="polite">
                 <span class="error-msg" style="display:none;"><i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email address.</span>
-                <span class="success-msg" style="display:none;"><i class="fa-solid fa-circle-check"></i> Thank you for subscribing!</span>
+                <span class="success-msg" style="display:none;"><i class="fa-solid fa-circle-check"></i> Thank you for subscribing to STACKLY!</span>
             </div>
         </div>
     </section>
@@ -555,51 +1071,120 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <h1 class="footer-logo" data-aos="zoom-in">STACKLY</h1>
             <div class="footer-grid">
-                <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
-                    <h4>STACKLY</h4>
-                    <p>Good tech. Endless possibilities. Made for your everyday.</p>
-                    <div class="social-links mt-2">
-                        <a href="javascript:void(0)"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="javascript:void(0)"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="javascript:void(0)"><i class="fa-brands fa-facebook"></i></a>
+                <div class="footer-col">
+                    <a href="#" class="logo footer-logo">
+                        <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img footer-logo-img">
+                    </a>
+                    <p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
+                    <div class="social-links mt-3">
+                        <a href="404.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
-                <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                <div class="footer-col">
+                    <h4>QUICK LINKS</h4>
+                    <ul>
+                        <li><a href="#" class="scroll-link">Home</a></li>
+                        <li><a href="#freshly-dropped" class="scroll-link">Shop</a></li>
+                        <li><a href="#categories" class="scroll-link">Categories</a></li>
+                        <li><a href="#showcase" class="scroll-link">Featured</a></li>
+                        <li><a href="#setup-feature" class="scroll-link">Workspace</a></li>
+                        <li><a href="#articles" class="scroll-link">Buying Guides</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
                     <h4>SHOP</h4>
                     <ul>
-                        <li><a href="javascript:void(0)">Laptops</a></li>
-                        <li><a href="javascript:void(0)">Gaming</a></li>
-                        <li><a href="javascript:void(0)">Monitors</a></li>
-                        <li><a href="javascript:void(0)">Accessories</a></li>
+                        <li><a href="404.html">Laptops & Computers</a></li>
+                        <li><a href="404.html">Gaming Consoles</a></li>
+                        <li><a href="404.html">Monitors & Displays</a></li>
+                        <li><a href="404.html">Keyboards & Accessories</a></li>
+                        <li><a href="404.html">Smart Wearables</a></li>
                     </ul>
                 </div>
-                <div class="footer-col" data-aos="fade-up" data-aos-delay="300">
+                <div class="footer-col">
                     <h4>SUPPORT</h4>
                     <ul>
-                        <li><a href="javascript:void(0)">Shipping & Returns</a></li>
-                        <li><a href="javascript:void(0)">Track Order</a></li>
-                        <li><a href="javascript:void(0)">FAQs</a></li>
-                        <li><a href="javascript:void(0)">Contact Information</a></li>
+                        <li><a href="404.html">Shipping & Returns</a></li>
+                        <li><a href="404.html">Track Your Order</a></li>
+                        <li><a href="404.html">Help Center & FAQs</a></li>
+                        <li><a href="404.html">Warranty Information</a></li>
+                        <li><a href="404.html">Contact Customer Care</a></li>
                     </ul>
                 </div>
-                <div class="footer-col" data-aos="fade-up" data-aos-delay="400">
+                <div class="footer-col">
                     <h4>COMPANY</h4>
                     <ul>
-                        <li><a href="javascript:void(0)">Our Story</a></li>
-                        <li><a href="javascript:void(0)">Buying Guides</a></li>
-                        <li><a href="javascript:void(0)">Careers</a></li>
-                        <li><a href="javascript:void(0)">Sustainability</a></li>
+                        <li><a href="404.html">Our Mission</a></li>
+                        <li><a href="404.html">Buying Guides</a></li>
+                        <li><a href="404.html">Admin Portal</a></li>
+                        <li><a href="404.html">Customer Dashboard</a></li>
+                        <li><a href="404.html">Privacy Policy & Terms</a></li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
+                <div class="payment-methods">
+                    <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-apple-pay"></i> Apple Pay</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Interactive Quick View Modal -->
+    <div class="quick-view-overlay" id="quick-view-modal" aria-hidden="true" role="dialog">
+        <div class="quick-view-card">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="quick-view-grid">
+                <div class="qv-img-side">
+                    <img id="qv-img" src="assets/img/monitor.webp" alt="Product Preview">
+                </div>
+                <div class="qv-info-side">
+                    <p class="category-label" id="qv-category">Monitors</p>
+                    <h3 id="qv-title">Pro Display X1</h3>
+                    <div class="rating" id="qv-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span>
+                    </div>
+                    <p class="price" id="qv-price">$899.00</p>
+                    <p class="desc" id="qv-desc">Premium electronic hardware crafted for maximum productivity, crisp display performance, and long-lasting durability.</p>
+                    
+                    <div class="qv-features">
+                        <div class="qv-feat-item"><i class="fa-solid fa-shield-check"></i> 2-Year Official Warranty</div>
+                        <div class="qv-feat-item"><i class="fa-solid fa-truck-fast"></i> Free Express Shipping</div>
+                    </div>
+
+                    <div class="qv-action-row">
+                        <button class="btn btn-primary btn-add-cart w-100" id="qv-add-cart-btn">
+                            <i class="fa-solid fa-cart-shopping"></i> ADD TO CART
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info / Guide Modal -->
+    <div class="info-modal-overlay" id="info-modal" aria-hidden="true" role="dialog">
+        <div class="info-modal-card">
+            <button class="modal-close-btn" id="info-modal-close" aria-label="Close dialog">&times;</button>
+            <h3 id="info-modal-title">STACKLY Support</h3>
+            <div id="info-modal-body" class="info-modal-body">
+                <!-- Dynamic text populated by JS -->
+            </div>
+            <button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
+        </div>
+    </div>
+
     <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <!-- GSAP -->
+        <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- Custom JS -->
