@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Electronics - STACKLY Tech For Your Everyday</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Google Fonts Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-shop">
+
+    <!-- Premium Preloader -->
+    <div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading STACKLY store">
+        <div class="preloader-content">
+            <div class="preloader-logo-wrap">
+                <div class="preloader-circular-spinner" aria-hidden="true"></div>
+                <img src="assets/img/logo.webp" alt="STACKLY" class="preloader-brand-logo">
+            </div>
+            <div class="preloader-indicator">
+                <div class="preloader-progress-bar"></div>
+            </div>
+            <p class="preloader-text">Preparing Your Experience...</p>
+        </div>
+    </div>
+
+    <!-- Header & Navigation (Same as Home Page) -->
+    <header class="site-header" id="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
+            </a>
+            
+            <ul class="nav-links desktop-only">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="shipping.html">Order Management</a></li>
+                <li><a href="mission.html">About</a></li>
+                <li><a href="guides.html">Buying Guides</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="search-box-wrapper" id="search-box-wrapper">
+                    <input type="text" id="header-search-input" placeholder="Search gadgets..." aria-label="Search products">
+                    <button type="button" class="search-submit-btn" id="search-submit-btn" aria-label="Submit search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <button type="button" class="icon-link search-toggle-btn" id="search-toggle-btn" aria-label="Search products" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <a href="wishlist.html" class="icon-link wishlist-icon" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="wishlist-count" id="nav-wishlist-count">0</span>
+                </a>
+                <a href="cart.html" class="icon-link cart-icon" id="nav-cart-btn" aria-label="Shopping Cart" title="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count" id="nav-cart-count">0</span>
+                </a>
+                <a href="login.html" class="nav-login-btn desktop-only" aria-label="Login">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Login</span>
+                </a>
+                <button type="button" class="mobile-toggle icon-link" id="mobile-toggle" aria-label="Open mobile navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay & Drawer (Same as Home Page) -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
+            </a>
+            <button class="close-mobile" id="close-mobile" aria-label="Close mobile navigation"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="mobile-search-bar">
+            <input type="text" id="mobile-search-input" placeholder="Search products...">
+            <button type="button" id="mobile-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="mobile-nav-item">Home</a></li>
+            <li><a href="shop.html" class="mobile-nav-item active">Shop</a></li>
+            <li><a href="shipping.html" class="mobile-nav-item">Order Management</a></li>
+            <li><a href="mission.html" class="mobile-nav-item">About</a></li>
+            <li><a href="guides.html" class="mobile-nav-item">Buying Guides</a></li>
+            <li><a href="wishlist.html" class="mobile-nav-item"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
+            <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
+            <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
+        </ul>
+        <div class="mobile-menu-footer">
+            <div class="mobile-contact-pill">
+                <i class="fa-solid fa-headset"></i> 24/7 Support Available
+            </div>
+        </div>
+    </aside>
+
+    <!-- Top Promo Announcement Bar -->
+    <div class="shop-announcement-bar" role="region" aria-label="Store Promotion">
+        <div class="container shop-announcement-inner">
+            <span><i class="fa-solid fa-truck-fast"></i> FREE SHIPPING ON ORDERS $100+</span>
+            <span class="announcement-dot">&bull;</span>
+            <span>BETTER TECH. EVERY DAY.</span>
+        </div>
+    </div>
+
+    <!-- 1. Shop Hero Banner -->
+    <section class="shop-hero-banner" id="shop-hero">
+        <div class="container">
+            <div class="shop-hero-content" data-aos="fade-up" data-aos-duration="800">
+                <p class="shop-eyebrow">THOUGHTFULLY SELECTED. EVERYDAY READY.</p>
+                <h1 class="shop-hero-title">Good tech. Your way.</h1>
+                <p class="shop-hero-subtitle">
+                    From your workspace to your next game night. Discover the essentials designed to make your everyday a little better.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Shop Catalog Section (Filters, Search, Sort & 14-Product Grid) -->
+    <section class="shop-catalog-section" id="shop-catalog">
+        <!-- Full-width top border wrapper for filter bar -->
+        <div class="shop-controls-wrapper">
+            <div class="container">
+                <!-- Row 1: Category Filter Pills & Sort Dropdown -->
+                <div class="shop-filter-row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="shop-category-pills" id="shop-category-pills" role="tablist" aria-label="Product Categories">
+                        <button type="button" class="shop-pill active" data-category="all" role="tab" aria-selected="true">All</button>
+                        <button type="button" class="shop-pill" data-category="Monitors" role="tab" aria-selected="false">Monitors</button>
+                        <button type="button" class="shop-pill" data-category="Gaming Consoles" role="tab" aria-selected="false">Gaming Consoles</button>
+                        <button type="button" class="shop-pill" data-category="Laptops" role="tab" aria-selected="false">Laptops</button>
+                        <button type="button" class="shop-pill" data-category="Accessories" role="tab" aria-selected="false">Accessories</button>
+                        <button type="button" class="shop-pill" data-category="Headphones" role="tab" aria-selected="false">Headphones</button>
+                        <button type="button" class="shop-pill" data-category="Earbuds" role="tab" aria-selected="false">Earbuds</button>
+                        <button type="button" class="shop-pill" data-category="Speakers" role="tab" aria-selected="false">Speakers</button>
+                        <button type="button" class="shop-pill" data-category="Wearables" role="tab" aria-selected="false">Wearables</button>
+                    </div>
+
+                    <div class="shop-sort-dropdown" id="shop-sort-dropdown">
+                        <button type="button" class="shop-sort-trigger" id="shop-sort-trigger" aria-haspopup="listbox" aria-expanded="false">
+                            <i class="fa-solid fa-sliders"></i>
+                            <span id="shop-sort-label">Featured</span>
+                            <i class="fa-solid fa-chevron-down sort-chevron"></i>
+                        </button>
+                        <ul class="shop-sort-menu" id="shop-sort-menu" role="listbox" aria-label="Sort products">
+                            <li role="option" aria-selected="true" class="sort-option active" data-sort="featured">Featured</li>
+                            <li role="option" aria-selected="false" class="sort-option" data-sort="price-asc">Price: Low to High</li>
+                            <li role="option" aria-selected="false" class="sort-option" data-sort="price-desc">Price: High to Low</li>
+                            <li role="option" aria-selected="false" class="sort-option" data-sort="name-asc">Name: A to Z</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Row 2: Live Search Box & Product Count -->
+                <div class="shop-search-row" data-aos="fade-up" data-aos-delay="150">
+                    <div class="shop-search-field">
+                        <i class="fa-solid fa-magnifying-glass shop-search-icon" aria-hidden="true"></i>
+                        <input type="text" id="shop-search-input" placeholder="Find something you'll love..." aria-label="Find something you'll love">
+                        <button type="button" class="shop-search-clear" id="shop-search-clear" aria-label="Clear search" style="display: none;">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="shop-product-count" id="shop-product-count" aria-live="polite">14 products</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Grid Container -->
+        <div class="container shop-grid-container">
+            <div class="shop-products-grid center-last-two" id="shop-products-grid" role="region" aria-live="polite">
+
+                <!-- 1. View 27 QHD Monitor -->
+                <article class="product-card shop-product-card" data-category="Monitors" data-price="249" data-order="1" data-aos="fade-up" data-aos-delay="50">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">New arrival</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add View 27 QHD Monitor to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view View 27 QHD Monitor">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-monitor-qhd.webp" alt="View 27 QHD Monitor" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Monitors</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span></div>
+                            <h3 class="product-title">View 27 QHD Monitor</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$249.00</span>
+                                <span class="old-price">$329.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add View 27 QHD Monitor to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 2. Play One Console -->
+                <article class="product-card shop-product-card" data-category="Gaming Consoles" data-price="449" data-order="2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Play your way</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Play One Console to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Play One Console">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-console.webp" alt="Play One Console" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Gaming Consoles</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span></div>
+                            <h3 class="product-title">Play One Console</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$449.00</span>
+                                <span class="old-price">$499.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Play One Console to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 3. Book Air 14 -->
+                <article class="product-card shop-product-card" data-category="Laptops" data-price="799" data-order="3" data-aos="fade-up" data-aos-delay="150">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Work anywhere</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Book Air 14 to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Book Air 14">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-laptop.webp" alt="Book Air 14" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Laptops</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                            <h3 class="product-title">Book Air 14</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$799.00</span>
+                                <span class="old-price">$849.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Book Air 14 to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 4. Desk Duo Keyboard & Mouse -->
+                <article class="product-card shop-product-card" data-category="Accessories" data-price="89" data-order="4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Desk essential</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Desk Duo Keyboard &amp; Mouse to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Desk Duo Keyboard &amp; Mouse">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-accessories.webp" alt="Desk Duo Keyboard &amp; Mouse" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Accessories</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.7)</span></div>
+                            <h3 class="product-title">Desk Duo Keyboard &amp; Mouse</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$89.00</span>
+                                <span class="old-price">$119.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Desk Duo Keyboard &amp; Mouse to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 5. View 27 4K Monitor -->
+                <article class="product-card shop-product-card" data-category="Monitors" data-price="399" data-order="5" data-aos="fade-up" data-aos-delay="50">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Creative pick</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add View 27 4K Monitor to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view View 27 4K Monitor">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-monitor-4k.webp" alt="View 27 4K Monitor" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Monitors</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                            <h3 class="product-title">View 27 4K Monitor</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$399.00</span>
+                                <span class="old-price">$499.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add View 27 4K Monitor to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 6. Play One Extra Controller Bundle -->
+                <article class="product-card shop-product-card" data-category="Gaming Consoles" data-price="499" data-order="6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Better together</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Play One Extra Controller Bundle to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Play One Extra Controller Bundle">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-console-bundle.webp" alt="Play One Extra Controller Bundle" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Gaming Consoles</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span></div>
+                            <h3 class="product-title">Play One Extra Controller Bundle</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$499.00</span>
+                                <span class="old-price">$569.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Play One Extra Controller Bundle to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 7. Sonix Pro Wireless -->
+                <article class="product-card shop-product-card" data-category="Headphones" data-price="129" data-order="7" data-aos="fade-up" data-aos-delay="150">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Bestseller</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Sonix Pro Wireless to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Sonix Pro Wireless">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-headphones.webp" alt="Sonix Pro Wireless" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Headphones</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span></div>
+                            <h3 class="product-title">Sonix Pro Wireless</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$129.00</span>
+                                <span class="old-price">$199.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Sonix Pro Wireless to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 8. Air Buds Pro -->
+                <article class="product-card shop-product-card" data-category="Earbuds" data-price="79" data-order="8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">New arrival</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Air Buds Pro to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Air Buds Pro">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-earbuds-pro.webp" alt="Air Buds Pro" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Earbuds</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                            <h3 class="product-title">Air Buds Pro</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$79.00</span>
+                                <span class="old-price">$119.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Air Buds Pro to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 9. Pulse Mini Speaker -->
+                <article class="product-card shop-product-card" data-category="Speakers" data-price="59" data-order="9" data-aos="fade-up" data-aos-delay="50">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Everyday favorite</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Pulse Mini Speaker to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Pulse Mini Speaker">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-speaker-mini.webp" alt="Pulse Mini Speaker" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Speakers</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.7)</span></div>
+                            <h3 class="product-title">Pulse Mini Speaker</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$59.00</span>
+                                <span class="old-price">$89.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Pulse Mini Speaker to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 10. Watch One -->
+                <article class="product-card shop-product-card" data-category="Wearables" data-price="149" data-order="10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">New arrival</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Watch One to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Watch One">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-watch-one.webp" alt="Watch One" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Wearables</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span></div>
+                            <h3 class="product-title">Watch One</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$149.00</span>
+                                <span class="old-price">$199.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Watch One to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 11. Sonix Studio Max -->
+                <article class="product-card shop-product-card" data-category="Headphones" data-price="199" data-order="11" data-aos="fade-up" data-aos-delay="150">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Studio collection</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Sonix Studio Max to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Sonix Studio Max">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-headphones-studio.webp" alt="Sonix Studio Max" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Headphones</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span></div>
+                            <h3 class="product-title">Sonix Studio Max</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$199.00</span>
+                                <span class="old-price">$249.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Sonix Studio Max to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 12. Air Buds Lite -->
+                <article class="product-card shop-product-card" data-category="Earbuds" data-price="49" data-order="12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Great value</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Air Buds Lite to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Air Buds Lite">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-earbuds-lite.webp" alt="Air Buds Lite" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Earbuds</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.6)</span></div>
+                            <h3 class="product-title">Air Buds Lite</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$49.00</span>
+                                <span class="old-price">$69.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Air Buds Lite to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 13. Pulse Home Speaker -->
+                <article class="product-card shop-product-card" data-category="Speakers" data-price="129" data-order="13" data-aos="fade-up" data-aos-delay="50">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Home essentials</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Pulse Home Speaker to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Pulse Home Speaker">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-speaker-home.webp" alt="Pulse Home Speaker" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Speakers</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                            <h3 class="product-title">Pulse Home Speaker</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$129.00</span>
+                                <span class="old-price">$169.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Pulse Home Speaker to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 14. Watch Active -->
+                <article class="product-card shop-product-card" data-category="Wearables" data-price="179" data-order="14" data-aos="fade-up" data-aos-delay="100">
+                    <div class="shop-card-media">
+                        <span class="shop-badge">Made to move</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Watch Active to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Watch Active">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-watch-active.webp" alt="Watch Active" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Wearables</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                            <h3 class="product-title">Watch Active</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$179.00</span>
+                                <span class="old-price">$229.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Watch Active to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Empty Search / Filter State -->
+            <div class="shop-empty-state" id="shop-empty-state" style="display: none;">
+                <div class="shop-empty-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <h3>No matching products found</h3>
+                <p>Try adjusting your search query or switching to another category filter.</p>
+                <button type="button" class="shop-feature-btn" id="shop-reset-filters-btn">
+                    <span>Reset all filters</span>
+                    <i class="fa-solid fa-rotate-left"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Editorial Feature Split 1: The Workspace Edit -->
+    <section class="shop-editorial-split bg-white border-top" id="workspace-edit">
+        <div class="container">
+            <div class="shop-split-grid">
+                <div class="shop-split-media" data-aos="fade-right" data-aos-duration="850">
+                    <div class="shop-split-img-wrap">
+                        <img src="assets/img/shop-workspace.webp" alt="Modern desk setup with laptop, keyboard, and mouse" loading="lazy">
+                    </div>
+                </div>
+                <div class="shop-split-content" data-aos="fade-left" data-aos-duration="850" data-aos-delay="100">
+                    <p class="shop-eyebrow">THE WORKSPACE EDIT</p>
+                    <h2 class="shop-split-title">Make room for your big ideas.</h2>
+                    <p class="shop-split-desc">
+                        A clearer screen, a lighter laptop, a desk that feels like yours. Find the essentials for your next project.
+                    </p>
+                    <button type="button" class="shop-feature-btn js-category-jump" data-target-category="Laptops">
+                        <span>Explore laptops</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Editorial Feature Split 2: Play, Without Limits -->
+    <section class="shop-editorial-split bg-warm-gray" id="gaming-edit">
+        <div class="container">
+            <div class="shop-split-grid reverse-mobile">
+                <div class="shop-split-content" data-aos="fade-right" data-aos-duration="850">
+                    <p class="shop-eyebrow">PLAY, WITHOUT LIMITS</p>
+                    <h2 class="shop-split-title">Your next adventure starts here.</h2>
+                    <p class="shop-split-desc">
+                        From the first loading screen to the final level. Bring your setup together with consoles, sharp displays and the little extras.
+                    </p>
+                    <button type="button" class="shop-feature-btn js-category-jump" data-target-category="Gaming Consoles">
+                        <span>Explore gaming consoles</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="shop-split-media" data-aos="fade-left" data-aos-duration="850" data-aos-delay="100">
+                    <div class="shop-split-img-wrap">
+                        <img src="assets/img/shop-gaming.webp" alt="Gaming console and sharp monitor setup" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Curated Shelf Section: Complete Your Everyday -->
+    <section class="shop-shelf-section" id="complete-everyday">
+        <div class="container">
+            <div class="shop-shelf-header" data-aos="fade-up">
+                <p class="shop-eyebrow">SMALL UPGRADES. BIG DIFFERENCE.</p>
+                <h2 class="shop-shelf-title">Complete your everyday.</h2>
+            </div>
+
+            <div class="shop-shelf-grid">
+                <!-- Shelf Card 1: Desk Duo Keyboard & Mouse -->
+                <article class="product-card shop-product-card shelf-card" data-aos="fade-up" data-aos-delay="50">
+                    <div class="shop-card-media shelf-media">
+                        <span class="shop-badge">Desk essential</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Desk Duo Keyboard &amp; Mouse to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Desk Duo Keyboard &amp; Mouse">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shelf-desk-duo.webp" alt="Desk Duo Keyboard &amp; Mouse" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Accessories</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.7)</span></div>
+                            <h3 class="product-title">Desk Duo Keyboard &amp; Mouse</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$89.00</span>
+                                <span class="old-price">$119.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Desk Duo Keyboard &amp; Mouse to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Shelf Card 2: Air Buds Pro -->
+                <article class="product-card shop-product-card shelf-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="shop-card-media shelf-media">
+                        <span class="shop-badge">New arrival</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Air Buds Pro to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Air Buds Pro">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shelf-air-buds.webp" alt="Air Buds Pro" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Earbuds</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                            <h3 class="product-title">Air Buds Pro</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$79.00</span>
+                                <span class="old-price">$119.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Air Buds Pro to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Shelf Card 3: Pulse Mini Speaker -->
+                <article class="product-card shop-product-card shelf-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="shop-card-media shelf-media">
+                        <span class="shop-badge">Everyday favorite</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Pulse Mini Speaker to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Pulse Mini Speaker">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shelf-pulse-mini.webp" alt="Pulse Mini Speaker" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Speakers</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.7)</span></div>
+                            <h3 class="product-title">Pulse Mini Speaker</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$59.00</span>
+                                <span class="old-price">$89.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Pulse Mini Speaker to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Shelf Card 4: Watch One -->
+                <article class="product-card shop-product-card shelf-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="shop-card-media shelf-media">
+                        <span class="shop-badge">New arrival</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Watch One to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Watch One">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shelf-watch-one.webp" alt="Watch One" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Wearables</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span></div>
+                            <h3 class="product-title">Watch One</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$149.00</span>
+                                <span class="old-price">$199.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Watch One to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Editorial Feature Split 3: Your Own Little World -->
+    <section class="shop-editorial-split bg-warm-gray" id="listening-edit">
+        <div class="container">
+            <div class="shop-split-grid reverse-mobile">
+                <div class="shop-split-content" data-aos="fade-right" data-aos-duration="850">
+                    <p class="shop-eyebrow">YOUR OWN LITTLE WORLD</p>
+                    <h2 class="shop-split-title">Tune in. Switch off.</h2>
+                    <p class="shop-split-desc">
+                        Find a pair that fits your commute, your focus time and the songs you keep coming back to.
+                    </p>
+                    <button type="button" class="shop-feature-btn js-category-jump" data-target-category="Headphones">
+                        <span>Explore headphones</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="shop-split-media" data-aos="fade-left" data-aos-duration="850" data-aos-delay="100">
+                    <div class="shop-split-img-wrap">
+                        <img src="assets/img/shop-listening.webp" alt="Woman wearing wireless headphones on a commute" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Value Propositions: Good things, from checkout onward -->
+    <section class="shop-value-props bg-warm-gray border-top-subtle" id="checkout-onward">
+        <div class="container">
+            <h2 class="shop-value-heading" data-aos="fade-up">Good things, from checkout onward.</h2>
+
+            <div class="shop-value-grid">
+                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="50">
+                    <div class="shop-value-icon">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <h4>Clear delivery costs</h4>
+                    <p>Free shipping from $100. A $7 delivery fee applies below that amount.</p>
+                </div>
+
+                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="120">
+                    <div class="shop-value-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4>Pay on delivery</h4>
+                    <p>No online card payment. Your total is shown before placing your order.</p>
+                </div>
+
+                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="190">
+                    <div class="shop-value-icon">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </div>
+                    <h4>Returns, considered</h4>
+                    <p>Delivered orders can be submitted for return review with your private tracking code.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Clarity / FAQ Section: A little clarity before you choose -->
+    <section class="shop-clarity-section" id="shop-clarity">
+        <div class="container">
+            <div class="shop-clarity-divider"></div>
+            <div class="shop-clarity-grid">
+                <div class="shop-clarity-left" data-aos="fade-right">
+                    <h2>A little clarity before you<br>choose.</h2>
+                </div>
+                <div class="shop-clarity-right" data-aos="fade-left" data-aos-delay="100">
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>How do I compare products?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>Use the category filters above to view similar essentials side by side, or open Quick View on any product card to compare specifications, display resolution, battery life, and pricing before adding to your bag.</p>
+                        </div>
+                    </div>
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>Can I shop without an account?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>Yes! You can browse, save favorites to your wishlist, add items to your bag, and complete checkout as a guest without creating an account. Every order receives a private tracking code for easy status updates.</p>
+                        </div>
+                    </div>
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>Which countries can I order from?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>We currently deliver across the United States, Canada, the United Kingdom, and major European Union destinations, with free shipping on all orders of $100 or more and convenient payment on delivery.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Bottom Editorial CTA Banner: Need a little inspiration? -->
+    <section class="shop-inspiration-banner bg-warm-gray" id="shop-inspiration">
+        <div class="container">
+            <div class="shop-inspiration-content" data-aos="fade-up" data-aos-duration="800">
+                <p class="shop-eyebrow">FIND YOUR EVERYDAY EDIT</p>
+                <h2 class="shop-inspiration-title">Need a little inspiration?</h2>
+                <p class="shop-inspiration-desc">
+                    Thoughtful combinations, setup ideas and buying guides to help you choose what fits your everyday best.
+                </p>
+                <a href="index.html#articles" class="shop-feature-btn" id="explore-lookbook-btn">
+                    <span>Explore the lookbook</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as Home Page) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo footer-logo">
+                        <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img footer-logo-img">
+                    </a>
+                    <p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
+                    <div class="social-links mt-3">
+                        <a href="404.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>QUICK LINKS</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="shipping.html">Order Management</a></li>
+                        <li><a href="mission.html">About</a></li>
+                        <li><a href="guides.html">Buying Guides</a></li>
+                        <li><a href="404.html" class="info-modal-link" data-info="contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>SHOP</h4>
+                    <ul>
+                        <li><a href="shop.html?category=Laptops" class="js-footer-cat" data-target-category="Laptops">Laptops &amp; Computers</a></li>
+                        <li><a href="shop.html?category=Gaming Consoles" class="js-footer-cat" data-target-category="Gaming Consoles">Gaming Consoles</a></li>
+                        <li><a href="shop.html?category=Monitors" class="js-footer-cat" data-target-category="Monitors">Monitors &amp; Displays</a></li>
+                        <li><a href="shop.html?category=Accessories" class="js-footer-cat" data-target-category="Accessories">Keyboards &amp; Accessories</a></li>
+                        <li><a href="shop.html?category=Wearables" class="js-footer-cat" data-target-category="Wearables">Smart Wearables</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>SUPPORT</h4>
+                    <ul>
+                        <li><a href="shipping.html">Order Management</a></li>
+                        <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
+                        <li><a href="index.html#faq">Help Center &amp; FAQs</a></li>
+                        <li><a href="404.html">Warranty Information</a></li>
+                        <li><a href="404.html">Contact Customer Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>COMPANY</h4>
+                    <ul>
+                        <li><a href="mission.html">About</a></li>
+                        <li><a href="guides.html">Buying Guides</a></li>
+                        <li><a href="dashboards/admin-dashboard.html">Admin Portal</a></li>
+                        <li><a href="dashboards/user-dashboard.html">Customer Dashboard</a></li>
+                        <li><a href="404.html">Privacy Policy &amp; Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
+                <div class="payment-methods">
+                    <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-apple-pay"></i> Apple Pay</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Quick View Modal -->
+    <div class="quick-view-overlay" id="quick-view-modal" aria-hidden="true" role="dialog">
+        <div class="quick-view-card">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="quick-view-grid">
+                <div class="qv-img-side">
+                    <img id="qv-img" src="assets/img/shop-monitor-qhd.webp" alt="Product Preview">
+                </div>
+                <div class="qv-info-side">
+                    <p class="category-label" id="qv-category">Monitors</p>
+                    <h3 id="qv-title">View 27 QHD Monitor</h3>
+                    <div class="rating" id="qv-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span>
+                    </div>
+                    <p class="price" id="qv-price">$249.00</p>
+                    <p class="desc" id="qv-desc">Thoughtfully selected everyday hardware crafted for crisp performance, seamless connectivity, and lasting comfort.</p>
+                    
+                    <div class="qv-features">
+                        <div class="qv-feat-item"><i class="fa-solid fa-shield-halved"></i> 2-Year Official Warranty</div>
+                        <div class="qv-feat-item"><i class="fa-solid fa-truck-fast"></i> Free Shipping on Orders $100+</div>
+                    </div>
+
+                    <div class="qv-action-row">
+                        <button class="btn btn-primary btn-add-cart" id="qv-add-cart-btn" style="flex: 1;">
+                            <i class="fa-solid fa-cart-shopping"></i> ADD TO CART
+                        </button>
+                        <button type="button" class="btn btn-secondary wishlist-btn qv-wishlist-btn" id="qv-wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info / Guide Modal -->
+    <div class="info-modal-overlay" id="info-modal" aria-hidden="true" role="dialog">
+        <div class="info-modal-card">
+            <button class="modal-close-btn" id="info-modal-close" aria-label="Close dialog">&times;</button>
+            <h3 id="info-modal-title">STACKLY Support</h3>
+            <div id="info-modal-body" class="info-modal-body">
+                <!-- Dynamic text populated by JS -->
+            </div>
+            <button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
+        </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/shop.js"></script>
+</body>
+</html>

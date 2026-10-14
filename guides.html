@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buying Guides &amp; Lookbooks - STACKLY Tech For Your Everyday</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Google Fonts Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-guides">
+
+    <!-- Premium Preloader -->
+    <div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading STACKLY store">
+        <div class="preloader-content">
+            <div class="preloader-logo-wrap">
+                <div class="preloader-circular-spinner" aria-hidden="true"></div>
+                <img src="assets/img/logo.webp" alt="STACKLY" class="preloader-brand-logo">
+            </div>
+            <div class="preloader-indicator">
+                <div class="preloader-progress-bar"></div>
+            </div>
+            <p class="preloader-text">Preparing Your Experience...</p>
+        </div>
+    </div>
+
+    <!-- Header & Navigation (Same as Home Page) -->
+    <header class="site-header" id="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
+            </a>
+            
+            <ul class="nav-links desktop-only">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="shipping.html">Order Management</a></li>
+                <li><a href="mission.html">About</a></li>
+                <li><a href="guides.html" class="active">Buying Guides</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="search-box-wrapper" id="search-box-wrapper">
+                    <input type="text" id="header-search-input" placeholder="Search gadgets..." aria-label="Search products">
+                    <button type="button" class="search-submit-btn" id="search-submit-btn" aria-label="Submit search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <button type="button" class="icon-link search-toggle-btn" id="search-toggle-btn" aria-label="Search products" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <a href="wishlist.html" class="icon-link wishlist-icon" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="wishlist-count" id="nav-wishlist-count">0</span>
+                </a>
+                <a href="cart.html" class="icon-link cart-icon" id="nav-cart-btn" aria-label="Shopping Cart" title="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count" id="nav-cart-count">0</span>
+                </a>
+                <a href="login.html" class="nav-login-btn desktop-only" aria-label="Login">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Login</span>
+                </a>
+                <button type="button" class="mobile-toggle icon-link" id="mobile-toggle" aria-label="Open mobile navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay & Drawer (Same as Home Page) -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
+            </a>
+            <button class="close-mobile" id="close-mobile" aria-label="Close mobile navigation"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="mobile-search-bar">
+            <input type="text" id="mobile-search-input" placeholder="Search products...">
+            <button type="button" id="mobile-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="mobile-nav-item">Home</a></li>
+            <li><a href="shop.html" class="mobile-nav-item">Shop</a></li>
+            <li><a href="shipping.html" class="mobile-nav-item">Order Management</a></li>
+            <li><a href="mission.html" class="mobile-nav-item">About</a></li>
+            <li><a href="guides.html" class="mobile-nav-item active">Buying Guides</a></li>
+            <li><a href="wishlist.html" class="mobile-nav-item"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
+            <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
+            <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
+        </ul>
+        <div class="mobile-menu-footer">
+            <div class="mobile-contact-pill">
+                <i class="fa-solid fa-headset"></i> 24/7 Support Available
+            </div>
+        </div>
+    </aside>
+
+    <!-- Top Promo Announcement Bar -->
+    <div class="shop-announcement-bar" role="region" aria-label="Store Promotion">
+        <div class="container shop-announcement-inner">
+            <span><i class="fa-solid fa-truck-fast"></i> FREE SHIPPING ON ORDERS $100+</span>
+            <span class="announcement-dot">&bull;</span>
+            <span>BETTER TECH. EVERY DAY.</span>
+        </div>
+    </div>
+
+    <!-- 1. Buying Guides Hero Section ("Find what fits your world.") -->
+    <section class="guides-hero-section bg-warm-gray" id="guides-hero">
+        <div class="container">
+            <div class="guides-hero-content" data-aos="fade-up" data-aos-duration="800">
+                <p class="shop-eyebrow">A LITTLE INSPIRATION. A BETTER EVERYDAY.</p>
+                <h1 class="guides-hero-title">Find what fits your world.</h1>
+                <p class="guides-hero-sub">
+                    Thoughtful buying guides and everyday edits. Less guesswork, more of the things you'll love using.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Two Featured Editorial Guides & Lookbook 01 ("Find your sound." | "The everyday essentials edit." + Lookbook 01) -->
+    <section class="guides-featured-section bg-white" id="featured-guides">
+        <div class="container">
+            <!-- 2-Column Editorial Guide Cards -->
+            <div class="guides-pair-grid">
+                <!-- Guide Card 1 -->
+                <article class="guide-editorial-card" data-aos="fade-up" data-aos-delay="50" data-guide-id="sound">
+                    <div class="guide-card-img-wrap">
+                        <img src="assets/img/mission-audio.webp" alt="Over-ear wireless headphones, earbuds case, and smartphone on desk" loading="lazy">
+                    </div>
+                    <div class="guide-card-meta">
+                        <p class="shop-eyebrow">THE BUYING GUIDE &bull; 5 MIN READ</p>
+                        <h2 class="guide-card-title">
+                            <button type="button" class="guide-open-btn" data-guide="sound">
+                                <span>Find your sound. Find your headphones.</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </h2>
+                        <p class="guide-card-desc">
+                            Over-ear or in-ear? Noise cancelling or open sound? Let's find your perfect everyday pair.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Guide Card 2 -->
+                <article class="guide-editorial-card" data-aos="fade-up" data-aos-delay="140" data-guide-id="essentials">
+                    <div class="guide-card-img-wrap">
+                        <img src="assets/img/mission-carry.webp" alt="Flat-lay of headphones, smartphone, smartwatch, laptop, earbuds, and USB-C cable" loading="lazy">
+                    </div>
+                    <div class="guide-card-meta">
+                        <p class="shop-eyebrow">THE LOOKBOOK &bull; 3 MIN READ</p>
+                        <h2 class="guide-card-title">
+                            <button type="button" class="guide-open-btn" data-guide="essentials">
+                                <span>The everyday essentials edit.</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </h2>
+                        <p class="guide-card-desc">
+                            Thoughtful tech for your desk, your commute, and everything in between.
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 3. Lookbook 01: The Focused Desk (Warm Gray Contained Box) -->
+            <div class="guides-lookbook-box bg-warm-gray" id="lookbook-desk" data-aos="fade-up" data-aos-duration="850">
+                <div class="guides-lookbook-box-grid">
+                    <div class="guides-lookbook-text">
+                        <p class="shop-eyebrow">LOOKBOOK 01 / THE FOCUSED DESK</p>
+                        <h2 class="shop-split-title">A little less clutter. A lot more possibility.</h2>
+                        <p class="shop-split-desc">
+                            Start with a screen that gives you space, a laptop that keeps you moving and accessories that tie it all together.
+                        </p>
+                        <a href="shop.html?category=Monitors" class="shop-feature-btn">
+                            <span>Explore monitors</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="guides-lookbook-media">
+                        <img src="assets/img/mission-desk.webp" alt="Minimalist desk setup with 27-inch monitor, laptop on stand, wireless keyboard and mouse" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Lookbook 02: The Play Space ("Make room for your next adventure.") -->
+    <section class="shop-editorial-split bg-white border-top-subtle" id="lookbook-play">
+        <div class="container">
+            <div class="shop-split-grid">
+                <div class="shop-split-media" data-aos="fade-right" data-aos-duration="850">
+                    <div class="shop-split-img-wrap">
+                        <img src="assets/img/shop-gaming.webp" alt="Gaming setup with curved monitor, console, and dual wireless controllers" loading="lazy">
+                    </div>
+                </div>
+                <div class="shop-split-content" data-aos="fade-left" data-aos-duration="850" data-aos-delay="100">
+                    <p class="shop-eyebrow">LOOKBOOK 02 / THE PLAY SPACE</p>
+                    <h2 class="shop-split-title">Make room for your next adventure.</h2>
+                    <p class="shop-split-desc">
+                        A sharp display. A controller that feels right. Sound that brings the world closer. Build a setup you look forward to coming home to.
+                    </p>
+                    <a href="shop.html?category=Gaming Consoles" class="shop-feature-btn">
+                        <span>Explore gaming consoles</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Lookbook 03: On The Move ("Your everyday carry, considered.") -->
+    <section class="guides-carry-section bg-white border-top-subtle" id="lookbook-move">
+        <div class="container">
+            <div class="guides-carry-header" data-aos="fade-up">
+                <p class="shop-eyebrow">LOOKBOOK 03 / ON THE MOVE</p>
+                <h2 class="shop-shelf-title">Your everyday carry, considered.</h2>
+            </div>
+
+            <div class="shop-shelf-grid">
+                <!-- Card 1: Book Air 14 Laptop -->
+                <article class="product-card shop-product-card shelf-card" data-id="shop-103" data-category="Laptops" data-price="799" data-rating="4.9" data-name="Book Air 14 Laptop" data-img="assets/img/shop-laptop.webp" data-desc="Featherlight 14-inch everyday laptop with all-day battery life and silent fanless performance." data-aos="fade-up" data-aos-delay="50">
+                    <div class="shop-card-media shelf-media">
+                        <span class="shop-badge">Work anywhere</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Book Air 14 Laptop to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Book Air 14 Laptop">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-laptop.webp" alt="Book Air 14 Laptop" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Laptops</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                            <h3 class="product-title">Book Air 14 Laptop</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$799.00</span>
+                                <span class="old-price">$949.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Book Air 14 Laptop to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Card 2: Air Buds Pro -->
+                <article class="product-card shop-product-card shelf-card" data-id="shop-108" data-category="Earbuds" data-price="79" data-rating="4.8" data-name="Air Buds Pro" data-img="assets/img/shop-earbuds-pro.webp" data-desc="Pocket-sized true wireless earbuds with active noise cancellation, transparency mode, and wireless charging case." data-aos="fade-up" data-aos-delay="100">
+                    <div class="shop-card-media shelf-media">
+                        <span class="shop-badge">New arrival</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Air Buds Pro to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Air Buds Pro">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-earbuds-pro.webp" alt="Air Buds Pro" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Earbuds</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span></div>
+                            <h3 class="product-title">Air Buds Pro</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$79.00</span>
+                                <span class="old-price">$119.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Air Buds Pro to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Card 3: Pulse Mini Speaker -->
+                <article class="product-card shop-product-card shelf-card" data-id="shop-109" data-category="Speakers" data-price="59" data-rating="4.7" data-name="Pulse Mini Speaker" data-img="assets/img/shop-speaker-mini.webp" data-desc="360-degree acoustic fabric speaker with punchy bass, water resistance, and 16-hour battery life." data-aos="fade-up" data-aos-delay="150">
+                    <div class="shop-card-media shelf-media">
+                        <span class="shop-badge">Everyday favorite</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Pulse Mini Speaker to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Pulse Mini Speaker">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-speaker-mini.webp" alt="Pulse Mini Speaker" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Speakers</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.7)</span></div>
+                            <h3 class="product-title">Pulse Mini Speaker</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$59.00</span>
+                                <span class="old-price">$89.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Pulse Mini Speaker to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Card 4: Watch Active -->
+                <article class="product-card shop-product-card shelf-card" data-id="shop-114" data-category="Wearables" data-price="119" data-rating="4.8" data-name="Watch Active" data-img="assets/img/shop-watch-active.webp" data-desc="Featherweight fitness smartwatch with continuous heart rate zones, GPS route pacing, and swim-proof fluoroelastomer band." data-aos="fade-up" data-aos-delay="200">
+                    <div class="shop-card-media shelf-media">
+                        <span class="shop-badge">Made to move</span>
+                        <div class="shop-card-floating-btns">
+                            <button type="button" class="wishlist-btn shop-wish-btn" title="Add to Wishlist" aria-label="Add Watch Active to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button type="button" class="quick-view-btn shop-qv-btn" title="Quick View" aria-label="Quick view Watch Active">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="img-container">
+                            <img src="assets/img/shop-watch-active.webp" alt="Watch Active" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="shop-card-bar">
+                        <div class="shop-card-meta">
+                            <span class="category-label" style="display:none;">Wearables</span>
+                            <div class="rating" style="display:none;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.8)</span></div>
+                            <h3 class="product-title">Watch Active</h3>
+                            <div class="shop-price-row">
+                                <span class="price">$119.00</span>
+                                <span class="old-price">$159.00</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-cart shop-bag-btn" title="Add to Cart" aria-label="Add Watch Active to Cart">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Value Propositions ("Better choices begin with better questions.") -->
+    <section class="shop-value-props bg-warm-gray border-top-subtle" id="better-questions">
+        <div class="container">
+            <h2 class="shop-value-heading" data-aos="fade-up">Better choices begin with better questions.</h2>
+
+            <div class="shop-value-grid">
+                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="50">
+                    <div class="shop-value-icon">
+                        <i class="fa-solid fa-desktop"></i>
+                    </div>
+                    <h4>Where will you use it most?</h4>
+                    <p>Match your screen, sound and battery life to your space—whether you're choosing your setup for a home office, shared room or daily commute.</p>
+                </div>
+
+                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="120">
+                    <div class="shop-value-icon">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <h4>How do you like to play or create?</h4>
+                    <p>Look for the details that matter to your routine, from refresh rates and resolution to controller comfort and low-latency wireless audio.</p>
+                </div>
+
+                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="190">
+                    <div class="shop-value-icon">
+                        <i class="fa-solid fa-headphones"></i>
+                    </div>
+                    <h4>What feels good every day?</h4>
+                    <p>The best tech disappears into your day. Prioritize comfort, reliability and the features you'll actually reach for morning after morning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. ADDITIONAL SECTION 1: Interactive 3-Step Buying Guide Recommender ("Find Your Exact Match") -->
+    <section class="guides-quiz-section bg-white border-top" id="interactive-finder">
+        <div class="container">
+            <div class="guides-section-header" data-aos="fade-up">
+                <p class="shop-eyebrow">INTERACTIVE BUYING ASSISTANT</p>
+                <h2 class="shop-shelf-title">Not sure where to start? Answer 3 quick questions.</h2>
+                <p class="guides-section-sub">
+                    Select your space, priority, and budget below—our buying guide engine will surface the single best piece of STACKLY hardware for your routine.
+                </p>
+            </div>
+
+            <div class="guides-quiz-grid">
+                <!-- Left: 3 Interactive Question Controls -->
+                <div class="guides-quiz-controls" data-aos="fade-right">
+                    <div class="quiz-step-group">
+                        <label class="quiz-step-label"><span>01</span> Where will you use it most?</label>
+                        <div class="quiz-option-row" data-question="space">
+                            <button type="button" class="quiz-opt-btn active" data-val="desk">
+                                <i class="fa-solid fa-desktop"></i> Home Desk
+                            </button>
+                            <button type="button" class="quiz-opt-btn" data-val="commute">
+                                <i class="fa-solid fa-bag-shopping"></i> On The Move
+                            </button>
+                            <button type="button" class="quiz-opt-btn" data-val="living">
+                                <i class="fa-solid fa-couch"></i> Living Room
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-step-group">
+                        <label class="quiz-step-label"><span>02</span> What matters most to your routine?</label>
+                        <div class="quiz-option-row" data-question="priority">
+                            <button type="button" class="quiz-opt-btn active" data-val="visuals">
+                                <i class="fa-solid fa-eye"></i> Crisp Visuals
+                            </button>
+                            <button type="button" class="quiz-opt-btn" data-val="sound">
+                                <i class="fa-solid fa-wave-square"></i> Pure Sound
+                            </button>
+                            <button type="button" class="quiz-opt-btn" data-val="speed">
+                                <i class="fa-solid fa-bolt"></i> All-Day Flow
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-step-group">
+                        <label class="quiz-step-label"><span>03</span> Preferred investment range?</label>
+                        <div class="quiz-option-row" data-question="budget">
+                            <button type="button" class="quiz-opt-btn" data-val="under150">
+                                Under $150
+                            </button>
+                            <button type="button" class="quiz-opt-btn active" data-val="mid">
+                                $150 &ndash; $350
+                            </button>
+                            <button type="button" class="quiz-opt-btn" data-val="flagship">
+                                $350+ Setup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Live Recommended Product Card -->
+                <div class="guides-quiz-result" id="guides-quiz-result" data-aos="fade-left" data-aos-delay="100" aria-live="polite">
+                    <div class="quiz-result-top">
+                        <span class="quiz-match-pill" id="quiz-match-pill">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> 99% Everyday Match
+                        </span>
+                        <span class="quiz-cat-tag" id="quiz-cat-tag">MONITORS</span>
+                    </div>
+
+                    <div class="quiz-result-body">
+                        <div class="quiz-result-img">
+                            <img src="assets/img/shop-monitor-qhd.webp" alt="View 27 QHD Monitor" id="quiz-rec-img">
+                        </div>
+                        <div class="quiz-result-info">
+                            <h3 id="quiz-rec-title">View 27 QHD Monitor</h3>
+                            <div class="quiz-rec-prices">
+                                <span class="shop-price-now" id="quiz-rec-price">$249.00</span>
+                                <span class="shop-price-was" id="quiz-rec-was">$329.00</span>
+                            </div>
+                            <p id="quiz-rec-why">
+                                Ideal for a focused home desk when crisp visuals matter most. Delivers 2560x1440 resolution, 99% sRGB accuracy, and single-cable USB-C power.
+                            </p>
+                            <ul class="quiz-rec-specs" id="quiz-rec-specs">
+                                <li><i class="fa-solid fa-check"></i> 27" IPS QHD (2560 x 1440)</li>
+                                <li><i class="fa-solid fa-check"></i> Single-cable USB-C hub</li>
+                                <li><i class="fa-solid fa-check"></i> Low-blue-light eye comfort</li>
+                            </ul>
+                            <div class="quiz-rec-actions">
+                                <button type="button" class="shop-feature-btn quiz-add-btn" id="quiz-add-cart-btn" data-id="shop-101">
+                                    <i class="fa-solid fa-bag-shopping"></i>
+                                    <span>Add Recommended Gear</span>
+                                </button>
+                                <a href="shop.html" class="back-good-stuff-link" id="quiz-view-shop-link">
+                                    <span>View in Shop</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. ADDITIONAL SECTION 2: Side-by-Side Spec Comparison Matrix ("Compare Before You Choose") -->
+    <section class="guides-compare-section bg-warm-gray border-top-subtle" id="spec-comparator">
+        <div class="container">
+            <div class="guides-compare-header" data-aos="fade-up">
+                <div>
+                    <p class="shop-eyebrow">SIDE-BY-SIDE COMPARISON</p>
+                    <h2 class="shop-shelf-title">Compare our everyday essentials.</h2>
+                </div>
+                <div class="compare-category-tabs" role="tablist" aria-label="Select category to compare">
+                    <button type="button" class="shop-pill active" data-comp="headphones" role="tab" aria-selected="true">
+                        <i class="fa-solid fa-headphones"></i> Headphones
+                    </button>
+                    <button type="button" class="shop-pill" data-comp="monitors" role="tab" aria-selected="false">
+                        <i class="fa-solid fa-desktop"></i> Monitors
+                    </button>
+                    <button type="button" class="shop-pill" data-comp="earbuds" role="tab" aria-selected="false">
+                        <i class="fa-solid fa-ear-listen"></i> Earbuds
+                    </button>
+                    <button type="button" class="shop-pill" data-comp="watches" role="tab" aria-selected="false">
+                        <i class="fa-regular fa-clock"></i> Wearables
+                    </button>
+                </div>
+            </div>
+
+            <div class="compare-table-card" id="compare-table-card" data-aos="fade-up" data-aos-delay="100" aria-live="polite">
+                <div class="compare-grid">
+                    <!-- Feature Labels Column -->
+                    <div class="compare-col compare-labels-col">
+                        <div class="compare-head-spacer">
+                            <span class="shop-eyebrow">KEY DIFFERENCES</span>
+                            <h4>How they stack up</h4>
+                            <p>Honest specs with zero marketing fluff so you can pick the right tier.</p>
+                        </div>
+                        <div class="compare-row-label">Price</div>
+                        <div class="compare-row-label">Best For</div>
+                        <div class="compare-row-label">Primary Highlight</div>
+                        <div class="compare-row-label">Battery / Power</div>
+                        <div class="compare-row-label">Connectivity</div>
+                        <div class="compare-row-label">Action</div>
+                    </div>
+
+                    <!-- Product A Column -->
+                    <div class="compare-col compare-prod-col" id="comp-col-a">
+                        <div class="compare-prod-head">
+                            <span class="shop-badge" id="comp-a-badge">Best Seller</span>
+                            <img src="assets/img/shop-headphones.webp" alt="Sonix Pro Wireless" id="comp-a-img">
+                            <h4 id="comp-a-title">Sonix Pro Wireless</h4>
+                        </div>
+                        <div class="compare-cell"><strong id="comp-a-price">$149.00</strong> <span class="shop-price-was" id="comp-a-was">$199.00</span></div>
+                        <div class="compare-cell" id="comp-a-best">Daily commutes, travel &amp; open offices</div>
+                        <div class="compare-cell" id="comp-a-feat">Hybrid Active Noise Cancellation</div>
+                        <div class="compare-cell" id="comp-a-battery">40 Hours + USB-C Fast Charge</div>
+                        <div class="compare-cell" id="comp-a-conn">Bluetooth 5.3 Multipoint + 3.5mm</div>
+                        <div class="compare-cell">
+                            <button type="button" class="shop-feature-btn comp-add-btn" id="comp-a-btn" data-id="shop-107">
+                                <span>Add to Cart</span>
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product B Column -->
+                    <div class="compare-col compare-prod-col" id="comp-col-b">
+                        <div class="compare-prod-head">
+                            <span class="shop-badge" id="comp-b-badge">Studio Grade</span>
+                            <img src="assets/img/shop-headphones-studio.webp" alt="Studio Over-Ear ANC" id="comp-b-img">
+                            <h4 id="comp-b-title">Studio Over-Ear ANC</h4>
+                        </div>
+                        <div class="compare-cell"><strong id="comp-b-price">$199.00</strong> <span class="shop-price-was" id="comp-b-was">$249.00</span></div>
+                        <div class="compare-cell" id="comp-b-best">Deep studio listening &amp; mastering</div>
+                        <div class="compare-cell" id="comp-b-feat">45mm Custom Titanium Reference Drivers</div>
+                        <div class="compare-cell" id="comp-b-battery">45 Hours + Lossless USB-C DAC</div>
+                        <div class="compare-cell" id="comp-b-conn">Bluetooth 5.3 + Braided Coiled Cable</div>
+                        <div class="compare-cell">
+                            <button type="button" class="shop-feature-btn comp-add-btn" id="comp-b-btn" data-id="shop-111">
+                                <span>Add to Cart</span>
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. ADDITIONAL SECTION 3: Buying Guide FAQ Accordion ("Before you choose your next upgrade.") -->
+    <section class="shop-clarity-section bg-white" id="guides-faq">
+        <div class="container">
+            <div class="shop-clarity-divider"></div>
+            <div class="shop-clarity-grid">
+                <div class="shop-clarity-left" data-aos="fade-right">
+                    <h2>Before you choose<br>your next upgrade.</h2>
+                </div>
+                <div class="shop-clarity-right" data-aos="fade-left" data-aos-delay="100">
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>QHD vs. 4K on a 27-inch monitor—which one should I pick?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>If your day centers around writing, coding, spreadsheets, and everyday multitasking, the <strong>View 27 QHD ($249)</strong> offers razor-sharp text and 75% more workspace than 1080p. Step up to the <strong>View 27 Pro 4K ($349)</strong> if you edit 4K video, retouch photography, or want ultra-dense pixel clarity.</p>
+                        </div>
+                    </div>
+
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>Over-ear headphones or true wireless earbuds for daily focus?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>Choose over-ear headphones (<strong>Sonix Pro</strong> or <strong>Studio ANC</strong>) if you sit at a desk or travel for hours and want plush passive isolation plus 40+ hour battery life. Choose <strong>Air Buds Pro ($79)</strong> if you want weightless, pocketable ANC that transitions from train rides to workouts.</p>
+                        </div>
+                    </div>
+
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>Should I get the Play Station S or the Duo Bundle?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>Both include the same whisper-quiet 1TB NVMe 4K console. If you ever play couch co-op, sports titles, or racing games with friends or family, the <strong>Play Station S Duo Bundle ($349)</strong> saves you $30 on a second wireless controller right out of the box.</p>
+                        </div>
+                    </div>
+
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>Can I try a setup at home and return it if it doesn't fit my space?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>Yes—every STACKLY order includes our <strong>30-day considered return window</strong> and <strong>Pay on Delivery</strong>. Test how a monitor looks on your desk or how headphones feel across a full week, with simple exchanges if you want to switch models.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as Home Page) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo footer-logo">
+                        <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img footer-logo-img">
+                    </a>
+                    <p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
+                    <div class="social-links mt-3">
+                        <a href="404.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>QUICK LINKS</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="shipping.html">Order Management</a></li>
+                        <li><a href="mission.html">About</a></li>
+                        <li><a href="guides.html">Buying Guides</a></li>
+                        <li><a href="404.html" class="info-modal-link" data-info="contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>SHOP</h4>
+                    <ul>
+                        <li><a href="shop.html?category=Laptops">Laptops &amp; Computers</a></li>
+                        <li><a href="shop.html?category=Gaming Consoles">Gaming Consoles</a></li>
+                        <li><a href="shop.html?category=Monitors">Monitors &amp; Displays</a></li>
+                        <li><a href="shop.html?category=Accessories">Keyboards &amp; Accessories</a></li>
+                        <li><a href="shop.html?category=Wearables">Smart Wearables</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>SUPPORT</h4>
+                    <ul>
+                        <li><a href="shipping.html">Order Management</a></li>
+                        <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
+                        <li><a href="index.html#faq">Help Center &amp; FAQs</a></li>
+                        <li><a href="404.html">Warranty Information</a></li>
+                        <li><a href="404.html">Contact Customer Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>COMPANY</h4>
+                    <ul>
+                        <li><a href="mission.html">About</a></li>
+                        <li><a href="guides.html">Buying Guides</a></li>
+                        <li><a href="dashboards/admin-dashboard.html">Admin Portal</a></li>
+                        <li><a href="dashboards/user-dashboard.html">Customer Dashboard</a></li>
+                        <li><a href="404.html">Privacy Policy &amp; Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
+                <div class="payment-methods">
+                    <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-apple-pay"></i> Apple Pay</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Quick View Modal (For Lookbook 03 Cards) -->
+    <div class="quick-view-overlay" id="quick-view-modal" aria-hidden="true" role="dialog">
+        <div class="quick-view-card">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="quick-view-grid">
+                <div class="qv-img-side">
+                    <img id="qv-img" src="assets/img/shop-laptop.webp" alt="Product Preview">
+                </div>
+                <div class="qv-info-side">
+                    <p class="category-label" id="qv-category">Laptops</p>
+                    <h3 id="qv-title">Book Air 14 Laptop</h3>
+                    <div class="rating" id="qv-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.9)</span>
+                    </div>
+                    <p class="price" id="qv-price">$799.00</p>
+                    <p class="desc" id="qv-desc">Thoughtfully selected everyday hardware crafted for crisp performance, seamless connectivity, and lasting comfort.</p>
+                    
+                    <div class="qv-features">
+                        <div class="qv-feat-item"><i class="fa-solid fa-shield-halved"></i> 2-Year Official Warranty</div>
+                        <div class="qv-feat-item"><i class="fa-solid fa-truck-fast"></i> Free Shipping on Orders $100+</div>
+                    </div>
+
+                    <div class="qv-action-row">
+                        <button class="btn btn-primary btn-add-cart" id="qv-add-cart-btn" style="flex: 1;">
+                            <i class="fa-solid fa-cart-shopping"></i> ADD TO CART
+                        </button>
+                        <button type="button" class="btn btn-secondary wishlist-btn qv-wishlist-btn" id="qv-wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Editorial Guide Reader Modal -->
+    <div class="info-modal-overlay" id="guide-reader-modal" aria-hidden="true" role="dialog">
+        <div class="info-modal-card guide-reader-card">
+            <button class="modal-close-btn" id="guide-reader-close" aria-label="Close article">&times;</button>
+            <p class="shop-eyebrow" id="guide-reader-eyebrow">THE BUYING GUIDE &bull; 5 MIN READ</p>
+            <h3 id="guide-reader-title">Find your sound. Find your headphones.</h3>
+            <div id="guide-reader-body" class="info-modal-body guide-reader-body">
+                <!-- Populated dynamically by js/guides.js -->
+            </div>
+            <div class="guide-reader-footer">
+                <a href="shop.html?category=Headphones" class="shop-feature-btn" id="guide-reader-cta">
+                    <span>Shop Featured Audio</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <button type="button" class="btn btn-secondary" id="guide-reader-done">Close Guide</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info / Guide Modal -->
+    <div class="info-modal-overlay" id="info-modal" aria-hidden="true" role="dialog">
+        <div class="info-modal-card">
+            <button class="modal-close-btn" id="info-modal-close" aria-label="Close dialog">&times;</button>
+            <h3 id="info-modal-title">STACKLY Support</h3>
+            <div id="info-modal-body" class="info-modal-body">
+                <!-- Dynamic text populated by JS -->
+            </div>
+            <button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
+        </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/guides.js"></script>
+</body>
+</html>

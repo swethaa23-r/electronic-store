@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,9 +19,9 @@
     <!-- Premium Preloader -->
     <div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading STACKLY store">
         <div class="preloader-content">
-            <div class="preloader-logo">
-                <i class="fa-solid fa-layer-group"></i>
-                <span>STACKLY</span>
+            <div class="preloader-logo-wrap">
+                <div class="preloader-circular-spinner" aria-hidden="true"></div>
+                <img src="assets/img/logo.webp" alt="STACKLY" class="preloader-brand-logo">
             </div>
             <div class="preloader-indicator">
                 <div class="preloader-progress-bar"></div>
@@ -37,11 +38,11 @@
             </a>
             
             <ul class="nav-links desktop-only">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#freshly-dropped" class="scroll-link">Shop</a></li>
-                <li><a href="javascript:void(0)" class="info-modal-link" data-info="shipping">Shipping Returns &amp; Tracking</a></li>
-                <li><a href="javascript:void(0)" class="info-modal-link" data-info="mission">Our Mission</a></li>
-                <li><a href="#articles" class="scroll-link">Buying Guides</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="shipping.html">Order Management</a></li>
+                <li><a href="mission.html">About</a></li>
+                <li><a href="guides.html">Buying Guides</a></li>
             </ul>
 
             <div class="nav-icons">
@@ -54,15 +55,15 @@
                 <button type="button" class="icon-link search-toggle-btn" id="search-toggle-btn" aria-label="Search products" title="Search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <a href="#freshly-dropped" class="icon-link wishlist-icon scroll-link" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
+                <a href="wishlist.html" class="icon-link wishlist-icon" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
                     <i class="fa-regular fa-heart"></i>
                     <span class="wishlist-count" id="nav-wishlist-count">0</span>
                 </a>
-                <a href="#freshly-dropped" class="icon-link cart-icon scroll-link" id="nav-cart-btn" aria-label="Shopping Cart" title="Cart">
+                <a href="cart.html" class="icon-link cart-icon" id="nav-cart-btn" aria-label="Shopping Cart" title="Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-count">0</span>
                 </a>
-                <a href="dashboards/user-profile.html" class="nav-login-btn desktop-only" aria-label="Login">
+                <a href="login.html" class="nav-login-btn desktop-only" aria-label="Login">
                     <i class="fa-regular fa-user"></i>
                     <span>Login</span>
                 </a>
@@ -87,14 +88,14 @@
             <button type="button" id="mobile-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <ul class="mobile-nav-links">
-            <li><a href="#" class="mobile-nav-item">Home</a></li>
-            <li><a href="#freshly-dropped" class="mobile-nav-item scroll-link">Shop</a></li>
-            <li><a href="javascript:void(0)" class="mobile-nav-item info-modal-link" data-info="shipping">Shipping Returns &amp; Tracking</a></li>
-            <li><a href="javascript:void(0)" class="mobile-nav-item info-modal-link" data-info="mission">Our Mission</a></li>
-            <li><a href="#articles" class="mobile-nav-item scroll-link">Buying Guides</a></li>
-            <li><a href="#freshly-dropped" class="mobile-nav-item scroll-link"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
-            <li><a href="#freshly-dropped" class="mobile-nav-item scroll-link"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
-            <li><a href="dashboards/user-profile.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
+            <li><a href="index.html" class="mobile-nav-item">Home</a></li>
+            <li><a href="shop.html" class="mobile-nav-item">Shop</a></li>
+            <li><a href="shipping.html" class="mobile-nav-item">Order Management</a></li>
+            <li><a href="mission.html" class="mobile-nav-item">About</a></li>
+            <li><a href="guides.html" class="mobile-nav-item">Buying Guides</a></li>
+            <li><a href="wishlist.html" class="mobile-nav-item"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
+            <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
+            <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
         </ul>
         <div class="mobile-menu-footer">
             <div class="mobile-contact-pill">
@@ -237,7 +238,7 @@
             <button class="filter-btn" data-filter="gaming">GAMING</button>
         </div>
 
-        <div class="grid-4 mt-4" id="freshly-dropped-grid">
+        <div class="freshly-dropped-flex-grid mt-4" id="freshly-dropped-grid" role="region" aria-live="polite">
             <!-- Card 1 -->
             <div class="product-card">
                 <div class="card-actions">
@@ -246,7 +247,7 @@
                 </div>
                 <div class="badge new-badge">NEW</div>
                 <div class="img-container">
-                    <img src="assets/img/monitor.webp" alt="Pro Display X1 Monitor">
+                    <img src="assets/img/monitor.webp" alt="Pro Display X1 Monitor" loading="lazy">
                 </div>
                 <div class="card-info">
                     <p class="category-label">Monitors</p>
@@ -264,7 +265,7 @@
                 </div>
                 <div class="badge best-badge">BESTSELLER</div>
                 <div class="img-container">
-                    <img src="assets/img/console.webp" alt="Play One Console">
+                    <img src="assets/img/console.webp" alt="Play One Console" loading="lazy">
                 </div>
                 <div class="card-info">
                     <p class="category-label">Gaming</p>
@@ -281,7 +282,7 @@
                     <button class="quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
                 </div>
                 <div class="img-container">
-                    <img src="assets/img/laptop.webp" alt="Book Air 14 Laptop">
+                    <img src="assets/img/laptop.webp" alt="Book Air 14 Laptop" loading="lazy">
                 </div>
                 <div class="card-info">
                     <p class="category-label">Laptops</p>
@@ -298,7 +299,7 @@
                     <button class="quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
                 </div>
                 <div class="img-container">
-                    <img src="assets/img/keyboard.webp" alt="Mechanical Keys">
+                    <img src="assets/img/keyboard.webp" alt="Mechanical Keys" loading="lazy">
                 </div>
                 <div class="card-info">
                     <p class="category-label">Accessories</p>
@@ -332,7 +333,7 @@
             <!-- Cat 1 -->
             <div class="category-item" data-category="monitors">
                 <div class="cat-img-box">
-                    <img src="assets/img/monitor.webp" alt="Monitors">
+                    <img src="assets/img/monitor.webp" alt="Monitors" loading="lazy">
                 </div>
                 <div class="cat-info">
                     <div class="cat-header-row">
@@ -347,7 +348,7 @@
             <!-- Cat 2 -->
             <div class="category-item" data-category="gaming">
                 <div class="cat-img-box">
-                    <img src="assets/img/console.webp" alt="Gaming Consoles">
+                    <img src="assets/img/console.webp" alt="Gaming Consoles" loading="lazy">
                 </div>
                 <div class="cat-info">
                     <div class="cat-header-row">
@@ -362,7 +363,7 @@
             <!-- Cat 3 -->
             <div class="category-item" data-category="laptops">
                 <div class="cat-img-box">
-                    <img src="assets/img/laptop.webp" alt="Laptops">
+                    <img src="assets/img/laptop.webp" alt="Laptops" loading="lazy">
                 </div>
                 <div class="cat-info">
                     <div class="cat-header-row">
@@ -377,7 +378,7 @@
             <!-- Cat 4 -->
             <div class="category-item" data-category="accessories">
                 <div class="cat-img-box">
-                    <img src="assets/img/keyboard.webp" alt="Accessories">
+                    <img src="assets/img/keyboard.webp" alt="Accessories" loading="lazy">
                 </div>
                 <div class="cat-info">
                     <div class="cat-header-row">
@@ -392,7 +393,7 @@
             <!-- Cat 5 -->
             <div class="category-item" data-category="headphones">
                 <div class="cat-img-box">
-                    <img src="assets/img/promo.webp" alt="Headphones">
+                    <img src="assets/img/promo.webp" alt="Headphones" loading="lazy">
                 </div>
                 <div class="cat-info">
                     <div class="cat-header-row">
@@ -407,7 +408,7 @@
             <!-- Cat 6 -->
             <div class="category-item" data-category="earbuds">
                 <div class="cat-img-box">
-                    <img src="assets/img/earbuds.webp" alt="Earbuds">
+                    <img src="assets/img/earbuds.webp" alt="Earbuds" loading="lazy">
                 </div>
                 <div class="cat-info">
                     <div class="cat-header-row">
@@ -422,7 +423,7 @@
             <!-- Cat 7 -->
             <div class="category-item" data-category="cameras">
                 <div class="cat-img-box">
-                    <img src="assets/img/camera.webp" alt="Cameras & Vision">
+                    <img src="assets/img/camera.webp" alt="Cameras & Vision" loading="lazy">
                 </div>
                 <div class="cat-info">
                     <div class="cat-header-row">
@@ -437,7 +438,7 @@
             <!-- Cat 8 -->
             <div class="category-item" data-category="wearables">
                 <div class="cat-img-box">
-                    <img src="assets/img/watch.webp" alt="Wearables">
+                    <img src="assets/img/watch.webp" alt="Wearables" loading="lazy">
                 </div>
                 <div class="cat-info">
                     <div class="cat-header-row">
@@ -449,6 +450,180 @@
                 </div>
             </div>
         </div>
+        </div>
+    </section>
+
+    <!-- Official Partner Brands Section (Right-to-Left Infinite Marquee) -->
+    <section class="partner-brands-section" id="partner-brands" aria-label="Official Partner Brands">
+        <div class="container text-center">
+            <div class="section-heading mb-4">
+                <p class="tagline">OFFICIAL PARTNER BRANDS</p>
+                <h2>Engineered with <span class="serif-word">world-class</span> brands.</h2>
+                <p class="subtitle">Direct authorized partnerships providing 100% genuine electronics, full official manufacturer warranty, and verified support.</p>
+            </div>
+        </div>
+
+        <div class="brand-marquee-container" aria-label="Partner Brands Marquee">
+            <div class="brand-marquee-track">
+                <!-- Track Item 1: Apple -->
+                <div class="brand-card">
+                    <div class="brand-icon-wrap" aria-label="Apple">
+                        <svg class="brand-partner-svg" viewBox="0 0 170 170" width="24" height="24" fill="currentColor" aria-hidden="true">
+                            <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.69-8.73-10.22-18.72-13.6-29.98-3.38-11.26-5.07-22.18-5.07-32.76 0-14.83 3.65-27.13 10.95-36.9 7.3-9.76 16.59-14.74 27.87-14.94 4.89 0 10.15 1.25 15.78 3.75 5.63 2.5 9.4 3.86 11.31 4.09 1.74-.23 5.69-1.64 11.85-4.23 6.16-2.59 11.64-3.76 16.44-3.52 12.39.63 22.42 5.08 30.1 13.36-10.74 6.53-16 15.54-15.78 27.04.22 9.04 3.74 16.59 10.56 22.65 6.82 6.07 15.02 9.44 24.6 10.12-2.18 6.53-4.78 12.89-7.8 19.08zm-29.65-104.9c0 6.64-2.43 12.87-7.29 17.69-4.86 4.82-10.74 7.64-17.64 7.44-.11-1.3-.16-2.4-.16-3.29 0-6.64 2.7-13.32 8.1-20.03 5.4-6.72 11.89-10.58 19.46-11.58.11 1.09.16 2.09.16 3.01z"/>
+                        </svg>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Apple</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Track Item 2: Microsoft -->
+                <div class="brand-card">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">laptop_windows</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Microsoft</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Track Item 3: Razer -->
+                <div class="brand-card">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">gamepad</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Razer</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Track Item 4: Sony -->
+                <div class="brand-card">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">headphones</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Sony</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Track Item 5: Samsung -->
+                <div class="brand-card">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">android</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Samsung</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Track Item 6: Cisco -->
+                <div class="brand-card">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">router</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Cisco</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Track Item 7: Intel -->
+                <div class="brand-card">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">memory</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Intel</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Duplicated Sequence for Continuous Seamless Right-to-Left Scroll -->
+                <!-- Duplicate 1: Apple -->
+                <div class="brand-card" aria-hidden="true">
+                    <div class="brand-icon-wrap" aria-label="Apple">
+                        <svg class="brand-partner-svg" viewBox="0 0 170 170" width="24" height="24" fill="currentColor" aria-hidden="true">
+                            <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.69-8.73-10.22-18.72-13.6-29.98-3.38-11.26-5.07-22.18-5.07-32.76 0-14.83 3.65-27.13 10.95-36.9 7.3-9.76 16.59-14.74 27.87-14.94 4.89 0 10.15 1.25 15.78 3.75 5.63 2.5 9.4 3.86 11.31 4.09 1.74-.23 5.69-1.64 11.85-4.23 6.16-2.59 11.64-3.76 16.44-3.52 12.39.63 22.42 5.08 30.1 13.36-10.74 6.53-16 15.54-15.78 27.04.22 9.04 3.74 16.59 10.56 22.65 6.82 6.07 15.02 9.44 24.6 10.12-2.18 6.53-4.78 12.89-7.8 19.08zm-29.65-104.9c0 6.64-2.43 12.87-7.29 17.69-4.86 4.82-10.74 7.64-17.64 7.44-.11-1.3-.16-2.4-.16-3.29 0-6.64 2.7-13.32 8.1-20.03 5.4-6.72 11.89-10.58 19.46-11.58.11 1.09.16 2.09.16 3.01z"/>
+                        </svg>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Apple</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Duplicate 2: Microsoft -->
+                <div class="brand-card" aria-hidden="true">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">laptop_windows</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Microsoft</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Duplicate 3: Razer -->
+                <div class="brand-card" aria-hidden="true">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">gamepad</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Razer</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Duplicate 4: Sony -->
+                <div class="brand-card" aria-hidden="true">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">headphones</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Sony</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Duplicate 5: Samsung -->
+                <div class="brand-card" aria-hidden="true">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">android</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Samsung</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Duplicate 6: Cisco -->
+                <div class="brand-card" aria-hidden="true">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">router</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Cisco</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+
+                <!-- Duplicate 7: Intel -->
+                <div class="brand-card" aria-hidden="true">
+                    <div class="brand-icon-wrap">
+                        <span class="material-symbols-outlined">memory</span>
+                    </div>
+                    <div class="brand-details">
+                        <h4 class="brand-name">Intel</h4>
+                        <span class="brand-status"><i class="fa-solid fa-circle-check"></i> Official Partner</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -465,7 +640,7 @@
                 <!-- Left Feature -->
                 <div class="sc-side-card sc-left">
                     <div class="sc-img-wrap">
-                        <img src="assets/img/laptop.webp" alt="Laptop Productivity">
+                        <img src="assets/img/laptop.webp" alt="Laptop Productivity" loading="lazy">
                     </div>
                     <div class="sc-feature">
                         <span class="sc-num">01</span>
@@ -477,7 +652,7 @@
                 <!-- Centerpiece Feature -->
                 <div class="sc-center-card">
                     <div class="sc-main-visual">
-                        <img src="assets/img/monitor.webp" alt="Pro Display X1" class="sc-main-img">
+                        <img src="assets/img/monitor.webp" alt="Pro Display X1" class="sc-main-img" loading="lazy">
                         <div class="sc-floating-tag">
                             <i class="fa-solid fa-shield-check"></i> 5K Retina Clarity
                         </div>
@@ -520,45 +695,128 @@
             
             <div class="setup-content-grid">
                 <div class="setup-image-column">
-                    <div class="setup-image-frame">
-                        <img src="assets/img/setup.webp" alt="Curated Workspace Setup" class="setup-img">
-                        <div class="setup-glass-chip">
+                    <div class="setup-image-frame" id="setup-sequence-frame" aria-label="Interactive Workspace Image Sequence Animation">
+                        <!-- Top HUD Bar -->
+                        <div class="sequence-hud">
+                            <div class="sequence-live-tag">
+                                <span class="live-dot"></span>
+                                <span>IMAGE SEQUENCE</span>
+                            </div>
+                            <div class="sequence-frame-counter">
+                                FRAME <span class="curr-frame" id="seq-curr-frame-num">01</span> / <span class="total-frames">04</span>
+                            </div>
+                        </div>
+
+                        <!-- Sequential Image Frames Stack -->
+                        <div class="sequence-frames-stack" id="sequence-frames-stack">
+                            <!-- Frame 0: Focused Work / Curated Setup -->
+                            <div class="sequence-frame active" data-index="0" data-label="Focused Work Studio" data-badge="Validated Ergonomics" data-pin-text="Balanced Ambient Lighting" data-pin-x="50%" data-pin-y="34%">
+                                <img src="assets/img/setup.webp" alt="Focused Work Environment Setup" class="seq-img">
+                            </div>
+
+                            <!-- Frame 1: 5K Retina Multi-Device Flow -->
+                            <div class="sequence-frame" data-index="1" data-label="Pro Display Multi-Device Hub" data-badge="Single-Cable Thunderbolt 4" data-pin-text="5K Retina Precision & Flow" data-pin-x="50%" data-pin-y="46%">
+                                <img src="assets/img/monitor.webp" alt="Multi-Device Flow Display" class="seq-img">
+                            </div>
+
+                            <!-- Frame 2: Clean Desk & Tactile Peripherals -->
+                            <div class="sequence-frame" data-index="2" data-label="Tactile Mechanical Keybed" data-badge="Stealth Cable Routing" data-pin-text="Tactile Precision Keybed" data-pin-x="50%" data-pin-y="56%">
+                                <img src="assets/img/keyboard.webp" alt="Clean Desk and Peripherals" class="seq-img">
+                            </div>
+
+                            <!-- Frame 3: Creator Pro 16 Endurance -->
+                            <div class="sequence-frame" data-index="3" data-label="Aircraft Aluminum Chassis" data-badge="Aircraft-Grade Aluminum" data-pin-text="Whisper-Quiet Thermal System" data-pin-x="50%" data-pin-y="50%">
+                                <img src="assets/img/laptop-pro.webp" alt="Everyday Endurance Build" class="seq-img">
+                            </div>
+                        </div>
+
+                        <!-- Interactive Detail Radar Hotspot Pin -->
+                        <div class="sequence-hotspot-pin" id="sequence-hotspot-pin" style="top: 34%; left: 50%;">
+                            <div class="hotspot-pulse"></div>
+                            <div class="hotspot-dot"><i class="fa-solid fa-circle-dot"></i></div>
+                            <div class="hotspot-tooltip">
+                                <span id="hotspot-tooltip-text">Balanced Ambient Lighting</span>
+                            </div>
+                        </div>
+
+                        <!-- Glass Chip Badge -->
+                        <div class="setup-glass-chip" id="setup-glass-chip">
                             <i class="fa-solid fa-circle-check"></i>
-                            <span>Validated Ergonomics</span>
+                            <span id="setup-chip-label">Validated Ergonomics</span>
+                        </div>
+
+                        <!-- Bottom Timeline Scrub Bar -->
+                        <div class="sequence-progress-bar">
+                            <div class="sequence-progress-fill" id="sequence-progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <!-- Image Sequence Controller Console -->
+                    <div class="sequence-controls-bar" aria-label="Sequence Playback Controls">
+                        <div class="sequence-playback-btns">
+                            <button class="seq-nav-btn" id="seq-prev-btn" aria-label="Previous sequence frame" title="Previous Frame">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button class="seq-play-btn" id="seq-play-toggle" aria-label="Pause sequence auto-play" title="Toggle Auto-Play">
+                                <i class="fa-solid fa-pause"></i>
+                                <span class="seq-play-text">PLAYING</span>
+                            </button>
+                            <button class="seq-nav-btn" id="seq-next-btn" aria-label="Next sequence frame" title="Next Frame">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+
+                        <div class="sequence-step-dots" role="tablist" aria-label="Sequence Frame Direct Selector">
+                            <button class="seq-step-dot active" data-step="0" role="tab" aria-selected="true" aria-label="Sequence Frame 1: Focused Work">
+                                <span>01</span>
+                            </button>
+                            <button class="seq-step-dot" data-step="1" role="tab" aria-selected="false" aria-label="Sequence Frame 2: Multi-Device Flow">
+                                <span>02</span>
+                            </button>
+                            <button class="seq-step-dot" data-step="2" role="tab" aria-selected="false" aria-label="Sequence Frame 3: Clean Workspace">
+                                <span>03</span>
+                            </button>
+                            <button class="seq-step-dot" data-step="3" role="tab" aria-selected="false" aria-label="Sequence Frame 4: Endurance Build">
+                                <span>04</span>
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <div class="setup-points-column">
-                    <div class="setup-point-card">
+                    <div class="setup-point-card active" data-frame-index="0" role="button" tabindex="0" aria-label="View Frame 01: Built for focused work">
                         <div class="point-badge">01</div>
                         <div class="point-body">
                             <h4>Built for focused work</h4>
                             <p>Distraction-free lines and balanced lighting keep your mind clear during deep work sessions.</p>
+                            <div class="point-card-progress"><div class="point-card-progress-bar"></div></div>
                         </div>
                     </div>
 
-                    <div class="setup-point-card">
+                    <div class="setup-point-card" data-frame-index="1" role="button" tabindex="0" aria-label="View Frame 02: Seamless multi-device flow">
                         <div class="point-badge">02</div>
                         <div class="point-body">
                             <h4>Seamless multi-device flow</h4>
                             <p>Single-cable docking links laptops, monitors, and peripherals with instant zero lag.</p>
+                            <div class="point-card-progress"><div class="point-card-progress-bar"></div></div>
                         </div>
                     </div>
 
-                    <div class="setup-point-card">
+                    <div class="setup-point-card" data-frame-index="2" role="button" tabindex="0" aria-label="View Frame 03: Clean and modern workspace">
                         <div class="point-badge">03</div>
                         <div class="point-body">
                             <h4>Clean and modern workspace</h4>
                             <p>Thoughtful integrated cable routing eliminates clutter for a refined modern environment.</p>
+                            <div class="point-card-progress"><div class="point-card-progress-bar"></div></div>
                         </div>
                     </div>
 
-                    <div class="setup-point-card">
+                    <div class="setup-point-card" data-frame-index="3" role="button" tabindex="0" aria-label="View Frame 04: Designed for everyday endurance">
                         <div class="point-badge">04</div>
                         <div class="point-body">
                             <h4>Designed for everyday endurance</h4>
                             <p>Crafted from aircraft-grade aluminum and eco-conscious finishes built to last.</p>
+                            <div class="point-card-progress"><div class="point-card-progress-bar"></div></div>
                         </div>
                     </div>
 
@@ -607,7 +865,7 @@
                     </div>
                 </div>
                 <div class="large-card-img">
-                    <img src="assets/img/promo.webp" alt="Premium ANC Headphones">
+                    <img src="assets/img/promo.webp" alt="Premium ANC Headphones" loading="lazy">
                 </div>
             </div>
             
@@ -635,7 +893,7 @@
                     </div>
                 </div>
                 <div class="large-card-img">
-                    <img src="assets/img/laptop.webp" alt="Book Air 14 Laptop">
+                    <img src="assets/img/laptop.webp" alt="Book Air 14 Laptop" loading="lazy">
                 </div>
             </div>
         </div>
@@ -671,7 +929,7 @@
             </div>
         </div>
         <div class="promo-image-wrap">
-            <img src="assets/img/promo-girl.webp" alt="Sonix Pro Headphones Promotional Offer">
+            <img src="assets/img/promo-girl.webp" alt="Sonix Pro Headphones Promotional Offer" loading="lazy">
         </div>
     </section>
 
@@ -724,7 +982,7 @@
                     <!-- Product Tag with Thumbnail -->
                     <div class="review-product-chip">
                         <div class="product-thumb">
-                            <img src="assets/img/monitor.webp" alt="Pro Display X1">
+                            <img src="assets/img/monitor.webp" alt="Pro Display X1" loading="lazy">
                         </div>
                         <div class="product-details">
                             <span class="verified-tag"><i class="fa-solid fa-circle-check"></i> Verified Purchase</span>
@@ -734,11 +992,14 @@
 
                     <div class="featured-author">
                         <div class="avatar-ring">
-                            <div class="avatar">SJ</div>
+                            <div class="avatar avatar-sj">SJ</div>
                         </div>
                         <div class="author-details">
-                            <strong>Sarah Jenkins</strong>
-                            <span>Product Designer &bull; NY</span>
+                            <div class="author-title-row">
+                                <strong>Sarah Jenkins</strong>
+                                <span class="verified-buyer-pill gold"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                            </div>
+                            <span class="author-subtext">Product Designer &bull; NY</span>
                         </div>
                     </div>
                 </div>
@@ -791,10 +1052,15 @@
                                     </div>
 
                                     <div class="review-card-footer">
-                                        <div class="avatar">MR</div>
+                                        <div class="avatar-ring-sm">
+                                            <div class="avatar avatar-mr">MR</div>
+                                        </div>
                                         <div class="author-details">
-                                            <strong>Michael Reed</strong>
-                                            <span>Software Engineer &bull; CA</span>
+                                            <div class="author-title-row">
+                                                <strong>Michael Reed</strong>
+                                                <span class="verified-buyer-pill"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                                            </div>
+                                            <span class="author-subtext">Software Engineer &bull; CA</span>
                                         </div>
                                     </div>
                                 </div>
@@ -829,10 +1095,15 @@
                                     </div>
 
                                     <div class="review-card-footer">
-                                        <div class="avatar">DT</div>
+                                        <div class="avatar-ring-sm">
+                                            <div class="avatar avatar-dt">DT</div>
+                                        </div>
                                         <div class="author-details">
-                                            <strong>David Torres</strong>
-                                            <span>Digital Creator &bull; TX</span>
+                                            <div class="author-title-row">
+                                                <strong>David Torres</strong>
+                                                <span class="verified-buyer-pill"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                                            </div>
+                                            <span class="author-subtext">Digital Creator &bull; TX</span>
                                         </div>
                                     </div>
                                 </div>
@@ -867,10 +1138,15 @@
                                     </div>
 
                                     <div class="review-card-footer">
-                                        <div class="avatar">ER</div>
+                                        <div class="avatar-ring-sm">
+                                            <div class="avatar avatar-er">ER</div>
+                                        </div>
                                         <div class="author-details">
-                                            <strong>Elena Rostova</strong>
-                                            <span>Product Designer &bull; NY</span>
+                                            <div class="author-title-row">
+                                                <strong>Elena Rostova</strong>
+                                                <span class="verified-buyer-pill"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                                            </div>
+                                            <span class="author-subtext">Product Designer &bull; NY</span>
                                         </div>
                                     </div>
                                 </div>
@@ -905,10 +1181,15 @@
                                     </div>
 
                                     <div class="review-card-footer">
-                                        <div class="avatar">MV</div>
+                                        <div class="avatar-ring-sm">
+                                            <div class="avatar avatar-mv">MV</div>
+                                        </div>
                                         <div class="author-details">
-                                            <strong>Marcus Vance</strong>
-                                            <span>Frontend Architect &bull; WA</span>
+                                            <div class="author-title-row">
+                                                <strong>Marcus Vance</strong>
+                                                <span class="verified-buyer-pill"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                                            </div>
+                                            <span class="author-subtext">Frontend Architect &bull; WA</span>
                                         </div>
                                     </div>
                                 </div>
@@ -943,10 +1224,15 @@
                                     </div>
 
                                     <div class="review-card-footer">
-                                        <div class="avatar">CN</div>
+                                        <div class="avatar-ring-sm">
+                                            <div class="avatar avatar-cn">CN</div>
+                                        </div>
                                         <div class="author-details">
-                                            <strong>Chloe Nguyen</strong>
-                                            <span>Fitness Instructor &bull; CO</span>
+                                            <div class="author-title-row">
+                                                <strong>Chloe Nguyen</strong>
+                                                <span class="verified-buyer-pill"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                                            </div>
+                                            <span class="author-subtext">Fitness Instructor &bull; CO</span>
                                         </div>
                                     </div>
                                 </div>
@@ -981,10 +1267,15 @@
                                     </div>
 
                                     <div class="review-card-footer">
-                                        <div class="avatar">JP</div>
+                                        <div class="avatar-ring-sm">
+                                            <div class="avatar avatar-jp">JP</div>
+                                        </div>
                                         <div class="author-details">
-                                            <strong>Julian Patel</strong>
-                                            <span>VFX Artist &bull; IL</span>
+                                            <div class="author-title-row">
+                                                <strong>Julian Patel</strong>
+                                                <span class="verified-buyer-pill"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                                            </div>
+                                            <span class="author-subtext">VFX Artist &bull; IL</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1022,7 +1313,7 @@
         <div class="grid-2 mt-4">
             <article class="article-card">
                 <div class="article-img-wrap">
-                    <img src="assets/img/article1.webp" alt="How to Choose the Right Audio Gear">
+                    <img src="assets/img/article1.webp" alt="How to Choose the Right Audio Gear" loading="lazy">
                     <span class="read-pill">5 MIN READ</span>
                 </div>
                 <div class="article-body">
@@ -1035,7 +1326,7 @@
             
             <article class="article-card">
                 <div class="article-img-wrap">
-                    <img src="assets/img/article2.webp" alt="Laptop Buying Guide for Everyday Work">
+                    <img src="assets/img/article2.webp" alt="Laptop Buying Guide for Everyday Work" loading="lazy">
                     <span class="read-pill">4 MIN READ</span>
                 </div>
                 <div class="article-body">
@@ -1046,6 +1337,99 @@
                 </div>
             </article>
         </div>
+        </div>
+    </section>
+
+    <!-- 10. Frequently Asked Questions (FAQ) Section -->
+    <section class="faq-section" id="faq" aria-labelledby="faq-main-heading">
+        <div class="container">
+            <div class="section-heading text-center">
+                <p class="tagline">SUPPORT &amp; GUIDANCE</p>
+                <h2 id="faq-main-heading">Frequently Asked Questions</h2>
+                <p class="subtitle">Quick answers to help you shop, track orders, and make the most of your hardware.</p>
+            </div>
+
+            <div class="faq-accordion-wrapper">
+                <div class="faq-accordion" id="faq-accordion" role="region" aria-label="Frequently Asked Questions Accordion">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item active">
+                        <button class="faq-question" id="faq-q1" aria-expanded="true" aria-controls="faq-a1">
+                            <span class="faq-question-text">How can I place an order?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+                            <div class="faq-answer-inner">
+                                <p>Placing an order on STACKLY is simple and seamless. Browse through our collections, select your preferred hardware and color option, and click <strong>Add to Cart</strong>. When you are ready, navigate to your Shopping Cart and proceed to Checkout. Enter your shipping address, select your preferred delivery speed, choose a secure payment method, and confirm your order. You will receive an immediate email confirmation with your order summary and invoice.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item">
+                        <button class="faq-question" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+                            <span class="faq-question-text">What payment methods do you accept?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
+                            <div class="faq-answer-inner">
+                                <p>We support a broad range of verified payment methods for your convenience: all major Credit and Debit Cards (Visa, MasterCard, American Express), Apple Pay, Google Pay, PayPal, UPI payments, and Cash on Delivery (COD) for eligible domestic addresses. Every transaction is encrypted with enterprise-grade 256-bit SSL protocols.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item">
+                        <button class="faq-question" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+                            <span class="faq-question-text">How can I track my order?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
+                            <div class="faq-answer-inner">
+                                <p>As soon as your package is dispatched from our fulfillment center, we will send an automated dispatch notification with your carrier name and real-time live tracking link via email and SMS. You can also monitor your shipment anytime using the <strong>Shipping Returns &amp; Tracking</strong> link in our top navigation bar with your Order ID.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item">
+                        <button class="faq-question" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+                            <span class="faq-question-text">What is your return and refund policy?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
+                            <div class="faq-answer-inner">
+                                <p>We stand behind our curation with a <strong>30-Day Hassle-Free Return Policy</strong>. If an item doesn't fit your workflow or expectations, you can request a return within 30 days of delivery. Items must be returned in their original packaging with all included cables and accessories. Once inspected, full refunds are issued to your original payment method within 3–5 business days.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item">
+                        <button class="faq-question" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+                            <span class="faq-question-text">Do you provide a product warranty?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
+                            <div class="faq-answer-inner">
+                                <p>Yes. All hardware purchased on STACKLY is 100% brand new, authentic, and backed by a comprehensive <strong>2-Year Official Manufacturer Warranty</strong>. This coverage protects against manufacturing defects, internal component failures, and hardware irregularities. Verified warranty service and repair support are facilitated directly through our customer care desk.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="faq-item">
+                        <button class="faq-question" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
+                            <span class="faq-question-text">How can I contact customer support?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a6" role="region" aria-labelledby="faq-q6" hidden>
+                            <div class="faq-answer-inner">
+                                <p>Our dedicated support specialists are ready to help. You can email us anytime at <a href="mailto:support@stacklytech.com" class="faq-link">support@stacklytech.com</a>, open a ticket via our Help Center, or use our quick assistance modal. Support inquiries are typically answered within 1–2 hours during operational hours (Mon–Sat, 9 AM – 8 PM EST).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1087,12 +1471,12 @@
                 <div class="footer-col">
                     <h4>QUICK LINKS</h4>
                     <ul>
-                        <li><a href="#" class="scroll-link">Home</a></li>
-                        <li><a href="#freshly-dropped" class="scroll-link">Shop</a></li>
-                        <li><a href="#categories" class="scroll-link">Categories</a></li>
-                        <li><a href="#showcase" class="scroll-link">Featured</a></li>
-                        <li><a href="#setup-feature" class="scroll-link">Workspace</a></li>
-                        <li><a href="#articles" class="scroll-link">Buying Guides</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="shipping.html">Order Management</a></li>
+                        <li><a href="mission.html">About</a></li>
+                        <li><a href="guides.html">Buying Guides</a></li>
+                        <li><a href="404.html" class="info-modal-link" data-info="contact">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1108,9 +1492,9 @@
                 <div class="footer-col">
                     <h4>SUPPORT</h4>
                     <ul>
-                        <li><a href="404.html">Shipping & Returns</a></li>
-                        <li><a href="404.html">Track Your Order</a></li>
-                        <li><a href="404.html">Help Center & FAQs</a></li>
+                        <li><a href="shipping.html">Order Management</a></li>
+                        <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
+                        <li><a href="#faq" class="scroll-link">Help Center & FAQs</a></li>
                         <li><a href="404.html">Warranty Information</a></li>
                         <li><a href="404.html">Contact Customer Care</a></li>
                     </ul>
@@ -1118,10 +1502,10 @@
                 <div class="footer-col">
                     <h4>COMPANY</h4>
                     <ul>
-                        <li><a href="404.html">Our Mission</a></li>
-                        <li><a href="404.html">Buying Guides</a></li>
-                        <li><a href="404.html">Admin Portal</a></li>
-                        <li><a href="404.html">Customer Dashboard</a></li>
+                        <li><a href="mission.html">About</a></li>
+                        <li><a href="guides.html">Buying Guides</a></li>
+                        <li><a href="dashboards/admin-dashboard.html">Admin Portal</a></li>
+                        <li><a href="dashboards/user-dashboard.html">Customer Dashboard</a></li>
                         <li><a href="404.html">Privacy Policy & Terms</a></li>
                     </ul>
                 </div>
@@ -1162,8 +1546,11 @@
                     </div>
 
                     <div class="qv-action-row">
-                        <button class="btn btn-primary btn-add-cart w-100" id="qv-add-cart-btn">
+                        <button class="btn btn-primary btn-add-cart" id="qv-add-cart-btn" style="flex: 1;">
                             <i class="fa-solid fa-cart-shopping"></i> ADD TO CART
+                        </button>
+                        <button type="button" class="btn btn-secondary wishlist-btn qv-wishlist-btn" id="qv-wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
                         </button>
                     </div>
                 </div>
@@ -1188,6 +1575,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- Custom JS -->
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
     <script src="js/script.js"></script>
     <script src="js/home-animations.js"></script>
 </body>
