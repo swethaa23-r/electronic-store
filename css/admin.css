@@ -61,19 +61,72 @@ ul {
 }
 
 .sidebar-header {
-    height: 70px;
+    min-height: 84px;
+    height: auto;
     display: flex;
     align-items: center;
-    padding: 0 20px;
-    font-size: 1.2rem;
-    font-weight: 800;
+    padding: 16px 20px;
     color: var(--white);
     border-bottom: 1px solid #333333;
     justify-content: space-between;
 }
 
-.sidebar-header i.fa-layer-group {
-    margin-right: 10px;
+.sidebar-brand-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+}
+
+.sidebar-logo-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.sidebar-logo-img {
+    height: 30px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    transition: var(--transition);
+}
+
+.sidebar-logo-link:hover .sidebar-logo-img {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.sidebar-role-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.08);
+    color: #E2E2E0;
+    line-height: 1.2;
+}
+
+.sidebar-role-tag i {
+    font-size: 0.64rem;
+}
+
+.sidebar-role-tag.admin-tag {
+    background: rgba(255, 255, 255, 0.10);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.sidebar-role-tag.user-tag {
+    background: rgba(255, 255, 255, 0.08);
+    color: #E8E8E6;
+    border-color: rgba(255, 255, 255, 0.18);
 }
 
 .mobile-only {
@@ -215,19 +268,44 @@ ul {
     align-items: center;
     gap: 10px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--primary);
+    background: #F8F8F6;
+    padding: 4px 12px 4px 4px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
 }
 
 .avatar {
-    width: 35px;
-    height: 35px;
-    background: var(--border);
+    width: 34px;
+    height: 34px;
+    background: #111111;
+    color: #FFFFFF;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+    font-size: 0.88rem;
+    flex-shrink: 0;
+}
+
+.avatar.profile-avatar-icon {
+    background: #111111;
+    color: #FFFFFF;
+}
+
+.avatar.profile-avatar-icon i {
+    font-size: 0.85rem;
+}
+
+.profile-user-email {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #111111;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Content Area */

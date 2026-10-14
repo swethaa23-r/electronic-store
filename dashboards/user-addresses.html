@@ -13,18 +13,23 @@
         <div class="admin-overlay"></div>
         <aside class="admin-sidebar">
             <div class="sidebar-header">
-                <i class="fa-solid fa-layer-group"></i> STACKLY
+                <div class="sidebar-brand-wrap">
+                    <a href="../index.html" class="sidebar-logo-link" title="Return to STACKLY Store">
+                        <img src="../assets/img/logo.webp" alt="STACKLY" class="sidebar-logo-img">
+                    </a>
+                    <span class="sidebar-role-tag user-tag"><i class="fa-solid fa-user"></i> User Dashboard</span>
+                </div>
                 <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
             <nav class="sidebar-nav">
                 <ul>
-                    <li class=""><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li class=""><a href="user-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
                     <li class=""><a href="user-orders.html"><i class="fa-solid fa-box"></i> My Orders</a></li>
                     <li class=""><a href="user-wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
                     <li class="active"><a href="user-addresses.html"><i class="fa-solid fa-location-dot"></i> Addresses</a></li>
                     <li class=""><a href="user-profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
-                    <li class=""><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                    <li class=""><a href="user-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
                 </ul>
             </nav>
 
@@ -41,8 +46,8 @@
                 <div class="topbar-right">
                     <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
                     <div class="admin-profile">
-                        <div class="avatar">US</div>
-                        <span>Customer</span>
+                        <div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
+                        <span class="profile-user-email" id="topbar-user-email">customer@stackly.com</span>
                     </div>
                 </div>
             </header>

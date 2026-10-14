@@ -15,7 +15,12 @@
         <!-- Sidebar -->
         <aside class="admin-sidebar">
             <div class="sidebar-header">
-                <i class="fa-solid fa-layer-group"></i> STACKLY
+                <div class="sidebar-brand-wrap">
+                    <a href="../index.html" class="sidebar-logo-link" title="Return to STACKLY Store">
+                        <img src="../assets/img/logo.webp" alt="STACKLY" class="sidebar-logo-img">
+                    </a>
+                    <span class="sidebar-role-tag admin-tag"><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</span>
+                </div>
                 <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <nav class="sidebar-nav">
@@ -43,8 +48,8 @@
                 <div class="topbar-right">
                     <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
                     <div class="admin-profile">
-                        <div class="avatar">AD</div>
-                        <span>Admin</span>
+                        <div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
+                        <span class="profile-user-email" id="topbar-user-email">admin@stackly.com</span>
                     </div>
                 </div>
             </header>

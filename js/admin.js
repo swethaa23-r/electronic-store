@@ -7,6 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = "../login.html";
     }
 
+    // 1.5 Dynamic Topbar Profile Email
+    try {
+        const session = JSON.parse(localStorage.getItem('stacklyUserSession'));
+        const emailEl = document.getElementById('topbar-user-email');
+        if (emailEl) {
+            emailEl.textContent = (session && session.email) ? session.email : 'admin@stackly.com';
+        }
+    } catch (e) {}
+
     // 2. Mobile Sidebar Toggle
     const hamburger = document.querySelector('.hamburger');
     const closeSidebar = document.querySelector('.close-sidebar');

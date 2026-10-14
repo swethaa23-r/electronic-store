@@ -130,4 +130,18 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '../404.html';
         }
     }, true);
+
+    // 5. Dynamic Dashboard Topbar Profile Email Sync
+    try {
+        const session = JSON.parse(localStorage.getItem('stacklyUserSession'));
+        const emailEl = document.getElementById('topbar-user-email');
+        if (emailEl) {
+            if (session && session.email) {
+                emailEl.textContent = session.email;
+            } else {
+                const isAdmin = window.location.pathname.includes('admin');
+                emailEl.textContent = isAdmin ? 'admin@stackly.com' : 'customer@stackly.com';
+            }
+        }
+    } catch (e) {}
 });

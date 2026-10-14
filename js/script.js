@@ -58,19 +58,25 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 3200);
     }
 
+    window.showToast = showToast;
+
     // ==========================================
     // 2. Shopping Cart Management
     // ==========================================
     const cartCountElems = document.querySelectorAll('.cart-count');
-    let cart = [];
-
-    try {
-        cart = JSON.parse(localStorage.getItem('stacklyCart')) || [];
-    } catch(e) {
-        cart = [];
-    }
 
     function updateCartUI() {
+        if (window.StacklyCart && typeof window.StacklyCart.getTotalCount === 'function') {
+            const total = window.StacklyCart.getTotalCount();
+            cartCountElems.forEach(el => { el.textContent = total; });
+            return;
+        }
+        let cart = [];
+        try {
+            cart = JSON.parse(localStorage.getItem('stacklyCart')) || [];
+        } catch(e) {
+            cart = [];
+        }
         const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
         cartCountElems.forEach(el => {
             el.textContent = totalItems;
@@ -79,6 +85,15 @@ document.addEventListener("DOMContentLoaded", function() {
     updateCartUI();
 
     function addToCart(item) {
+        if (window.StacklyCart && typeof window.StacklyCart.addItem === 'function') {
+            window.StacklyCart.addItem(item, item.quantity || 1);
+            return;
+        }
+
+        let cart = [];
+        try {
+            cart = JSON.parse(localStorage.getItem('stacklyCart')) || [];
+        } catch(e) {}
         cart.push(item);
         try {
             localStorage.setItem('stacklyCart', JSON.stringify(cart));
@@ -97,28 +112,33 @@ document.addEventListener("DOMContentLoaded", function() {
         showToast(`${item.name || 'Item'} added to bag!`, "fa-bag-shopping");
     }
 
-    // Event delegation for Add to Cart
+    // Event delegation for Add to Cart (only if StacklyCart is not handling it)
     document.addEventListener('click', function(e) {
+        if (window.StacklyCart) return; // js/cart.js handles global delegation
+
         const addBtn = e.target.closest('.btn-add-cart');
         if (!addBtn) return;
+        if (addBtn.classList.contains('btn-wishlist-cart')) return;
 
         e.preventDefault();
         e.stopPropagation();
 
-        // Extract details from card if available
         const card = addBtn.closest('.product-card, .large-card, .promo-banner, .quick-view-card');
         let itemName = 'Tech Gadget';
         let itemPrice = '$99.00';
         let itemImg = 'assets/img/monitor.webp';
+        let itemColor = 'Standard';
 
         if (card) {
-            const titleEl = card.querySelector('.product-title, h3');
-            const priceEl = card.querySelector('.price');
-            const imgEl = card.querySelector('img');
+            const titleEl = card.querySelector('.product-title, h3, #qv-title');
+            const priceEl = card.querySelector('.price, #qv-price');
+            const imgEl = card.querySelector('img, #qv-img');
+            const colorEl = card.querySelector('.colors .color.active');
 
             if (titleEl) itemName = titleEl.textContent.trim();
             if (priceEl) itemPrice = priceEl.textContent.trim();
-            if (imgEl) itemImg = imgEl.src;
+            if (imgEl) itemImg = imgEl.getAttribute('src') || imgEl.src;
+            if (colorEl) itemColor = colorEl.getAttribute('data-color') || colorEl.getAttribute('title') || 'Standard';
         }
 
         addToCart({
@@ -126,54 +146,18 @@ document.addEventListener("DOMContentLoaded", function() {
             name: itemName,
             price: itemPrice,
             image: itemImg,
+            color: itemColor,
             quantity: 1
         });
     });
 
     // ==========================================
-    // 3. Wishlist Toggle Functionality
+    // 3. Wishlist State & Synchronization
     // ==========================================
-    let wishlistCount = 0;
-    const navWishlistBadge = document.getElementById('nav-wishlist-count');
-
-    function updateWishlistBadge() {
-        const activeHearts = document.querySelectorAll('.wishlist-btn.active').length;
-        wishlistCount = activeHearts;
-        if (navWishlistBadge) {
-            navWishlistBadge.textContent = wishlistCount;
-            navWishlistBadge.style.transform = 'scale(1.25)';
-            setTimeout(() => {
-                navWishlistBadge.style.transform = 'scale(1)';
-            }, 200);
-        }
+    // Sync initial state with StacklyWishlist
+    if (window.StacklyWishlist) {
+        window.StacklyWishlist.syncUI();
     }
-
-    document.addEventListener('click', function(e) {
-        const wishBtn = e.target.closest('.wishlist-btn');
-        if (!wishBtn) return;
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        const icon = wishBtn.querySelector('i');
-        const isFavorited = wishBtn.classList.contains('active');
-
-        if (isFavorited) {
-            wishBtn.classList.remove('active');
-            if (icon) {
-                icon.className = 'fa-regular fa-heart';
-            }
-            updateWishlistBadge();
-            showToast("Removed from wishlist", "fa-heart-circle-xmark");
-        } else {
-            wishBtn.classList.add('active');
-            if (icon) {
-                icon.className = 'fa-solid fa-heart';
-            }
-            updateWishlistBadge();
-            showToast("Saved to your wishlist!", "fa-heart");
-        }
-    });
 
     // ==========================================
     // 4. Quick View Modal
@@ -204,6 +188,20 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         if (qvRating && ratingEl) {
             qvRating.innerHTML = ratingEl.innerHTML;
+        }
+
+        // Sync modal wishlist button state
+        const qvWishBtn = document.getElementById('qv-wishlist-btn');
+        if (qvWishBtn && window.StacklyWishlist && titleEl) {
+            const isFav = window.StacklyWishlist.has(titleEl.textContent.trim());
+            const qvIcon = qvWishBtn.querySelector('i');
+            if (isFav) {
+                qvWishBtn.classList.add('active');
+                if (qvIcon) qvIcon.className = 'fa-solid fa-heart';
+            } else {
+                qvWishBtn.classList.remove('active');
+                if (qvIcon) qvIcon.className = 'fa-regular fa-heart';
+            }
         }
 
         qvModal.classList.add('active');
@@ -275,7 +273,9 @@ document.addEventListener("DOMContentLoaded", function() {
         ]
     };
 
-    function renderFilteredProducts(categoryKey) {
+    let isFiltering = false;
+
+    function renderFilteredCardsMarkup(categoryKey) {
         if (!productsGrid) return;
         const items = productCatalog[categoryKey] || productCatalog['all'];
 
@@ -308,27 +308,334 @@ document.addEventListener("DOMContentLoaded", function() {
             `;
         });
 
-        productsGrid.style.opacity = '0';
-        productsGrid.style.transform = 'translateY(10px)';
-        productsGrid.style.transition = 'all 0.25s ease';
+        productsGrid.innerHTML = html;
+        if (window.StacklyWishlist) {
+            window.StacklyWishlist.syncUI();
+        }
+    }
 
-        setTimeout(() => {
-            productsGrid.innerHTML = html;
-            productsGrid.style.opacity = '1';
-            productsGrid.style.transform = 'translateY(0)';
-        }, 180);
+    function renderFilteredProducts(categoryKey, animate = true) {
+        if (!productsGrid) return;
+        const currentCards = productsGrid.querySelectorAll('.product-card');
+
+        if (!animate || !window.gsap || currentCards.length === 0) {
+            renderFilteredCardsMarkup(categoryKey);
+            return;
+        }
+
+        if (isFiltering) {
+            // Cancel any in-flight transitions on previous cards so rapid clicks are responsive
+            gsap.killTweensOf(currentCards);
+            gsap.killTweensOf(productsGrid.querySelectorAll('.product-card, .img-container img'));
+            isFiltering = false;
+        }
+        isFiltering = true;
+
+        // 1. Smooth Staggered Flexbox Exit Animation
+        gsap.to(productsGrid.querySelectorAll('.product-card'), {
+            opacity: 0,
+            scale: 0.9,
+            y: -12,
+            duration: 0.22,
+            stagger: 0.025,
+            ease: 'power2.in',
+            onComplete: () => {
+                // 2. Render new cards into flexbox grid
+                renderFilteredCardsMarkup(categoryKey);
+
+                const newCards = productsGrid.querySelectorAll('.product-card');
+                newCards.forEach(c => { c.dataset.filteredAnimated = "true"; });
+
+                // 3. Staggered Fluid Flexbox Entrance Animation
+                gsap.fromTo(newCards,
+                    { opacity: 0, scale: 0.92, y: 26 },
+                    {
+                        opacity: 1,
+                        scale: 1,
+                        y: 0,
+                        duration: 0.55,
+                        stagger: 0.065,
+                        ease: 'power3.out',
+                        clearProps: 'transform,opacity',
+                        onComplete: () => {
+                            isFiltering = false;
+                            if (typeof ScrollTrigger !== 'undefined') {
+                                ScrollTrigger.refresh();
+                            }
+                        }
+                    }
+                );
+
+                // Subtle inner image zoom entrance
+                newCards.forEach((c, idx) => {
+                    const img = c.querySelector('.img-container img');
+                    if (img) {
+                        gsap.fromTo(img,
+                            { scale: 0.92, opacity: 0.4 },
+                            {
+                                scale: 1,
+                                opacity: 1,
+                                duration: 0.6,
+                                delay: idx * 0.065 + 0.06,
+                                ease: 'power3.out',
+                                clearProps: 'transform,opacity'
+                            }
+                        );
+                    }
+                });
+            }
+        });
     }
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
+            if (btn.classList.contains('active')) return;
+
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
+            if (window.gsap) {
+                gsap.fromTo(btn, { scale: 0.94 }, { scale: 1, duration: 0.28, ease: 'back.out(2)' });
+            }
+
             const filter = btn.getAttribute('data-filter');
-            renderFilteredProducts(filter);
+            renderFilteredProducts(filter, true);
         });
     });
+
+    // ==========================================
+    // 5b. Workspace Image Sequence Animation Controller
+    // ==========================================
+    function initWorkspaceImageSequence() {
+        const sequenceFrame = document.getElementById('setup-sequence-frame');
+        if (!sequenceFrame) return;
+
+        const frames = sequenceFrame.querySelectorAll('.sequence-frame');
+        const stepDots = sequenceFrame.parentElement.querySelectorAll('.seq-step-dot');
+        const pointCards = document.querySelectorAll('.setup-point-card');
+        const prevBtn = document.getElementById('seq-prev-btn');
+        const nextBtn = document.getElementById('seq-next-btn');
+        const playToggle = document.getElementById('seq-play-toggle');
+        const playText = playToggle ? playToggle.querySelector('.seq-play-text') : null;
+        const playIcon = playToggle ? playToggle.querySelector('i') : null;
+        const currFrameNum = document.getElementById('seq-curr-frame-num');
+        const chipLabel = document.getElementById('setup-chip-label');
+        const hotspotPin = document.getElementById('sequence-hotspot-pin');
+        const tooltipText = document.getElementById('hotspot-tooltip-text');
+        const progressFill = document.getElementById('sequence-progress-fill');
+
+        if (frames.length === 0) return;
+
+        let currentIndex = 0;
+        let isPlaying = true;
+        let autoPlayTimer = null;
+        const FRAME_DURATION = 4200; // 4.2 seconds per frame
+
+        function goToFrame(index, userAction = false) {
+            if (index < 0) index = frames.length - 1;
+            if (index >= frames.length) index = 0;
+            currentIndex = index;
+
+            // 1. Update sequential frame layers with crossfade and subtle zoom
+            frames.forEach((frame, idx) => {
+                if (idx === currentIndex) {
+                    frame.classList.add('active');
+                } else {
+                    frame.classList.remove('active');
+                }
+            });
+
+            const activeFrame = frames[currentIndex];
+
+            // 2. Update HUD Frame Counter (01 / 04)
+            if (currFrameNum) {
+                currFrameNum.textContent = String(currentIndex + 1).padStart(2, '0');
+            }
+
+            // 3. Update Status Glass Chip
+            const badgeText = activeFrame.getAttribute('data-badge') || 'Validated Ergonomics';
+            if (chipLabel) {
+                chipLabel.textContent = badgeText;
+            }
+
+            // 4. Update Hotspot Radar Pin position & tooltip text
+            const pinX = activeFrame.getAttribute('data-pin-x') || '50%';
+            const pinY = activeFrame.getAttribute('data-pin-y') || '40%';
+            const pinLabel = activeFrame.getAttribute('data-pin-text') || 'Precision Hardware';
+            if (hotspotPin) {
+                hotspotPin.style.left = pinX;
+                hotspotPin.style.top = pinY;
+            }
+            if (tooltipText) {
+                tooltipText.textContent = pinLabel;
+            }
+
+            // 5. Update timeline progress bar fill
+            if (progressFill) {
+                const pct = ((currentIndex + 1) / frames.length) * 100;
+                progressFill.style.width = pct + '%';
+            }
+
+            // 6. Update Step Dots
+            stepDots.forEach((dot, idx) => {
+                if (idx === currentIndex) {
+                    dot.classList.add('active');
+                    dot.setAttribute('aria-selected', 'true');
+                } else {
+                    dot.classList.remove('active');
+                    dot.setAttribute('aria-selected', 'false');
+                }
+            });
+
+            // 7. Update Synchronized Point Cards
+            pointCards.forEach((card, idx) => {
+                const cardBar = card.querySelector('.point-card-progress-bar');
+                if (idx === currentIndex) {
+                    card.classList.add('active');
+                    if (cardBar) {
+                        cardBar.style.transition = 'none';
+                        cardBar.style.width = '0%';
+                        setTimeout(() => {
+                            if (isPlaying) {
+                                cardBar.style.transition = `width ${FRAME_DURATION}ms linear`;
+                                cardBar.style.width = '100%';
+                            }
+                        }, 20);
+                    }
+                } else {
+                    card.classList.remove('active');
+                    if (cardBar) {
+                        cardBar.style.transition = 'none';
+                        cardBar.style.width = '0%';
+                    }
+                }
+            });
+
+            if (userAction && isPlaying) {
+                resetAutoPlayTimer();
+            }
+        }
+
+        function nextFrame(user = false) {
+            goToFrame(currentIndex + 1, user);
+        }
+
+        function prevFrame(user = false) {
+            goToFrame(currentIndex - 1, user);
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            isPlaying = true;
+            if (playIcon) playIcon.className = 'fa-solid fa-pause';
+            if (playText) playText.textContent = 'PLAYING';
+            goToFrame(currentIndex);
+            autoPlayTimer = setInterval(() => {
+                nextFrame(false);
+            }, FRAME_DURATION);
+        }
+
+        function stopAutoPlay() {
+            if (autoPlayTimer) clearInterval(autoPlayTimer);
+            autoPlayTimer = null;
+        }
+
+        function pausePlay() {
+            isPlaying = false;
+            stopAutoPlay();
+            if (playIcon) playIcon.className = 'fa-solid fa-play';
+            if (playText) playText.textContent = 'PAUSED';
+            const activeCard = pointCards[currentIndex];
+            if (activeCard) {
+                const bar = activeCard.querySelector('.point-card-progress-bar');
+                if (bar) bar.style.transition = 'none';
+            }
+        }
+
+        function resetAutoPlayTimer() {
+            if (isPlaying) {
+                stopAutoPlay();
+                autoPlayTimer = setInterval(() => {
+                    nextFrame(false);
+                }, FRAME_DURATION);
+            }
+        }
+
+        // Bind control buttons
+        if (nextBtn) nextBtn.addEventListener('click', () => nextFrame(true));
+        if (prevBtn) prevBtn.addEventListener('click', () => prevFrame(true));
+
+        if (playToggle) {
+            playToggle.addEventListener('click', () => {
+                if (isPlaying) {
+                    pausePlay();
+                } else {
+                    startAutoPlay();
+                }
+            });
+        }
+
+        // Bind Step Dots
+        stepDots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                goToFrame(idx, true);
+            });
+        });
+
+        // Bind Point Cards (click & hover with smooth intent)
+        let cardHoverTimer = null;
+        pointCards.forEach((card, idx) => {
+            const getCardIndex = () => {
+                const attr = card.getAttribute('data-frame-index');
+                return attr !== null ? parseInt(attr, 10) : idx;
+            };
+            card.addEventListener('click', () => {
+                if (cardHoverTimer) clearTimeout(cardHoverTimer);
+                goToFrame(getCardIndex(), true);
+            });
+            card.addEventListener('mouseenter', () => {
+                if (cardHoverTimer) clearTimeout(cardHoverTimer);
+                cardHoverTimer = setTimeout(() => {
+                    goToFrame(getCardIndex(), true);
+                }, 180);
+            });
+            card.addEventListener('mouseleave', () => {
+                if (cardHoverTimer) {
+                    clearTimeout(cardHoverTimer);
+                    cardHoverTimer = null;
+                }
+            });
+        });
+
+        // Pause when hovering sequence frame, resume on leave
+        sequenceFrame.addEventListener('mouseenter', () => {
+            if (isPlaying) stopAutoPlay();
+        });
+        sequenceFrame.addEventListener('mouseleave', () => {
+            if (isPlaying) {
+                autoPlayTimer = setInterval(() => {
+                    nextFrame(false);
+                }, FRAME_DURATION);
+            }
+        });
+
+        // Keyboard arrows navigation when focused
+        sequenceFrame.setAttribute('tabindex', '0');
+        sequenceFrame.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextFrame(true);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevFrame(true);
+            }
+        });
+
+        // Initialize frame 0 and start auto-play
+        startAutoPlay();
+    }
+    initWorkspaceImageSequence();
 
     // ==========================================
     // 6. Category Cards Interactive Navigation
@@ -345,7 +652,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (matchBtn) {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 matchBtn.classList.add('active');
-                renderFilteredProducts(targetFilter);
+                renderFilteredProducts(targetFilter, true);
             }
 
             // Smooth scroll to freshly-dropped
@@ -743,4 +1050,123 @@ document.addEventListener("DOMContentLoaded", function() {
             closeMobileMenu();
         }
     });
+
+    // ==========================================
+    // 15. Sticky Navbar Scroll Elevation
+    // ==========================================
+    const siteHeaderEl = document.querySelector('.site-header');
+    if (siteHeaderEl) {
+        const handleHeaderScroll = () => {
+            if (window.scrollY > 10) {
+                siteHeaderEl.classList.add('is-scrolled', 'scrolled');
+            } else {
+                siteHeaderEl.classList.remove('is-scrolled', 'scrolled');
+            }
+        };
+        window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+        handleHeaderScroll();
+    }
+
+    // ==========================================
+    // 16. Accessible FAQ Accordion
+    // ==========================================
+    const faqItems = document.querySelectorAll('.faq-item');
+    if (faqItems.length > 0) {
+        faqItems.forEach((item, index) => {
+            const questionBtn = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            if (!questionBtn || !answer) return;
+
+            questionBtn.addEventListener('click', () => {
+                const isCurrentlyActive = item.classList.contains('active');
+
+                // Close all other items (single-open accordion requirement)
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        const otherBtn = otherItem.querySelector('.faq-question');
+                        const otherAns = otherItem.querySelector('.faq-answer');
+                        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                        if (otherAns) otherAns.hidden = true;
+                    }
+                });
+
+                // Toggle current item
+                if (isCurrentlyActive) {
+                    item.classList.remove('active');
+                    questionBtn.setAttribute('aria-expanded', 'false');
+                    answer.hidden = true;
+                } else {
+                    item.classList.add('active');
+                    questionBtn.setAttribute('aria-expanded', 'true');
+                    answer.hidden = false;
+                }
+            });
+
+            // Keyboard navigation (ArrowDown, ArrowUp, Home, End)
+            questionBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const nextIndex = (index + 1) % faqItems.length;
+                    const nextBtn = faqItems[nextIndex].querySelector('.faq-question');
+                    if (nextBtn) nextBtn.focus();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const prevIndex = (index - 1 + faqItems.length) % faqItems.length;
+                    const prevBtn = faqItems[prevIndex].querySelector('.faq-question');
+                    if (prevBtn) prevBtn.focus();
+                } else if (e.key === 'Home') {
+                    e.preventDefault();
+                    const firstBtn = faqItems[0].querySelector('.faq-question');
+                    if (firstBtn) firstBtn.focus();
+                } else if (e.key === 'End') {
+                    e.preventDefault();
+                    const lastBtn = faqItems[faqItems.length - 1].querySelector('.faq-question');
+                    if (lastBtn) lastBtn.focus();
+                }
+            });
+        });
+    }
+
+    // ==========================================
+    // 17. Global Product Card -> Product Details Navigation
+    // ==========================================
+    const PRODUCT_SLUG_ALIASES = {
+        'sonix-pro-wireless-anc-headphones': 'sonix-pro-wireless',
+        'book-air-14-laptop': 'book-air-14',
+        'view-27-pro-4k-monitor': 'view-27-4k-monitor',
+        'play-station-s-duo-bundle': 'play-one-extra-controller-bundle',
+        'studio-over-ear-anc': 'sonix-studio-max',
+        'sound-home-speaker': 'pulse-home-speaker'
+    };
+
+    function toProductSlug(text) {
+        if (!text) return 'sonix-pro-wireless';
+        const raw = text.toString().toLowerCase().trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/[\s_-]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+        return PRODUCT_SLUG_ALIASES[raw] || raw;
+    }
+
+    document.addEventListener('click', function (e) {
+        // Ignore clicks on interactive action buttons, color swatches, or explicit links
+        if (e.target.closest('button, a, input, select, textarea, .btn-add-cart, .wishlist-btn, .quick-view-btn, .colors, .color, [data-action]')) {
+            return;
+        }
+
+        const card = e.target.closest('.product-card, .large-card, .wishlist-item-card');
+        if (!card) return;
+
+        const explicitId = card.getAttribute('data-product-id') || card.getAttribute('data-id');
+        const titleEl = card.querySelector('.product-title, h3, h4');
+        const rawIdentifier = explicitId || (titleEl ? titleEl.textContent.trim() : '');
+        if (!rawIdentifier) return;
+
+        const slug = toProductSlug(rawIdentifier);
+        const isSubfolder = window.location.pathname.includes('/dashboards/');
+        const targetPath = (isSubfolder ? '../' : '') + `product.html?id=${encodeURIComponent(slug)}`;
+        window.location.href = targetPath;
+    });
 });
+

@@ -293,43 +293,75 @@
         // ----------------------------------------------------
         // 3. Category Cards Scroll Reveal & Hover
         // ----------------------------------------------------
+        // 3. Categories Grid: Staggered Entrance & Image Reveals
+        // ----------------------------------------------------
         function initCategoryAnimations() {
             const catSection = document.getElementById('categories');
             if (!catSection || typeof ScrollTrigger === 'undefined') return;
 
+            const grid = catSection.querySelector('.grid-4');
             const items = catSection.querySelectorAll('.category-item');
 
             if (items && items.length > 0) {
-                gsap.from(items, {
+                const tl = gsap.timeline({
                     scrollTrigger: {
-                        trigger: catSection.querySelector('.grid-4') || catSection,
-                        start: 'top 85%'
-                    },
-                    opacity: 0,
-                    y: 30,
-                    stagger: 0.06,
-                    duration: 0.6,
-                    ease: 'power2.out',
-                    clearProps: 'opacity,transform'
+                        trigger: grid || catSection,
+                        start: 'top 85%',
+                        once: true
+                    }
+                });
+
+                items.forEach((item, index) => {
+                    const img = item.querySelector('.cat-img-box img');
+                    const info = item.querySelector('.cat-info');
+                    const startTime = index * 0.08;
+
+                    // Staggered card entrance
+                    tl.fromTo(item, 
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out', onComplete: () => gsap.set(item, { clearProps: 'transform' }) },
+                        startTime
+                    );
+
+                    // Image subtle zoom-in entrance
+                    if (img) {
+                        tl.fromTo(img,
+                            { opacity: 0.4, scale: 0.92 },
+                            { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out', onComplete: () => gsap.set(img, { clearProps: 'transform,opacity' }) },
+                            startTime + 0.06
+                        );
+                    }
+
+                    // Content text fade up
+                    if (info) {
+                        tl.fromTo(info,
+                            { opacity: 0, y: 12 },
+                            { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', onComplete: () => gsap.set(info, { clearProps: 'transform,opacity' }) },
+                            startTime + 0.1
+                        );
+                    }
                 });
             }
 
-            // Natural hover effects
-            items.forEach(item => {
-                const img = item.querySelector('.cat-img-box img');
-                item.addEventListener('mouseenter', () => {
-                    gsap.to(item, { y: -5, duration: 0.25, ease: 'power2.out' });
-                    if (img) gsap.to(img, { scale: 1.07, duration: 0.35, ease: 'power2.out' });
+            // Natural desktop hover effects
+            const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            if (isDesktop) {
+                items.forEach(item => {
+                    const img = item.querySelector('.cat-img-box img');
+                    item.addEventListener('mouseenter', () => {
+                        gsap.to(item, { y: -6, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
+                        if (img) gsap.to(img, { scale: 1.07, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+                    });
+                    item.addEventListener('mouseleave', () => {
+                        gsap.to(item, { y: 0, duration: 0.3, ease: 'power2.out', overwrite: 'auto', onComplete: () => gsap.set(item, { clearProps: 'transform' }) });
+                        if (img) gsap.to(img, { scale: 1, duration: 0.4, ease: 'power2.out', overwrite: 'auto', onComplete: () => gsap.set(img, { clearProps: 'transform' }) });
+                    });
                 });
-                item.addEventListener('mouseleave', () => {
-                    gsap.to(item, { y: 0, duration: 0.25, ease: 'power2.out' });
-                    if (img) gsap.to(img, { scale: 1, duration: 0.35, ease: 'power2.out' });
-                });
-            });
+            }
         }
 
         // ----------------------------------------------------
-        // 4. Featured Technology Showcase (sc-left, sc-center, sc-right)
+        // 4. Featured Technology Showcase: Left/Right Lateral Enters & Subtle Image Zoom
         // ----------------------------------------------------
         function initShowcaseAnimation() {
             const showcase = document.getElementById('showcase');
@@ -339,115 +371,254 @@
             const centerCard = showcase.querySelector('.sc-center-card');
             const rightCard = showcase.querySelector('.sc-right');
 
-            // Staggered reveal of the three showcase technology boxes
-            const cards = [leftCard, centerCard, rightCard].filter(Boolean);
-            if (cards.length > 0) {
-                gsap.from(cards, {
-                    scrollTrigger: {
-                        trigger: showcase,
-                        start: 'top 80%'
-                    },
-                    opacity: 0,
-                    y: 35,
-                    scale: 0.98,
-                    stagger: 0.12,
-                    duration: 0.75,
-                    ease: 'power2.out',
-                    clearProps: 'opacity,transform'
-                });
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: showcase,
+                    start: 'top 82%',
+                    once: true
+                }
+            });
+
+            // Left card slides in gently from the left (x: -35)
+            if (leftCard) {
+                const leftImg = leftCard.querySelector('.sc-img-wrap img');
+                tl.fromTo(leftCard,
+                    { opacity: 0, x: -35, scale: 0.96 },
+                    { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: 'power3.out', onComplete: () => gsap.set(leftCard, { clearProps: 'transform' }) },
+                    0
+                );
+                if (leftImg) {
+                    tl.fromTo(leftImg,
+                        { opacity: 0.5, scale: 0.93 },
+                        { opacity: 1, scale: 1, duration: 0.75, ease: 'power3.out', onComplete: () => gsap.set(leftImg, { clearProps: 'transform,opacity' }) },
+                        0.08
+                    );
+                }
             }
 
-            // Subtle scale reveal on showcase images
-            showcase.querySelectorAll('.sc-img-wrap img, .sc-main-img').forEach(img => {
-                img.addEventListener('mouseenter', () => {
-                    gsap.to(img, { scale: 1.05, duration: 0.4, ease: 'power2.out' });
+            // Center card slides up with subtle zoom (y: 35, scale: 0.94)
+            if (centerCard) {
+                const centerImg = centerCard.querySelector('.sc-main-img');
+                const tag = centerCard.querySelector('.sc-floating-tag');
+                const btn = centerCard.querySelector('.btn');
+                tl.fromTo(centerCard,
+                    { opacity: 0, y: 35, scale: 0.95 },
+                    { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'power3.out', onComplete: () => gsap.set(centerCard, { clearProps: 'transform' }) },
+                    0.12
+                );
+                if (centerImg) {
+                    tl.fromTo(centerImg,
+                        { opacity: 0.5, scale: 0.93 },
+                        { opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out', onComplete: () => gsap.set(centerImg, { clearProps: 'transform,opacity' }) },
+                        0.2
+                    );
+                }
+                if (tag) {
+                    tl.fromTo(tag,
+                        { opacity: 0, scale: 0.88, y: 10 },
+                        { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'power2.out', onComplete: () => gsap.set(tag, { clearProps: 'transform,opacity' }) },
+                        0.4
+                    );
+                }
+                if (btn) {
+                    tl.fromTo(btn,
+                        { opacity: 0, y: 15 },
+                        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', onComplete: () => gsap.set(btn, { clearProps: 'transform,opacity' }) },
+                        0.45
+                    );
+                }
+            }
+
+            // Right card slides in gently from the right (x: 35)
+            if (rightCard) {
+                const rightImgs = rightCard.querySelectorAll('.sc-img-wrap img');
+                tl.fromTo(rightCard,
+                    { opacity: 0, x: 35, scale: 0.96 },
+                    { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: 'power3.out', onComplete: () => gsap.set(rightCard, { clearProps: 'transform' }) },
+                    0.22
+                );
+                if (rightImgs.length > 0) {
+                    tl.fromTo(rightImgs,
+                        { opacity: 0.5, scale: 0.93 },
+                        { opacity: 1, scale: 1, duration: 0.75, stagger: 0.08, ease: 'power3.out', onComplete: () => gsap.set(rightImgs, { clearProps: 'transform,opacity' }) },
+                        0.3
+                    );
+                }
+            }
+
+            // Desktop hover image zoom without container overflow
+            const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            if (isDesktop) {
+                showcase.querySelectorAll('.sc-side-card').forEach(card => {
+                    const imgs = card.querySelectorAll('.sc-img-wrap img');
+                    card.addEventListener('mouseenter', () => {
+                        gsap.to(card, { y: -5, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
+                        if (imgs.length > 0) gsap.to(imgs, { scale: 1.05, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        gsap.to(card, { y: 0, duration: 0.3, ease: 'power2.out', overwrite: 'auto', onComplete: () => gsap.set(card, { clearProps: 'transform' }) });
+                        if (imgs.length > 0) gsap.to(imgs, { scale: 1, duration: 0.4, ease: 'power2.out', overwrite: 'auto', onComplete: () => gsap.set(imgs, { clearProps: 'transform' }) });
+                    });
                 });
-                img.addEventListener('mouseleave', () => {
-                    gsap.to(img, { scale: 1, duration: 0.4, ease: 'power2.out' });
-                });
-            });
+
+                if (centerCard) {
+                    const centerImg = centerCard.querySelector('.sc-main-img');
+                    centerCard.addEventListener('mouseenter', () => {
+                        gsap.to(centerCard, { y: -5, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
+                        if (centerImg) gsap.to(centerImg, { scale: 1.05, duration: 0.45, ease: 'power2.out', overwrite: 'auto' });
+                    });
+                    centerCard.addEventListener('mouseleave', () => {
+                        gsap.to(centerCard, { y: 0, duration: 0.3, ease: 'power2.out', overwrite: 'auto', onComplete: () => gsap.set(centerCard, { clearProps: 'transform' }) });
+                        if (centerImg) gsap.to(centerImg, { scale: 1, duration: 0.45, ease: 'power2.out', overwrite: 'auto', onComplete: () => gsap.set(centerImg, { clearProps: 'transform' }) });
+                    });
+                }
+            }
         }
 
         // ----------------------------------------------------
-        // 5. Workspace Showcase ("The details make the difference")
+        // 5. Workspace Showcase: Image from Left, Points from Right
         // ----------------------------------------------------
         function initWorkspaceAnimation() {
             const setup = document.getElementById('setup-feature');
             if (!setup || typeof ScrollTrigger === 'undefined') return;
 
             const imageFrame = setup.querySelector('.setup-image-frame');
+            const setupImg = setup.querySelector('.setup-img');
             const pointCards = setup.querySelectorAll('.setup-point-card');
             const actionBtn = setup.querySelector('.setup-action');
 
+            // Left image frame slides in gently from the left with subtle zoom
             if (imageFrame) {
-                gsap.from(imageFrame, {
-                    scrollTrigger: {
-                        trigger: setup,
-                        start: 'top 80%'
-                    },
-                    opacity: 0,
-                    scale: 0.95,
-                    x: -25,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    clearProps: 'opacity,transform'
-                });
+                gsap.fromTo(imageFrame, 
+                    { opacity: 0, x: -40, scale: 0.95 },
+                    {
+                        scrollTrigger: {
+                            trigger: setup,
+                            start: 'top 80%',
+                            once: true
+                        },
+                        opacity: 1,
+                        x: 0,
+                        scale: 1,
+                        duration: 0.85,
+                        ease: 'power3.out',
+                        onComplete: () => gsap.set(imageFrame, { clearProps: 'transform' })
+                    }
+                );
+
+                if (setupImg) {
+                    gsap.fromTo(setupImg,
+                        { scale: 1.06 },
+                        {
+                            scrollTrigger: {
+                                trigger: setup,
+                                start: 'top 80%',
+                                once: true
+                            },
+                            scale: 1,
+                            duration: 1,
+                            ease: 'power3.out',
+                            onComplete: () => gsap.set(setupImg, { clearProps: 'transform' })
+                        }
+                    );
+                }
             }
 
+            // Right points column slides in gently from the right
             if (pointCards && pointCards.length > 0) {
-                pointCards.forEach((card, idx) => {
-                    gsap.from(card, {
+                gsap.fromTo(pointCards, 
+                    { opacity: 0, x: 35 },
+                    {
                         scrollTrigger: {
-                            trigger: card,
-                            start: 'top 88%',
-                            toggleActions: 'play none none none'
+                            trigger: setup.querySelector('.setup-points-column') || setup,
+                            start: 'top 82%',
+                            once: true
                         },
-                        opacity: 0,
-                        x: 35,
-                        duration: 0.65,
-                        ease: 'power2.out',
-                        clearProps: 'opacity,transform'
-                    });
-                });
+                        opacity: 1,
+                        x: 0,
+                        stagger: 0.1,
+                        duration: 0.7,
+                        ease: 'power3.out',
+                        onComplete: () => gsap.set(pointCards, { clearProps: 'transform' })
+                    }
+                );
             }
 
             if (actionBtn) {
-                gsap.from(actionBtn, {
-                    scrollTrigger: {
-                        trigger: actionBtn,
-                        start: 'top 92%'
-                    },
-                    opacity: 0,
-                    y: 20,
-                    duration: 0.6,
-                    ease: 'power2.out',
-                    clearProps: 'opacity,transform'
-                });
+                gsap.fromTo(actionBtn,
+                    { opacity: 0, y: 20 },
+                    {
+                        scrollTrigger: {
+                            trigger: actionBtn,
+                            start: 'top 92%',
+                            once: true
+                        },
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        ease: 'power2.out',
+                        onComplete: () => gsap.set(actionBtn, { clearProps: 'transform' })
+                    }
+                );
             }
         }
 
         // ----------------------------------------------------
-        // 6. Freshly Dropped Products Grid Reveal & Hovers
+        // 6. Freshly Dropped Products: Staggered Reveal & Fluid Interactions
         // ----------------------------------------------------
-        function bindProductHovers(container) {
-            const target = container || document;
-            const cards = target.querySelectorAll('.product-card');
+        function bindFreshlyDroppedHovers(cards) {
+            // Check for desktop fine-pointer device to avoid touch tap conflicts
+            const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            if (!isDesktopHover) return;
 
             cards.forEach(card => {
-                // Avoid double-binding
-                if (card.dataset.gsapBound) return;
-                card.dataset.gsapBound = "true";
+                if (card.dataset.freshlyHoverBound) return;
+                card.dataset.freshlyHoverBound = "true";
 
                 const img = card.querySelector('.img-container img');
 
                 card.addEventListener('mouseenter', () => {
-                    gsap.to(card, { y: -6, duration: 0.28, ease: 'power2.out' });
-                    if (img) gsap.to(img, { scale: 1.06, duration: 0.4, ease: 'power2.out' });
+                    gsap.to(card, {
+                        y: -7,
+                        boxShadow: '0 20px 38px -8px rgba(0, 0, 0, 0.12), 0 4px 14px rgba(0, 0, 0, 0.04)',
+                        borderColor: '#CBD5E1',
+                        duration: 0.35,
+                        ease: 'power2.out',
+                        overwrite: 'auto'
+                    });
+                    if (img) {
+                        gsap.to(img, {
+                            scale: 1.04,
+                            duration: 0.45,
+                            ease: 'power2.out',
+                            overwrite: 'auto'
+                        });
+                    }
                 });
 
                 card.addEventListener('mouseleave', () => {
-                    gsap.to(card, { y: 0, duration: 0.28, ease: 'power2.out' });
-                    if (img) gsap.to(img, { scale: 1, duration: 0.4, ease: 'power2.out' });
+                    gsap.to(card, {
+                        y: 0,
+                        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03)',
+                        borderColor: '#E5E7EB',
+                        duration: 0.32,
+                        ease: 'power2.out',
+                        overwrite: 'auto',
+                        onComplete: () => {
+                            gsap.set(card, { clearProps: 'transform,boxShadow,borderColor' });
+                        }
+                    });
+                    if (img) {
+                        gsap.to(img, {
+                            scale: 1,
+                            duration: 0.38,
+                            ease: 'power2.out',
+                            overwrite: 'auto',
+                            onComplete: () => {
+                                gsap.set(img, { clearProps: 'transform' });
+                            }
+                        });
+                    }
                 });
             });
         }
@@ -456,64 +627,147 @@
             const dropSection = document.getElementById('freshly-dropped');
             if (!dropSection) return;
 
+            const sectionHeading = dropSection.querySelector('.section-heading');
             const filterBar = dropSection.querySelector('.filter-bar, .product-filters');
             const grid = document.getElementById('freshly-dropped-grid');
+            if (!grid) return;
 
             if (typeof ScrollTrigger !== 'undefined') {
-                if (filterBar) {
-                    gsap.from(filterBar, {
+                if (sectionHeading) {
+                    gsap.from(sectionHeading.children, {
                         scrollTrigger: {
-                            trigger: filterBar,
-                            start: 'top 88%'
+                            trigger: sectionHeading,
+                            start: 'top 88%',
+                            once: true
                         },
                         opacity: 0,
-                        y: 15,
-                        duration: 0.5,
-                        ease: 'power2.out',
+                        y: 20,
+                        stagger: 0.08,
+                        duration: 0.65,
+                        ease: 'power3.out',
                         clearProps: 'opacity,transform'
                     });
                 }
 
-                if (grid) {
-                    const cards = grid.querySelectorAll('.product-card');
-                    if (cards.length > 0) {
-                        gsap.from(cards, {
-                            scrollTrigger: {
-                                trigger: grid,
-                                start: 'top 85%'
-                            },
-                            opacity: 0,
-                            y: 30,
-                            stagger: 0.07,
-                            duration: 0.65,
-                            ease: 'power2.out',
-                            clearProps: 'opacity,transform'
-                        });
-                    }
+                if (filterBar) {
+                    gsap.from(filterBar, {
+                        scrollTrigger: {
+                            trigger: filterBar,
+                            start: 'top 88%',
+                            once: true
+                        },
+                        opacity: 0,
+                        y: 18,
+                        duration: 0.6,
+                        ease: 'power3.out',
+                        clearProps: 'opacity,transform'
+                    });
                 }
             }
 
-            bindProductHovers(grid);
+            function animateCards(cardsList, useScrollTrigger = false) {
+                if (!cardsList || cardsList.length === 0) return;
 
-            // MutationObserver to animate new cards when filter changes
-            if (grid) {
-                const observer = new MutationObserver(() => {
-                    bindProductHovers(grid);
-                    const newCards = grid.querySelectorAll('.product-card');
-                    gsap.fromTo(newCards, 
-                        { opacity: 0, y: 18, scale: 0.98 },
-                        { opacity: 1, y: 0, scale: 1, stagger: 0.06, duration: 0.45, ease: 'power2.out' }
+                const tl = gsap.timeline({
+                    ...(useScrollTrigger && typeof ScrollTrigger !== 'undefined' ? {
+                        scrollTrigger: {
+                            trigger: grid,
+                            start: 'top 82%',
+                            once: true
+                        }
+                    } : {})
+                });
+
+                cardsList.forEach((card, index) => {
+                    const img = card.querySelector('.img-container img');
+                    const badge = card.querySelector('.badge');
+                    const actions = card.querySelector('.card-actions');
+                    const category = card.querySelector('.category-label');
+                    const title = card.querySelector('.product-title');
+                    const rating = card.querySelector('.rating');
+                    const price = card.querySelector('.price');
+                    const addCartBtn = card.querySelector('.btn-add-cart');
+
+                    // 120ms stagger between cards (within 100-150ms requirement)
+                    const cardStartTime = index * 0.12;
+
+                    // 1. Staggered Product Card Reveal (25-35px upward slide, fade from 0 to 1, power3.out)
+                    tl.fromTo(card,
+                        { opacity: 0, y: 30 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: 'power3.out',
+                            onComplete: () => {
+                                gsap.set(card, { clearProps: 'transform' });
+                            }
+                        },
+                        cardStartTime
                     );
+
+                    // 2. Product Image Animation (smooth scale from 0.94 to 1, centered and sharp)
+                    if (img) {
+                        tl.fromTo(img,
+                            { opacity: 0.35, scale: 0.94 },
+                            {
+                                opacity: 1,
+                                scale: 1,
+                                duration: 0.75,
+                                ease: 'power3.out',
+                                onComplete: () => {
+                                    gsap.set(img, { clearProps: 'transform,opacity' });
+                                }
+                            },
+                            cardStartTime + 0.08
+                        );
+                    }
+
+                    // 3. Text and Price Animation (subtle fade-in and upward slide)
+                    const textElements = [badge, actions, category, title, rating, price, addCartBtn].filter(Boolean);
+                    if (textElements.length > 0) {
+                        tl.fromTo(textElements,
+                            { opacity: 0, y: 14 },
+                            {
+                                opacity: 1,
+                                y: 0,
+                                duration: 0.55,
+                                stagger: 0.03,
+                                ease: 'power3.out',
+                                onComplete: () => {
+                                    textElements.forEach(el => gsap.set(el, { clearProps: 'transform,opacity' }));
+                                }
+                            },
+                            cardStartTime + 0.14
+                        );
+                    }
+                });
+
+                // Bind hover interactions
+                bindFreshlyDroppedHovers(cardsList);
+            }
+
+            const initialCards = grid.querySelectorAll('.product-card');
+            animateCards(initialCards, true);
+
+            // MutationObserver to animate new cards when category filter changes
+            const observer = new MutationObserver((mutations) => {
+                const hasAddedCards = mutations.some(m => m.addedNodes.length > 0);
+                if (hasAddedCards) {
+                    const newCards = Array.from(grid.querySelectorAll('.product-card')).filter(c => !c.dataset.filteredAnimated);
+                    if (newCards.length > 0) {
+                        animateCards(newCards, false);
+                    }
                     if (typeof ScrollTrigger !== 'undefined') {
                         ScrollTrigger.refresh();
                     }
-                });
-                observer.observe(grid, { childList: true });
-            }
+                }
+            });
+            observer.observe(grid, { childList: true });
         }
 
         // ----------------------------------------------------
-        // 7. Handpicked for You (Large Cards & Color Selection Protection)
+        // 7. Handpicked for You (Large Cards & Lateral Entrances)
         // ----------------------------------------------------
         function initHandpickedAnimation() {
             const handpicked = document.getElementById('handpicked');
@@ -521,18 +775,70 @@
 
             const largeCards = handpicked.querySelectorAll('.large-card');
 
-            if (largeCards && largeCards.length > 0) {
+            if (largeCards && largeCards.length >= 2) {
+                // Card on left slides gently from left (x: -35), card on right from right (x: 35)
+                gsap.from(largeCards[0], {
+                    scrollTrigger: {
+                        trigger: handpicked.querySelector('.grid-2') || handpicked,
+                        start: 'top 80%',
+                        once: true
+                    },
+                    opacity: 0,
+                    x: -35,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    clearProps: 'transform,opacity'
+                });
+
+                gsap.from(largeCards[1], {
+                    scrollTrigger: {
+                        trigger: handpicked.querySelector('.grid-2') || handpicked,
+                        start: 'top 80%',
+                        once: true
+                    },
+                    opacity: 0,
+                    x: 35,
+                    duration: 0.8,
+                    delay: 0.12,
+                    ease: 'power3.out',
+                    clearProps: 'transform,opacity'
+                });
+
+                // Subtle image scale-in reveal on enter
+                largeCards.forEach((card, idx) => {
+                    const img = card.querySelector('.large-card-img img');
+                    if (img) {
+                        gsap.fromTo(img,
+                            { opacity: 0.4, scale: 0.94 },
+                            {
+                                scrollTrigger: {
+                                    trigger: handpicked.querySelector('.grid-2') || handpicked,
+                                    start: 'top 80%',
+                                    once: true
+                                },
+                                opacity: 1,
+                                scale: 1,
+                                duration: 0.85,
+                                delay: idx * 0.12 + 0.08,
+                                ease: 'power3.out',
+                                clearProps: 'transform,opacity'
+                            }
+                        );
+                    }
+                });
+            } else if (largeCards && largeCards.length > 0) {
                 gsap.from(largeCards, {
                     scrollTrigger: {
                         trigger: handpicked.querySelector('.grid-2') || handpicked,
-                        start: 'top 80%'
+                        start: 'top 80%',
+                        once: true
                     },
                     opacity: 0,
-                    y: 40,
-                    stagger: 0.16,
+                    y: 35,
+                    stagger: 0.15,
                     duration: 0.75,
-                    ease: 'power2.out',
-                    clearProps: 'transform,opacity' // Important: clear inline styles once revealed so color switches and CSS hover work without conflict
+                    ease: 'power3.out',
+                    clearProps: 'transform,opacity'
                 });
             }
 
@@ -551,27 +857,66 @@
         }
 
         // ----------------------------------------------------
-        // 8. Promo Banner Section
+        // 8. Promo Banner Section (Content Left, Image Right)
         // ----------------------------------------------------
         function initPromoBannerAnimation() {
             const promo = document.getElementById('promo-banner');
             if (!promo || typeof ScrollTrigger === 'undefined') return;
 
+            const content = promo.querySelector('.promo-content');
             const imgWrap = promo.querySelector('.promo-image-wrap');
+            const img = imgWrap ? imgWrap.querySelector('img') : null;
 
+            // Content on the left slides gently from left
+            if (content) {
+                gsap.from(content, {
+                    scrollTrigger: {
+                        trigger: promo,
+                        start: 'top 82%',
+                        once: true
+                    },
+                    opacity: 0,
+                    x: -35,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    clearProps: 'opacity,transform'
+                });
+            }
+
+            // Image on the right slides in gently from right with subtle zoom-in
             if (imgWrap) {
                 gsap.from(imgWrap, {
                     scrollTrigger: {
                         trigger: promo,
-                        start: 'top 82%'
+                        start: 'top 82%',
+                        once: true
                     },
                     opacity: 0,
-                    x: 30,
+                    x: 40,
                     scale: 0.95,
-                    duration: 0.75,
-                    ease: 'power2.out',
+                    duration: 0.85,
+                    delay: 0.1,
+                    ease: 'power3.out',
                     clearProps: 'opacity,transform'
                 });
+
+                if (img) {
+                    gsap.fromTo(img,
+                        { scale: 0.94 },
+                        {
+                            scrollTrigger: {
+                                trigger: promo,
+                                start: 'top 82%',
+                                once: true
+                            },
+                            scale: 1,
+                            duration: 0.85,
+                            delay: 0.15,
+                            ease: 'power3.out',
+                            clearProps: 'transform'
+                        }
+                    );
+                }
             }
         }
 
@@ -585,31 +930,35 @@
             const featuredCard = testSec.querySelector('.featured-review-card');
             const carouselPanel = testSec.querySelector('.reviews-carousel-panel');
 
+            // Left side (featured review) slides in gently from left
             if (featuredCard) {
                 gsap.from(featuredCard, {
                     scrollTrigger: {
                         trigger: testSec.querySelector('.reviews-showcase') || testSec,
-                        start: 'top 80%'
+                        start: 'top 80%',
+                        once: true
                     },
                     opacity: 0,
-                    y: 35,
-                    duration: 0.75,
-                    ease: 'power2.out',
+                    x: -35,
+                    duration: 0.8,
+                    ease: 'power3.out',
                     clearProps: 'opacity,transform'
                 });
             }
 
+            // Right side (carousel panel) slides in gently from right
             if (carouselPanel) {
                 gsap.from(carouselPanel, {
                     scrollTrigger: {
                         trigger: testSec.querySelector('.reviews-showcase') || testSec,
-                        start: 'top 80%'
+                        start: 'top 80%',
+                        once: true
                     },
                     opacity: 0,
-                    y: 35,
-                    duration: 0.75,
-                    delay: 0.15,
-                    ease: 'power2.out',
+                    x: 35,
+                    duration: 0.8,
+                    delay: 0.14,
+                    ease: 'power3.out',
                     clearProps: 'opacity,transform'
                 });
             }
@@ -624,26 +973,64 @@
 
             const cards = artSec.querySelectorAll('.article-card');
 
-            if (cards && cards.length > 0) {
-                gsap.from(cards, {
+            if (cards && cards.length >= 2) {
+                // Left card slides from left
+                gsap.from(cards[0], {
                     scrollTrigger: {
                         trigger: artSec.querySelector('.grid-2') || artSec,
-                        start: 'top 85%'
+                        start: 'top 85%',
+                        once: true
                     },
                     opacity: 0,
-                    y: 30,
-                    stagger: 0.12,
-                    duration: 0.65,
-                    ease: 'power2.out',
+                    x: -30,
+                    duration: 0.75,
+                    ease: 'power3.out',
                     clearProps: 'opacity,transform'
                 });
-            }
 
-            if (cards && cards.length > 0) {
+                // Right card slides from right
+                gsap.from(cards[1], {
+                    scrollTrigger: {
+                        trigger: artSec.querySelector('.grid-2') || artSec,
+                        start: 'top 85%',
+                        once: true
+                    },
+                    opacity: 0,
+                    x: 30,
+                    duration: 0.75,
+                    delay: 0.12,
+                    ease: 'power3.out',
+                    clearProps: 'opacity,transform'
+                });
+
+                // Subtle image zoom entrance
+                cards.forEach((card, idx) => {
+                    const img = card.querySelector('.article-img-wrap img');
+                    if (img) {
+                        gsap.fromTo(img,
+                            { opacity: 0.5, scale: 0.95 },
+                            {
+                                scrollTrigger: {
+                                    trigger: artSec.querySelector('.grid-2') || artSec,
+                                    start: 'top 85%',
+                                    once: true
+                                },
+                                opacity: 1,
+                                scale: 1,
+                                duration: 0.8,
+                                delay: idx * 0.12 + 0.08,
+                                ease: 'power3.out',
+                                clearProps: 'transform,opacity'
+                            }
+                        );
+                    }
+                });
+            } else if (cards && cards.length > 0) {
                 gsap.from(cards, {
                     scrollTrigger: {
                         trigger: artSec.querySelector('.grid-2') || artSec,
-                        start: 'top 85%'
+                        start: 'top 85%',
+                        once: true
                     },
                     opacity: 0,
                     y: 30,
@@ -666,6 +1053,47 @@
                     if (img) gsap.to(img, { scale: 1, duration: 0.4, ease: 'power2.out' });
                 });
             });
+        }
+
+        // ----------------------------------------------------
+        // 11. FAQ Accordion Scroll Entrance
+        // ----------------------------------------------------
+        function initFaqAnimation() {
+            const faqSec = document.getElementById('faq');
+            if (!faqSec || typeof ScrollTrigger === 'undefined') return;
+
+            const heading = faqSec.querySelector('.section-heading');
+            if (heading) {
+                gsap.from(heading, {
+                    scrollTrigger: {
+                        trigger: faqSec,
+                        start: 'top 86%',
+                        once: true
+                    },
+                    opacity: 0,
+                    y: 25,
+                    duration: 0.7,
+                    ease: 'power3.out',
+                    clearProps: 'opacity,transform'
+                });
+            }
+
+            const faqItems = faqSec.querySelectorAll('.faq-item');
+            if (faqItems && faqItems.length > 0) {
+                gsap.from(faqItems, {
+                    scrollTrigger: {
+                        trigger: faqSec.querySelector('.faq-accordion') || faqSec,
+                        start: 'top 85%',
+                        once: true
+                    },
+                    opacity: 0,
+                    y: 22,
+                    stagger: 0.08,
+                    duration: 0.65,
+                    ease: 'power3.out',
+                    clearProps: 'opacity,transform'
+                });
+            }
         }
 
         // ----------------------------------------------------
@@ -1113,6 +1541,7 @@
         initPromoBannerAnimation();
         initTestimonialsAnimation();
         initArticlesAnimation();
+        initFaqAnimation();
         initNewsletterAndFooter();
         initButtonInteractions();
     }
