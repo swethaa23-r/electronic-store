@@ -97,19 +97,126 @@
             }
         }
 
-        // Hero Banner GSAP timeline
+        // Hero Banner GSAP timeline (line-based heading reveal + supporting text reveal after heading)
         const heroEyebrow = document.querySelector('.shop-hero-banner .shop-eyebrow');
         const heroTitle = document.querySelector('.shop-hero-title');
         const heroSub = document.querySelector('.shop-hero-subtitle');
 
         if (heroTitle) {
-            const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.15 });
+            const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.18 });
             if (heroEyebrow) {
-                heroTl.fromTo(heroEyebrow, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5 });
+                heroTl.fromTo(heroEyebrow, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' });
             }
-            heroTl.fromTo(heroTitle, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.65 }, '-=0.3');
+            const maskChild = heroTitle.querySelector('.spotlight-reveal-text, .text-mask-child');
+            if (maskChild) {
+                // Theatrical Spotlight Reveal for the main heading
+                heroTl.fromTo(maskChild,
+                    {
+                        clipPath: 'circle(0% at 50% 50%)',
+                        opacity: 0.1,
+                        scale: 0.95,
+                        filter: 'brightness(1.5) blur(4px)'
+                    },
+                    {
+                        clipPath: 'circle(150% at 50% 50%)',
+                        opacity: 1,
+                        scale: 1,
+                        filter: 'brightness(1) blur(0px)',
+                        duration: 0.95,
+                        ease: 'power3.out',
+                        clearProps: 'clipPath,filter,transform,opacity'
+                    },
+                    heroEyebrow ? '-=0.15' : 0
+                );
+            } else {
+                heroTl.fromTo(heroTitle, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, heroEyebrow ? '-=0.15' : 0);
+            }
             if (heroSub) {
-                heroTl.fromTo(heroSub, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55 }, '-=0.4');
+                // Reveal supporting text strictly AFTER the heading completes its spotlight reveal
+                heroTl.fromTo(heroSub, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '+=0.1');
+            }
+
+            // Interactive cursor spotlight tracking on shop hero banner
+            const heroBanner = document.querySelector('.shop-hero-banner');
+            if (heroBanner) {
+                heroBanner.addEventListener('mousemove', (e) => {
+                    const rect = heroBanner.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    heroBanner.style.setProperty('--spot-x', `${x}%`);
+                    heroBanner.style.setProperty('--spot-y', `${y}%`);
+                }, { passive: true });
+            }
+        }
+
+        // ========================================================
+        // Staggered Grid Reveal for Shop Catalog Section
+        // Multi-dimensional 2D wave reveal of product cards & images
+        // ========================================================
+        const shopGrid = document.getElementById('shop-products-grid');
+        if (shopGrid && typeof ScrollTrigger !== 'undefined') {
+            const initialCards = Array.from(shopGrid.querySelectorAll('.shop-product-card'));
+            const initialImages = Array.from(shopGrid.querySelectorAll('.shop-product-card .img-container img'));
+
+            if (initialCards.length) {
+                const gridRevealTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: shopGrid,
+                        start: 'top 84%',
+                        once: true
+                    },
+                    defaults: { ease: 'power3.out' }
+                });
+
+                // 1. Staggered Grid Reveal for Card Envelopes (2D grid wave)
+                gridRevealTl.fromTo(initialCards,
+                    {
+                        opacity: 0,
+                        y: 28,
+                        scale: 0.96
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.72,
+                        ease: 'power2.out',
+                        stagger: {
+                            grid: 'auto',
+                            from: 'start',
+                            amount: 0.65
+                        },
+                        clearProps: 'transform,opacity'
+                    }
+                );
+
+                // 2. Staggered Grid Reveal to show the Product Images
+                // Optical clip-path expansion, scale settling, and brightness flare
+                if (initialImages.length) {
+                    gridRevealTl.fromTo(initialImages,
+                        {
+                            clipPath: 'inset(18% 0% 0% 0%)',
+                            scale: 1.15,
+                            opacity: 0.2,
+                            filter: 'brightness(1.12) blur(2px)'
+                        },
+                        {
+                            clipPath: 'inset(0% 0% 0% 0%)',
+                            scale: 1,
+                            opacity: 1,
+                            filter: 'brightness(1) blur(0px)',
+                            duration: 0.85,
+                            ease: 'power3.out',
+                            stagger: {
+                                grid: 'auto',
+                                from: 'start',
+                                amount: 0.65
+                            },
+                            clearProps: 'clipPath,transform,opacity,filter'
+                        },
+                        '-=0.55' // Coordinated overlap with cards entrance
+                    );
+                }
             }
         }
 
@@ -162,7 +269,7 @@
         let searchQuery = '';
         let activeSort = 'featured';
 
-        function applyFiltersAndSort(animate = true) {
+        function applyFiltersAndSort(animate = true, isLiveSearch = false) {
             const query = searchQuery.trim().toLowerCase();
 
             // 1. Filter matching cards
@@ -219,13 +326,78 @@
                 emptyState.style.display = matchingCards.length === 0 ? 'block' : 'none';
             }
 
-            // 6. Animate filtered cards with GSAP
-            if (animate && matchingCards.length > 0 && typeof gsap !== 'undefined') {
-                gsap.killTweensOf(matchingCards);
-                gsap.fromTo(matchingCards,
-                    { opacity: 0, y: 16, scale: 0.98 },
-                    { opacity: 1, y: 0, scale: 1, duration: 0.36, stagger: 0.035, ease: 'power2.out', clearProps: 'transform' }
-                );
+            // 6. Staggered Grid Reveal for updated / filtered results
+            // (Strictly isolated to results grid; preserves responsiveness and avoids replaying hero animation)
+            if (animate && matchingCards.length > 0) {
+                if (typeof gsap !== 'undefined') {
+                    gsap.killTweensOf(grid);
+                    gsap.killTweensOf(matchingCards);
+
+                    const matchingImgs = matchingCards.map(c => c.querySelector('.img-container img')).filter(Boolean);
+                    if (matchingImgs.length) {
+                        gsap.killTweensOf(matchingImgs);
+                    }
+
+                    if (isLiveSearch) {
+                        // Instant keystroke responsiveness with a swift opacity fade
+                        gsap.fromTo(grid,
+                            { opacity: 0.65 },
+                            { opacity: 1, duration: 0.16, ease: 'power1.out', clearProps: 'opacity' }
+                        );
+                    } else {
+                        // Staggered Grid Reveal for filter pills & sort options
+                        const staggerAmount = Math.min(0.38, matchingCards.length * 0.045);
+
+                        gsap.fromTo(grid,
+                            { opacity: 0.4 },
+                            { opacity: 1, duration: 0.2, ease: 'power1.out', clearProps: 'opacity' }
+                        );
+
+                        // Card envelope 2D grid stagger
+                        gsap.fromTo(matchingCards,
+                            { opacity: 0.2, y: 14, scale: 0.98 },
+                            {
+                                opacity: 1,
+                                y: 0,
+                                scale: 1,
+                                duration: 0.45,
+                                ease: 'power2.out',
+                                stagger: {
+                                    grid: 'auto',
+                                    from: 'start',
+                                    amount: staggerAmount
+                                },
+                                clearProps: 'transform,opacity'
+                            }
+                        );
+
+                        // Product image clip-path and scale reveal
+                        if (matchingImgs.length) {
+                            gsap.fromTo(matchingImgs,
+                                {
+                                    clipPath: 'inset(14% 0% 0% 0%)',
+                                    scale: 1.08,
+                                    opacity: 0.35
+                                },
+                                {
+                                    clipPath: 'inset(0% 0% 0% 0%)',
+                                    scale: 1,
+                                    opacity: 1,
+                                    duration: 0.52,
+                                    ease: 'power3.out',
+                                    stagger: {
+                                        grid: 'auto',
+                                        from: 'start',
+                                        amount: staggerAmount
+                                    },
+                                    clearProps: 'clipPath,transform,opacity'
+                                }
+                            );
+                        }
+                    }
+                } else {
+                    grid.style.opacity = '1';
+                }
             }
         }
 
@@ -238,7 +410,7 @@
                 pill.setAttribute('aria-selected', isMatch ? 'true' : 'false');
             });
 
-            applyFiltersAndSort(true);
+            applyFiltersAndSort(true, false);
 
             if (scrollToGrid) {
                 const catalogSec = document.getElementById('shop-catalog');
@@ -257,14 +429,14 @@
             });
         });
 
-        // Live Search Input
+        // Live Search Input (Immediate response with subtle opacity transition)
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
                 searchQuery = e.target.value || '';
                 if (searchClear) {
                     searchClear.style.display = searchQuery.length > 0 ? 'inline-flex' : 'none';
                 }
-                applyFiltersAndSort(true);
+                applyFiltersAndSort(true, true);
             });
         }
 
@@ -274,7 +446,7 @@
                 searchQuery = '';
                 searchClear.style.display = 'none';
                 searchInput.focus();
-                applyFiltersAndSort(true);
+                applyFiltersAndSort(true, false);
             });
         }
 
@@ -289,7 +461,7 @@
                     if (searchClear) {
                         searchClear.style.display = searchQuery.length > 0 ? 'inline-flex' : 'none';
                     }
-                    applyFiltersAndSort(false);
+                    applyFiltersAndSort(true, true);
                 }
             });
         }
@@ -338,7 +510,7 @@
 
                     sortDropdown.classList.remove('open');
                     sortTrigger.setAttribute('aria-expanded', 'false');
-                    applyFiltersAndSort(true);
+                    applyFiltersAndSort(true, false);
                 });
             });
 

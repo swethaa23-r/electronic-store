@@ -1075,15 +1075,16 @@
 
         function setMainImage(src, altText) {
             if (!mainImg) return;
-            if (typeof gsap !== 'undefined') {
+            if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 gsap.to(mainImg, {
-                    opacity: 0.25,
-                    scale: 0.97,
-                    duration: 0.14,
+                    opacity: 0.3,
+                    scale: 0.98,
+                    duration: 0.15,
+                    ease: 'power1.in',
                     onComplete: () => {
                         mainImg.src = src;
                         mainImg.alt = altText || product.name;
-                        gsap.to(mainImg, { opacity: 1, scale: 1, duration: 0.26, ease: 'power2.out' });
+                        gsap.to(mainImg, { opacity: 1, scale: 1, duration: 0.28, ease: 'power2.out' });
                     }
                 });
             } else {
@@ -1121,6 +1122,7 @@
         // 3. Populate Eyebrow, Title, Stock, Rating, Description & Price
         const eyebrowEl = document.getElementById('pd-eyebrow');
         const titleEl = document.getElementById('pd-title');
+        const titleTextEl = document.getElementById('pd-title-text');
         const stockTextEl = document.getElementById('pd-stock-text');
         const starsEl = document.getElementById('pd-stars');
         const ratingNumEl = document.getElementById('pd-rating-num');
@@ -1133,7 +1135,11 @@
         if (eyebrowEl) {
             eyebrowEl.textContent = product.eyebrow || `${product.category.toUpperCase()} / ${product.badge ? product.badge.toUpperCase() : 'COLLECTION'}`;
         }
-        if (titleEl) titleEl.textContent = product.name;
+        if (titleTextEl) {
+            titleTextEl.textContent = product.name;
+        } else if (titleEl) {
+            titleEl.textContent = product.name;
+        }
         if (stockTextEl) stockTextEl.textContent = product.stockText || 'Available to order';
         if (starsEl) starsEl.innerHTML = buildStarsHtml(product.rating);
         if (ratingNumEl) ratingNumEl.textContent = product.rating || '4.8';
@@ -1194,6 +1200,10 @@
                     selectedFinish = this.getAttribute('data-finish') || 'Graphite';
                     if (finishNameEl) finishNameEl.textContent = selectedFinish;
 
+                    if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                        gsap.fromTo(this, { scale: 0.9 }, { scale: 1, duration: 0.26, ease: 'back.out(2.5)', clearProps: 'transform' });
+                    }
+
                     const swatchImg = this.getAttribute('data-img');
                     if (swatchImg) {
                         setMainImage(swatchImg, `${product.name} — ${selectedFinish}`);
@@ -1216,12 +1226,20 @@
             qtyMinus.addEventListener('click', function () {
                 currentQty = Math.max(1, (parseInt(qtyInput.value, 10) || 1) - 1);
                 qtyInput.value = currentQty;
+                if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    gsap.fromTo(qtyMinus, { scale: 0.9 }, { scale: 1, duration: 0.16, ease: 'power2.out', clearProps: 'transform' });
+                    gsap.fromTo(qtyInput, { scale: 0.96 }, { scale: 1, duration: 0.18, ease: 'power2.out', clearProps: 'transform' });
+                }
             });
         }
         if (qtyPlus && qtyInput) {
             qtyPlus.addEventListener('click', function () {
                 currentQty = Math.min(10, (parseInt(qtyInput.value, 10) || 1) + 1);
                 qtyInput.value = currentQty;
+                if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    gsap.fromTo(qtyPlus, { scale: 0.9 }, { scale: 1, duration: 0.16, ease: 'power2.out', clearProps: 'transform' });
+                    gsap.fromTo(qtyInput, { scale: 1.05 }, { scale: 1, duration: 0.18, ease: 'power2.out', clearProps: 'transform' });
+                }
             });
         }
 
@@ -1259,6 +1277,10 @@
 
                 if (window.StacklyCart && typeof window.StacklyCart.addItem === 'function') {
                     window.StacklyCart.addItem(payload, qty);
+                }
+
+                if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    gsap.fromTo(addBagBtn, { scale: 0.97 }, { scale: 1, duration: 0.22, ease: 'back.out(2)', clearProps: 'transform' });
                 }
 
                 // Subtle button confirmation feedback
@@ -1313,6 +1335,10 @@
                 if (window.StacklyWishlist && typeof window.StacklyWishlist.toggle === 'function') {
                     window.StacklyWishlist.toggle(getCurrentProductPayload());
                     syncPdWishlistButton();
+                    const icon = pdWishlistBtn.querySelector('i');
+                    if (icon && typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                        gsap.fromTo(icon, { scale: 1.35 }, { scale: 1, duration: 0.32, ease: 'back.out(3)', clearProps: 'transform' });
+                    }
                 }
             });
             window.addEventListener('stackly:wishlist-updated', syncPdWishlistButton);
@@ -1366,22 +1392,84 @@
         }
 
         // 11. Initialize AOS & GSAP Entrance Animations
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         if (typeof AOS !== 'undefined') {
             AOS.init({
                 duration: 700,
-                easing: 'ease-out-cubic',
+                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
                 once: true,
                 offset: 40
             });
         }
 
-        if (typeof gsap !== 'undefined') {
-            gsap.from('.pd-breadcrumb', {
-                opacity: 0,
-                y: -8,
-                duration: 0.45,
-                ease: 'power2.out'
-            });
+        if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+            if (typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+            }
+
+            // 1. Reveal primary product image with a controlled mask effect
+            const mainImgBox = document.getElementById('pd-main-image-box');
+            if (mainImgBox) {
+                const img = mainImgBox.querySelector('img');
+                if (img) {
+                    gsap.fromTo(img,
+                        { clipPath: 'inset(8% 0% 8% 0%)', scale: 1.06, opacity: 0.25 },
+                        { clipPath: 'inset(0% 0% 0% 0%)', scale: 1.0, opacity: 1, duration: 0.85, ease: 'power2.out' }
+                    );
+                }
+            }
+
+            // 2. Reveal breadcrumb, product title, and price strictly in sequence
+            const pdTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.08 });
+            pdTl
+                .fromTo('.pd-breadcrumb', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' })
+                .fromTo('#pd-title .spotlight-reveal-text, #pd-title .text-mask-child',
+                    {
+                        clipPath: 'circle(0% at 50% 50%)',
+                        opacity: 0.1,
+                        scale: 0.95,
+                        filter: 'brightness(1.5) blur(4px)'
+                    },
+                    {
+                        clipPath: 'circle(150% at 50% 50%)',
+                        opacity: 1,
+                        scale: 1,
+                        filter: 'brightness(1) blur(0px)',
+                        duration: 0.95,
+                        ease: 'power3.out',
+                        clearProps: 'clipPath,filter,transform,opacity'
+                    },
+                    '-=0.1'
+                )
+                .fromTo('.pd-status-row', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, '-=0.2')
+                .fromTo('#pd-description', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, '-=0.15')
+                .fromTo('.pd-price-block', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, '+=0.05') // Strictly in sequence after title & description!
+                .fromTo('.pd-options-row', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, '-=0.15')
+                .fromTo('.pd-cta-row', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, '-=0.15')
+                .fromTo('.pd-secondary-actions', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, '-=0.15')
+                .fromTo('.pd-trust-strip', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, '-=0.15');
+
+            // 3. Reveal related product cards with a short stagger
+            const relatedCards = document.querySelectorAll('#pd-related-grid .shop-product-card');
+            if (relatedCards.length) {
+                gsap.fromTo(relatedCards,
+                    { opacity: 0, y: 24 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.55,
+                        stagger: 0.08,
+                        ease: 'power2.out',
+                        clearProps: 'transform',
+                        scrollTrigger: {
+                            trigger: '#pd-related-grid',
+                            start: 'top 85%',
+                            once: true
+                        }
+                    }
+                );
+            }
         }
     });
 

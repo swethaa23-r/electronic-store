@@ -78,6 +78,9 @@
 
         // 7. Initialize Delivery Concierge Form
         initConciergeForm();
+
+        // 8. Initialize Self-Service Order Management Hub
+        initOrderManagementHub();
     }
 
     // ==========================================
@@ -126,8 +129,42 @@
         if (heroTitle) {
             const hTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.15 });
             if (heroEyebrow) hTl.fromTo(heroEyebrow, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45 });
-            hTl.fromTo(heroTitle, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.25');
+            const maskChild = heroTitle.querySelector('.spotlight-reveal-text, .text-mask-child');
+            if (maskChild) {
+                hTl.fromTo(maskChild,
+                    {
+                        clipPath: 'circle(0% at 50% 50%)',
+                        opacity: 0.1,
+                        scale: 0.95,
+                        filter: 'brightness(1.6) blur(4px)'
+                    },
+                    {
+                        clipPath: 'circle(150% at 50% 50%)',
+                        opacity: 1,
+                        scale: 1,
+                        filter: 'brightness(1) blur(0px)',
+                        duration: 0.95,
+                        ease: 'power3.out',
+                        clearProps: 'clipPath,filter,transform,opacity'
+                    },
+                    '-=0.25'
+                );
+            } else {
+                hTl.fromTo(heroTitle, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.25');
+            }
             if (heroSub) hTl.fromTo(heroSub, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.35');
+
+            // Interactive cursor spotlight tracking on shipping hero banner
+            const shippingHero = document.getElementById('shipping-hero');
+            if (shippingHero) {
+                shippingHero.addEventListener('mousemove', (e) => {
+                    const rect = shippingHero.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    shippingHero.style.setProperty('--spot-x', `${x}%`);
+                    shippingHero.style.setProperty('--spot-y', `${y}%`);
+                }, { passive: true });
+            }
         }
 
         // Parallax on Extra Packaging Section image
@@ -147,6 +184,44 @@
                         }
                     }
                 );
+            }
+
+            // Professional Dashboard Motion for Self-Service Order Management Hub
+            const hubSection = document.getElementById('order-management-hub');
+            if (hubSection) {
+                const hubHeader = hubSection.querySelector('.order-hub-header');
+                const portalCard = hubSection.querySelector('.order-portal-card');
+                const guaranteeCards = hubSection.querySelectorAll('.guarantee-card');
+
+                const hubTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: hubSection,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    },
+                    defaults: { ease: 'power2.out' }
+                });
+
+                if (hubHeader) {
+                    hubTl.fromTo(hubHeader, 
+                        { opacity: 0, y: 12 }, 
+                        { opacity: 1, y: 0, duration: 0.35 }
+                    );
+                }
+                if (portalCard) {
+                    hubTl.fromTo(portalCard, 
+                        { opacity: 0, y: 14 }, 
+                        { opacity: 1, y: 0, duration: 0.38 }, 
+                        '-=0.18'
+                    );
+                }
+                if (guaranteeCards.length) {
+                    hubTl.fromTo(guaranteeCards, 
+                        { opacity: 0, y: 12 }, 
+                        { opacity: 1, y: 0, stagger: 0.05, duration: 0.32, clearProps: 'transform,opacity' }, 
+                        '-=0.22'
+                    );
+                }
             }
         }
     }
@@ -279,8 +354,14 @@
             if (trackingCard && typeof gsap !== 'undefined') {
                 gsap.fromTo(trackingCard,
                     { opacity: 0.4, scale: 0.98 },
-                    { opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' }
+                    { opacity: 1, scale: 1, duration: 0.32, ease: 'power2.out' }
                 );
+                if (timelineSteps.length) {
+                    gsap.fromTo(timelineSteps,
+                        { opacity: 0, y: 8 },
+                        { opacity: 1, y: 0, stagger: 0.05, duration: 0.28, ease: 'power2.out', clearProps: 'transform,opacity' }
+                    );
+                }
             }
 
             if (typeof window.showToast === 'function') {
@@ -445,6 +526,227 @@
                 window.showToast(`Dispatch desk notified for ${code.toUpperCase()}!`, 'fa-paper-plane');
             }
             form.reset();
+        });
+    }
+
+    // ==========================================
+    // 7. Self-Service Order Management Hub
+    // ==========================================
+    function initOrderManagementHub() {
+        const hubForm = document.getElementById('order-portal-form');
+        const dynamicFields = document.getElementById('order-dynamic-fields');
+        const submitBtnText = document.getElementById('hub-submit-text');
+        const actionPills = document.querySelectorAll('.action-pill');
+        const demoBtn = document.getElementById('btn-use-demo-code');
+        const jumpTrackerBtn = document.getElementById('btn-jump-to-tracker');
+        const feedbackBox = document.getElementById('order-portal-feedback');
+        const feedbackHeadline = document.getElementById('feedback-headline');
+        const feedbackDetail = document.getElementById('feedback-detail');
+        const feedbackTime = document.getElementById('feedback-time');
+
+        if (!hubForm || !dynamicFields) return;
+
+        // Dynamic Field Templates
+        const templates = {
+            address: {
+                btnText: 'Submit Address Amendment',
+                html: `
+                    <div class="order-field-group">
+                        <label for="hub-new-address">New Delivery Address (Street &amp; Apartment) <span class="req-star">*</span></label>
+                        <input type="text" id="hub-new-address" placeholder="e.g. 742 Evergreen Terrace, Apt 4B" required>
+                    </div>
+                    <div class="order-field-row-2">
+                        <div class="order-field-group">
+                            <label for="hub-city-state">City, State &amp; ZIP <span class="req-star">*</span></label>
+                            <input type="text" id="hub-city-state" placeholder="e.g. Springfield, OR 97477" required>
+                        </div>
+                        <div class="order-field-group">
+                            <label for="hub-recipient-phone">Recipient Phone <span class="req-star">*</span></label>
+                            <input type="tel" id="hub-recipient-phone" placeholder="e.g. (555) 234-5678" required>
+                        </div>
+                    </div>
+                `
+            },
+            reschedule: {
+                btnText: 'Confirm Rescheduled Slot',
+                html: `
+                    <div class="order-field-row-2">
+                        <div class="order-field-group">
+                            <label for="hub-reschedule-date">Preferred Delivery Date <span class="req-star">*</span></label>
+                            <input type="date" id="hub-reschedule-date" required>
+                        </div>
+                        <div class="order-field-group">
+                            <label for="hub-delivery-slot">Preferred Window <span class="req-star">*</span></label>
+                            <select id="hub-delivery-slot" required>
+                                <option value="morning">Morning (9:00 AM – 1:00 PM)</option>
+                                <option value="afternoon" selected>Afternoon (1:00 PM – 5:00 PM)</option>
+                                <option value="evening">Evening (5:00 PM – 8:00 PM)</option>
+                                <option value="weekend">Saturday Priority Slot</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="order-field-group">
+                        <label for="hub-delivery-notes">Delivery Gate / Concierge Access Note (Optional)</label>
+                        <input type="text" id="hub-delivery-notes" placeholder="e.g. Leave with doorman or gate code #4092">
+                    </div>
+                `
+            },
+            invoice: {
+                btnText: 'Generate &amp; Email Tax Invoice',
+                html: `
+                    <div class="order-field-group">
+                        <label for="hub-company-name">Company / Business Name (Optional for Tax Filing)</label>
+                        <input type="text" id="hub-company-name" placeholder="e.g. Acme Studio LLC">
+                    </div>
+                    <div class="order-field-row-2">
+                        <div class="order-field-group">
+                            <label for="hub-tax-id">Tax ID / VAT / GSTIN (Optional)</label>
+                            <input type="text" id="hub-tax-id" placeholder="e.g. US-EIN-987654321">
+                        </div>
+                        <div class="order-field-group">
+                            <label for="hub-invoice-format">Document Format</label>
+                            <select id="hub-invoice-format">
+                                <option value="pdf" selected>Standard Itemized PDF (with Serial #)</option>
+                                <option value="commercial">Commercial Export Tax Invoice</option>
+                            </select>
+                        </div>
+                    </div>
+                `
+            },
+            cancel: {
+                btnText: 'Submit Order Cancellation',
+                html: `
+                    <div class="order-field-group">
+                        <label for="hub-cancel-reason">Primary Reason for Cancellation <span class="req-star">*</span></label>
+                        <select id="hub-cancel-reason" required>
+                            <option value="" disabled selected>Select a reason...</option>
+                            <option value="mistake">Placed order by mistake</option>
+                            <option value="shipping-speed">Found faster delivery elsewhere</option>
+                            <option value="changed-mind">Changed mind / want different item</option>
+                            <option value="payment">Need to change payment method</option>
+                            <option value="other">Other reason</option>
+                        </select>
+                    </div>
+                    <div class="order-field-group">
+                        <label for="hub-cancel-notes">Additional Feedback (Optional)</label>
+                        <textarea id="hub-cancel-notes" rows="2" placeholder="Let us know how we could have helped you better..."></textarea>
+                    </div>
+                `
+            }
+        };
+
+        let currentAction = 'address';
+
+        function renderActionFields(actionKey) {
+            currentAction = actionKey;
+            const data = templates[actionKey] || templates.address;
+            dynamicFields.innerHTML = data.html;
+            if (submitBtnText) submitBtnText.innerHTML = data.btnText;
+
+            // Set minimum date for reschedule to tomorrow
+            const dateInput = document.getElementById('hub-reschedule-date');
+            if (dateInput) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                dateInput.min = tomorrow.toISOString().split('T')[0];
+                dateInput.value = tomorrow.toISOString().split('T')[0];
+            }
+        }
+
+        // Render initial action fields
+        renderActionFields('address');
+
+        // Handle pill selection
+        actionPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                const radio = pill.querySelector('input[type="radio"]');
+                if (!radio) return;
+                radio.checked = true;
+                actionPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                renderActionFields(radio.value);
+            });
+        });
+
+        // Demo ID autofill
+        if (demoBtn) {
+            demoBtn.addEventListener('click', () => {
+                const orderInput = document.getElementById('hub-order-code');
+                const emailInput = document.getElementById('hub-contact-email');
+                if (orderInput) orderInput.value = 'STK-84920';
+                if (emailInput) emailInput.value = 'alex.chen@example.com';
+
+                const newAddr = document.getElementById('hub-new-address');
+                const cityState = document.getElementById('hub-city-state');
+                const phone = document.getElementById('hub-recipient-phone');
+                if (newAddr) newAddr.value = '428 Lexington Ave, Suite 1204';
+                if (cityState) cityState.value = 'New York, NY 10017';
+                if (phone) phone.value = '(212) 555-0198';
+
+                if (typeof window.showToast === 'function') {
+                    window.showToast('Demo order STK-84920 filled!', 'fa-circle-check');
+                }
+            });
+        }
+
+        // Jump to live shipment tracker
+        if (jumpTrackerBtn) {
+            jumpTrackerBtn.addEventListener('click', () => {
+                const trackTab = document.getElementById('track-tab-btn');
+                if (trackTab) trackTab.click();
+                const trackSection = document.getElementById('shipping-tabs');
+                if (trackSection) {
+                    trackSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        }
+
+        // Form submission
+        hubForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const orderCode = (document.getElementById('hub-order-code')?.value || '').trim().toUpperCase();
+            const email = (document.getElementById('hub-contact-email')?.value || '').trim();
+
+            if (!orderCode || !email) {
+                if (typeof window.showToast === 'function') {
+                    window.showToast('Please enter both Order ID and Email address.', 'fa-circle-exclamation');
+                }
+                return;
+            }
+
+            // Generate action-specific reference code
+            const suffixes = { address: 'ADR', reschedule: 'SCH', invoice: 'INV', cancel: 'CNL' };
+            const suffix = suffixes[currentAction] || 'REQ';
+            const cleanCode = orderCode.replace(/[^A-Z0-9]/g, '') || 'STK84920';
+            const generatedRef = `REQ-${cleanCode}-${suffix}`;
+
+            const headlines = {
+                address: 'Shipping Address Amendment Confirmed',
+                reschedule: 'Delivery Slot Rescheduled',
+                invoice: 'Digital Tax Invoice Dispatched',
+                cancel: 'Order Cancellation Request Queued'
+            };
+
+            const details = {
+                address: `Your updated delivery address has been verified and registered in the dispatch queue for order <strong>${orderCode}</strong>.`,
+                reschedule: `Your preferred delivery window has been synchronized with the courier dispatch desk for order <strong>${orderCode}</strong>.`,
+                invoice: `An itemized PDF invoice with serialized hardware certificates has been generated and sent to <strong>${email}</strong>.`,
+                cancel: `Your cancellation request for order <strong>${orderCode}</strong> is being processed with zero cancellation fee.`
+            };
+
+            if (feedbackHeadline) feedbackHeadline.textContent = headlines[currentAction] || 'Request Submitted';
+            if (feedbackDetail) feedbackDetail.innerHTML = `${details[currentAction]} Reference code: <strong id="feedback-ref">${generatedRef}</strong>.`;
+            if (feedbackTime) feedbackTime.textContent = `Updated just now &bull; Confirmation sent to ${email}`;
+
+            if (feedbackBox) {
+                feedbackBox.style.display = 'flex';
+                feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            if (typeof window.showToast === 'function') {
+                window.showToast(`Request ${generatedRef} registered successfully!`, 'fa-circle-check');
+            }
         });
     }
 

@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
    1. AOS & GSAP / SCROLLTRIGGER ANIMATIONS
    ========================================================================== */
 function initMissionAnimations() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 750,
@@ -29,45 +31,298 @@ function initMissionAnimations() {
         });
     }
 
-    if (typeof gsap !== 'undefined') {
-        if (typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
+    if (prefersReducedMotion || typeof gsap === 'undefined') return;
+
+    if (typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // Header subtle entrance
+    gsap.from('.site-header', {
+        y: -18,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.out'
+    });
+
+    // 1. Hero entrance sequence (Main heading revealed line-by-line + supporting text in sequence)
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.1 });
+    heroTl
+        .fromTo('#mission-hero .shop-eyebrow', { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power2.out' })
+        .fromTo('#mission-hero .mission-hero-title .spotlight-reveal-text, #mission-hero .mission-hero-title .text-mask-child',
+            {
+                clipPath: 'circle(0% at 50% 50%)',
+                opacity: 0.1,
+                scale: 0.95,
+                filter: 'brightness(1.5) blur(4px)'
+            },
+            {
+                clipPath: 'circle(150% at 50% 50%)',
+                opacity: 1,
+                scale: 1,
+                filter: 'brightness(1) blur(0px)',
+                duration: 0.95,
+                stagger: 0.22, // Line-by-line theatrical spotlight reveal
+                ease: 'power3.out',
+                clearProps: 'clipPath,filter,transform,opacity'
+            },
+            '-=0.15'
+        )
+        .fromTo('.mission-hero-sub',
+            { y: 18, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' },
+            '+=0.08'
+        );
+
+    // Interactive cursor spotlight tracking on mission hero section
+    const missionHero = document.getElementById('mission-hero');
+    if (missionHero) {
+        missionHero.addEventListener('mousemove', (e) => {
+            const rect = missionHero.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            missionHero.style.setProperty('--spot-x', `${x}%`);
+            missionHero.style.setProperty('--spot-y', `${y}%`);
+        }, { passive: true });
+    }
+
+    // 2. Section 2: Editorial Split ("A thoughtful kind of upgrade.")
+    // Alternating image-and-text entrance + smooth clipping transition on imagery
+    const splitUpgrade = document.getElementById('thoughtful-upgrade');
+    if (splitUpgrade) {
+        const splitImg = splitUpgrade.querySelector('.shop-split-img-wrap img');
+        const splitContent = splitUpgrade.querySelector('.shop-split-content');
+
+        if (splitImg) {
+            gsap.fromTo(splitImg,
+                { opacity: 0.3, x: -36, clipPath: 'inset(10% 0% 10% 0%)', scale: 1.06 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    clipPath: 'inset(0% 0% 0% 0%)',
+                    scale: 1,
+                    duration: 0.95,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: splitUpgrade,
+                        start: 'top 82%',
+                        once: true
+                    }
+                }
+            );
         }
 
-        // Header entrance
-        gsap.from('.site-header', {
-            y: -20,
-            opacity: 0,
-            duration: 0.55,
-            ease: 'power2.out'
+        if (splitContent) {
+            gsap.fromTo(splitContent,
+                { opacity: 0, x: 36 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.85,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: splitUpgrade,
+                        start: 'top 82%',
+                        once: true
+                    }
+                }
+            );
+        }
+    }
+
+    // 3. Section 3: Three Pillars ("Sound first. | Design with purpose. | Choose thoughtfully.")
+    // Stagger existing feature cards
+    const pillarCols = gsap.utils.toArray('#mission-pillars .mission-pillar-col');
+    if (pillarCols.length) {
+        gsap.fromTo(pillarCols,
+            { opacity: 0, y: 26 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.65,
+                stagger: 0.12,
+                ease: 'power2.out',
+                clearProps: 'transform',
+                scrollTrigger: {
+                    trigger: '#mission-pillars',
+                    start: 'top 85%',
+                    once: true
+                }
+            }
+        );
+    }
+
+    // 4. Section 4: Narrative & Wide Setup Visual ("Make the everyday work better.")
+    const narrativeSection = document.getElementById('make-everyday-better');
+    if (narrativeSection) {
+        const narrativeText = narrativeSection.querySelector('.mission-narrative-text');
+        const bannerImg = narrativeSection.querySelector('.mission-wide-banner img');
+
+        if (narrativeText) {
+            gsap.fromTo(narrativeText,
+                { opacity: 0, y: 22 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: narrativeSection,
+                        start: 'top 82%',
+                        once: true
+                    }
+                }
+            );
+        }
+
+        if (bannerImg) {
+            // Introduce wide banner imagery using clipping and subtle scaling
+            gsap.fromTo(bannerImg,
+                { opacity: 0.3, clipPath: 'inset(8% 0% 8% 0%)', scale: 1.05 },
+                {
+                    opacity: 1,
+                    clipPath: 'inset(0% 0% 0% 0%)',
+                    scale: 1,
+                    duration: 1.0,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '.mission-wide-banner',
+                        start: 'top 85%',
+                        once: true
+                    }
+                }
+            );
+        }
+    }
+
+    // 5. Section 5: Editorial Storytelling ("For the things that matter to you.")
+    // Asymmetric split reveal: Left visual anchor & Right stacked editorial rows
+    const thingsMatterSec = document.getElementById('things-that-matter');
+    if (thingsMatterSec) {
+        const leadVisual = thingsMatterSec.querySelector('.editorial-img-frame img');
+        const editorialRows = gsap.utils.toArray('#things-that-matter .editorial-row-item');
+        const headingMask = thingsMatterSec.querySelector('.spotlight-reveal-text, .text-mask-child');
+
+        const editorialTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: thingsMatterSec,
+                start: 'top 82%',
+                once: true
+            },
+            defaults: { ease: 'power3.out' }
         });
 
-        // Hero entrance
-        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        heroTl
-            .from('#mission-hero .shop-eyebrow', { y: 16, opacity: 0, duration: 0.45 }, 0.1)
-            .from('.mission-hero-title', { y: 24, opacity: 0, duration: 0.6 }, 0.18)
-            .from('.mission-hero-sub', { y: 20, opacity: 0, duration: 0.55 }, 0.28);
-
-        // Subtle scroll reveal on editorial split image and wide setup banner
-        if (typeof ScrollTrigger !== 'undefined') {
-            gsap.utils.toArray(['#thoughtful-upgrade .shop-split-img-wrap img', '.mission-wide-banner img']).forEach(img => {
-                gsap.fromTo(
-                    img,
-                    { scale: 1.06 },
-                    {
-                        scale: 1,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: img,
-                            start: 'top 90%',
-                            end: 'bottom 20%',
-                            scrub: true
-                        }
-                    }
-                );
-            });
+        // 1. Spotlight reveal on section title
+        if (headingMask) {
+            editorialTl.fromTo(headingMask,
+                { clipPath: 'circle(0% at 50% 50%)', opacity: 0.1, scale: 0.95, filter: 'brightness(1.5) blur(4px)' },
+                {
+                    clipPath: 'circle(150% at 50% 50%)',
+                    opacity: 1,
+                    scale: 1,
+                    filter: 'brightness(1) blur(0px)',
+                    duration: 0.9,
+                    clearProps: 'clipPath,filter,transform,opacity'
+                }
+            );
         }
+
+        // 2. Optical unmasking on left curation workshop visual
+        if (leadVisual) {
+            editorialTl.fromTo(leadVisual,
+                { clipPath: 'inset(12% 0% 12% 0%)', scale: 1.08, opacity: 0.4 },
+                {
+                    clipPath: 'inset(0% 0% 0% 0%)',
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.8,
+                    clearProps: 'clipPath,transform,opacity'
+                },
+                headingMask ? '-=0.45' : 0
+            );
+        }
+
+        // 3. Sequential stagger for right stacked content rows
+        if (editorialRows.length) {
+            editorialTl.fromTo(editorialRows,
+                { opacity: 0, x: 28 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.65,
+                    stagger: 0.14,
+                    ease: 'power2.out',
+                    clearProps: 'transform,opacity'
+                },
+                '-=0.5'
+            );
+        }
+    }
+
+    // 6. Section 6: Curation Standards Explorer
+    // Coordinated alternating entrances
+    const curationSection = document.getElementById('curation-standards');
+    if (curationSection) {
+        const stepsList = curationSection.querySelector('.curation-steps-list');
+        const stageDisplay = curationSection.querySelector('.curation-stage-card');
+
+        if (stepsList) {
+            gsap.fromTo(stepsList,
+                { opacity: 0, x: -32 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.85,
+                    ease: 'power2.out',
+                    clearProps: 'transform',
+                    scrollTrigger: {
+                        trigger: curationSection,
+                        start: 'top 82%',
+                        once: true
+                    }
+                }
+            );
+        }
+
+        if (stageDisplay) {
+            gsap.fromTo(stageDisplay,
+                { opacity: 0, x: 32 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.85,
+                    ease: 'power2.out',
+                    clearProps: 'transform',
+                    scrollTrigger: {
+                        trigger: curationSection,
+                        start: 'top 82%',
+                        once: true
+                    }
+                }
+            );
+        }
+    }
+
+    // 7. Section 7: Impact Stat Cards
+    // Stagger stat cards in coordinated sequence
+    const statCards = gsap.utils.toArray('#mission-impact .mission-stat-card');
+    if (statCards.length) {
+        gsap.fromTo(statCards,
+            { opacity: 0, y: 22 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.55,
+                stagger: 0.08,
+                ease: 'power2.out',
+                clearProps: 'transform',
+                scrollTrigger: {
+                    trigger: '#mission-impact',
+                    start: 'top 85%',
+                    once: true
+                }
+            }
+        );
     }
 }
 

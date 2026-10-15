@@ -20,6 +20,53 @@
         init: function() {
             this.bindEvents();
             this.renderOrderSummary();
+
+            // Safe AOS initialization
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 600,
+                    easing: 'ease-out-cubic',
+                    once: true,
+                    offset: 60
+                });
+            }
+
+            // Restrained GSAP entrance: Reveal main heading, form groups, and order summary without delaying interaction
+            if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const tl = gsap.timeline({ defaults: { ease: 'power2.out' }, delay: 0.08 });
+                tl.fromTo('.checkout-header-text h1 .spotlight-reveal-text, .checkout-header-text h1 .text-mask-child',
+                    {
+                        clipPath: 'circle(0% at 50% 50%)',
+                        opacity: 0.1,
+                        scale: 0.95,
+                        filter: 'brightness(1.5) blur(4px)'
+                    },
+                    {
+                        clipPath: 'circle(150% at 50% 50%)',
+                        opacity: 1,
+                        scale: 1,
+                        filter: 'brightness(1) blur(0px)',
+                        duration: 0.95,
+                        ease: 'power3.out',
+                        clearProps: 'clipPath,filter,transform,opacity'
+                    }
+                )
+                .fromTo('.checkout-header-text .subtitle',
+                    { opacity: 0, y: 12 },
+                    { opacity: 1, y: 0, duration: 0.45 },
+                    '-=0.2'
+                )
+                .fromTo('.checkout-card-section',
+                    { opacity: 0, y: 16 },
+                    { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, clearProps: 'transform' },
+                    '-=0.15'
+                )
+                .fromTo('.checkout-summary-card',
+                    { opacity: 0, y: 16 },
+                    { opacity: 1, y: 0, duration: 0.45, clearProps: 'transform' },
+                    '<+=0.08' // In parallel, without delaying user interaction
+                );
+            }
         },
 
         bindEvents: function() {
@@ -50,7 +97,12 @@
                 radio.addEventListener('change', (e) => {
                     document.querySelectorAll('.payment-method-card').forEach(card => card.classList.remove('selected'));
                     const parentCard = e.target.closest('.payment-method-card');
-                    if (parentCard) parentCard.classList.add('selected');
+                    if (parentCard) {
+                        parentCard.classList.add('selected');
+                        if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                            gsap.fromTo(parentCard, { scale: 0.99 }, { scale: 1, duration: 0.15, ease: 'power2.out' });
+                        }
+                    }
                 });
             });
 
@@ -84,7 +136,14 @@
             const parent = input.closest('.form-group');
             if (parent) {
                 const err = parent.querySelector('.field-error-msg');
-                if (err) err.textContent = '';
+                if (err) {
+                    err.classList.remove('is-visible');
+                    setTimeout(() => {
+                        if (!err.classList.contains('is-visible')) {
+                            err.textContent = '';
+                        }
+                    }, 200);
+                }
             }
         },
 
@@ -99,6 +158,9 @@
                     parent.appendChild(err);
                 }
                 err.textContent = message;
+                requestAnimationFrame(() => {
+                    err.classList.add('is-visible');
+                });
             }
         },
 
@@ -170,6 +232,14 @@
                     `;
                 });
                 itemsListEl.innerHTML = itemsHtml;
+
+                // Animate dynamic checkout items with GSAP
+                if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    gsap.fromTo('.checkout-product-item', 
+                        { opacity: 0, y: 12 }, 
+                        { opacity: 1, y: 0, duration: 0.35, stagger: 0.05, ease: 'power2.out' }
+                    );
+                }
             }
 
             // Update Summary Line Items
@@ -409,6 +479,13 @@
 
                 confirmationSection.style.display = 'block';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    gsap.fromTo(confirmationSection, 
+                        { opacity: 0, scale: 0.95, y: 25 }, 
+                        { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'power2.out' }
+                    );
+                }
             }
         }
     };

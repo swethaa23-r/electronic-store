@@ -179,7 +179,34 @@
         }
 
         // ----------------------------------------------------
-        // 2. Hero Section Entrance Animation (Cinematic Word-by-Word)
+        // Reusable Theatrical Spotlight Reveal Animation
+        // Expands an optical circular spotlight beam with luminous focus and scale settling.
+        // ----------------------------------------------------
+        function applySpotlightReveal(tl, target, position = '-=0.2', duration = 0.95, stagger = 0.18) {
+            if (!target) return;
+            return tl.fromTo(target,
+                {
+                    clipPath: 'circle(0% at 50% 50%)',
+                    opacity: 0.1,
+                    scale: 0.95,
+                    filter: 'brightness(1.5) blur(4px)'
+                },
+                {
+                    clipPath: 'circle(150% at 50% 50%)',
+                    opacity: 1,
+                    scale: 1,
+                    filter: 'brightness(1) blur(0px)',
+                    duration: duration,
+                    stagger: stagger,
+                    ease: 'power3.out',
+                    clearProps: 'clipPath,filter,transform,opacity'
+                },
+                position
+            );
+        }
+
+        // ----------------------------------------------------
+        // 2. Hero Section Entrance Animation (Theatrical Spotlight Reveal)
         // ----------------------------------------------------
         function initHeroEntrance() {
             const hero = document.getElementById('hero');
@@ -193,13 +220,14 @@
             const ambientPrimary = hero.querySelector('.glow-primary');
             const ambientSecondary = hero.querySelector('.glow-secondary');
 
-            // Split hero heading word by word
+            // Check for spotlight reveal / text masking wrappers or words
+            const maskChildren = heroH1 ? heroH1.querySelectorAll('.spotlight-reveal-text, .text-mask-child') : [];
             let words = [];
-            if (heroH1) {
+            if (maskChildren.length === 0 && heroH1) {
                 words = splitTextIntoWords(heroH1);
             }
 
-            // Timeline for coordinated cinematic entrance
+            // Timeline for coordinated cinematic entrance with Spotlight Reveal
             const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.22 });
 
             if (eyebrow) {
@@ -211,7 +239,10 @@
                 });
             }
 
-            if (words && words.length > 0) {
+            if (maskChildren.length > 0) {
+                // Theatrical Spotlight Reveal: expanding circular spotlight beam with optical illumination
+                applySpotlightReveal(heroTl, maskChildren, '-=0.25', 1.05, 0.22);
+            } else if (words && words.length > 0) {
                 heroTl.from(words, {
                     opacity: 0,
                     y: 35,
@@ -295,66 +326,118 @@
         // ----------------------------------------------------
         // 3. Categories Grid: Staggered Entrance & Image Reveals
         // ----------------------------------------------------
+        // ----------------------------------------------------
+        // 3. Categories Grid: Fixed Box, Staggered Clipping Reveal & Delayed Titles
+        // ----------------------------------------------------
         function initCategoryAnimations() {
             const catSection = document.getElementById('categories');
             if (!catSection || typeof ScrollTrigger === 'undefined') return;
 
+            const heading = catSection.querySelector('.section-heading');
             const grid = catSection.querySelector('.grid-4');
             const items = catSection.querySelectorAll('.category-item');
 
-            if (items && items.length > 0) {
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: grid || catSection,
-                        start: 'top 85%',
-                        once: true
-                    }
-                });
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: catSection,
+                    start: 'top 84%',
+                    once: true
+                },
+                defaults: { ease: 'power3.out' }
+            });
 
+            // 1. Heading masked text reveal
+            if (heading) {
+                const tagline = heading.querySelector('.tagline');
+                const maskChild = heading.querySelector('.text-mask-child');
+                const subtitle = heading.querySelector('.subtitle');
+
+                if (tagline) {
+                    tl.fromTo(tagline,
+                        { opacity: 0, y: -10 },
+                        { opacity: 1, y: 0, duration: 0.5, clearProps: 'opacity,transform' }
+                    );
+                }
+                if (maskChild) {
+                    applySpotlightReveal(tl, maskChild, tagline ? '-=0.25' : 0, 0.85);
+                }
+                if (subtitle) {
+                    tl.fromTo(subtitle,
+                        { opacity: 0, y: 12 },
+                        { opacity: 1, y: 0, duration: 0.55, clearProps: 'opacity,transform' },
+                        '-=0.35'
+                    );
+                }
+            }
+
+            // 2. Staggered clipping image reveals & delayed titles
+            if (items && items.length > 0) {
                 items.forEach((item, index) => {
                     const img = item.querySelector('.cat-img-box img');
-                    const info = item.querySelector('.cat-info');
-                    const startTime = index * 0.08;
+                    const titleRow = item.querySelector('.cat-header-row');
+                    const desc = item.querySelector('.cat-info p');
+                    const link = item.querySelector('.explore-link');
+                    const startTime = (heading ? 0.35 : 0) + (index * 0.08);
 
-                    // Staggered card entrance
+                    // Restrained card entrance
                     tl.fromTo(item, 
-                        { opacity: 0, y: 30 },
-                        { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out', onComplete: () => gsap.set(item, { clearProps: 'transform' }) },
+                        { opacity: 0, y: 16 },
+                        { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', clearProps: 'opacity,transform' },
                         startTime
                     );
 
-                    // Image subtle zoom-in entrance
+                    // Reveal category images with staggered clipping and scale-and-fade
                     if (img) {
                         tl.fromTo(img,
-                            { opacity: 0.4, scale: 0.92 },
-                            { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out', onComplete: () => gsap.set(img, { clearProps: 'transform,opacity' }) },
-                            startTime + 0.06
+                            { clipPath: 'inset(0 0 100% 0)', scale: 1.08, opacity: 0.25 },
+                            {
+                                clipPath: 'inset(0 0 0% 0)',
+                                scale: 1,
+                                opacity: 1,
+                                duration: 0.75,
+                                ease: 'power3.out',
+                                clearProps: 'clipPath,transform,opacity'
+                            },
+                            startTime + 0.04
                         );
                     }
 
-                    // Content text fade up
-                    if (info) {
-                        tl.fromTo(info,
-                            { opacity: 0, y: 12 },
-                            { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', onComplete: () => gsap.set(info, { clearProps: 'transform,opacity' }) },
-                            startTime + 0.1
+                    // Reveal category titles with a small delay after their images
+                    if (titleRow) {
+                        tl.fromTo(titleRow,
+                            { opacity: 0, y: 10 },
+                            { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', clearProps: 'opacity,transform' },
+                            startTime + 0.22 // Deliberate delay after image clipping begins
+                        );
+                    }
+
+                    if (desc || link) {
+                        const subElements = [desc, link].filter(Boolean);
+                        tl.fromTo(subElements,
+                            { opacity: 0, y: 8 },
+                            { opacity: 1, y: 0, duration: 0.45, stagger: 0.04, ease: 'power2.out', clearProps: 'opacity,transform' },
+                            startTime + 0.28
                         );
                     }
                 });
             }
 
-            // Natural desktop hover effects
+            // Natural desktop hover with subtle image zoom without layout shift
             const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
             if (isDesktop) {
                 items.forEach(item => {
                     const img = item.querySelector('.cat-img-box img');
+                    const linkIcon = item.querySelector('.explore-link i');
+
                     item.addEventListener('mouseenter', () => {
-                        gsap.to(item, { y: -6, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
-                        if (img) gsap.to(img, { scale: 1.07, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+                        gsap.to(item, { y: -4, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
+                        if (img) gsap.to(img, { scale: 1.06, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+                        if (linkIcon) gsap.to(linkIcon, { x: 4, duration: 0.25, ease: 'power2.out', overwrite: 'auto' });
                     });
                     item.addEventListener('mouseleave', () => {
                         gsap.to(item, { y: 0, duration: 0.3, ease: 'power2.out', overwrite: 'auto', onComplete: () => gsap.set(item, { clearProps: 'transform' }) });
                         if (img) gsap.to(img, { scale: 1, duration: 0.4, ease: 'power2.out', overwrite: 'auto', onComplete: () => gsap.set(img, { clearProps: 'transform' }) });
+                        if (linkIcon) gsap.to(linkIcon, { x: 0, duration: 0.25, ease: 'power2.out', overwrite: 'auto', onComplete: () => gsap.set(linkIcon, { clearProps: 'transform' }) });
                     });
                 });
             }
@@ -363,10 +446,14 @@
         // ----------------------------------------------------
         // 4. Featured Technology Showcase: Left/Right Lateral Enters & Subtle Image Zoom
         // ----------------------------------------------------
+        // ----------------------------------------------------
+        // 4. Featured Technology Showcase: Coordinated Opposite Direction Reveals & Masked Heading
+        // ----------------------------------------------------
         function initShowcaseAnimation() {
             const showcase = document.getElementById('showcase');
             if (!showcase || typeof ScrollTrigger === 'undefined') return;
 
+            const heading = showcase.querySelector('.section-heading');
             const leftCard = showcase.querySelector('.sc-left');
             const centerCard = showcase.querySelector('.sc-center-card');
             const rightCard = showcase.querySelector('.sc-right');
@@ -376,73 +463,144 @@
                     trigger: showcase,
                     start: 'top 82%',
                     once: true
-                }
+                },
+                defaults: { ease: 'power3.out' }
             });
 
-            // Left card slides in gently from the left (x: -35)
-            if (leftCard) {
-                const leftImg = leftCard.querySelector('.sc-img-wrap img');
-                tl.fromTo(leftCard,
-                    { opacity: 0, x: -35, scale: 0.96 },
-                    { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: 'power3.out', onComplete: () => gsap.set(leftCard, { clearProps: 'transform' }) },
-                    0
-                );
-                if (leftImg) {
-                    tl.fromTo(leftImg,
-                        { opacity: 0.5, scale: 0.93 },
-                        { opacity: 1, scale: 1, duration: 0.75, ease: 'power3.out', onComplete: () => gsap.set(leftImg, { clearProps: 'transform,opacity' }) },
-                        0.08
+            // 1. Masked heading text reveal and restrained paragraph opacity
+            if (heading) {
+                const tagline = heading.querySelector('.tagline');
+                const maskChild = heading.querySelector('.text-mask-child');
+                const subtitle = heading.querySelector('.subtitle');
+
+                if (tagline) {
+                    tl.fromTo(tagline,
+                        { opacity: 0, y: -10 },
+                        { opacity: 1, y: 0, duration: 0.5, clearProps: 'opacity,transform' }
+                    );
+                }
+                if (maskChild) {
+                    applySpotlightReveal(tl, maskChild, tagline ? '-=0.25' : 0, 0.85);
+                }
+                if (subtitle) {
+                    tl.fromTo(subtitle,
+                        { opacity: 0, y: 10 },
+                        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', clearProps: 'opacity,transform' },
+                        '-=0.35'
                     );
                 }
             }
 
-            // Center card slides up with subtle zoom (y: 35, scale: 0.94)
+            // 2. Coordinated reveal of images from opposite directions
+            const cardsStartTime = heading ? '-=0.15' : 0;
+
+            // Left card slides in gently from opposite direction: LEFT (x: -45)
+            if (leftCard) {
+                const leftImg = leftCard.querySelector('.sc-img-wrap img');
+                const leftNum = leftCard.querySelector('.sc-num');
+                const leftTitle = leftCard.querySelector('h4');
+                const leftText = leftCard.querySelector('p');
+
+                tl.fromTo(leftCard,
+                    { opacity: 0, x: -45, scale: 0.96 },
+                    { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: 'power3.out', clearProps: 'transform' },
+                    cardsStartTime
+                );
+                if (leftImg) {
+                    tl.fromTo(leftImg,
+                        { opacity: 0.35, scale: 0.93 },
+                        { opacity: 1, scale: 1, duration: 0.75, ease: 'power3.out', clearProps: 'transform,opacity' },
+                        '<+=0.08'
+                    );
+                }
+                if (leftNum || leftTitle || leftText) {
+                    tl.fromTo([leftNum, leftTitle, leftText].filter(Boolean),
+                        { opacity: 0, y: 8 },
+                        { opacity: 1, y: 0, duration: 0.45, stagger: 0.04, ease: 'power2.out', clearProps: 'transform,opacity' },
+                        '<+=0.12'
+                    );
+                }
+            }
+
+            // Center centerpiece card lifts smoothly with restrained vertical scale
             if (centerCard) {
                 const centerImg = centerCard.querySelector('.sc-main-img');
                 const tag = centerCard.querySelector('.sc-floating-tag');
+                const centerNum = centerCard.querySelector('.sc-num');
+                const centerTitle = centerCard.querySelector('h4');
+                const centerText = centerCard.querySelector('p');
                 const btn = centerCard.querySelector('.btn');
+
                 tl.fromTo(centerCard,
-                    { opacity: 0, y: 35, scale: 0.95 },
-                    { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'power3.out', onComplete: () => gsap.set(centerCard, { clearProps: 'transform' }) },
-                    0.12
+                    { opacity: 0, y: 25, scale: 0.95 },
+                    { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'power3.out', clearProps: 'transform' },
+                    cardsStartTime
                 );
                 if (centerImg) {
                     tl.fromTo(centerImg,
-                        { opacity: 0.5, scale: 0.93 },
-                        { opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out', onComplete: () => gsap.set(centerImg, { clearProps: 'transform,opacity' }) },
-                        0.2
+                        { opacity: 0.4, scale: 0.93 },
+                        { opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out', clearProps: 'transform,opacity' },
+                        '<+=0.1'
                     );
                 }
                 if (tag) {
                     tl.fromTo(tag,
-                        { opacity: 0, scale: 0.88, y: 10 },
-                        { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'power2.out', onComplete: () => gsap.set(tag, { clearProps: 'transform,opacity' }) },
-                        0.4
+                        { opacity: 0, scale: 0.9, y: 8 },
+                        { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'back.out(1.5)', clearProps: 'transform,opacity' },
+                        '<+=0.2'
                     );
                 }
-                if (btn) {
-                    tl.fromTo(btn,
-                        { opacity: 0, y: 15 },
-                        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', onComplete: () => gsap.set(btn, { clearProps: 'transform,opacity' }) },
-                        0.45
+                if (centerNum || centerTitle || centerText || btn) {
+                    tl.fromTo([centerNum, centerTitle, centerText, btn].filter(Boolean),
+                        { opacity: 0, y: 10 },
+                        { opacity: 1, y: 0, duration: 0.5, stagger: 0.05, ease: 'power2.out', clearProps: 'transform,opacity' },
+                        '<+=0.15'
                     );
                 }
             }
 
-            // Right card slides in gently from the right (x: 35)
+            // Right card slides in from opposite direction: RIGHT (x: 45)
             if (rightCard) {
                 const rightImgs = rightCard.querySelectorAll('.sc-img-wrap img');
+                const rightNum = rightCard.querySelector('.sc-num');
+                const rightTitle = rightCard.querySelector('h4');
+                const rightText = rightCard.querySelector('p');
+
                 tl.fromTo(rightCard,
-                    { opacity: 0, x: 35, scale: 0.96 },
-                    { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: 'power3.out', onComplete: () => gsap.set(rightCard, { clearProps: 'transform' }) },
-                    0.22
+                    { opacity: 0, x: 45, scale: 0.96 },
+                    { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: 'power3.out', clearProps: 'transform' },
+                    cardsStartTime
                 );
                 if (rightImgs.length > 0) {
                     tl.fromTo(rightImgs,
-                        { opacity: 0.5, scale: 0.93 },
-                        { opacity: 1, scale: 1, duration: 0.75, stagger: 0.08, ease: 'power3.out', onComplete: () => gsap.set(rightImgs, { clearProps: 'transform,opacity' }) },
-                        0.3
+                        { opacity: 0.35, scale: 0.93 },
+                        { opacity: 1, scale: 1, duration: 0.75, stagger: 0.08, ease: 'power3.out', clearProps: 'transform,opacity' },
+                        '<+=0.08'
                     );
+                }
+                if (rightNum || rightTitle || rightText) {
+                    tl.fromTo([rightNum, rightTitle, rightText].filter(Boolean),
+                        { opacity: 0, y: 8 },
+                        { opacity: 1, y: 0, duration: 0.45, stagger: 0.04, ease: 'power2.out', clearProps: 'transform,opacity' },
+                        '<+=0.12'
+                    );
+                }
+            }
+
+            // 3. Subtle scroll-linked image movement (scrub parallax on center display)
+            if (centerCard) {
+                const centerImg = centerCard.querySelector('.sc-main-img');
+                if (centerImg) {
+                    gsap.to(centerImg, {
+                        y: -18,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: centerCard,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: 1.2
+                        }
+                    });
                 }
             }
 
@@ -452,7 +610,7 @@
                 showcase.querySelectorAll('.sc-side-card').forEach(card => {
                     const imgs = card.querySelectorAll('.sc-img-wrap img');
                     card.addEventListener('mouseenter', () => {
-                        gsap.to(card, { y: -5, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
+                        gsap.to(card, { y: -4, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
                         if (imgs.length > 0) gsap.to(imgs, { scale: 1.05, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
                     });
                     card.addEventListener('mouseleave', () => {
@@ -464,8 +622,8 @@
                 if (centerCard) {
                     const centerImg = centerCard.querySelector('.sc-main-img');
                     centerCard.addEventListener('mouseenter', () => {
-                        gsap.to(centerCard, { y: -5, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
-                        if (centerImg) gsap.to(centerImg, { scale: 1.05, duration: 0.45, ease: 'power2.out', overwrite: 'auto' });
+                        gsap.to(centerCard, { y: -4, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
+                        if (centerImg) gsap.to(centerImg, { scale: 1.04, duration: 0.45, ease: 'power2.out', overwrite: 'auto' });
                     });
                     centerCard.addEventListener('mouseleave', () => {
                         gsap.to(centerCard, { y: 0, duration: 0.3, ease: 'power2.out', overwrite: 'auto', onComplete: () => gsap.set(centerCard, { clearProps: 'transform' }) });
@@ -476,90 +634,110 @@
         }
 
         // ----------------------------------------------------
-        // 5. Workspace Showcase: Image from Left, Points from Right
+        // 5. Workspace Showcase: Coordinated Opposite Direction Reveals & Masked Heading
         // ----------------------------------------------------
         function initWorkspaceAnimation() {
             const setup = document.getElementById('setup-feature');
             if (!setup || typeof ScrollTrigger === 'undefined') return;
 
+            const heading = setup.querySelector('.section-heading');
             const imageFrame = setup.querySelector('.setup-image-frame');
-            const setupImg = setup.querySelector('.setup-img');
             const pointCards = setup.querySelectorAll('.setup-point-card');
             const actionBtn = setup.querySelector('.setup-action');
 
-            // Left image frame slides in gently from the left with subtle zoom
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: setup,
+                    start: 'top 82%',
+                    once: true
+                },
+                defaults: { ease: 'power3.out' }
+            });
+
+            // 1. Masked heading text reveal and restrained paragraph opacity
+            if (heading) {
+                const tagline = heading.querySelector('.tagline');
+                const maskChild = heading.querySelector('.text-mask-child');
+                const subtitle = heading.querySelector('.subtitle');
+
+                if (tagline) {
+                    tl.fromTo(tagline,
+                        { opacity: 0, y: -10 },
+                        { opacity: 1, y: 0, duration: 0.5, clearProps: 'opacity,transform' }
+                    );
+                }
+                if (maskChild) {
+                    applySpotlightReveal(tl, maskChild, tagline ? '-=0.25' : 0, 0.85);
+                }
+                if (subtitle) {
+                    tl.fromTo(subtitle,
+                        { opacity: 0, y: 10 },
+                        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', clearProps: 'opacity,transform' },
+                        '-=0.35'
+                    );
+                }
+            }
+
+            // 2. Coordinated reveal of images from opposite directions (Left: image frame; Right: points)
+            const contentStartTime = heading ? '-=0.15' : 0;
+
             if (imageFrame) {
-                gsap.fromTo(imageFrame, 
-                    { opacity: 0, x: -40, scale: 0.95 },
+                tl.fromTo(imageFrame, 
+                    { opacity: 0, x: -45, scale: 0.96 },
                     {
-                        scrollTrigger: {
-                            trigger: setup,
-                            start: 'top 80%',
-                            once: true
-                        },
                         opacity: 1,
                         x: 0,
                         scale: 1,
                         duration: 0.85,
                         ease: 'power3.out',
-                        onComplete: () => gsap.set(imageFrame, { clearProps: 'transform' })
-                    }
+                        clearProps: 'transform'
+                    },
+                    contentStartTime
                 );
-
-                if (setupImg) {
-                    gsap.fromTo(setupImg,
-                        { scale: 1.06 },
-                        {
-                            scrollTrigger: {
-                                trigger: setup,
-                                start: 'top 80%',
-                                once: true
-                            },
-                            scale: 1,
-                            duration: 1,
-                            ease: 'power3.out',
-                            onComplete: () => gsap.set(setupImg, { clearProps: 'transform' })
-                        }
-                    );
-                }
             }
 
-            // Right points column slides in gently from the right
             if (pointCards && pointCards.length > 0) {
-                gsap.fromTo(pointCards, 
-                    { opacity: 0, x: 35 },
+                tl.fromTo(pointCards, 
+                    { opacity: 0, x: 40 },
                     {
-                        scrollTrigger: {
-                            trigger: setup.querySelector('.setup-points-column') || setup,
-                            start: 'top 82%',
-                            once: true
-                        },
                         opacity: 1,
                         x: 0,
                         stagger: 0.1,
                         duration: 0.7,
                         ease: 'power3.out',
-                        onComplete: () => gsap.set(pointCards, { clearProps: 'transform' })
-                    }
+                        clearProps: 'transform'
+                    },
+                    contentStartTime
                 );
             }
 
             if (actionBtn) {
-                gsap.fromTo(actionBtn,
-                    { opacity: 0, y: 20 },
+                tl.fromTo(actionBtn,
+                    { opacity: 0, y: 12 },
                     {
-                        scrollTrigger: {
-                            trigger: actionBtn,
-                            start: 'top 92%',
-                            once: true
-                        },
                         opacity: 1,
                         y: 0,
-                        duration: 0.6,
+                        duration: 0.55,
                         ease: 'power2.out',
-                        onComplete: () => gsap.set(actionBtn, { clearProps: 'transform' })
-                    }
+                        clearProps: 'transform,opacity'
+                    },
+                    '-=0.25'
                 );
+            }
+
+            // 3. Subtle scroll-linked image movement (scrub parallax)
+            const seqStack = setup.querySelector('.sequence-frames-stack') || imageFrame;
+            if (seqStack) {
+                gsap.to(seqStack, {
+                    y: -16,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: setup,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: 1.2
+                    }
+                });
             }
         }
 
@@ -579,8 +757,8 @@
 
                 card.addEventListener('mouseenter', () => {
                     gsap.to(card, {
-                        y: -7,
-                        boxShadow: '0 20px 38px -8px rgba(0, 0, 0, 0.12), 0 4px 14px rgba(0, 0, 0, 0.04)',
+                        y: -4,
+                        boxShadow: '0 16px 32px -8px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04)',
                         borderColor: '#CBD5E1',
                         duration: 0.35,
                         ease: 'power2.out',
@@ -588,8 +766,8 @@
                     });
                     if (img) {
                         gsap.to(img, {
-                            scale: 1.04,
-                            duration: 0.45,
+                            scale: 1.05,
+                            duration: 0.4,
                             ease: 'power2.out',
                             overwrite: 'auto'
                         });
@@ -601,7 +779,7 @@
                         y: 0,
                         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03)',
                         borderColor: '#E5E7EB',
-                        duration: 0.32,
+                        duration: 0.3,
                         ease: 'power2.out',
                         overwrite: 'auto',
                         onComplete: () => {
@@ -611,7 +789,7 @@
                     if (img) {
                         gsap.to(img, {
                             scale: 1,
-                            duration: 0.38,
+                            duration: 0.35,
                             ease: 'power2.out',
                             overwrite: 'auto',
                             onComplete: () => {
@@ -632,36 +810,43 @@
             const grid = document.getElementById('freshly-dropped-grid');
             if (!grid) return;
 
-            if (typeof ScrollTrigger !== 'undefined') {
-                if (sectionHeading) {
-                    gsap.from(sectionHeading.children, {
-                        scrollTrigger: {
-                            trigger: sectionHeading,
-                            start: 'top 88%',
-                            once: true
-                        },
-                        opacity: 0,
-                        y: 20,
-                        stagger: 0.08,
-                        duration: 0.65,
-                        ease: 'power3.out',
-                        clearProps: 'opacity,transform'
-                    });
-                }
+            // Sophisticated text reveal on section heading
+            if (typeof ScrollTrigger !== 'undefined' && sectionHeading) {
+                const headTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionHeading,
+                        start: 'top 86%',
+                        once: true
+                    },
+                    defaults: { ease: 'power3.out' }
+                });
 
+                const tagline = sectionHeading.querySelector('.tagline');
+                const maskChild = sectionHeading.querySelector('.text-mask-child');
+                const subtitle = sectionHeading.querySelector('.subtitle');
+
+                if (tagline) {
+                    headTl.fromTo(tagline,
+                        { opacity: 0, y: -10 },
+                        { opacity: 1, y: 0, duration: 0.5, clearProps: 'opacity,transform' }
+                    );
+                }
+                if (maskChild) {
+                    applySpotlightReveal(headTl, maskChild, tagline ? '-=0.25' : 0, 0.85);
+                }
+                if (subtitle) {
+                    headTl.fromTo(subtitle,
+                        { opacity: 0, y: 12 },
+                        { opacity: 1, y: 0, duration: 0.55, clearProps: 'opacity,transform' },
+                        '-=0.35'
+                    );
+                }
                 if (filterBar) {
-                    gsap.from(filterBar, {
-                        scrollTrigger: {
-                            trigger: filterBar,
-                            start: 'top 88%',
-                            once: true
-                        },
-                        opacity: 0,
-                        y: 18,
-                        duration: 0.6,
-                        ease: 'power3.out',
-                        clearProps: 'opacity,transform'
-                    });
+                    headTl.fromTo(filterBar,
+                        { opacity: 0, y: 12 },
+                        { opacity: 1, y: 0, duration: 0.5, clearProps: 'opacity,transform' },
+                        '-=0.3'
+                    );
                 }
             }
 
@@ -688,17 +873,17 @@
                     const price = card.querySelector('.price');
                     const addCartBtn = card.querySelector('.btn-add-cart');
 
-                    // 120ms stagger between cards (within 100-150ms requirement)
-                    const cardStartTime = index * 0.12;
+                    // Coordinated stagger sequence (90ms between cards, 80-150ms guideline)
+                    const cardStartTime = index * 0.09;
 
-                    // 1. Staggered Product Card Reveal (25-35px upward slide, fade from 0 to 1, power3.out)
+                    // 1. Restrained product card reveal (no excessive movement: 14px subtle upward slide)
                     tl.fromTo(card,
-                        { opacity: 0, y: 30 },
+                        { opacity: 0, y: 14 },
                         {
                             opacity: 1,
                             y: 0,
-                            duration: 0.8,
-                            ease: 'power3.out',
+                            duration: 0.7,
+                            ease: 'power2.out',
                             onComplete: () => {
                                 gsap.set(card, { clearProps: 'transform' });
                             }
@@ -706,39 +891,40 @@
                         cardStartTime
                     );
 
-                    // 2. Product Image Animation (smooth scale from 0.94 to 1, centered and sharp)
+                    // 2. Reveal product images using a refined clip-path with scale-and-fade
                     if (img) {
                         tl.fromTo(img,
-                            { opacity: 0.35, scale: 0.94 },
+                            { clipPath: 'inset(14% 0 0 0)', scale: 1.08, opacity: 0.25 },
                             {
-                                opacity: 1,
+                                clipPath: 'inset(0% 0 0 0)',
                                 scale: 1,
-                                duration: 0.75,
+                                opacity: 1,
+                                duration: 0.8,
                                 ease: 'power3.out',
                                 onComplete: () => {
-                                    gsap.set(img, { clearProps: 'transform,opacity' });
+                                    gsap.set(img, { clearProps: 'clipPath,transform,opacity' });
                                 }
                             },
-                            cardStartTime + 0.08
+                            cardStartTime + 0.05
                         );
                     }
 
-                    // 3. Text and Price Animation (subtle fade-in and upward slide)
+                    // 3. Text, price and action button animation
                     const textElements = [badge, actions, category, title, rating, price, addCartBtn].filter(Boolean);
                     if (textElements.length > 0) {
                         tl.fromTo(textElements,
-                            { opacity: 0, y: 14 },
+                            { opacity: 0, y: 8 },
                             {
                                 opacity: 1,
                                 y: 0,
-                                duration: 0.55,
+                                duration: 0.45,
                                 stagger: 0.03,
-                                ease: 'power3.out',
+                                ease: 'power2.out',
                                 onComplete: () => {
                                     textElements.forEach(el => gsap.set(el, { clearProps: 'transform,opacity' }));
                                 }
                             },
-                            cardStartTime + 0.14
+                            cardStartTime + 0.12
                         );
                     }
                 });
@@ -767,86 +953,94 @@
         }
 
         // ----------------------------------------------------
-        // 7. Handpicked for You (Large Cards & Lateral Entrances)
+        // 7. Handpicked for You: Coordinated Alternating Reveals & Masked Heading
         // ----------------------------------------------------
         function initHandpickedAnimation() {
             const handpicked = document.getElementById('handpicked');
             if (!handpicked || typeof ScrollTrigger === 'undefined') return;
 
+            const heading = handpicked.querySelector('.section-heading');
             const largeCards = handpicked.querySelectorAll('.large-card');
 
-            if (largeCards && largeCards.length >= 2) {
-                // Card on left slides gently from left (x: -35), card on right from right (x: 35)
-                gsap.from(largeCards[0], {
-                    scrollTrigger: {
-                        trigger: handpicked.querySelector('.grid-2') || handpicked,
-                        start: 'top 80%',
-                        once: true
-                    },
-                    opacity: 0,
-                    x: -35,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    clearProps: 'transform,opacity'
-                });
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: handpicked,
+                    start: 'top 82%',
+                    once: true
+                },
+                defaults: { ease: 'power3.out' }
+            });
 
-                gsap.from(largeCards[1], {
-                    scrollTrigger: {
-                        trigger: handpicked.querySelector('.grid-2') || handpicked,
-                        start: 'top 80%',
-                        once: true
-                    },
-                    opacity: 0,
-                    x: 35,
-                    duration: 0.8,
-                    delay: 0.12,
-                    ease: 'power3.out',
-                    clearProps: 'transform,opacity'
-                });
+            // 1. Masked heading text reveal and restrained paragraph opacity
+            if (heading) {
+                const tagline = heading.querySelector('.tagline');
+                const maskChild = heading.querySelector('.text-mask-child');
+                const subtitle = heading.querySelector('.subtitle');
 
-                // Subtle image scale-in reveal on enter
-                largeCards.forEach((card, idx) => {
-                    const img = card.querySelector('.large-card-img img');
-                    if (img) {
-                        gsap.fromTo(img,
-                            { opacity: 0.4, scale: 0.94 },
-                            {
-                                scrollTrigger: {
-                                    trigger: handpicked.querySelector('.grid-2') || handpicked,
-                                    start: 'top 80%',
-                                    once: true
-                                },
-                                opacity: 1,
-                                scale: 1,
-                                duration: 0.85,
-                                delay: idx * 0.12 + 0.08,
-                                ease: 'power3.out',
-                                clearProps: 'transform,opacity'
-                            }
-                        );
-                    }
-                });
-            } else if (largeCards && largeCards.length > 0) {
-                gsap.from(largeCards, {
-                    scrollTrigger: {
-                        trigger: handpicked.querySelector('.grid-2') || handpicked,
-                        start: 'top 80%',
-                        once: true
-                    },
-                    opacity: 0,
-                    y: 35,
-                    stagger: 0.15,
-                    duration: 0.75,
-                    ease: 'power3.out',
-                    clearProps: 'transform,opacity'
-                });
+                if (tagline) {
+                    tl.fromTo(tagline,
+                        { opacity: 0, y: -10 },
+                        { opacity: 1, y: 0, duration: 0.5, clearProps: 'opacity,transform' }
+                    );
+                }
+                if (maskChild) {
+                    applySpotlightReveal(tl, maskChild, tagline ? '-=0.25' : 0, 0.85);
+                }
+                if (subtitle) {
+                    tl.fromTo(subtitle,
+                        { opacity: 0, y: 10 },
+                        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', clearProps: 'opacity,transform' },
+                        '-=0.35'
+                    );
+                }
             }
 
-            // Hover interactions on large cards (without interfering with color switch)
+            // 2. Coordinated reveal of alternating cards from opposite directions
+            const cardsStartTime = heading ? '-=0.15' : 0;
+
+            if (largeCards && largeCards.length >= 2) {
+                // Card 1 on left slides gently from LEFT (x: -35)
+                const card1Img = largeCards[0].querySelector('.large-card-img img');
+                tl.fromTo(largeCards[0],
+                    { opacity: 0, x: -35 },
+                    { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', clearProps: 'transform' },
+                    cardsStartTime
+                );
+                if (card1Img) {
+                    tl.fromTo(card1Img,
+                        { opacity: 0.35, scale: 0.94 },
+                        { opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out', clearProps: 'transform,opacity' },
+                        '<+=0.1'
+                    );
+                }
+
+                // Card 2 on right slides from opposite direction: RIGHT (x: 35)
+                const card2Img = largeCards[1].querySelector('.large-card-img img');
+                tl.fromTo(largeCards[1],
+                    { opacity: 0, x: 35 },
+                    { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', clearProps: 'transform' },
+                    cardsStartTime + 0.12
+                );
+                if (card2Img) {
+                    tl.fromTo(card2Img,
+                        { opacity: 0.35, scale: 0.94 },
+                        { opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out', clearProps: 'transform,opacity' },
+                        '<+=0.1'
+                    );
+                }
+            } else if (largeCards && largeCards.length > 0) {
+                tl.fromTo(largeCards,
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, stagger: 0.12, duration: 0.75, ease: 'power3.out', clearProps: 'transform,opacity' },
+                    cardsStartTime
+                );
+            }
+
+            // Hover interactions on large cards (with subtle image zoom)
             largeCards.forEach(card => {
                 const img = card.querySelector('.large-card-img img');
                 card.addEventListener('mouseenter', () => {
-                    gsap.to(card, { y: -5, duration: 0.28, ease: 'power2.out' });
+                    gsap.to(card, { y: -4, duration: 0.28, ease: 'power2.out' });
                     if (img) gsap.to(img, { scale: 1.05, duration: 0.4, ease: 'power2.out' });
                 });
                 card.addEventListener('mouseleave', () => {
@@ -857,202 +1051,269 @@
         }
 
         // ----------------------------------------------------
-        // 8. Promo Banner Section (Content Left, Image Right)
+        // 8. Promo Banner Section: Coordinated 4-Step Reveal Sequence
         // ----------------------------------------------------
         function initPromoBannerAnimation() {
             const promo = document.getElementById('promo-banner');
             if (!promo || typeof ScrollTrigger === 'undefined') return;
 
             const content = promo.querySelector('.promo-content');
+            const tagline = content ? content.querySelector('.tagline') : null;
+            const headingMasks = content ? content.querySelectorAll('.text-mask-child') : null;
+            const desc = content ? content.querySelector('.promo-desc') : null;
+            const countdown = document.getElementById('promo-countdown');
+            const priceWrap = content ? content.querySelector('.price-wrap') : null;
+            const promoButtons = content ? content.querySelector('.promo-buttons') : null;
             const imgWrap = promo.querySelector('.promo-image-wrap');
             const img = imgWrap ? imgWrap.querySelector('img') : null;
 
-            // Content on the left slides gently from left
-            if (content) {
-                gsap.from(content, {
-                    scrollTrigger: {
-                        trigger: promo,
-                        start: 'top 82%',
-                        once: true
-                    },
-                    opacity: 0,
-                    x: -35,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    clearProps: 'opacity,transform'
-                });
+            const promoTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: promo,
+                    start: 'top 82%',
+                    once: true
+                },
+                defaults: { ease: 'power3.out' }
+            });
+
+            // Step 1: Heading reveals first
+            if (tagline) {
+                promoTl.fromTo(tagline,
+                    { opacity: 0, y: -10 },
+                    { opacity: 1, y: 0, duration: 0.45, clearProps: 'opacity,transform' }
+                );
+            }
+            if (headingMasks && headingMasks.length > 0) {
+                applySpotlightReveal(promoTl, headingMasks, tagline ? '-=0.2' : 0, 0.85, 0.16);
             }
 
-            // Image on the right slides in gently from right with subtle zoom-in
-            if (imgWrap) {
-                gsap.from(imgWrap, {
-                    scrollTrigger: {
-                        trigger: promo,
-                        start: 'top 82%',
-                        once: true
-                    },
-                    opacity: 0,
-                    x: 40,
-                    scale: 0.95,
-                    duration: 0.85,
-                    delay: 0.1,
-                    ease: 'power3.out',
-                    clearProps: 'opacity,transform'
-                });
+            // Step 2: Supporting content follows
+            const supporting = [desc, countdown, priceWrap].filter(Boolean);
+            if (supporting.length > 0) {
+                promoTl.fromTo(supporting,
+                    { opacity: 0, y: 12 },
+                    { opacity: 1, y: 0, duration: 0.55, stagger: 0.08, ease: 'power2.out', clearProps: 'opacity,transform' },
+                    '-=0.2'
+                );
+            }
 
-                if (img) {
-                    gsap.fromTo(img,
-                        { scale: 0.94 },
-                        {
-                            scrollTrigger: {
-                                trigger: promo,
-                                start: 'top 82%',
-                                once: true
-                            },
-                            scale: 1,
-                            duration: 0.85,
-                            delay: 0.15,
-                            ease: 'power3.out',
-                            clearProps: 'transform'
-                        }
+            // Step 3: CTA appears after the text
+            if (promoButtons) {
+                promoTl.fromTo(promoButtons,
+                    { opacity: 0, y: 10 },
+                    { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', clearProps: 'opacity,transform' },
+                    '-=0.15'
+                );
+            }
+
+            // Step 4: Promotional image reveals using a controlled clipping effect
+            if (img) {
+                promoTl.fromTo(img,
+                    { clipPath: 'inset(0 100% 0 0)', scale: 1.08, opacity: 0.25 },
+                    {
+                        clipPath: 'inset(0 0% 0 0)',
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.85,
+                        ease: 'power3.out',
+                        clearProps: 'clipPath,transform,opacity'
+                    },
+                    '-=0.55'
+                );
+            }
+        }
+
+        // ----------------------------------------------------
+        // 9. Customer Reviews & Testimonials: Coordinated Stagger & Preserved Carousel
+        // ----------------------------------------------------
+        function initTestimonialsAnimation() {
+            const testSec = document.getElementById('testimonials');
+            if (!testSec || typeof ScrollTrigger === 'undefined') return;
+
+            const headerText = testSec.querySelector('.reviews-header-text');
+            const trustBadge = testSec.querySelector('.community-trust-badge');
+            const featuredCard = testSec.querySelector('.featured-review-card');
+            const carouselPanel = testSec.querySelector('.reviews-carousel-panel');
+
+            const testTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: testSec,
+                    start: 'top 82%',
+                    once: true
+                },
+                defaults: { ease: 'power3.out' }
+            });
+
+            // 1. Heading and trust badge reveal
+            if (headerText) {
+                const tagline = headerText.querySelector('.tagline');
+                const maskChild = headerText.querySelector('.text-mask-child');
+                const subtitle = headerText.querySelector('.subtitle');
+
+                if (tagline) {
+                    testTl.fromTo(tagline,
+                        { opacity: 0, y: -10 },
+                        { opacity: 1, y: 0, duration: 0.45, clearProps: 'opacity,transform' }
+                    );
+                }
+                if (maskChild) {
+                    applySpotlightReveal(testTl, maskChild, tagline ? '-=0.2' : 0, 0.85);
+                }
+                if (subtitle) {
+                    testTl.fromTo(subtitle,
+                        { opacity: 0, y: 10 },
+                        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', clearProps: 'opacity,transform' },
+                        '-=0.35'
+                    );
+                }
+            }
+
+            if (trustBadge) {
+                testTl.fromTo(trustBadge,
+                    { opacity: 0, x: 20, scale: 0.96 },
+                    { opacity: 1, x: 0, scale: 1, duration: 0.65, ease: 'power2.out', clearProps: 'opacity,transform' },
+                    '-=0.45'
+                );
+            }
+
+            // 2. Reveal testimonial cards using a coordinated stagger
+            const cards = [featuredCard, carouselPanel].filter(Boolean);
+            if (cards.length > 0) {
+                testTl.fromTo(cards,
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 0.75, stagger: 0.14, ease: 'power3.out', clearProps: 'opacity,transform' },
+                    '-=0.2'
+                );
+            }
+
+            // Subtle inner elements reveal inside featured review card
+            if (featuredCard) {
+                const innerElements = featuredCard.querySelectorAll('.featured-quote, .review-product-chip, .featured-author');
+                if (innerElements.length > 0) {
+                    testTl.fromTo(innerElements,
+                        { opacity: 0, y: 8 },
+                        { opacity: 1, y: 0, duration: 0.45, stagger: 0.05, ease: 'power2.out', clearProps: 'opacity,transform' },
+                        '-=0.4'
                     );
                 }
             }
         }
 
         // ----------------------------------------------------
-        // 9. Customer Reviews & Testimonials
-        // ----------------------------------------------------
-        function initTestimonialsAnimation() {
-            const testSec = document.getElementById('testimonials');
-            if (!testSec || typeof ScrollTrigger === 'undefined') return;
-
-            const featuredCard = testSec.querySelector('.featured-review-card');
-            const carouselPanel = testSec.querySelector('.reviews-carousel-panel');
-
-            // Left side (featured review) slides in gently from left
-            if (featuredCard) {
-                gsap.from(featuredCard, {
-                    scrollTrigger: {
-                        trigger: testSec.querySelector('.reviews-showcase') || testSec,
-                        start: 'top 80%',
-                        once: true
-                    },
-                    opacity: 0,
-                    x: -35,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    clearProps: 'opacity,transform'
-                });
-            }
-
-            // Right side (carousel panel) slides in gently from right
-            if (carouselPanel) {
-                gsap.from(carouselPanel, {
-                    scrollTrigger: {
-                        trigger: testSec.querySelector('.reviews-showcase') || testSec,
-                        start: 'top 80%',
-                        once: true
-                    },
-                    opacity: 0,
-                    x: 35,
-                    duration: 0.8,
-                    delay: 0.14,
-                    ease: 'power3.out',
-                    clearProps: 'opacity,transform'
-                });
-            }
-        }
-
-        // ----------------------------------------------------
-        // 10. Buying Guides Articles Section
+        // 10. Buying Guides Articles: Image Masking, Sequential Content & Refined Transitions
         // ----------------------------------------------------
         function initArticlesAnimation() {
             const artSec = document.getElementById('articles');
             if (!artSec || typeof ScrollTrigger === 'undefined') return;
 
+            const headerRow = artSec.querySelector('.section-header-row');
             const cards = artSec.querySelectorAll('.article-card');
 
-            if (cards && cards.length >= 2) {
-                // Left card slides from left
-                gsap.from(cards[0], {
-                    scrollTrigger: {
-                        trigger: artSec.querySelector('.grid-2') || artSec,
-                        start: 'top 85%',
-                        once: true
-                    },
-                    opacity: 0,
-                    x: -30,
-                    duration: 0.75,
-                    ease: 'power3.out',
-                    clearProps: 'opacity,transform'
-                });
+            const artTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: artSec,
+                    start: 'top 83%',
+                    once: true
+                },
+                defaults: { ease: 'power3.out' }
+            });
 
-                // Right card slides from right
-                gsap.from(cards[1], {
-                    scrollTrigger: {
-                        trigger: artSec.querySelector('.grid-2') || artSec,
-                        start: 'top 85%',
-                        once: true
-                    },
-                    opacity: 0,
-                    x: 30,
-                    duration: 0.75,
-                    delay: 0.12,
-                    ease: 'power3.out',
-                    clearProps: 'opacity,transform'
-                });
+            // 1. Heading and explore link reveal
+            if (headerRow) {
+                const tagline = headerRow.querySelector('.tagline');
+                const maskChild = headerRow.querySelector('.text-mask-child');
+                const link = headerRow.querySelector('.link-explore');
 
-                // Subtle image zoom entrance
+                if (tagline) {
+                    artTl.fromTo(tagline,
+                        { opacity: 0, y: -10 },
+                        { opacity: 1, y: 0, duration: 0.45, clearProps: 'opacity,transform' }
+                    );
+                }
+                if (maskChild) {
+                    applySpotlightReveal(artTl, maskChild, tagline ? '-=0.2' : 0, 0.85);
+                }
+                if (link) {
+                    artTl.fromTo(link,
+                        { opacity: 0, x: 20 },
+                        { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out', clearProps: 'opacity,transform' },
+                        '-=0.4'
+                    );
+                }
+            }
+
+            // 2. Article cards: smooth image-mask reveal and sequential text
+            if (cards && cards.length > 0) {
                 cards.forEach((card, idx) => {
+                    const cardStartTime = (headerRow ? 0.35 : 0) + (idx * 0.14);
                     const img = card.querySelector('.article-img-wrap img');
+                    const pill = card.querySelector('.read-pill');
+                    const catTag = card.querySelector('.article-body .tagline');
+                    const title = card.querySelector('.article-title');
+                    const desc = card.querySelector('.desc');
+                    const btn = card.querySelector('.read-btn');
+
+                    // Card entrance
+                    artTl.fromTo(card,
+                        { opacity: 0, y: 18 },
+                        { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', clearProps: 'transform,opacity' },
+                        cardStartTime
+                    );
+
+                    // Reveal article images using a smooth image-mask effect (clipPath)
                     if (img) {
-                        gsap.fromTo(img,
-                            { opacity: 0.5, scale: 0.95 },
+                        artTl.fromTo(img,
+                            { clipPath: 'inset(0 100% 0 0)', scale: 1.08, opacity: 0.3 },
                             {
-                                scrollTrigger: {
-                                    trigger: artSec.querySelector('.grid-2') || artSec,
-                                    start: 'top 85%',
-                                    once: true
-                                },
-                                opacity: 1,
+                                clipPath: 'inset(0 0% 0 0)',
                                 scale: 1,
-                                duration: 0.8,
-                                delay: idx * 0.12 + 0.08,
+                                opacity: 1,
+                                duration: 0.85,
                                 ease: 'power3.out',
+                                clearProps: 'clipPath,transform,opacity'
+                            },
+                            cardStartTime + 0.06
+                        );
+                    }
+
+                    // Reveal card titles and descriptions in sequence
+                    const seqItems = [pill, catTag, title, desc, btn].filter(Boolean);
+                    if (seqItems.length > 0) {
+                        artTl.fromTo(seqItems,
+                            { opacity: 0, y: 8 },
+                            {
+                                opacity: 1,
+                                y: 0,
+                                duration: 0.45,
+                                stagger: 0.05,
+                                ease: 'power2.out',
                                 clearProps: 'transform,opacity'
-                            }
+                            },
+                            cardStartTime + 0.22
                         );
                     }
                 });
-            } else if (cards && cards.length > 0) {
-                gsap.from(cards, {
-                    scrollTrigger: {
-                        trigger: artSec.querySelector('.grid-2') || artSec,
-                        start: 'top 85%',
-                        once: true
-                    },
-                    opacity: 0,
-                    y: 30,
-                    stagger: 0.12,
-                    duration: 0.65,
-                    ease: 'power2.out',
-                    clearProps: 'opacity,transform'
-                });
             }
 
-            // Article card hover zoom
-            cards.forEach(card => {
-                const img = card.querySelector('.article-img-wrap img');
-                card.addEventListener('mouseenter', () => {
-                    gsap.to(card, { y: -5, duration: 0.28, ease: 'power2.out' });
-                    if (img) gsap.to(img, { scale: 1.06, duration: 0.4, ease: 'power2.out' });
+            // Desktop hover image zoom & refined link transition
+            const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            if (isDesktop) {
+                cards.forEach(card => {
+                    const img = card.querySelector('.article-img-wrap img');
+                    const btnIcon = card.querySelector('.read-btn i');
+
+                    card.addEventListener('mouseenter', () => {
+                        gsap.to(card, { y: -4, duration: 0.28, ease: 'power2.out' });
+                        if (img) gsap.to(img, { scale: 1.05, duration: 0.4, ease: 'power2.out' });
+                        if (btnIcon) gsap.to(btnIcon, { x: 4, duration: 0.25, ease: 'power2.out' });
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        gsap.to(card, { y: 0, duration: 0.28, ease: 'power2.out' });
+                        if (img) gsap.to(img, { scale: 1, duration: 0.4, ease: 'power2.out' });
+                        if (btnIcon) gsap.to(btnIcon, { x: 0, duration: 0.25, ease: 'power2.out' });
+                    });
                 });
-                card.addEventListener('mouseleave', () => {
-                    gsap.to(card, { y: 0, duration: 0.28, ease: 'power2.out' });
-                    if (img) gsap.to(img, { scale: 1, duration: 0.4, ease: 'power2.out' });
-                });
-            });
+            }
         }
 
         // ----------------------------------------------------
@@ -1097,21 +1358,66 @@
         }
 
         // ----------------------------------------------------
-        // 11. Newsletter & Footer Entrance
+        // 11. Newsletter & Footer: Masked Heading, Form Stagger & Input Focus
         // ----------------------------------------------------
         function initNewsletterAndFooter() {
             const newsletter = document.getElementById('newsletter');
             if (newsletter && typeof ScrollTrigger !== 'undefined') {
-                gsap.from(newsletter, {
+                const content = newsletter.querySelector('.newsletter-content');
+                const formContainer = newsletter.querySelector('.newsletter-form-container');
+                const input = document.getElementById('email-input');
+                const submitBtn = document.getElementById('newsletter-submit-btn');
+
+                const newsTl = gsap.timeline({
                     scrollTrigger: {
                         trigger: newsletter,
-                        start: 'top 85%'
+                        start: 'top 85%',
+                        once: true
                     },
-                    opacity: 0,
-                    y: 35,
-                    duration: 0.7,
-                    ease: 'power2.out'
+                    defaults: { ease: 'power3.out' }
                 });
+
+                // 1. Reveal heading and supporting text
+                if (content) {
+                    const tagline = content.querySelector('.tagline');
+                    const maskChild = content.querySelector('.text-mask-child');
+                    const desc = content.querySelector('p:not(.tagline)');
+
+                    if (tagline) {
+                        newsTl.fromTo(tagline,
+                            { opacity: 0, y: -10 },
+                            { opacity: 1, y: 0, duration: 0.45, clearProps: 'opacity,transform' }
+                        );
+                    }
+                    if (maskChild) {
+                        applySpotlightReveal(newsTl, maskChild, tagline ? '-=0.2' : 0, 0.85);
+                    }
+                    if (desc) {
+                        newsTl.fromTo(desc,
+                            { opacity: 0, y: 10 },
+                            { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', clearProps: 'opacity,transform' },
+                            '-=0.35'
+                        );
+                    }
+                }
+
+                // 2. Bring the form into view with a subtle stagger
+                if (formContainer) {
+                    newsTl.fromTo(formContainer,
+                        { opacity: 0, y: 16 },
+                        { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', clearProps: 'opacity,transform' },
+                        '-=0.25'
+                    );
+                }
+
+                const formElements = [input, submitBtn].filter(Boolean);
+                if (formElements.length > 0) {
+                    newsTl.fromTo(formElements,
+                        { opacity: 0, y: 8 },
+                        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out', clearProps: 'opacity,transform' },
+                        '-=0.35'
+                    );
+                }
             }
 
             const footer = document.querySelector('.footer');
@@ -1124,7 +1430,7 @@
                             start: 'top 90%'
                         },
                         opacity: 0,
-                        y: 30,
+                        y: 25,
                         stagger: 0.08,
                         duration: 0.65,
                         ease: 'power2.out'
@@ -1152,66 +1458,15 @@
         }
 
         // ----------------------------------------------------
-        // 13. Tailored Premium Section Headings GSAP Animations
-        // Distinctive, modern scroll-triggered reveals for each section:
-        // - Freshly Dropped: Word-by-word reveal with subtle scale
-        // - Categories: Smooth fade-up with silky vertical lift
-        // - Featured Technology: Subtle high-tech clip-path reveal
-        // - Workspace Showcase: Line-by-line / two-part cadence reveal
-        // - Handpicked for You: Word-by-word smooth rise
-        // - Promo Banner: Line-by-line punchy reveal
-        // - Testimonials: Staggered cadence reveal + Trust badge coordination
-        // - Buying Guides: Word-by-word unfold + explore link slide
-        // - Newsletter: Coordinated 3-part micro-timeline
+        // 13. Official Partner Brands Heading Scroll Reveal
         // ----------------------------------------------------
         function initSectionHeadingsAnimation() {
             if (typeof ScrollTrigger === 'undefined') return;
 
-            // 1. Freshly Dropped: Word-by-Word Reveal with subtle scale
-            const dropSec = document.getElementById('freshly-dropped');
-            if (dropSec) {
-                const head = dropSec.querySelector('.section-heading');
-                if (head) {
-                    const tagline = head.querySelector('.tagline');
-                    const title = head.querySelector('h2');
-                    const subtitle = head.querySelector('.subtitle');
-                    const words = title ? splitTextIntoWords(title) : [];
-
-                    const tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: head,
-                            start: 'top 86%',
-                            toggleActions: 'play none none none'
-                        },
-                        defaults: { ease: 'power3.out' }
-                    });
-
-                    if (tagline) {
-                        tl.from(tagline, { opacity: 0, y: -12, duration: 0.5, clearProps: 'opacity,transform' });
-                    }
-                    if (words.length > 0) {
-                        tl.from(words, {
-                            opacity: 0,
-                            y: 26,
-                            scale: 0.92,
-                            stagger: 0.12,
-                            duration: 0.75,
-                            ease: 'power3.out',
-                            clearProps: 'opacity,transform'
-                        }, '-=0.25');
-                    } else if (title) {
-                        tl.from(title, { opacity: 0, y: 26, duration: 0.7, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.25');
-                    }
-                    if (subtitle) {
-                        tl.from(subtitle, { opacity: 0, y: 16, duration: 0.55, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.35');
-                    }
-                }
-            }
-
-            // 2. Shop by Category: Smooth Fade-Up with silky vertical lift
-            const catSec = document.getElementById('categories');
-            if (catSec) {
-                const head = catSec.querySelector('.section-heading');
+            // Partner Brands: Heading reveal
+            const partnerSec = document.getElementById('partner-brands');
+            if (partnerSec) {
+                const head = partnerSec.querySelector('.section-heading');
                 if (head) {
                     const tagline = head.querySelector('.tagline');
                     const title = head.querySelector('h2');
@@ -1221,309 +1476,19 @@
                         scrollTrigger: {
                             trigger: head,
                             start: 'top 86%',
-                            toggleActions: 'play none none none'
+                            once: true
                         },
                         defaults: { ease: 'power3.out' }
                     });
 
                     if (tagline) {
-                        tl.from(tagline, { opacity: 0, y: -12, duration: 0.5, clearProps: 'opacity,transform' });
+                        tl.fromTo(tagline, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.5, clearProps: 'opacity,transform' });
                     }
                     if (title) {
-                        tl.from(title, { opacity: 0, y: 28, duration: 0.8, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.25');
+                        tl.fromTo(title, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.75, clearProps: 'opacity,transform' }, '-=0.25');
                     }
                     if (subtitle) {
-                        tl.from(subtitle, { opacity: 0, y: 16, duration: 0.55, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.35');
-                    }
-                }
-            }
-
-            // 3. Featured Technology (Showcase): Subtle High-Tech Clip-Path Text Reveal
-            const showSec = document.getElementById('showcase');
-            if (showSec) {
-                const head = showSec.querySelector('.section-heading');
-                if (head) {
-                    const tagline = head.querySelector('.tagline');
-                    const title = head.querySelector('h2');
-                    const subtitle = head.querySelector('.subtitle');
-
-                    const tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: head,
-                            start: 'top 86%',
-                            toggleActions: 'play none none none'
-                        },
-                        defaults: { ease: 'power3.out' }
-                    });
-
-                    if (tagline) {
-                        tl.from(tagline, { opacity: 0, y: -12, duration: 0.5, clearProps: 'opacity,transform' });
-                    }
-                    if (title) {
-                        tl.from(title, {
-                            opacity: 0,
-                            y: 28,
-                            clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)',
-                            duration: 0.85,
-                            ease: 'power3.out',
-                            clearProps: 'opacity,transform,clipPath'
-                        }, '-=0.25');
-                    }
-                    if (subtitle) {
-                        tl.from(subtitle, { opacity: 0, y: 16, duration: 0.55, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.35');
-                    }
-                }
-            }
-
-            // 4. Workspace Showcase: Line-by-Line / Two-Part Cadence Reveal
-            const workSec = document.getElementById('setup-feature');
-            if (workSec) {
-                const head = workSec.querySelector('.section-heading');
-                if (head) {
-                    const tagline = head.querySelector('.tagline');
-                    const title = head.querySelector('h2');
-                    const subtitle = head.querySelector('.subtitle');
-
-                    let parts = [];
-                    if (title && !title.dataset.gsapSplit) {
-                        title.dataset.gsapSplit = "true";
-                        const raw = title.textContent.trim();
-                        title.setAttribute('aria-label', raw);
-                        // Split into sentences / cadence segments: "A bigger view." & "A better setup."
-                        const segments = raw.split(/(?<=\.)\s+/);
-                        if (segments.length > 1) {
-                            title.innerHTML = '';
-                            segments.forEach(seg => {
-                                const span = document.createElement('span');
-                                span.className = 'gsap-line-wrap';
-                                span.setAttribute('aria-hidden', 'true');
-                                span.textContent = seg + ' ';
-                                title.appendChild(span);
-                                parts.push(span);
-                            });
-                        }
-                    }
-
-                    const tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: head,
-                            start: 'top 86%',
-                            toggleActions: 'play none none none'
-                        },
-                        defaults: { ease: 'power3.out' }
-                    });
-
-                    if (tagline) {
-                        tl.from(tagline, { opacity: 0, y: -12, duration: 0.5, clearProps: 'opacity,transform' });
-                    }
-                    if (parts.length > 0) {
-                        tl.from(parts, {
-                            opacity: 0,
-                            y: 24,
-                            stagger: 0.18,
-                            duration: 0.75,
-                            ease: 'power3.out',
-                            clearProps: 'opacity,transform'
-                        }, '-=0.25');
-                    } else if (title) {
-                        tl.from(title, { opacity: 0, y: 26, duration: 0.75, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.25');
-                    }
-                    if (subtitle) {
-                        tl.from(subtitle, { opacity: 0, y: 16, duration: 0.55, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.35');
-                    }
-                }
-            }
-
-            // 5. Handpicked for You: Word-by-Word Smooth Rise
-            const handSec = document.getElementById('handpicked');
-            if (handSec) {
-                const head = handSec.querySelector('.section-heading');
-                if (head) {
-                    const tagline = head.querySelector('.tagline');
-                    const title = head.querySelector('h2');
-                    const subtitle = head.querySelector('.subtitle');
-                    const words = title ? splitTextIntoWords(title) : [];
-
-                    const tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: head,
-                            start: 'top 86%',
-                            toggleActions: 'play none none none'
-                        },
-                        defaults: { ease: 'power3.out' }
-                    });
-
-                    if (tagline) {
-                        tl.from(tagline, { opacity: 0, y: -12, duration: 0.5, clearProps: 'opacity,transform' });
-                    }
-                    if (words.length > 0) {
-                        tl.from(words, {
-                            opacity: 0,
-                            y: 25,
-                            stagger: 0.08,
-                            duration: 0.75,
-                            ease: 'power3.out',
-                            clearProps: 'opacity,transform'
-                        }, '-=0.25');
-                    } else if (title) {
-                        tl.from(title, { opacity: 0, y: 26, duration: 0.75, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.25');
-                    }
-                    if (subtitle) {
-                        tl.from(subtitle, { opacity: 0, y: 16, duration: 0.55, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.35');
-                    }
-                }
-            }
-
-            // 6. Promo Banner: Line-by-Line Punchy Reveal
-            const promoSec = document.getElementById('promo-banner');
-            if (promoSec) {
-                const content = promoSec.querySelector('.promo-content');
-                if (content) {
-                    const tagline = content.querySelector('.tagline');
-                    const title = content.querySelector('h2');
-                    const desc = content.querySelector('.promo-desc');
-
-                    const tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: promoSec,
-                            start: 'top 84%',
-                            toggleActions: 'play none none none'
-                        },
-                        defaults: { ease: 'power2.out' }
-                    });
-
-                    if (tagline) {
-                        tl.from(tagline, { opacity: 0, y: -12, duration: 0.45, clearProps: 'opacity,transform' });
-                    }
-                    if (title) {
-                        tl.from(title, {
-                            opacity: 0,
-                            y: 24,
-                            scale: 0.96,
-                            duration: 0.7,
-                            ease: 'power3.out',
-                            clearProps: 'opacity,transform'
-                        }, '-=0.2');
-                    }
-                    if (desc) {
-                        tl.from(desc, { opacity: 0, y: 16, duration: 0.55, clearProps: 'opacity,transform' }, '-=0.3');
-                    }
-                }
-            }
-
-            // 7. Testimonials (Customer Reviews): Staggered Cadence Reveal + Trust Badge
-            const testSec = document.getElementById('testimonials');
-            if (testSec) {
-                const headerText = testSec.querySelector('.reviews-header-text');
-                const trustBadge = testSec.querySelector('.community-trust-badge');
-                if (headerText) {
-                    const tagline = headerText.querySelector('.tagline');
-                    const title = headerText.querySelector('h2');
-                    const subtitle = headerText.querySelector('.subtitle');
-
-                    const tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: testSec,
-                            start: 'top 85%',
-                            toggleActions: 'play none none none'
-                        },
-                        defaults: { ease: 'power3.out' }
-                    });
-
-                    if (tagline) {
-                        tl.from(tagline, { opacity: 0, y: -12, duration: 0.5, clearProps: 'opacity,transform' });
-                    }
-                    if (title) {
-                        tl.from(title, { opacity: 0, y: 26, duration: 0.75, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.25');
-                    }
-                    if (subtitle) {
-                        tl.from(subtitle, { opacity: 0, y: 16, duration: 0.55, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.35');
-                    }
-                    if (trustBadge) {
-                        tl.from(trustBadge, {
-                            opacity: 0,
-                            x: 20,
-                            scale: 0.96,
-                            duration: 0.65,
-                            ease: 'power2.out',
-                            clearProps: 'opacity,transform'
-                        }, '-=0.45');
-                    }
-                }
-            }
-
-            // 8. Buying Guides / Articles: Word-by-Word Reveal + Explore Link Slide
-            const artSec = document.getElementById('articles');
-            if (artSec) {
-                const headerRow = artSec.querySelector('.section-header-row');
-                if (headerRow) {
-                    const tagline = headerRow.querySelector('.tagline');
-                    const title = headerRow.querySelector('h2');
-                    const link = headerRow.querySelector('.link-explore');
-                    const words = title ? splitTextIntoWords(title) : [];
-
-                    const tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: headerRow,
-                            start: 'top 86%',
-                            toggleActions: 'play none none none'
-                        },
-                        defaults: { ease: 'power3.out' }
-                    });
-
-                    if (tagline) {
-                        tl.from(tagline, { opacity: 0, y: -12, duration: 0.5, clearProps: 'opacity,transform' });
-                    }
-                    if (words.length > 0) {
-                        tl.from(words, {
-                            opacity: 0,
-                            y: 24,
-                            stagger: 0.09,
-                            duration: 0.75,
-                            ease: 'power3.out',
-                            clearProps: 'opacity,transform'
-                        }, '-=0.25');
-                    } else if (title) {
-                        tl.from(title, { opacity: 0, y: 24, duration: 0.7, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.25');
-                    }
-                    if (link) {
-                        tl.from(link, {
-                            opacity: 0,
-                            x: 20,
-                            duration: 0.6,
-                            ease: 'power2.out',
-                            clearProps: 'opacity,transform'
-                        }, '-=0.4');
-                    }
-                }
-            }
-
-            // 9. Newsletter: Coordinated 3-Part Micro-Timeline
-            const newsSec = document.getElementById('newsletter');
-            if (newsSec) {
-                const content = newsSec.querySelector('.newsletter-content');
-                if (content) {
-                    const tagline = content.querySelector('.tagline');
-                    const title = content.querySelector('h2');
-                    const desc = content.querySelector('p:not(.tagline)');
-
-                    const tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: newsSec,
-                            start: 'top 86%',
-                            toggleActions: 'play none none none'
-                        },
-                        defaults: { ease: 'power3.out' }
-                    });
-
-                    if (tagline) {
-                        tl.from(tagline, { opacity: 0, y: -10, duration: 0.45, clearProps: 'opacity,transform' });
-                    }
-                    if (title) {
-                        tl.from(title, { opacity: 0, y: 22, duration: 0.7, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.2');
-                    }
-                    if (desc) {
-                        tl.from(desc, { opacity: 0, y: 14, duration: 0.55, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.3');
+                        tl.fromTo(subtitle, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, clearProps: 'opacity,transform' }, '-=0.35');
                     }
                 }
             }

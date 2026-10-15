@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
    1. AOS & GSAP / SCROLLTRIGGER ANIMATIONS
    ========================================================================== */
 function initGuidesAnimations() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 750,
@@ -31,44 +33,340 @@ function initGuidesAnimations() {
         });
     }
 
-    if (typeof gsap !== 'undefined') {
-        if (typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-        }
+    if (prefersReducedMotion || typeof gsap === 'undefined') return;
 
-        // Header entrance
-        gsap.from('.site-header', {
-            y: -20,
-            opacity: 0,
-            duration: 0.55,
-            ease: 'power2.out'
-        });
+    if (typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+    }
 
-        // Hero entrance
-        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        heroTl
-            .from('#guides-hero .shop-eyebrow', { y: 16, opacity: 0, duration: 0.45 }, 0.1)
-            .from('.guides-hero-title', { y: 24, opacity: 0, duration: 0.6 }, 0.18)
-            .from('.guides-hero-sub', { y: 18, opacity: 0, duration: 0.5 }, 0.28);
+    // Header subtle entrance
+    gsap.from('.site-header', {
+        y: -18,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.out'
+    });
 
-        // Subtle scroll parallax on Lookbook 01 & Lookbook 02 images
-        if (typeof ScrollTrigger !== 'undefined') {
-            gsap.utils.toArray(['.guides-lookbook-media img', '#lookbook-play .shop-split-img-wrap img']).forEach(img => {
-                gsap.fromTo(
-                    img,
-                    { scale: 1.06 },
+    // 1. Hero entrance sequence (Masked heading reveal + supporting paragraph in sequence)
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.1 });
+    heroTl
+        .fromTo('.guides-hero-title .spotlight-reveal-text, .guides-hero-title .text-mask-child',
+            {
+                clipPath: 'circle(0% at 50% 50%)',
+                opacity: 0.1,
+                scale: 0.95,
+                filter: 'brightness(1.5) blur(4px)'
+            },
+            {
+                clipPath: 'circle(150% at 50% 50%)',
+                opacity: 1,
+                scale: 1,
+                filter: 'brightness(1) blur(0px)',
+                duration: 0.95,
+                ease: 'power3.out',
+                clearProps: 'clipPath,filter,transform,opacity'
+            },
+            '-=0.15'
+        )
+        .fromTo('.guides-hero-sub', { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' }, '+=0.08');
+
+    // Interactive cursor spotlight tracking on guides hero section
+    const guidesHero = document.getElementById('guides-hero');
+    if (guidesHero) {
+        guidesHero.addEventListener('mousemove', (e) => {
+            const rect = guidesHero.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            guidesHero.style.setProperty('--spot-x', `${x}%`);
+            guidesHero.style.setProperty('--spot-y', `${y}%`);
+        }, { passive: true });
+    }
+
+    // 2. Featured Editorial Guide Cards & Smooth Imagery Clipping Transitions
+    const guideCards = gsap.utils.toArray('#featured-guides .guide-editorial-card');
+    if (guideCards.length) {
+        guideCards.forEach((card, idx) => {
+            const img = card.querySelector('.guide-card-img-wrap img');
+            const meta = card.querySelector('.guide-card-meta');
+
+            // Staggered card entrance
+            gsap.fromTo(card,
+                { opacity: 0, y: 28 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    delay: idx * 0.14,
+                    ease: 'power2.out',
+                    clearProps: 'transform',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%',
+                        once: true
+                    }
+                }
+            );
+
+            // Smooth image clipping reveal with subtle scale settling
+            if (img) {
+                gsap.fromTo(img,
+                    { clipPath: 'inset(10% 0% 10% 0%)', scale: 1.06, opacity: 0.3 },
                     {
+                        clipPath: 'inset(0% 0% 0% 0%)',
                         scale: 1,
-                        ease: 'none',
+                        opacity: 1,
+                        duration: 0.9,
+                        delay: idx * 0.14,
+                        ease: 'power2.out',
                         scrollTrigger: {
-                            trigger: img,
-                            start: 'top 90%',
-                            end: 'bottom 20%',
-                            scrub: true
+                            trigger: card,
+                            start: 'top 85%',
+                            once: true
                         }
                     }
                 );
-            });
+            }
+
+            // Reveal article content in logical groups rather than animating every paragraph
+            if (meta) {
+                gsap.fromTo(meta,
+                    { opacity: 0, y: 14 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        delay: (idx * 0.14) + 0.1,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 85%',
+                            once: true
+                        }
+                    }
+                );
+            }
+        });
+    }
+
+    // 3. Alternating Image-and-Text Entrances
+    // Lookbook 01: The Focused Desk (Text on Left, Image on Right)
+    const lookbookDesk = document.getElementById('lookbook-desk');
+    if (lookbookDesk) {
+        const deskText = lookbookDesk.querySelector('.guides-lookbook-text');
+        const deskImg = lookbookDesk.querySelector('.guides-lookbook-media img');
+
+        if (deskText) {
+            gsap.fromTo(deskText,
+                { opacity: 0, x: -36 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.85,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: lookbookDesk,
+                        start: 'top 82%',
+                        once: true
+                    }
+                }
+            );
+        }
+
+        if (deskImg) {
+            gsap.fromTo(deskImg,
+                { opacity: 0.3, x: 36, clipPath: 'inset(8% 0% 8% 0%)', scale: 1.05 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    clipPath: 'inset(0% 0% 0% 0%)',
+                    scale: 1,
+                    duration: 0.9,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: lookbookDesk,
+                        start: 'top 82%',
+                        once: true
+                    }
+                }
+            );
+        }
+    }
+
+    // Lookbook 02: The Play Space (Image on Left, Content on Right)
+    const lookbookPlay = document.getElementById('lookbook-play');
+    if (lookbookPlay) {
+        const playImg = lookbookPlay.querySelector('.shop-split-img-wrap img');
+        const playContent = lookbookPlay.querySelector('.shop-split-content');
+
+        if (playImg) {
+            gsap.fromTo(playImg,
+                { opacity: 0.3, x: -36, clipPath: 'inset(8% 0% 8% 0%)', scale: 1.05 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    clipPath: 'inset(0% 0% 0% 0%)',
+                    scale: 1,
+                    duration: 0.9,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: lookbookPlay,
+                        start: 'top 82%',
+                        once: true
+                    }
+                }
+            );
+        }
+
+        if (playContent) {
+            gsap.fromTo(playContent,
+                { opacity: 0, x: 36 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.85,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: lookbookPlay,
+                        start: 'top 82%',
+                        once: true
+                    }
+                }
+            );
+        }
+    }
+
+    // 4. Lookbook 03: On The Move (Staggered Shelf Cards)
+    const lookbookMove = document.getElementById('lookbook-move');
+    if (lookbookMove) {
+        const carryHeader = lookbookMove.querySelector('.guides-carry-header');
+        const shelfCards = lookbookMove.querySelectorAll('.shelf-card');
+
+        if (carryHeader) {
+            gsap.fromTo(carryHeader,
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: lookbookMove,
+                        start: 'top 85%',
+                        once: true
+                    }
+                }
+            );
+        }
+
+        if (shelfCards.length) {
+            gsap.fromTo(shelfCards,
+                { opacity: 0, y: 24 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.55,
+                    stagger: 0.08,
+                    ease: 'power2.out',
+                    clearProps: 'transform',
+                    scrollTrigger: {
+                        trigger: lookbookMove,
+                        start: 'top 80%',
+                        once: true
+                    }
+                }
+            );
+        }
+    }
+
+    // 5. Interactive Sections (Quiz, Spec Comparison & FAQ Accordion)
+    const quizSection = document.getElementById('buying-assistant');
+    if (quizSection) {
+        gsap.fromTo(quizSection.querySelector('.guides-quiz-card'),
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.65,
+                ease: 'power2.out',
+                clearProps: 'transform',
+                scrollTrigger: {
+                    trigger: quizSection,
+                    start: 'top 82%',
+                    once: true
+                }
+            }
+        );
+    }
+
+    // 6. Buying Guides Interactive Question Cards ("Better choices begin with better questions.")
+    const betterQuestionsSec = document.getElementById('better-questions');
+    if (betterQuestionsSec) {
+        const questionCards = gsap.utils.toArray('#better-questions .guide-question-card');
+        const questionHeading = betterQuestionsSec.querySelector('.section-heading');
+
+        if (questionHeading) {
+            const headingMask = questionHeading.querySelector('.spotlight-reveal-text, .text-mask-child');
+            if (headingMask) {
+                gsap.fromTo(headingMask,
+                    { clipPath: 'circle(0% at 50% 50%)', opacity: 0.1, scale: 0.95, filter: 'brightness(1.5) blur(4px)' },
+                    {
+                        clipPath: 'circle(150% at 50% 50%)',
+                        opacity: 1,
+                        scale: 1,
+                        filter: 'brightness(1) blur(0px)',
+                        duration: 0.9,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: betterQuestionsSec,
+                            start: 'top 85%',
+                            once: true
+                        },
+                        clearProps: 'clipPath,filter,transform,opacity'
+                    }
+                );
+            }
+        }
+
+        if (questionCards.length) {
+            gsap.fromTo(questionCards,
+                { opacity: 0, y: 32, scale: 0.96 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.7,
+                    stagger: 0.14,
+                    ease: 'power2.out',
+                    clearProps: 'transform,opacity',
+                    scrollTrigger: {
+                        trigger: betterQuestionsSec,
+                        start: 'top 80%',
+                        once: true
+                    }
+                }
+            );
+
+            // Optical reveal of the card top visual images
+            const cardImgs = gsap.utils.toArray('#better-questions .guide-card-media img');
+            if (cardImgs.length) {
+                gsap.fromTo(cardImgs,
+                    { clipPath: 'inset(14% 0% 0% 0%)', scale: 1.12, opacity: 0.3 },
+                    {
+                        clipPath: 'inset(0% 0% 0% 0%)',
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.8,
+                        stagger: 0.14,
+                        ease: 'power3.out',
+                        clearProps: 'clipPath,transform,opacity',
+                        scrollTrigger: {
+                            trigger: betterQuestionsSec,
+                            start: 'top 80%',
+                            once: true
+                        }
+                    }
+                );
+            }
         }
     }
 }
@@ -131,6 +429,21 @@ function initEditorialGuideReader() {
         if (span) span.textContent = data.ctaText;
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
+
+        // Reveal modal content in logical groups
+        if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const cardEl = modal.querySelector('.guide-reader-card');
+            if (cardEl) {
+                gsap.fromTo(cardEl,
+                    { opacity: 0, scale: 0.96, y: 16 },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.32, ease: 'power2.out' }
+                );
+            }
+            gsap.fromTo([eyebrowEl, titleEl, bodyEl, ctaEl ? ctaEl.parentElement : null].filter(Boolean),
+                { opacity: 0, y: 12 },
+                { opacity: 1, y: 0, duration: 0.32, stagger: 0.06, ease: 'power2.out' }
+            );
+        }
     };
 
     const closeGuide = () => {

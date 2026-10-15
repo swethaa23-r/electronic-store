@@ -466,6 +466,14 @@
                     `;
                 });
                 gridEl.innerHTML = html;
+
+                // Animate dynamic wishlist items with GSAP
+                if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    gsap.fromTo('.wishlist-item-card', 
+                        { opacity: 0, y: 14 }, 
+                        { opacity: 1, y: 0, duration: 0.35, stagger: 0.05, ease: 'power2.out' }
+                    );
+                }
             }
 
             // 2. Render Dashboard Grid (`dashboard-wishlist-grid`)
@@ -532,14 +540,27 @@
                     e.preventDefault();
                     e.stopPropagation();
 
-                    // Smooth fade-out before removal
-                    card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.95)';
+                    if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                        gsap.to(card, {
+                            opacity: 0,
+                            scale: 0.92,
+                            y: -8,
+                            duration: 0.25,
+                            ease: 'power2.in',
+                            onComplete: () => {
+                                StacklyWishlist.remove(id || name);
+                            }
+                        });
+                    } else {
+                        // Fallback CSS fade-out before removal
+                        card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.95)';
 
-                    setTimeout(() => {
-                        StacklyWishlist.remove(id || name);
-                    }, 240);
+                        setTimeout(() => {
+                            StacklyWishlist.remove(id || name);
+                        }, 240);
+                    }
                     return;
                 }
 
@@ -586,11 +607,27 @@
         }
     });
 
+    // Safe AOS initialization
+    function initWishlistAOS() {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 600,
+                easing: 'ease-out-cubic',
+                once: true,
+                offset: 60
+            });
+        }
+    }
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => StacklyWishlist.syncUI());
+        document.addEventListener('DOMContentLoaded', () => {
+            StacklyWishlist.syncUI();
+            initWishlistAOS();
+        });
     } else {
         StacklyWishlist.syncUI();
+        initWishlistAOS();
     }
 
     // Expose API globally

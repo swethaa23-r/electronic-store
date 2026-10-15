@@ -331,11 +331,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         isFiltering = true;
 
+        productsGrid.classList.add('is-filtering');
+
         // 1. Smooth Staggered Flexbox Exit Animation
         gsap.to(productsGrid.querySelectorAll('.product-card'), {
             opacity: 0,
-            scale: 0.9,
-            y: -12,
+            scale: 0.92,
+            y: -14,
             duration: 0.22,
             stagger: 0.025,
             ease: 'power2.in',
@@ -348,16 +350,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // 3. Staggered Fluid Flexbox Entrance Animation
                 gsap.fromTo(newCards,
-                    { opacity: 0, scale: 0.92, y: 26 },
+                    { opacity: 0, scale: 0.9, y: 28 },
                     {
                         opacity: 1,
                         scale: 1,
                         y: 0,
                         duration: 0.55,
-                        stagger: 0.065,
+                        stagger: 0.07,
                         ease: 'power3.out',
                         clearProps: 'transform,opacity',
                         onComplete: () => {
+                            productsGrid.classList.remove('is-filtering');
                             isFiltering = false;
                             if (typeof ScrollTrigger !== 'undefined') {
                                 ScrollTrigger.refresh();
@@ -376,7 +379,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 scale: 1,
                                 opacity: 1,
                                 duration: 0.6,
-                                delay: idx * 0.065 + 0.06,
+                                delay: idx * 0.07 + 0.06,
                                 ease: 'power3.out',
                                 clearProps: 'transform,opacity'
                             }
@@ -405,7 +408,89 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // ==========================================
-    // 5b. Workspace Image Sequence Animation Controller
+    // 5b. Universal Hero Text Masking Animation System
+    // Masks hero headlines across every page
+    // ==========================================
+    function initHeroTextMasking() {
+        if (typeof gsap === 'undefined') return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        // Automatically target hero section titles and elements across every page
+        const candidateTitles = document.querySelectorAll(
+            '.shop-hero-title, .contact-hero-title, .shipping-hero-title, ' +
+            '.guides-hero-title, .mission-hero-title, .pd-title, ' +
+            '.cart-header-text h1, .checkout-header-text h1, .wishlist-header-text h1, ' +
+            '.login-visual-title, .login-main-title, .error-title'
+        );
+
+        candidateTitles.forEach(titleEl => {
+            if (titleEl.dataset.maskInitialized) return;
+            titleEl.dataset.maskInitialized = 'true';
+
+            let maskChildren = titleEl.querySelectorAll('.spotlight-reveal-text, .text-mask-child');
+            if (maskChildren.length === 0) {
+                // Auto-wrap innerHTML in spotlight-reveal-wrap and spotlight-reveal-text
+                const originalHtml = titleEl.innerHTML.trim();
+                titleEl.innerHTML = `<span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">${originalHtml}</span></span>`;
+                maskChildren = titleEl.querySelectorAll('.spotlight-reveal-text, .text-mask-child');
+            }
+
+            // Theatrical Spotlight Reveal
+            gsap.fromTo(maskChildren,
+                {
+                    clipPath: 'circle(0% at 50% 50%)',
+                    opacity: 0.1,
+                    scale: 0.95,
+                    filter: 'brightness(1.5) blur(4px)'
+                },
+                {
+                    clipPath: 'circle(150% at 50% 50%)',
+                    opacity: 1,
+                    scale: 1,
+                    filter: 'brightness(1) blur(0px)',
+                    duration: 0.95,
+                    stagger: 0.15,
+                    ease: 'power3.out',
+                    clearProps: 'clipPath,filter,transform,opacity',
+                    delay: 0.18
+                }
+            );
+        });
+
+        // Also animate any explicitly created .spotlight-reveal-text / .text-mask-child that hasn't been animated yet
+        const orphanChildren = Array.from(document.querySelectorAll('.spotlight-reveal-text, .text-mask-child')).filter(
+            c => !c.closest('[data-mask-initialized]') && !c.dataset.maskAnimated && !c.closest('.hero-title')
+        );
+
+        if (orphanChildren.length > 0) {
+            orphanChildren.forEach(c => { c.dataset.maskAnimated = 'true'; });
+            gsap.fromTo(orphanChildren,
+                {
+                    clipPath: 'circle(0% at 50% 50%)',
+                    opacity: 0.1,
+                    scale: 0.95,
+                    filter: 'brightness(1.5) blur(4px)'
+                },
+                {
+                    clipPath: 'circle(150% at 50% 50%)',
+                    opacity: 1,
+                    scale: 1,
+                    filter: 'brightness(1) blur(0px)',
+                    duration: 0.9,
+                    stagger: 0.1,
+                    ease: 'power3.out',
+                    clearProps: 'clipPath,filter,transform,opacity',
+                    delay: 0.2
+                }
+            );
+        }
+    }
+
+    initHeroTextMasking();
+    window.initHeroTextMasking = initHeroTextMasking;
+
+    // ==========================================
+    // 5c. Workspace Image Sequence Animation Controller
     // ==========================================
     function initWorkspaceImageSequence() {
         const sequenceFrame = document.getElementById('setup-sequence-frame');
@@ -658,10 +743,14 @@ document.addEventListener("DOMContentLoaded", function() {
             // Smooth scroll to freshly-dropped
             const dropSection = document.getElementById('freshly-dropped');
             if (dropSection) {
-                window.scrollTo({
-                    top: dropSection.offsetTop - 85,
-                    behavior: 'smooth'
-                });
+                if (window.lenis) {
+                    window.lenis.scrollTo(dropSection, { offset: -85, duration: 1.2 });
+                } else {
+                    window.scrollTo({
+                        top: dropSection.offsetTop - 85,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
@@ -693,10 +782,14 @@ document.addEventListener("DOMContentLoaded", function() {
             // Scroll to products and search
             const dropSec = document.getElementById('freshly-dropped');
             if (dropSec) {
-                window.scrollTo({
-                    top: dropSec.offsetTop - 85,
-                    behavior: 'smooth'
-                });
+                if (window.lenis) {
+                    window.lenis.scrollTo(dropSec, { offset: -85, duration: 1.2 });
+                } else {
+                    window.scrollTo({
+                        top: dropSec.offsetTop - 85,
+                        behavior: 'smooth'
+                    });
+                }
             }
 
             // Map keyword to filter or toast
@@ -773,11 +866,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (target) {
                     e.preventDefault();
                     const headerHeight = 82;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    if (window.lenis) {
+                        window.lenis.scrollTo(target, { offset: -headerHeight, duration: 1.2 });
+                    } else {
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             }
         });
@@ -1068,7 +1165,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // ==========================================
-    // 16. Accessible FAQ Accordion
+    // 16. Accessible FAQ Accordion (Smooth Controlled Height & Opacity)
     // ==========================================
     const faqItems = document.querySelectorAll('.faq-item');
     if (faqItems.length > 0) {
@@ -1077,17 +1174,48 @@ document.addEventListener("DOMContentLoaded", function() {
             const answer = item.querySelector('.faq-answer');
             if (!questionBtn || !answer) return;
 
+            // Initialize state cleanly
+            const isInitiallyActive = item.classList.contains('active');
+            if (isInitiallyActive) {
+                answer.removeAttribute('hidden');
+                answer.style.height = 'auto';
+                answer.style.opacity = '1';
+                questionBtn.setAttribute('aria-expanded', 'true');
+            } else {
+                answer.style.height = '0px';
+                answer.style.opacity = '0';
+                answer.style.overflow = 'hidden';
+                answer.setAttribute('hidden', '');
+                questionBtn.setAttribute('aria-expanded', 'false');
+            }
+
             questionBtn.addEventListener('click', () => {
                 const isCurrentlyActive = item.classList.contains('active');
 
                 // Close all other items (single-open accordion requirement)
                 faqItems.forEach(otherItem => {
-                    if (otherItem !== item) {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
                         otherItem.classList.remove('active');
                         const otherBtn = otherItem.querySelector('.faq-question');
                         const otherAns = otherItem.querySelector('.faq-answer');
                         if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
-                        if (otherAns) otherAns.hidden = true;
+                        if (otherAns) {
+                            if (typeof gsap !== 'undefined') {
+                                gsap.to(otherAns, {
+                                    height: 0,
+                                    opacity: 0,
+                                    duration: 0.32,
+                                    ease: 'power2.inOut',
+                                    onComplete: () => {
+                                        otherAns.setAttribute('hidden', '');
+                                    }
+                                });
+                            } else {
+                                otherAns.style.height = '0px';
+                                otherAns.style.opacity = '0';
+                                otherAns.setAttribute('hidden', '');
+                            }
+                        }
                     }
                 });
 
@@ -1095,11 +1223,46 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (isCurrentlyActive) {
                     item.classList.remove('active');
                     questionBtn.setAttribute('aria-expanded', 'false');
-                    answer.hidden = true;
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(answer, {
+                            height: 0,
+                            opacity: 0,
+                            duration: 0.32,
+                            ease: 'power2.inOut',
+                            onComplete: () => {
+                                answer.setAttribute('hidden', '');
+                            }
+                        });
+                    } else {
+                        answer.style.height = '0px';
+                        answer.style.opacity = '0';
+                        answer.setAttribute('hidden', '');
+                    }
                 } else {
                     item.classList.add('active');
                     questionBtn.setAttribute('aria-expanded', 'true');
-                    answer.hidden = false;
+                    answer.removeAttribute('hidden');
+                    
+                    if (typeof gsap !== 'undefined') {
+                        gsap.killTweensOf(answer);
+                        answer.style.height = 'auto';
+                        const fullHeight = answer.scrollHeight;
+                        gsap.fromTo(answer,
+                            { height: 0, opacity: 0 },
+                            {
+                                height: fullHeight,
+                                opacity: 1,
+                                duration: 0.36,
+                                ease: 'power2.out',
+                                onComplete: () => {
+                                    answer.style.height = 'auto';
+                                }
+                            }
+                        );
+                    } else {
+                        answer.style.height = 'auto';
+                        answer.style.opacity = '1';
+                    }
                 }
             });
 

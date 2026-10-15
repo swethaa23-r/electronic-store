@@ -72,7 +72,7 @@
         return password && password.length >= 8 && /[A-Za-z]/.test(password) && /\d/.test(password);
     }
 
-    // Accessible Inline Error Management
+    // Accessible Inline Error Management with smooth non-shifting message animation
     function setFieldError(inputEl, errorEl, message) {
         if (!inputEl) return;
         inputEl.classList.add('has-error');
@@ -86,6 +86,9 @@
         if (errorEl) {
             errorEl.textContent = message;
             errorEl.style.display = 'block';
+            requestAnimationFrame(() => {
+                errorEl.classList.add('is-visible');
+            });
             inputEl.setAttribute('aria-describedby', errorEl.id);
         }
     }
@@ -101,8 +104,13 @@
             inputEl.closest('.login-terms-group').classList.remove('has-error');
         }
         if (errorEl) {
-            errorEl.textContent = '';
-            errorEl.style.display = 'none';
+            errorEl.classList.remove('is-visible');
+            setTimeout(() => {
+                if (!errorEl.classList.contains('is-visible')) {
+                    errorEl.textContent = '';
+                    errorEl.style.display = 'none';
+                }
+            }, 200);
         }
     }
 
@@ -609,21 +617,83 @@
             });
         }
 
-        if (typeof gsap !== 'undefined') {
-            gsap.from('.login-visual-overlay', {
-                opacity: 0,
-                y: -10,
-                duration: 0.6,
-                delay: 0.2,
-                ease: 'power2.out'
-            });
+        if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const tl = gsap.timeline({ defaults: { ease: 'power2.out' }, delay: 0.08 });
 
-            gsap.from('.login-back-nav', {
-                opacity: 0,
-                x: -12,
-                duration: 0.45,
-                ease: 'power2.out'
-            });
+            tl.fromTo('.login-back-nav',
+                { opacity: 0, x: -14 },
+                { opacity: 1, x: 0, duration: 0.45 }
+            )
+            .fromTo('.login-visual-card',
+                { opacity: 0, x: -20 },
+                { opacity: 1, x: 0, duration: 0.65 },
+                '-=0.2'
+            )
+            .fromTo('.login-visual-title .spotlight-reveal-text, .login-visual-title .text-mask-child',
+                {
+                    clipPath: 'circle(0% at 50% 50%)',
+                    opacity: 0.1,
+                    scale: 0.95,
+                    filter: 'brightness(1.5) blur(4px)'
+                },
+                {
+                    clipPath: 'circle(150% at 50% 50%)',
+                    opacity: 1,
+                    scale: 1,
+                    filter: 'brightness(1) blur(0px)',
+                    duration: 0.85,
+                    stagger: 0.14,
+                    ease: 'power3.out',
+                    clearProps: 'clipPath,filter,transform,opacity'
+                },
+                '-=0.3'
+            )
+            .fromTo('.login-visual-overlay .login-visual-perks',
+                { opacity: 0, y: 12 },
+                { opacity: 1, y: 0, duration: 0.45 },
+                '-=0.2'
+            )
+            // Reveal form container with subtle scale-and-opacity effect
+            .fromTo('.login-form-container',
+                { opacity: 0, scale: 0.97, y: 14 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: 'power2.out' },
+                '-=0.35'
+            )
+            // Reveal heading separately with theatrical Spotlight Reveal
+            .fromTo('.login-main-title .spotlight-reveal-text, .login-main-title .text-mask-child',
+                {
+                    clipPath: 'circle(0% at 50% 50%)',
+                    opacity: 0.1,
+                    scale: 0.95,
+                    filter: 'brightness(1.5) blur(4px)'
+                },
+                {
+                    clipPath: 'circle(150% at 50% 50%)',
+                    opacity: 1,
+                    scale: 1,
+                    filter: 'brightness(1) blur(0px)',
+                    duration: 0.85,
+                    ease: 'power3.out',
+                    clearProps: 'clipPath,filter,transform,opacity'
+                },
+                '-=0.2'
+            )
+            .fromTo('.login-subtitle',
+                { opacity: 0, y: 10 },
+                { opacity: 1, y: 0, duration: 0.4 },
+                '-=0.25'
+            )
+            .fromTo('.login-tab-bar, .login-google-wrap, .login-divider',
+                { opacity: 0, y: 10 },
+                { opacity: 1, y: 0, duration: 0.38, stagger: 0.06 },
+                '-=0.2'
+            )
+            // Introduce form fields with a short stagger
+            .fromTo('.login-auth-form .login-field-group, .login-options-row, .login-terms-group, .btn-auth-submit',
+                { opacity: 0, y: 10 },
+                { opacity: 1, y: 0, duration: 0.35, stagger: 0.04, clearProps: 'transform' },
+                '-=0.15'
+            );
         }
     });
 

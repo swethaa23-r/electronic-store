@@ -299,6 +299,16 @@
             // If we are on cart.html, render the shopping cart view
             if (document.getElementById('cart-items-container') || document.getElementById('cart-summary-card')) {
                 this.renderCartPage();
+
+                if (typeof AOS !== 'undefined' && !window._cartAosInitialized) {
+                    window._cartAosInitialized = true;
+                    AOS.init({
+                        duration: 700,
+                        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                        once: true,
+                        offset: 30
+                    });
+                }
             }
         },
 
@@ -375,11 +385,45 @@
                                 <button type="button" class="btn-remove-cart-item" data-action="remove-item" title="Remove ${item.name} from cart" aria-label="Remove item">
                                     <i class="fa-regular fa-trash-can"></i>
                                 </button>
-                            </div>
                         </div>
                     `;
                 });
                 container.innerHTML = html;
+
+                // Animate existing cart items with a short stagger & reveal order summary
+                if (!window._cartInitialRendered) {
+                    window._cartInitialRendered = true;
+                    if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                        const rows = container.querySelectorAll('.cart-item-row');
+                        if (rows.length) {
+                            gsap.fromTo(rows,
+                                { opacity: 0, y: 14 },
+                                { opacity: 1, y: 0, duration: 0.35, stagger: 0.05, ease: 'power2.out', clearProps: 'transform' }
+                            );
+                        }
+                        const summaryCard = document.getElementById('cart-summary-card');
+                        if (summaryCard) {
+                            gsap.fromTo(summaryCard,
+                                { opacity: 0, y: 16 },
+                                { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', clearProps: 'transform', delay: 0.08 }
+                            );
+                        }
+                    }
+                } else if (window._lastChangedLineKey) {
+                    // Animate quantity changes subtly
+                    const changedRow = container.querySelector(`.cart-item-row[data-line-key="${window._lastChangedLineKey}"]`);
+                    if (changedRow && typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                        const qtyInput = changedRow.querySelector('.qty-input');
+                        const subtotalVal = changedRow.querySelector('.cart-subtotal-val');
+                        if (qtyInput) {
+                            gsap.fromTo(qtyInput, { scale: 1.1 }, { scale: 1, duration: 0.2, ease: 'power2.out' });
+                        }
+                        if (subtotalVal) {
+                            gsap.fromTo(subtotalVal, { opacity: 0.6, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.24, ease: 'power2.out' });
+                        }
+                    }
+                    window._lastChangedLineKey = null;
+                }
             }
 
             // 2. Render Order Summary
@@ -497,27 +541,44 @@
 
             if (action === 'increase-qty') {
                 currentQty++;
+                window._lastChangedLineKey = lineKey;
                 StacklyCart.updateQuantity(lineKey, currentQty);
             } else if (action === 'decrease-qty') {
                 if (currentQty <= 1) {
-                    // Smooth removal
-                    row.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-                    row.style.opacity = '0';
-                    row.style.transform = 'translateX(20px)';
-                    setTimeout(() => {
+                    // Smooth transition when item is removed
+                    if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                        gsap.to(row, {
+                            opacity: 0,
+                            x: 28,
+                            duration: 0.24,
+                            ease: 'power2.in',
+                            onComplete: () => {
+                                StacklyCart.removeItem(lineKey);
+                            }
+                        });
+                    } else {
                         StacklyCart.removeItem(lineKey);
-                    }, 240);
+                    }
                 } else {
                     currentQty--;
+                    window._lastChangedLineKey = lineKey;
                     StacklyCart.updateQuantity(lineKey, currentQty);
                 }
             } else if (action === 'remove-item') {
-                row.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-                row.style.opacity = '0';
-                row.style.transform = 'translateX(20px)';
-                setTimeout(() => {
+                // Smooth transition when item is removed
+                if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    gsap.to(row, {
+                        opacity: 0,
+                        x: 28,
+                        duration: 0.24,
+                        ease: 'power2.in',
+                        onComplete: () => {
+                            StacklyCart.removeItem(lineKey);
+                        }
+                    });
+                } else {
                     StacklyCart.removeItem(lineKey);
-                }, 240);
+                }
             }
             return;
         }
