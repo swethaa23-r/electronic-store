@@ -44,8 +44,12 @@
                     <i class="fa-solid fa-triangle-exclamation"></i>
                     <span>ERROR 404 &bull; CIRCUIT DISCONNECTED</span>
                 </div>
-                <h1 class="error-code">404</h1>
-                <h2 class="error-title">Oops! Page Not Found</h2>
+                <h1 class="error-code">
+                    <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">404</span></span>
+                </h1>
+                <h2 class="error-title">
+                    <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Oops! Page Not Found</span></span>
+                </h2>
                 <p class="error-description">
                     Looks like this page has gone offline. Let’s get you back to the latest tech.
                 </p>
@@ -131,7 +135,109 @@
         </div>
     </main>
 
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
+    <script src="js/lenis-init.js"></script>
     <!-- Custom JS -->
     <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof gsap === 'undefined') return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+            tl.fromTo('.standalone-brand-bar',
+                { opacity: 0, y: -12 },
+                { opacity: 1, y: 0, duration: 0.45 }
+            )
+            .fromTo('.error-badge',
+                { opacity: 0, y: -10 },
+                { opacity: 1, y: 0, duration: 0.4 },
+                '-=0.15'
+            )
+            // 1. Reveal 404 number using a controlled spotlight reveal
+            .fromTo('.error-code .spotlight-reveal-text, .error-code .text-mask-child',
+                {
+                    clipPath: 'circle(0% at 50% 50%)',
+                    opacity: 0.1,
+                    scale: 0.92,
+                    filter: 'brightness(1.6) blur(5px)'
+                },
+                {
+                    clipPath: 'circle(150% at 50% 50%)',
+                    opacity: 1,
+                    scale: 1,
+                    filter: 'brightness(1) blur(0px)',
+                    duration: 0.85,
+                    ease: 'power3.out',
+                    clearProps: 'clipPath,filter,transform,opacity'
+                },
+                '-=0.15'
+            )
+            // 2. Reveal heading with Spotlight Reveal effect
+            .fromTo('.error-title .spotlight-reveal-text, .error-title .text-mask-child',
+                {
+                    clipPath: 'circle(0% at 50% 50%)',
+                    opacity: 0.1,
+                    scale: 0.95,
+                    filter: 'brightness(1.5) blur(4px)'
+                },
+                {
+                    clipPath: 'circle(150% at 50% 50%)',
+                    opacity: 1,
+                    scale: 1,
+                    filter: 'brightness(1) blur(0px)',
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    clearProps: 'clipPath,filter,transform,opacity'
+                },
+                '-=0.2'
+            )
+            // 3. Reveal description strictly afterward
+            .fromTo('.error-description',
+                { opacity: 0, y: 12 },
+                { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+                '+=0.06'
+            )
+            // 4. Introduce navigation buttons with a short stagger
+            .fromTo('.error-actions .btn',
+                { opacity: 0, y: 12 },
+                { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: 'power2.out' },
+                '-=0.15'
+            )
+            .fromTo('.error-suggestions',
+                { opacity: 0, y: 10 },
+                { opacity: 1, y: 0, duration: 0.45 },
+                '-=0.1'
+            )
+            .fromTo('.tech-card-3d',
+                { opacity: 0, scale: 0.94, y: 20 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.75, ease: 'power3.out' },
+                0.2
+            );
+
+            // Subtle continuous floating motion on tech chips
+            gsap.to('.chip-top', {
+                y: '-=6',
+                duration: 2.4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+
+            gsap.to('.chip-bottom', {
+                y: '+=6',
+                duration: 2.8,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 0.5
+            });
+        });
+    </script>
 </body>
 </html>

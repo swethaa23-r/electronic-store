@@ -47,6 +47,7 @@
                 <li><a href="shipping.html">Order Management</a></li>
                 <li><a href="mission.html" class="active">About</a></li>
                 <li><a href="guides.html">Buying Guides</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
 
             <div class="nav-icons">
@@ -97,6 +98,7 @@
             <li><a href="shipping.html" class="mobile-nav-item">Order Management</a></li>
             <li><a href="mission.html" class="mobile-nav-item active">About</a></li>
             <li><a href="guides.html" class="mobile-nav-item">Buying Guides</a></li>
+            <li><a href="contact.html" class="mobile-nav-item">Contact</a></li>
             <li><a href="wishlist.html" class="mobile-nav-item"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
             <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
             <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
@@ -121,11 +123,14 @@
     <section class="mission-hero-section bg-warm-gray" id="mission-hero">
         <div class="container">
             <div class="mission-hero-grid">
-                <div class="mission-hero-left" data-aos="fade-up" data-aos-duration="800">
+                <div class="mission-hero-left">
                     <p class="shop-eyebrow">THE STACKLY STORY</p>
-                    <h1 class="mission-hero-title">Less noise.<br>More of what matters.</h1>
+                    <h1 class="mission-hero-title">
+                        <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Less noise.</span></span>
+                        <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">More of what matters.</span></span>
+                    </h1>
                 </div>
-                <div class="mission-hero-right" data-aos="fade-up" data-aos-duration="800" data-aos-delay="120">
+                <div class="mission-hero-right">
                     <p class="mission-hero-sub">
                         We believe the best technology doesn't ask for your attention. It gives you more room for the things you love.
                     </p>
@@ -216,34 +221,74 @@
         </div>
     </section>
 
-    <!-- 5. Value Propositions ("For the things that matter to you.") -->
-    <section class="shop-value-props bg-warm-gray border-top-subtle" id="things-that-matter">
+    <!-- 5. Editorial Storytelling Section ("For the things that matter to you.") -->
+    <section class="mission-editorial-section bg-warm-gray border-top-subtle" id="things-that-matter">
         <div class="container">
-            <h2 class="shop-value-heading" data-aos="fade-up">For the things that matter to you.</h2>
-
-            <div class="shop-value-grid">
-                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="50">
-                    <div class="shop-value-icon">
-                        <i class="fa-solid fa-desktop"></i>
+            <div class="mission-editorial-split">
+                <!-- Left: Editorial Headline & Visual Anchor -->
+                <div class="mission-editorial-lead" data-aos="fade-right">
+                    <p class="tagline">INTENTIONAL HARDWARE</p>
+                    <h2 class="mission-editorial-title">
+                        <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">For the things that matter to you.</span></span>
+                    </h2>
+                    <p class="mission-editorial-intro">
+                        We curate electronics that respect your attention and elevate your daily environment. Not more gadgets—just the right ones, thoughtfully chosen for where you work, play, and live.
+                    </p>
+                    
+                    <div class="mission-editorial-visual">
+                        <div class="editorial-img-frame">
+                            <img src="assets/img/mission-workshop.webp" alt="STACKLY design and hardware curation workshop" loading="lazy">
+                        </div>
+                        <div class="editorial-visual-caption">
+                            <span class="caption-dot"></span>
+                            <span>STACKLY Studio Curation &mdash; Intentional Design</span>
+                        </div>
                     </div>
-                    <h4>Room to create</h4>
-                    <p>Displays, laptops and tools for the ideas you want to bring to life.</p>
                 </div>
 
-                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="120">
-                    <div class="shop-value-icon">
-                        <i class="fa-solid fa-gamepad"></i>
+                <!-- Right: Three Vertically Stacked Editorial Content Rows -->
+                <div class="mission-editorial-rows" data-aos="fade-left" data-aos-delay="100">
+                    <!-- Row 1: Room to create -->
+                    <div class="editorial-row-item">
+                        <div class="editorial-marker-wrap">
+                            <span class="editorial-row-num">01</span>
+                            <div class="editorial-row-icon">
+                                <i class="fa-solid fa-desktop"></i>
+                            </div>
+                        </div>
+                        <div class="editorial-row-body">
+                            <h3 class="editorial-row-title">Room to create</h3>
+                            <p class="editorial-row-desc">Displays, laptops and tools for the ideas you want to bring to life.</p>
+                        </div>
                     </div>
-                    <h4>Time to play</h4>
-                    <p>Consoles, controllers and immersive sound built for every game night.</p>
-                </div>
 
-                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="190">
-                    <div class="shop-value-icon">
-                        <i class="fa-regular fa-heart"></i>
+                    <!-- Row 2: Time to play -->
+                    <div class="editorial-row-item">
+                        <div class="editorial-marker-wrap">
+                            <span class="editorial-row-num">02</span>
+                            <div class="editorial-row-icon">
+                                <i class="fa-solid fa-gamepad"></i>
+                            </div>
+                        </div>
+                        <div class="editorial-row-body">
+                            <h3 class="editorial-row-title">Time to play</h3>
+                            <p class="editorial-row-desc">Consoles, controllers and immersive sound built for every game night.</p>
+                        </div>
                     </div>
-                    <h4>Made for your everyday</h4>
-                    <p>Audio and wearables that move effortlessly from morning routines to evening wind-downs.</p>
+
+                    <!-- Row 3: Made for your everyday -->
+                    <div class="editorial-row-item">
+                        <div class="editorial-marker-wrap">
+                            <span class="editorial-row-num">03</span>
+                            <div class="editorial-row-icon">
+                                <i class="fa-regular fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="editorial-row-body">
+                            <h3 class="editorial-row-title">Made for your everyday</h3>
+                            <p class="editorial-row-desc">Audio and wearables that move effortlessly from morning routines to evening wind-downs.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -443,6 +488,26 @@
                             <p>Start with the touchpoint you use most—whether that's a pair of noise-cancelling headphones for focus, a crisp 27-inch monitor for your desk, or a tactile keyboard and mouse duo.</p>
                         </div>
                     </div>
+
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>How does STACKLY test and evaluate hardware before adding it to the store?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>Every candidate product undergoes a strict four-stage evaluation in our Copenhagen studio: ergonomic build assessment, thermal and acoustic bench tests, 100-hour continuous stress testing, and real-world daily commute trials to verify everyday reliability.</p>
+                        </div>
+                    </div>
+
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>What is STACKLY's approach to packaging and environmental sustainability?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>We design for circular longevity. All our packaging is 100% plastic-free, made from FSC-certified recycled paperboard and soy-based inks. We prioritize modular hardware design and easy battery access to extend each product's active lifecycle.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -472,7 +537,7 @@
                         <li><a href="shipping.html">Order Management</a></li>
                         <li><a href="mission.html">About</a></li>
                         <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="404.html" class="info-modal-link" data-info="contact">Contact Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -492,7 +557,7 @@
                         <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
                         <li><a href="index.html#faq">Help Center &amp; FAQs</a></li>
                         <li><a href="404.html">Warranty Information</a></li>
-                        <li><a href="404.html">Contact Customer Care</a></li>
+                        <li><a href="contact.html">Contact Customer Care</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -536,6 +601,10 @@
     <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
+    <script src="js/lenis-init.js"></script>
     <!-- Custom JS -->
     <script src="js/cart.js"></script>
     <script src="js/wishlist.js"></script>

@@ -47,6 +47,7 @@
                 <li><a href="shipping.html">Order Management</a></li>
                 <li><a href="mission.html">About</a></li>
                 <li><a href="guides.html" class="active">Buying Guides</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
 
             <div class="nav-icons">
@@ -97,6 +98,7 @@
             <li><a href="shipping.html" class="mobile-nav-item">Order Management</a></li>
             <li><a href="mission.html" class="mobile-nav-item">About</a></li>
             <li><a href="guides.html" class="mobile-nav-item active">Buying Guides</a></li>
+            <li><a href="contact.html" class="mobile-nav-item">Contact</a></li>
             <li><a href="wishlist.html" class="mobile-nav-item"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
             <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
             <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
@@ -120,9 +122,11 @@
     <!-- 1. Buying Guides Hero Section ("Find what fits your world.") -->
     <section class="guides-hero-section bg-warm-gray" id="guides-hero">
         <div class="container">
-            <div class="guides-hero-content" data-aos="fade-up" data-aos-duration="800">
+            <div class="guides-hero-content">
                 <p class="shop-eyebrow">A LITTLE INSPIRATION. A BETTER EVERYDAY.</p>
-                <h1 class="guides-hero-title">Find what fits your world.</h1>
+                <h1 class="guides-hero-title">
+                    <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Find what fits your world.</span></span>
+                </h1>
                 <p class="guides-hero-sub">
                     Thoughtful buying guides and everyday edits. Less guesswork, more of the things you'll love using.
                 </p>
@@ -360,38 +364,73 @@
         </div>
     </section>
 
-    <!-- 6. Value Propositions ("Better choices begin with better questions.") -->
-    <section class="shop-value-props bg-warm-gray border-top-subtle" id="better-questions">
+    <!-- 6. Buying Guides Interactive Cards ("Better choices begin with better questions.") -->
+    <section class="buying-guides-cards-section bg-warm-gray border-top-subtle" id="better-questions">
         <div class="container">
-            <h2 class="shop-value-heading" data-aos="fade-up">Better choices begin with better questions.</h2>
+            <div class="section-heading text-center" data-aos="fade-up">
+                <p class="tagline">CONSIDERED DECISIONS</p>
+                <h2 class="shop-value-heading"><span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Better choices begin with better questions.</span></span></h2>
+                <p class="subtitle">Use these core considerations to guide your next upgrade before diving into technical specs.</p>
+            </div>
 
-            <div class="shop-value-grid">
-                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="50">
-                    <div class="shop-value-icon">
-                        <i class="fa-solid fa-desktop"></i>
+            <div class="guide-cards-grid">
+                <!-- Card 1: Workspace & Monitor -->
+                <article class="guide-question-card" data-aos="fade-up" data-aos-delay="60">
+                    <div class="guide-card-media">
+                        <img src="assets/img/shop-workspace.webp" alt="Workspace setup with monitor and laptop" loading="lazy">
+                        <span class="guide-card-badge">WORKSPACE &amp; FOCUS</span>
                     </div>
-                    <h4>Where will you use it most?</h4>
-                    <p>Match your screen, sound and battery life to your space—whether you're choosing your setup for a home office, shared room or daily commute.</p>
-                </div>
+                    <div class="guide-card-content">
+                        <div class="guide-card-header">
+                            <span class="guide-card-step">QUESTION 01</span>
+                            <div class="guide-card-icon">
+                                <i class="fa-solid fa-desktop"></i>
+                            </div>
+                        </div>
+                        <h3 class="guide-card-title">Where will you use it most?</h3>
+                        <p class="guide-card-desc">Match your screen, sound and battery life to your space—whether you're choosing your setup for a home office, shared room or daily commute.</p>
+                    </div>
+                </article>
 
-                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="120">
-                    <div class="shop-value-icon">
-                        <i class="fa-solid fa-gamepad"></i>
+                <!-- Card 2: Gaming & Creation -->
+                <article class="guide-question-card" data-aos="fade-up" data-aos-delay="140">
+                    <div class="guide-card-media">
+                        <img src="assets/img/shop-gaming.webp" alt="Gaming console and sharp monitor setup" loading="lazy">
+                        <span class="guide-card-badge">GAMING &amp; PLAY</span>
                     </div>
-                    <h4>How do you like to play or create?</h4>
-                    <p>Look for the details that matter to your routine, from refresh rates and resolution to controller comfort and low-latency wireless audio.</p>
-                </div>
+                    <div class="guide-card-content">
+                        <div class="guide-card-header">
+                            <span class="guide-card-step">QUESTION 02</span>
+                            <div class="guide-card-icon">
+                                <i class="fa-solid fa-gamepad"></i>
+                            </div>
+                        </div>
+                        <h3 class="guide-card-title">How do you like to play or create?</h3>
+                        <p class="guide-card-desc">Look for the details that matter to your routine, from refresh rates and resolution to controller comfort and low-latency wireless audio.</p>
+                    </div>
+                </article>
 
-                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="190">
-                    <div class="shop-value-icon">
-                        <i class="fa-solid fa-headphones"></i>
+                <!-- Card 3: Everyday Audio & Accessories -->
+                <article class="guide-question-card" data-aos="fade-up" data-aos-delay="220">
+                    <div class="guide-card-media">
+                        <img src="assets/img/shop-listening.webp" alt="Everyday audio gear and wireless headphones" loading="lazy">
+                        <span class="guide-card-badge">AUDIO &amp; ROUTINE</span>
                     </div>
-                    <h4>What feels good every day?</h4>
-                    <p>The best tech disappears into your day. Prioritize comfort, reliability and the features you'll actually reach for morning after morning.</p>
-                </div>
+                    <div class="guide-card-content">
+                        <div class="guide-card-header">
+                            <span class="guide-card-step">QUESTION 03</span>
+                            <div class="guide-card-icon">
+                                <i class="fa-solid fa-headphones"></i>
+                            </div>
+                        </div>
+                        <h3 class="guide-card-title">What feels good every day?</h3>
+                        <p class="guide-card-desc">The best tech disappears into your day. Prioritize comfort, reliability and the features you'll actually reach for morning after morning.</p>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
+
 
     <!-- 7. ADDITIONAL SECTION 1: Interactive 3-Step Buying Guide Recommender ("Find Your Exact Match") -->
     <section class="guides-quiz-section bg-white border-top" id="interactive-finder">
@@ -630,6 +669,26 @@
                             <p>Yes—every STACKLY order includes our <strong>30-day considered return window</strong> and <strong>Pay on Delivery</strong>. Test how a monitor looks on your desk or how headphones feel across a full week, with simple exchanges if you want to switch models.</p>
                         </div>
                     </div>
+
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>How do I know if my laptop supports USB-C single-cable display and charging?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>Look for a USB-C port with a DisplayPort (DP) or Thunderbolt lightning icon on your laptop. Our View 27 4K delivers up to 90W Power Delivery over a single USB-C cable, transmitting video, audio, and high-speed data while charging your device simultaneously.</p>
+                        </div>
+                    </div>
+
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>What is the ideal audio latency for competitive gaming vs. music listening?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>For competitive gaming, we recommend ultra-low latency wireless audio under 30ms or a direct 3.5mm low-impedance wired connection to eliminate audio-visual lag. For music and podcasts, standard AAC and aptX Bluetooth protocols provide optimal fidelity and battery longevity.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -659,7 +718,7 @@
                         <li><a href="shipping.html">Order Management</a></li>
                         <li><a href="mission.html">About</a></li>
                         <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="404.html" class="info-modal-link" data-info="contact">Contact Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -679,7 +738,7 @@
                         <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
                         <li><a href="index.html#faq">Help Center &amp; FAQs</a></li>
                         <li><a href="404.html">Warranty Information</a></li>
-                        <li><a href="404.html">Contact Customer Care</a></li>
+                        <li><a href="contact.html">Contact Customer Care</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -777,6 +836,10 @@
     <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
+    <script src="js/lenis-init.js"></script>
     <!-- Custom JS -->
     <script src="js/cart.js"></script>
     <script src="js/wishlist.js"></script>

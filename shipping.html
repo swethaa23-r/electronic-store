@@ -47,6 +47,7 @@
                 <li><a href="shipping.html" class="active">Order Management</a></li>
                 <li><a href="mission.html">About</a></li>
                 <li><a href="guides.html">Buying Guides</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
 
             <div class="nav-icons">
@@ -97,6 +98,7 @@
             <li><a href="shipping.html" class="mobile-nav-item active">Order Management</a></li>
             <li><a href="mission.html" class="mobile-nav-item">About</a></li>
             <li><a href="guides.html" class="mobile-nav-item">Buying Guides</a></li>
+            <li><a href="contact.html" class="mobile-nav-item">Contact</a></li>
             <li><a href="wishlist.html" class="mobile-nav-item"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
             <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
             <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
@@ -124,9 +126,11 @@
             <div class="shipping-hero-overlay"></div>
         </div>
         <div class="container shipping-hero-container">
-            <div class="shipping-hero-content" data-aos="fade-up" data-aos-duration="850">
+            <div class="shipping-hero-content">
                 <p class="shop-eyebrow">WE'RE HERE FOR THE WHOLE JOURNEY</p>
-                <h1 class="shipping-hero-title">From our door to yours.</h1>
+                <h1 class="shipping-hero-title">
+                    <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">From our door to yours.</span></span>
+                </h1>
                 <p class="shipping-hero-subtitle">
                     Everything you need to know about delivery, returns, and where your next everyday favorite is right now.
                 </p>
@@ -441,6 +445,26 @@
                             <p>Once your order status is marked as delivered, submit a return review request using your private tracking code on the Returns tab. Please keep the original packaging and wait for our confirmation and return label before sending an item back.</p>
                         </div>
                     </div>
+
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>How do I track my delivery in real time?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>Enter your private 6-digit order tracking code into the tracker tool at the top of this page. You will see your exact courier milestone updates—from order confirmation and packaging to dispatch, out-for-delivery, and final doorstep delivery.</p>
+                        </div>
+                    </div>
+
+                    <div class="clarity-accordion-item">
+                        <button type="button" class="clarity-row-btn" aria-expanded="false">
+                            <span>What should I do if I need to change my delivery address?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="clarity-row-content" hidden>
+                            <p>If your order is still in the "Confirmed" or "Preparing" state, you can update your delivery destination immediately by contacting our 24/7 support desk with your tracking code. Once an order is dispatched with our courier, rerouting may add 24 hours to transit.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -511,8 +535,173 @@
         </div>
     </section>
 
-    <!-- 6. ADDITIONAL SECTION 2: Unboxing Care & Direct Delivery Concierge Support -->
-    <section class="shipping-extra-concierge bg-white border-top" id="delivery-concierge">
+    <!-- 6. ADDITIONAL SECTION: Self-Service Order Management & Guarantee Shield -->
+    <section class="order-management-hub-section bg-white border-top" id="order-management-hub">
+        <div class="container">
+            <div class="order-hub-header" data-aos="fade-up">
+                <div class="order-hub-title-block">
+                    <p class="shop-eyebrow">SELF-SERVICE &amp; BUYER GUARANTEES</p>
+                    <h2 class="shop-shelf-title">Modify, update, and protect your active orders.</h2>
+                    <p class="order-hub-desc">
+                        Need to adjust your shipping address, reschedule a delivery window, download an itemized tax invoice, or cancel a pending shipment? Select a self-service action below or explore our 4-point fulfillment protection matrix.
+                    </p>
+                </div>
+                <div class="order-hub-header-actions">
+                    <button type="button" class="shop-feature-btn" id="btn-jump-to-tracker">
+                        <i class="fa-solid fa-crosshairs"></i>
+                        <span>Live Shipment Tracker</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Two-Column Interactive Layout: Self-Service Action Center (Left) & Guarantee Shield Cards (Right) -->
+            <div class="order-hub-grid">
+                <!-- Left Column: Interactive Action Portal Card -->
+                <div class="order-portal-card" data-aos="fade-right" data-aos-duration="750">
+                    <div class="order-portal-header">
+                        <div class="order-portal-badge">
+                            <span class="hub-live-dot"></span>
+                            <span>INSTANT ACTION PORTAL</span>
+                        </div>
+                        <h3>Self-Service Order Assistant</h3>
+                        <p>Select your modification request and enter your order code for real-time validation.</p>
+                    </div>
+
+                    <form class="order-portal-form" id="order-portal-form" novalidate>
+                        <!-- Action Selector Radio Pills -->
+                        <div class="order-action-selector" role="radiogroup" aria-label="Order modification action">
+                            <label class="action-pill active">
+                                <input type="radio" name="order-action-type" value="address" checked>
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Change Address</span>
+                            </label>
+                            <label class="action-pill">
+                                <input type="radio" name="order-action-type" value="reschedule">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <span>Reschedule</span>
+                            </label>
+                            <label class="action-pill">
+                                <input type="radio" name="order-action-type" value="invoice">
+                                <i class="fa-solid fa-file-invoice"></i>
+                                <span>Get Invoice</span>
+                            </label>
+                            <label class="action-pill">
+                                <input type="radio" name="order-action-type" value="cancel">
+                                <i class="fa-solid fa-ban"></i>
+                                <span>Cancel Order</span>
+                            </label>
+                        </div>
+
+                        <!-- Order Identifier Field -->
+                        <div class="order-field-group">
+                            <label for="hub-order-code">Order Number / Tracking ID <span class="req-star">*</span></label>
+                            <div class="input-with-preset">
+                                <input type="text" id="hub-order-code" placeholder="e.g. STK-84920 or STK-77219" required autocomplete="off">
+                                <button type="button" class="btn-preset-code" id="btn-use-demo-code" title="Fill active demo order">Demo ID</button>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Action Context Container -->
+                        <div class="order-dynamic-fields" id="order-dynamic-fields">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+
+                        <!-- Contact / Verification Email -->
+                        <div class="order-field-group">
+                            <label for="hub-contact-email">Account / Order Email Address <span class="req-star">*</span></label>
+                            <input type="email" id="hub-contact-email" placeholder="name@domain.com" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn-hub-submit" id="btn-hub-submit">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span id="hub-submit-text">Submit Address Amendment</span>
+                        </button>
+                    </form>
+
+                    <!-- Real-Time Dynamic Confirmation Feedback Banner -->
+                    <div class="order-portal-feedback" id="order-portal-feedback" style="display: none;" role="status" aria-live="polite">
+                        <div class="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="feedback-text">
+                            <h4 id="feedback-headline">Address Update Confirmed</h4>
+                            <p id="feedback-detail">Your shipping address has been updated in our dispatch queue. Reference: <strong id="feedback-ref">REQ-84920-ADR</strong>.</p>
+                            <span class="feedback-timestamp" id="feedback-time">Updated just now &bull; Confirmation emailed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: 4 Buyer Guarantees & SLAs -->
+                <div class="order-guarantees-col" data-aos="fade-left" data-aos-duration="750" data-aos-delay="100">
+                    <div class="guarantee-header-box">
+                        <span class="shop-eyebrow">ORDER PROTECTION MATRIX</span>
+                        <h3>Our 4-Point Fulfillment Guarantee</h3>
+                        <p>Every transaction on STACKLY is protected by guaranteed fulfillment SLAs, transparent tracking, and automated customer compensation.</p>
+                    </div>
+
+                    <div class="guarantee-cards-list">
+                        <!-- Guarantee 1 -->
+                        <div class="guarantee-card">
+                            <div class="guarantee-card-icon">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+                            <div class="guarantee-card-content">
+                                <div class="guarantee-card-top">
+                                    <h4>Pre-Dispatch Address Guard</h4>
+                                    <span class="guarantee-badge green">Free Amendment</span>
+                                </div>
+                                <p>Entered the wrong apartment number or postal code? Update your shipping address directly before our 12-point inspection check at zero penalty fee.</p>
+                            </div>
+                        </div>
+
+                        <!-- Guarantee 2 -->
+                        <div class="guarantee-card">
+                            <div class="guarantee-card-icon">
+                                <i class="fa-solid fa-stopwatch-20"></i>
+                            </div>
+                            <div class="guarantee-card-content">
+                                <div class="guarantee-card-top">
+                                    <h4>On-Time Delivery SLA ($15 Credit)</h4>
+                                    <span class="guarantee-badge blue">Automated Credit</span>
+                                </div>
+                                <p>If your package arrives even one business day past your estimated delivery date, we instantly credit $15 back to your account without needing a manual claim.</p>
+                            </div>
+                        </div>
+
+                        <!-- Guarantee 3 -->
+                        <div class="guarantee-card">
+                            <div class="guarantee-card-icon">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div class="guarantee-card-content">
+                                <div class="guarantee-card-top">
+                                    <h4>Transit Impact &amp; Loss Shield</h4>
+                                    <span class="guarantee-badge purple">100% Replacement</span>
+                                </div>
+                                <p>All packages travel under comprehensive carrier loss and shock-proof transit insurance. Any courier delay or carton damage is replaced immediately.</p>
+                            </div>
+                        </div>
+
+                        <!-- Guarantee 4 -->
+                        <div class="guarantee-card">
+                            <div class="guarantee-card-icon">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                            </div>
+                            <div class="guarantee-card-content">
+                                <div class="guarantee-card-top">
+                                    <h4>Instant Tax Invoices &amp; Serial Vault</h4>
+                                    <span class="guarantee-badge dark">Instant PDF</span>
+                                </div>
+                                <p>Need digital receipts for company tax write-offs or warranty registration? Retrieve itemized invoices with hardware serial numbers at any time.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. ADDITIONAL SECTION: Unboxing Care & Direct Delivery Concierge Support -->
+    <section class="shipping-extra-concierge bg-warm-gray border-top" id="delivery-concierge">
         <div class="container">
             <div class="shipping-concierge-header" data-aos="fade-up">
                 <div>
@@ -600,7 +789,7 @@
                         <li><a href="shipping.html">Order Management</a></li>
                         <li><a href="mission.html">About</a></li>
                         <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="404.html" class="info-modal-link" data-info="contact">Contact Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -620,7 +809,7 @@
                         <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
                         <li><a href="index.html#faq">Help Center &amp; FAQs</a></li>
                         <li><a href="404.html">Warranty Information</a></li>
-                        <li><a href="404.html">Contact Customer Care</a></li>
+                        <li><a href="contact.html">Contact Customer Care</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -664,6 +853,10 @@
     <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
+    <script src="js/lenis-init.js"></script>
     <!-- Custom JS -->
     <script src="js/cart.js"></script>
     <script src="js/wishlist.js"></script>

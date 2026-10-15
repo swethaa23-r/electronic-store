@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - STACKLY Tech For Your Everyday</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Google Fonts Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+<body class="page-contact">
+
+    <!-- Premium Preloader -->
+    <div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading STACKLY store">
+        <div class="preloader-content">
+            <div class="preloader-logo-wrap">
+                <div class="preloader-circular-spinner" aria-hidden="true"></div>
+                <img src="assets/img/logo.webp" alt="STACKLY" class="preloader-brand-logo">
+            </div>
+            <div class="preloader-indicator">
+                <div class="preloader-progress-bar"></div>
+            </div>
+            <p class="preloader-text">Preparing Your Experience...</p>
+        </div>
+    </div>
+    <script>
+        (function() {
+            var pre = document.getElementById('stackly-preloader');
+            if (pre) {
+                var kill = function() {
+                    pre.classList.add('fade-out');
+                    setTimeout(function() { pre.style.display = 'none'; }, 300);
+                };
+                if (document.readyState === 'complete') {
+                    setTimeout(kill, 100);
+                } else {
+                    window.addEventListener('load', kill);
+                    setTimeout(kill, 700);
+                }
+            }
+        })();
+    </script>
+
+    <!-- Header & Navigation -->
+    <header class="site-header" id="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
+            </a>
+            
+            <ul class="nav-links desktop-only">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="shipping.html">Order Management</a></li>
+                <li><a href="mission.html">About</a></li>
+                <li><a href="guides.html">Buying Guides</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="search-box-wrapper" id="search-box-wrapper">
+                    <input type="text" id="header-search-input" placeholder="Search gadgets..." aria-label="Search products">
+                    <button type="button" class="search-submit-btn" id="search-submit-btn" aria-label="Submit search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <button type="button" class="icon-link search-toggle-btn" id="search-toggle-btn" aria-label="Search products" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <a href="wishlist.html" class="icon-link wishlist-icon" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="wishlist-count" id="nav-wishlist-count">0</span>
+                </a>
+                <a href="cart.html" class="icon-link cart-icon" id="nav-cart-btn" aria-label="Shopping Cart" title="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count" id="nav-cart-count">0</span>
+                </a>
+                <a href="login.html" class="nav-login-btn desktop-only" aria-label="Login">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Login</span>
+                </a>
+                <button type="button" class="mobile-toggle icon-link" id="mobile-toggle" aria-label="Open mobile navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay & Drawer -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
+            </a>
+            <button class="close-mobile" id="close-mobile" aria-label="Close mobile navigation"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="mobile-search-bar">
+            <input type="text" id="mobile-search-input" placeholder="Search products...">
+            <button type="button" id="mobile-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="mobile-nav-item">Home</a></li>
+            <li><a href="shop.html" class="mobile-nav-item">Shop</a></li>
+            <li><a href="shipping.html" class="mobile-nav-item">Order Management</a></li>
+            <li><a href="mission.html" class="mobile-nav-item">About</a></li>
+            <li><a href="guides.html" class="mobile-nav-item">Buying Guides</a></li>
+            <li><a href="contact.html" class="mobile-nav-item active">Contact</a></li>
+            <li><a href="wishlist.html" class="mobile-nav-item"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
+            <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
+            <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
+        </ul>
+        <div class="mobile-menu-footer">
+            <div class="mobile-contact-pill">
+                <i class="fa-solid fa-headset"></i> 24/7 Support Available
+            </div>
+        </div>
+    </aside>
+
+    <!-- Top Promo Announcement Bar -->
+    <div class="shop-announcement-bar" role="region" aria-label="Store Promotion">
+        <div class="container shop-announcement-inner">
+            <span><i class="fa-solid fa-truck-fast"></i> FREE SHIPPING ON ORDERS $100+</span>
+            <span class="announcement-dot">&bull;</span>
+            <span>BETTER TECH. EVERY DAY.</span>
+        </div>
+    </div>
+
+    <!-- 1. Contact Hero Section -->
+    <section class="contact-hero-section" id="contact-hero">
+        <div class="container">
+            <div class="contact-hero-content">
+                <span class="shop-eyebrow">WE'RE HERE TO HELP</span>
+                <h1 class="contact-hero-title">
+                    <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Let's Talk Technology</span></span>
+                </h1>
+                <p class="contact-hero-subtitle">
+                    Whether you have questions about our latest gear, need help with an existing order, require delivery updates, or want specialized technical guidance, the STACKLY team is here to assist.
+                </p>
+                <div class="contact-hero-actions">
+                    <a href="#contact-form-section" class="btn btn-primary" id="hero-msg-btn">
+                        <i class="fa-regular fa-paper-plane"></i> Send Us a Message
+                    </a>
+                    <a href="shop.html" class="btn btn-outline">
+                        <i class="fa-solid fa-arrow-right"></i> Explore Our Shop
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Main Contact Form Section -->
+    <section class="contact-form-section" id="contact-form-section">
+        <div class="container">
+            <div class="contact-form-layout">
+                <!-- Left: Side Guidance Info -->
+                <div class="contact-side-info">
+                    <span class="shop-eyebrow">COMMUNICATION CHANNELS</span>
+                    <h2 class="contact-side-title">Send a Direct Enquiry</h2>
+                    <p class="contact-side-lead">
+                        Fill out our contact form below. Our specialized customer care and product specialists review each message and respond promptly within standard business hours.
+                    </p>
+                    
+                    <div class="contact-guidance-list">
+                        <div class="contact-guidance-item">
+                            <div class="guidance-icon"><i class="fa-solid fa-clock"></i></div>
+                            <div class="guidance-content">
+                                <h4>Rapid Response Window</h4>
+                                <p>General questions and order requests are reviewed and addressed within 1–2 business days.</p>
+                            </div>
+                        </div>
+                        <div class="contact-guidance-item">
+                            <div class="guidance-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div class="guidance-content">
+                                <h4>Protected Information</h4>
+                                <p>Your details are kept strictly confidential and used exclusively to handle your inquiry.</p>
+                            </div>
+                        </div>
+                        <div class="contact-guidance-item">
+                            <div class="guidance-icon"><i class="fa-solid fa-receipt"></i></div>
+                            <div class="guidance-content">
+                                <h4>Order Assistance</h4>
+                                <p>Provide your Order ID (e.g., STK-84920) for priority delivery, tracking, or return checks.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-hours-badge">
+                        <i class="fa-regular fa-clock"></i>
+                        <div>
+                            <strong>Support Operating Hours:</strong>
+                            <span>Mon &ndash; Sat: 9:00 AM &ndash; 7:00 PM IST</span>
+                            <span style="display: block; margin-top: 2px; font-size: 0.82rem; color: var(--text-muted);"><a href="#contact-map-section" style="color: var(--primary); text-decoration: underline;">View Salem office &amp; map below &darr;</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Contact Form Card -->
+                <div class="contact-form-card">
+                    <!-- Submission Status / Demo Banner Alert Box -->
+                    <div id="contact-status-banner" class="contact-status-banner" aria-live="polite"></div>
+
+                    <form id="stackly-contact-form" novalidate>
+                        <div class="contact-form-grid">
+                            <!-- 1. Full Name -->
+                            <div class="form-group">
+                                <label for="contact-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+                                <input type="text" id="contact-name" name="name" placeholder="Alex Morgan" required autocomplete="name" maxlength="100">
+                                <div class="field-error-msg" id="contact-name-error" role="alert"></div>
+                            </div>
+
+                            <!-- 2. Email Address -->
+                            <div class="form-group">
+                                <label for="contact-email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                                <input type="email" id="contact-email" name="email" placeholder="alex.morgan@example.com" required autocomplete="email" maxlength="120">
+                                <div class="field-error-msg" id="contact-email-error" role="alert"></div>
+                            </div>
+
+                            <!-- 3. Phone Number (optional) -->
+                            <div class="form-group">
+                                <label for="contact-phone">Phone Number <span class="field-hint-inline" style="font-weight: normal; color: var(--text-muted);">(Optional)</span></label>
+                                <input type="tel" id="contact-phone" name="phone" placeholder="+1 (555) 019-2834" autocomplete="tel" maxlength="30">
+                                <div class="field-error-msg" id="contact-phone-error" role="alert"></div>
+                            </div>
+
+                            <!-- 4. Subject -->
+                            <div class="form-group">
+                                <label for="contact-subject">Subject <span class="required" aria-hidden="true">*</span></label>
+                                <input type="text" id="contact-subject" name="subject" placeholder="Question regarding..." required maxlength="150">
+                                <div class="field-error-msg" id="contact-subject-error" role="alert"></div>
+                            </div>
+
+                            <!-- 5. Enquiry Type -->
+                            <div class="form-group">
+                                <label for="contact-enquiry">Enquiry Type <span class="required" aria-hidden="true">*</span></label>
+                                <select id="contact-enquiry" name="enquiryType" required>
+                                    <option value="" disabled selected>Select an enquiry type</option>
+                                    <option value="General Enquiry">General Enquiry</option>
+                                    <option value="Product Information">Product Information</option>
+                                    <option value="Order Status">Order Status</option>
+                                    <option value="Shipping and Delivery">Shipping and Delivery</option>
+                                    <option value="Returns and Refunds">Returns and Refunds</option>
+                                    <option value="Technical Support">Technical Support</option>
+                                    <option value="Business Enquiry">Business Enquiry</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div class="field-error-msg" id="contact-enquiry-error" role="alert"></div>
+                            </div>
+
+                            <!-- 6. Order Number (optional) -->
+                            <div class="form-group">
+                                <label for="contact-order-num">Order Number <span class="field-hint-inline" style="font-weight: normal; color: var(--text-muted);">(Optional)</span></label>
+                                <input type="text" id="contact-order-num" name="orderNumber" placeholder="STK-84920" maxlength="40">
+                                <span class="field-hint">Helpful for tracking or order-specific inquiries.</span>
+                            </div>
+
+                            <!-- 7. Message -->
+                            <div class="form-group form-group-full">
+                                <label for="contact-message">Message <span class="required" aria-hidden="true">*</span></label>
+                                <textarea id="contact-message" name="message" rows="5" placeholder="Please describe how our team can help you..." required minlength="15" maxlength="2000"></textarea>
+                                <div class="field-error-msg" id="contact-message-error" role="alert"></div>
+                            </div>
+
+                            <!-- 8. Privacy Consent Checkbox -->
+                            <div class="consent-group">
+                                <label class="consent-checkbox-wrap" for="contact-consent">
+                                    <input type="checkbox" id="contact-consent" name="privacyConsent" required>
+                                    <span class="consent-text">
+                                        I acknowledge and consent to STACKLY collecting and processing my submitted information in accordance with standard data privacy guidelines.
+                                    </span>
+                                </label>
+                                <div class="field-error-msg" id="contact-consent-error" role="alert"></div>
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="contact-form-actions">
+                                <button type="submit" class="btn btn-primary btn-submit-contact" id="contact-submit-btn">
+                                    <i class="fa-solid fa-spinner submit-spinner"></i>
+                                    <i class="fa-solid fa-paper-plane submit-icon"></i>
+                                    <span>Send Message</span>
+                                </button>
+                                <button type="reset" class="btn btn-outline btn-reset-contact" id="contact-reset-btn">
+                                    <i class="fa-solid fa-rotate-left"></i>
+                                    <span>Clear Form</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Interactive Map Location & Office Details Section -->
+    <section class="contact-map-section" id="contact-map-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="shop-eyebrow">OUR LOCATION</span>
+                <h2 class="section-title">Visit Our Salem Headquarters</h2>
+                <p class="section-subtitle">Drop by our registered office or get directions to consult with our electronics team in person.</p>
+            </div>
+
+            <div class="map-layout-grid">
+                <!-- Left: Office Information Card -->
+                <div class="office-info-card">
+                    <div>
+                        <span class="office-header-badge">
+                            <i class="fa-solid fa-building"></i> Registered Corporate Office
+                        </span>
+                        <h3 class="office-title">STACKLY Electronics</h3>
+
+                        <div class="office-details-list">
+                            <!-- Detail 1: Physical Address -->
+                            <div class="office-detail-item">
+                                <div class="office-detail-icon">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div class="office-detail-content">
+                                    <h4>Office Address</h4>
+                                    <p>
+                                        MMR Complex, Chinna Thirupathi,<br>
+                                        Near Chinna Muniyappan Kovil,<br>
+                                        Salem &ndash; 636 008, Tamil Nadu, India.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Detail 2: Phone Numbers -->
+                            <div class="office-detail-item">
+                                <div class="office-detail-icon">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div class="office-detail-content">
+                                    <h4>Contact Numbers</h4>
+                                    <div class="detail-links">
+                                        <a href="tel:9090909090"><i class="fa-solid fa-phone-volume"></i> +91 9090909090</a>
+                                        <a href="tel:8080808080"><i class="fa-solid fa-phone-volume"></i> +91 8080808080</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Detail 3: Email Addresses -->
+                            <div class="office-detail-item">
+                                <div class="office-detail-icon">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div class="office-detail-content">
+                                    <h4>Email Inquiries</h4>
+                                    <div class="detail-links">
+                                        <a href="mailto:info@stackly.com"><i class="fa-regular fa-envelope"></i> info@stackly.com</a>
+                                        <a href="mailto:thestackly@gmail.com"><i class="fa-regular fa-envelope"></i> thestackly@gmail.com</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Detail 4: Operating Hours -->
+                            <div class="office-detail-item">
+                                <div class="office-detail-icon">
+                                    <i class="fa-regular fa-clock"></i>
+                                </div>
+                                <div class="office-detail-content">
+                                    <h4>Working Hours</h4>
+                                    <p>Monday &ndash; Saturday: 9:00 AM &ndash; 7:00 PM IST<br><span style="color: var(--text-muted); font-size: 0.85rem;">Sunday: Closed for scheduled maintenance</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="office-actions">
+                        <a href="https://www.google.com/maps/search/?api=1&query=MMR+Complex+Chinna+Thirupathi+Near+Chinna+Muniyappan+Kovil+Salem+636008" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 12px 22px; font-size: 0.88rem;">
+                            <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+                        </a>
+                        <a href="tel:9090909090" class="btn btn-outline" style="padding: 12px 22px; font-size: 0.88rem;">
+                            <i class="fa-solid fa-phone"></i> Call Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Responsive Google Maps Embed -->
+                <div class="map-embed-wrapper">
+                    <div class="map-overlay-badge">
+                        <i class="fa-solid fa-location-dot" style="color: #EF4444;"></i>
+                        <span>STACKLY &bull; Salem Branch</span>
+                    </div>
+                    <iframe 
+                        title="STACKLY Office Location Map"
+                        src="https://maps.google.com/maps?q=MMR%20Complex%2C%20Chinna%20Thirupathi%2C%20Near%20Chinna%20Muniyappan%20Kovil%2C%20Salem%20-%20636008&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        loading="lazy" 
+                        allowfullscreen 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Frequently Asked Questions (FAQ Section) -->
+    <section class="faq-section" id="contact-faq">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="shop-eyebrow">COMMON QUESTIONS</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Find quick answers to common questions about orders, products, returns, and support.</p>
+            </div>
+
+            <div class="faq-accordion-wrapper">
+                <div class="faq-accordion">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item">
+                        <button type="button" class="faq-question" aria-expanded="false" id="faq-btn-1" aria-controls="faq-ans-1">
+                            <span class="faq-question-text">How can I track my order?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-ans-1" role="region" aria-labelledby="faq-btn-1" hidden>
+                            <div class="faq-answer-inner">
+                                <p>
+                                    Once your order has been dispatched, you will receive an email confirmation containing a unique tracking code. You can also visit our <a href="shipping.html?tab=tracking" style="color: var(--primary); font-weight: 600; text-decoration: underline;">Order Management</a> page at any time to check real-time courier updates and expected transit milestones.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item">
+                        <button type="button" class="faq-question" aria-expanded="false" id="faq-btn-2" aria-controls="faq-ans-2">
+                            <span class="faq-question-text">How do I request a return or refund?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-ans-2" role="region" aria-labelledby="faq-btn-2" hidden>
+                            <div class="faq-answer-inner">
+                                <p>
+                                    You can initiate a return by visiting our <a href="shipping.html?tab=returns" style="color: var(--primary); font-weight: 600; text-decoration: underline;">Order Management</a> returns section. Enter your Order ID and email to generate a return authorization, or get in touch with our customer support team using the form above.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item">
+                        <button type="button" class="faq-question" aria-expanded="false" id="faq-btn-3" aria-controls="faq-ans-3">
+                            <span class="faq-question-text">How can I get help choosing a product?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-ans-3" role="region" aria-labelledby="faq-btn-3" hidden>
+                            <div class="faq-answer-inner">
+                                <p>
+                                    Explore our comprehensive <a href="guides.html" style="color: var(--primary); font-weight: 600; text-decoration: underline;">Buying Guides</a> for expert hardware comparisons, workspace setup recommendations, and key specs. If you need personalized guidance, select "Product Information" in our contact form and our specialists will assist you.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item">
+                        <button type="button" class="faq-question" aria-expanded="false" id="faq-btn-4" aria-controls="faq-ans-4">
+                            <span class="faq-question-text">What should I do if my product arrives damaged?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-ans-4" role="region" aria-labelledby="faq-btn-4" hidden>
+                            <div class="faq-answer-inner">
+                                <p>
+                                    If your package arrives damaged or missing items, please report it to our customer care team within 48 hours of delivery. Include your Order ID and clear photos of the packaging and product so we can expedite a replacement or resolution.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item">
+                        <button type="button" class="faq-question" aria-expanded="false" id="faq-btn-5" aria-controls="faq-ans-5">
+                            <span class="faq-question-text">How can I contact customer support?</span>
+                            <span class="faq-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer" id="faq-ans-5" role="region" aria-labelledby="faq-btn-5" hidden>
+                            <div class="faq-answer-inner">
+                                <p>
+                                    You can reach our team via phone at <a href="tel:9090909090" style="color: var(--primary); font-weight: 600;">+91 9090909090</a> or <a href="tel:8080808080" style="color: var(--primary); font-weight: 600;">+91 8080808080</a>, email us at <a href="mailto:info@stackly.com" style="color: var(--primary); font-weight: 600;">info@stackly.com</a> or <a href="mailto:thestackly@gmail.com" style="color: var(--primary); font-weight: 600;">thestackly@gmail.com</a>, or visit our office at MMR Complex, Chinna Thirupathi, Salem.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Additional Support Banner Section -->
+    <section class="contact-support-banner" id="contact-support-banner">
+        <div class="container">
+            <div class="support-banner-inner" data-aos="fade-up" data-aos-duration="650">
+                <div class="support-banner-text">
+                    <h2 class="support-banner-title">Need Help Finding the Right Product?</h2>
+                    <p class="support-banner-desc">
+                        Explore our curated tech catalog or reach out to our hardware specialists for tailored advice on building your ideal setup.
+                    </p>
+                </div>
+                <div class="support-banner-actions">
+                    <a href="shop.html" class="btn btn-banner-primary">
+                        <i class="fa-solid fa-arrow-right"></i> Browse Products
+                    </a>
+                    <button type="button" class="btn btn-banner-secondary" id="banner-contact-btn">
+                        <i class="fa-regular fa-paper-plane"></i> Contact Support
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo footer-logo">
+                        <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img footer-logo-img">
+                    </a>
+                    <p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
+                    <div class="social-links mt-3">
+                        <a href="404.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>QUICK LINKS</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="shipping.html">Order Management</a></li>
+                        <li><a href="mission.html">About</a></li>
+                        <li><a href="guides.html">Buying Guides</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>SHOP</h4>
+                    <ul>
+                        <li><a href="shop.html?category=Laptops">Laptops &amp; Computers</a></li>
+                        <li><a href="shop.html?category=Gaming Consoles">Gaming Consoles</a></li>
+                        <li><a href="shop.html?category=Monitors">Monitors &amp; Displays</a></li>
+                        <li><a href="shop.html?category=Accessories">Keyboards &amp; Accessories</a></li>
+                        <li><a href="shop.html?category=Wearables">Smart Wearables</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>SUPPORT</h4>
+                    <ul>
+                        <li><a href="shipping.html">Order Management</a></li>
+                        <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
+                        <li><a href="contact.html#contact-faq">Help Center &amp; FAQs</a></li>
+                        <li><a href="404.html">Warranty Information</a></li>
+                        <li><a href="contact.html">Contact Customer Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>COMPANY</h4>
+                    <ul>
+                        <li><a href="mission.html">About</a></li>
+                        <li><a href="guides.html">Buying Guides</a></li>
+                        <li><a href="dashboards/admin-dashboard.html">Admin Portal</a></li>
+                        <li><a href="dashboards/user-dashboard.html">Customer Dashboard</a></li>
+                        <li><a href="404.html">Privacy Policy &amp; Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
+                <div class="payment-methods">
+                    <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-apple-pay"></i> Apple Pay</span>
+                    <span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Info / Guide Modal -->
+    <div class="info-modal-overlay" id="info-modal" aria-hidden="true" role="dialog">
+        <div class="info-modal-card">
+            <button class="modal-close-btn" id="info-modal-close" aria-label="Close dialog">&times;</button>
+            <h3 id="info-modal-title">STACKLY Support</h3>
+            <div id="info-modal-body" class="info-modal-body"></div>
+            <button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
+        </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
+    <script src="js/lenis-init.js"></script>
+    <!-- Custom JS -->
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>
