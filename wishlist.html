@@ -1,477 +1,462 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Wishlist - STACKLY Electronic Store</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="assets/img/logo.webp">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Inter & Cormorant Garamond -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- AOS Animation Library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Wishlist - STACKLY Electronic Store</title>
+<!-- Favicon -->
+<link href="assets/img/logo.webp" rel="icon" type="image/webp"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts: Inter & Cormorant Garamond -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- AOS Animation Library -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+<!-- Main Stylesheet -->
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body class="page-wishlist">
+    <!-- Premium Preloader -->
+    <div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading STACKLY store">
+        <div class="preloader-content">
+            <div class="preloader-logo-wrap">
+                <div class="preloader-circular-spinner" aria-hidden="true"></div>
+                <img src="assets/img/logo.webp" alt="STACKLY" class="preloader-brand-logo">
+            </div>
+            <div class="preloader-indicator">
+                <div class="preloader-progress-bar"></div>
+            </div>
+            <p class="preloader-text">Preparing Your Experience...</p>
+        </div>
+    </div>
 
     <!-- Header & Navigation -->
     <header class="site-header" id="header">
-        <nav class="navbar">
-            <a href="index.html" class="logo">
-                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
-            </a>
-            
-            <ul class="nav-links desktop-only">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="shipping.html">Order Management</a></li>
-                <li><a href="mission.html">About</a></li>
-                <li><a href="guides.html">Buying Guides</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-
-            <div class="nav-icons">
-                <div class="search-box-wrapper" id="search-box-wrapper">
-                    <input type="text" id="header-search-input" placeholder="Search gadgets..." aria-label="Search products">
-                    <button type="button" class="search-submit-btn" id="search-submit-btn" aria-label="Submit search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <button type="button" class="icon-link search-toggle-btn" id="search-toggle-btn" aria-label="Search products" title="Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <a href="wishlist.html" class="icon-link wishlist-icon active" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
-                    <i class="fa-solid fa-heart" style="color: #EF4444;"></i>
-                    <span class="wishlist-count" id="nav-wishlist-count">0</span>
-                </a>
-                <a href="cart.html" class="icon-link cart-icon" id="nav-cart-btn" aria-label="Shopping Cart" title="Cart">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-count">0</span>
-                </a>
-                <a href="login.html" class="nav-login-btn desktop-only" aria-label="Login">
-                    <i class="fa-regular fa-user"></i>
-                    <span>Login</span>
-                </a>
-                <button type="button" class="mobile-toggle icon-link" id="mobile-toggle" aria-label="Open mobile navigation">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+<nav class="navbar">
+<a class="logo" href="index.html">
+<img alt="STACKLY" class="logo-img" src="assets/img/logo.webp"/>
+</a>
+<ul class="nav-links desktop-only">
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="shipping.html">Order Management</a></li>
+<li><a href="mission.html">About</a></li>
+<li><a href="guides.html">Buying Guides</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<a aria-label="View Wishlist" class="icon-link wishlist-icon active" href="wishlist.html" id="nav-wishlist-btn" title="Wishlist">
+<i class="fa-solid fa-heart" style="color: #EF4444;"></i>
+<span class="wishlist-count" id="nav-wishlist-count">0</span>
+</a>
+<a aria-label="Shopping Cart" class="icon-link cart-icon" href="cart.html" id="nav-cart-btn" title="Cart">
+<i class="fa-solid fa-bag-shopping"></i>
+<span class="cart-count">0</span>
+</a>
+<a aria-label="Login" class="nav-login-btn desktop-only" href="login.html">
+<i class="fa-regular fa-user"></i>
+<span>Login</span>
+</a>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open mobile navigation" class="mobile-toggle icon-link" id="mobile-toggle" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Mobile Menu Overlay & Drawer -->
+<div class="mobile-overlay" id="mobile-overlay"></div>
+<aside aria-label="Mobile menu" class="mobile-menu" id="mobile-menu">
+<div class="mobile-menu-header">
+<a class="logo" href="index.html">
+<img alt="STACKLY" class="logo-img" src="assets/img/logo.webp"/>
+</a>
+<button aria-label="Close mobile navigation" class="close-mobile" id="close-mobile"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="mobile-search-bar">
+<input id="mobile-search-input" placeholder="Search products..." type="text"/>
+<button aria-label="Submit search" id="mobile-search-submit" title="Search" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+</div>
+<ul class="mobile-nav-links">
+<li><a class="mobile-nav-item" href="index.html">Home</a></li>
+<li><a class="mobile-nav-item" href="shop.html">Shop</a></li>
+<li><a class="mobile-nav-item" href="shipping.html">Order Management</a></li>
+<li><a class="mobile-nav-item" href="mission.html">About</a></li>
+<li><a class="mobile-nav-item" href="guides.html">Buying Guides</a></li>
+<li><a class="mobile-nav-item" href="contact.html">Contact</a></li>
+<li><a class="mobile-nav-item active" href="wishlist.html"><i class="fa-solid fa-heart" style="color: #EF4444;"></i> My Wishlist</a></li>
+<li><a class="mobile-nav-item" href="cart.html"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
+<li><a class="mobile-nav-item" href="login.html"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
+</ul>
+<div class="mobile-menu-footer">
+<div class="mobile-contact-pill">
+<i class="fa-solid fa-headset"></i> 24/7 Support Available
             </div>
-        </nav>
-    </header>
-
-    <!-- Mobile Menu Overlay & Drawer -->
-    <div class="mobile-overlay" id="mobile-overlay"></div>
-    <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
-        <div class="mobile-menu-header">
-            <a href="index.html" class="logo">
-                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
-            </a>
-            <button class="close-mobile" id="close-mobile" aria-label="Close mobile navigation"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="mobile-search-bar">
-            <input type="text" id="mobile-search-input" placeholder="Search products...">
-            <button type="button" id="mobile-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-        <ul class="mobile-nav-links">
-            <li><a href="index.html" class="mobile-nav-item">Home</a></li>
-            <li><a href="shop.html" class="mobile-nav-item">Shop</a></li>
-            <li><a href="shipping.html" class="mobile-nav-item">Order Management</a></li>
-            <li><a href="mission.html" class="mobile-nav-item">About</a></li>
-            <li><a href="guides.html" class="mobile-nav-item">Buying Guides</a></li>
-            <li><a href="contact.html" class="mobile-nav-item">Contact</a></li>
-            <li><a href="wishlist.html" class="mobile-nav-item active"><i class="fa-solid fa-heart" style="color: #EF4444;"></i> My Wishlist</a></li>
-            <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
-            <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
-        </ul>
-        <div class="mobile-menu-footer">
-            <div class="mobile-contact-pill">
-                <i class="fa-solid fa-headset"></i> 24/7 Support Available
-            </div>
-        </div>
-    </aside>
-
-    <!-- Wishlist Banner / Header Section -->
-    <section class="wishlist-banner-section">
-        <div class="container">
-            <div class="wishlist-breadcrumb" data-aos="fade-down" data-aos-duration="600">
-                <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-                <span class="bc-sep">/</span>
-                <span class="bc-current">My Wishlist</span>
-            </div>
-
-            <div class="wishlist-header-row">
-                <div class="wishlist-header-text" data-aos="fade-right" data-aos-duration="700">
-                    <div class="wishlist-eyebrow">
-                        <span class="badge-dot"></span>
-                        <span>SAVED TECH GEAR &bull; STACKLY</span>
-                    </div>
-                    <h1>
-                        <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">My <span class="hero-highlight">Wishlist</span></span></span>
-                        <span class="wishlist-count-badge" id="wishlist-total-count">0 items</span>
-                    </h1>
-                    <p class="subtitle">
+</div>
+</aside>
+<!-- Wishlist Banner / Header Section -->
+<section class="wishlist-banner-section">
+<div class="container">
+<div class="wishlist-breadcrumb" data-aos="fade-down" data-aos-duration="600">
+<a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+<span class="bc-sep">/</span>
+<span class="bc-current">My Wishlist</span>
+</div>
+<div class="wishlist-header-row">
+<div class="wishlist-header-text" data-aos="fade-right" data-aos-duration="700">
+<div class="wishlist-eyebrow">
+<span class="badge-dot"></span>
+<span>SAVED TECH GEAR • STACKLY</span>
+</div>
+<h1>
+<span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">My <span class="hero-highlight">Wishlist</span></span></span>
+<span class="wishlist-count-badge" id="wishlist-total-count">0 items</span>
+</h1>
+<p class="subtitle">
                         Review your saved electronics, monitor live stock availability, and move items straight to your cart.
                     </p>
-                </div>
-                <div class="wishlist-header-actions" data-aos="fade-left" data-aos-duration="700">
-                    <a href="index.html#freshly-dropped" class="btn btn-secondary">
-                        <i class="fa-solid fa-arrow-left"></i> CONTINUE SHOPPING
+</div>
+<div class="wishlist-header-actions" data-aos="fade-left" data-aos-duration="700">
+<a class="btn btn-secondary" href="index.html#freshly-dropped">
+<i class="fa-solid fa-arrow-left"></i> CONTINUE SHOPPING
                     </a>
-                    <button type="button" class="btn btn-outline-danger" id="btn-clear-wishlist" title="Remove all saved products">
-                        <i class="fa-regular fa-trash-can"></i> CLEAR ALL
+<button class="btn btn-outline-danger" id="btn-clear-wishlist" title="Remove all saved products" type="button">
+<i class="fa-regular fa-trash-can"></i> CLEAR ALL
                     </button>
-                </div>
-            </div>
-
-            <!-- Wishlist Summary Stats -->
-            <div class="wishlist-stats-grid">
-                <div class="wl-stat-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="50">
-                    <div class="wl-stat-icon"><i class="fa-solid fa-heart"></i></div>
-                    <div class="wl-stat-info">
-                        <span class="wl-stat-label">Total Saved</span>
-                        <h3 class="wl-stat-val" id="stat-total-items">0</h3>
-                    </div>
-                </div>
-                <div class="wl-stat-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
-                    <div class="wl-stat-icon text-success"><i class="fa-solid fa-circle-check"></i></div>
-                    <div class="wl-stat-info">
-                        <span class="wl-stat-label">In Stock</span>
-                        <h3 class="wl-stat-val" id="stat-available">0</h3>
-                    </div>
-                </div>
-                <div class="wl-stat-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="150">
-                    <div class="wl-stat-icon text-warning"><i class="fa-solid fa-box-archive"></i></div>
-                    <div class="wl-stat-info">
-                        <span class="wl-stat-label">Out of Stock</span>
-                        <h3 class="wl-stat-val" id="stat-out-of-stock">0</h3>
-                    </div>
-                </div>
-                <div class="wl-stat-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
-                    <div class="wl-stat-icon text-accent"><i class="fa-solid fa-tag"></i></div>
-                    <div class="wl-stat-info">
-                        <span class="wl-stat-label">Price Drops</span>
-                        <h3 class="wl-stat-val" id="stat-price-drops">0</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content Area -->
-    <main class="wishlist-main-section">
-        <div class="container">
-            <!-- Active Items View -->
-            <div id="wishlist-content-wrapper">
-                <div class="wishlist-items-header">
-                    <h2>Saved Products</h2>
-                    <p class="wishlist-meta-note">Prices and availability update dynamically in real time.</p>
-                </div>
-                <div class="wishlist-grid" id="wishlist-items-grid">
-                    <!-- Populated dynamically by js/wishlist.js -->
-                </div>
-            </div>
-
-            <!-- Clean Empty State (Displayed when wishlist is empty) -->
-            <div class="wishlist-empty-state" id="wishlist-empty-state" style="display: none;">
-                <div class="empty-state-card">
-                    <div class="empty-heart-circle">
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                    <h2>Your wishlist is empty</h2>
-                    <p>
+</div>
+</div>
+<!-- Wishlist Summary Stats -->
+<div class="wishlist-stats-grid">
+<div class="wl-stat-card" data-aos="fade-up" data-aos-delay="50" data-aos-duration="600">
+<div class="wl-stat-icon"><i class="fa-solid fa-heart"></i></div>
+<div class="wl-stat-info">
+<span class="wl-stat-label">Total Saved</span>
+<h3 class="wl-stat-val" id="stat-total-items">0</h3>
+</div>
+</div>
+<div class="wl-stat-card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="600">
+<div class="wl-stat-icon text-success"><i class="fa-solid fa-circle-check"></i></div>
+<div class="wl-stat-info">
+<span class="wl-stat-label">In Stock</span>
+<h3 class="wl-stat-val" id="stat-available">0</h3>
+</div>
+</div>
+<div class="wl-stat-card" data-aos="fade-up" data-aos-delay="150" data-aos-duration="600">
+<div class="wl-stat-icon text-warning"><i class="fa-solid fa-box-archive"></i></div>
+<div class="wl-stat-info">
+<span class="wl-stat-label">Out of Stock</span>
+<h3 class="wl-stat-val" id="stat-out-of-stock">0</h3>
+</div>
+</div>
+<div class="wl-stat-card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="600">
+<div class="wl-stat-icon text-accent"><i class="fa-solid fa-tag"></i></div>
+<div class="wl-stat-info">
+<span class="wl-stat-label">Price Drops</span>
+<h3 class="wl-stat-val" id="stat-price-drops">0</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content Area -->
+<main class="wishlist-main-section">
+<div class="container">
+<!-- Active Items View -->
+<div id="wishlist-content-wrapper">
+<div class="wishlist-items-header">
+<h2>Saved Products</h2>
+<p class="wishlist-meta-note">Prices and availability update dynamically in real time.</p>
+</div>
+<div class="wishlist-grid" id="wishlist-items-grid">
+<!-- Populated dynamically by js/wishlist.js -->
+</div>
+</div>
+<!-- Clean Empty State (Displayed when wishlist is empty) -->
+<div class="wishlist-empty-state" id="wishlist-empty-state" style="display: none;">
+<div class="empty-state-card">
+<div class="empty-heart-circle">
+<i class="fa-regular fa-heart"></i>
+</div>
+<h2>Your wishlist is empty</h2>
+<p>
                         Looks like you haven't saved any tech essentials yet. Browse our curated collection of monitors, audio gear, and laptops to build your dream setup.
                     </p>
-                    <div class="empty-state-buttons">
-                        <a href="index.html#freshly-dropped" class="btn btn-primary">
-                            <i class="fa-solid fa-bag-shopping"></i> EXPLORE PRODUCTS
+<div class="empty-state-buttons">
+<a class="btn btn-primary" href="index.html#freshly-dropped">
+<i class="fa-solid fa-bag-shopping"></i> EXPLORE PRODUCTS
                         </a>
-                        <a href="index.html#categories" class="btn btn-secondary">
-                            <span>BROWSE CATEGORIES</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Recommended / You May Also Like Section -->
-    <section class="wishlist-recommendations-section">
-        <div class="container">
-            <div class="section-heading text-center" data-aos="fade-up" data-aos-duration="650">
-                <p class="tagline">COMPLEMENTARY GEAR</p>
-                <h2>Upgrade your everyday setup.</h2>
-                <p class="subtitle">Community favorites handpicked to elevate your workspace and play routines.</p>
-            </div>
-
-            <div class="grid-4 mt-4">
-                <!-- Card 1 -->
-                <div class="product-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="50">
-                    <div class="card-actions">
-                        <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
-                        <button class="quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
-                    </div>
-                    <div class="badge new-badge">NEW</div>
-                    <div class="img-container">
-                        <img src="assets/img/monitor.webp" alt="Pro Display X1 Monitor">
-                    </div>
-                    <div class="card-info">
-                        <p class="category-label">Monitors</p>
-                        <h3 class="product-title">Pro Display X1</h3>
-                        <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span></div>
-                        <p class="price">$899.00</p>
-                        <button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="product-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
-                    <div class="card-actions">
-                        <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
-                        <button class="quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
-                    </div>
-                    <div class="badge best-badge">BESTSELLER</div>
-                    <div class="img-container">
-                        <img src="assets/img/console.webp" alt="Play One Console">
-                    </div>
-                    <div class="card-info">
-                        <p class="category-label">Gaming</p>
-                        <h3 class="product-title">Play One Console</h3>
-                        <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span></div>
-                        <p class="price">$449.00</p>
-                        <button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="product-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="150">
-                    <div class="card-actions">
-                        <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
-                        <button class="quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
-                    </div>
-                    <div class="img-container">
-                        <img src="assets/img/laptop.webp" alt="Book Air 14 Laptop">
-                    </div>
-                    <div class="card-info">
-                        <p class="category-label">Laptops</p>
-                        <h3 class="product-title">Book Air 14</h3>
-                        <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> <span>(4.2)</span></div>
-                        <p class="price">$799.00</p>
-                        <button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
-                    </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="product-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
-                    <div class="card-actions">
-                        <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
-                        <button class="quick-view-btn" title="Quick View" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
-                    </div>
-                    <div class="img-container">
-                        <img src="assets/img/keyboard.webp" alt="Mechanical Keys">
-                    </div>
-                    <div class="card-info">
-                        <p class="category-label">Accessories</p>
-                        <h3 class="product-title">Mechanical Keys</h3>
-                        <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.6)</span></div>
-                        <p class="price">$129.00</p>
-                        <button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Support Features Strip -->
-    <section class="features-slider-section">
-        <div class="features-track">
-            <div class="feature-box">
-                <i class="fa-solid fa-truck-fast"></i>
-                <div>
-                    <h4>Fast & Free Delivery</h4>
-                    <p>Free shipping on qualifying orders.</p>
-                </div>
-            </div>
-            <div class="feature-box">
-                <i class="fa-solid fa-shield-halved"></i>
-                <div>
-                    <h4>Secure Payments</h4>
-                    <p>Safe and protected checkout.</p>
-                </div>
-            </div>
-            <div class="feature-box">
-                <i class="fa-solid fa-rotate-left"></i>
-                <div>
-                    <h4>Easy Returns</h4>
-                    <p>Simple and convenient 30-day returns.</p>
-                </div>
-            </div>
-            <div class="feature-box">
-                <i class="fa-solid fa-certificate"></i>
-                <div>
-                    <h4>Genuine Products</h4>
-                    <p>Authentic products from trusted brands.</p>
-                </div>
-            </div>
-            <div class="feature-box">
-                <i class="fa-solid fa-headset"></i>
-                <div>
-                    <h4>24/7 Support</h4>
-                    <p>We're here whenever you need help.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter container" id="newsletter">
-        <div class="newsletter-content">
-            <p class="tagline">STAY IN THE LOOP</p>
-            <h2>Stay in the loop.</h2>
-            <p>Get curated drops, tech buying guides, and exclusive member discounts delivered straight to your inbox.</p>
-        </div>
-        <div class="newsletter-form-container">
-            <form class="newsletter-form" id="newsletter-form" novalidate>
-                <input type="email" id="email-input" placeholder="Enter your email address" required aria-label="Email address">
-                <button type="submit" id="newsletter-submit-btn">SUBSCRIBE</button>
-            </form>
-            <div class="form-feedback" aria-live="polite">
-                <span class="error-msg" style="display:none;"><i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email address.</span>
-                <span class="success-msg" style="display:none;"><i class="fa-solid fa-circle-check"></i> Thank you for subscribing to STACKLY!</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.html" class="logo footer-logo">
-                        <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img footer-logo-img">
-                    </a>
-                    <p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
-                    <div class="social-links mt-3">
-                        <a href="404.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="404.html" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="404.html" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="404.html" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>QUICK LINKS</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="shipping.html">Order Management</a></li>
-                        <li><a href="mission.html">About</a></li>
-                        <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>SHOP</h4>
-                    <ul>
-                        <li><a href="404.html">Laptops & Computers</a></li>
-                        <li><a href="404.html">Gaming Consoles</a></li>
-                        <li><a href="404.html">Monitors & Displays</a></li>
-                        <li><a href="404.html">Keyboards & Accessories</a></li>
-                        <li><a href="404.html">Smart Wearables</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>SUPPORT</h4>
-                    <ul>
-                        <li><a href="shipping.html">Order Management</a></li>
-                        <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
-                        <li><a href="404.html">Help Center & FAQs</a></li>
-                        <li><a href="404.html">Warranty Information</a></li>
-                        <li><a href="contact.html">Contact Customer Care</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>COMPANY</h4>
-                    <ul>
-                        <li><a href="mission.html">About</a></li>
-                        <li><a href="404.html">Buying Guides</a></li>
-                        <li><a href="dashboards/admin-dashboard.html">Admin Portal</a></li>
-                        <li><a href="dashboards/user-dashboard.html">Customer Dashboard</a></li>
-                        <li><a href="404.html">Privacy Policy & Terms</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
-                <div class="payment-methods">
-                    <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-apple-pay"></i> Apple Pay</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Interactive Quick View Modal -->
-    <div class="quick-view-overlay" id="quick-view-modal" aria-hidden="true" role="dialog">
-        <div class="quick-view-card">
-            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
-            <div class="quick-view-grid">
-                <div class="qv-img-side">
-                    <img id="qv-img" src="assets/img/monitor.webp" alt="Product Preview">
-                </div>
-                <div class="qv-info-side">
-                    <p class="category-label" id="qv-category">Monitors</p>
-                    <h3 id="qv-title">Pro Display X1</h3>
-                    <div class="rating" id="qv-rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span>
-                    </div>
-                    <p class="price" id="qv-price">$899.00</p>
-                    <p class="desc" id="qv-desc">Premium electronic hardware crafted for maximum productivity, crisp display performance, and long-lasting durability.</p>
-                    
-                    <div class="qv-features">
-                        <div class="qv-feat-item"><i class="fa-solid fa-shield-check"></i> 2-Year Official Warranty</div>
-                        <div class="qv-feat-item"><i class="fa-solid fa-truck-fast"></i> Free Express Shipping</div>
-                    </div>
-
-                    <div class="qv-action-row">
-                        <button class="btn btn-primary btn-add-cart" id="qv-add-cart-btn" style="flex: 1;">
-                            <i class="fa-solid fa-cart-shopping"></i> ADD TO CART
+<a class="btn btn-secondary" href="index.html#categories">
+<span>BROWSE CATEGORIES</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Recommended / You May Also Like Section -->
+<section class="wishlist-recommendations-section">
+<div class="container">
+<div class="section-heading text-center" data-aos="fade-up" data-aos-duration="650">
+<p class="tagline">COMPLEMENTARY GEAR</p>
+<h2>Upgrade your everyday setup.</h2>
+<p class="subtitle">Community favorites handpicked to elevate your workspace and play routines.</p>
+</div>
+<div class="grid-4 mt-4">
+<!-- Card 1 -->
+<div class="product-card" data-aos="fade-up" data-aos-delay="50" data-aos-duration="600">
+<div class="card-actions">
+<button aria-label="Add to Wishlist" class="wishlist-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+<button aria-label="Quick View" class="quick-view-btn" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+</div>
+<div class="badge new-badge">NEW</div>
+<div class="img-container">
+<img alt="Pro Display X1 Monitor" loading="lazy" src="assets/img/monitor.webp"/>
+</div>
+<div class="card-info">
+<p class="category-label">Monitors</p>
+<h3 class="product-title">Pro Display X1</h3>
+<div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span></div>
+<p class="price">$899.00</p>
+<button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="product-card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="600">
+<div class="card-actions">
+<button aria-label="Add to Wishlist" class="wishlist-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+<button aria-label="Quick View" class="quick-view-btn" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+</div>
+<div class="badge best-badge">BESTSELLER</div>
+<div class="img-container">
+<img alt="Play One Console" loading="lazy" src="assets/img/console.webp"/>
+</div>
+<div class="card-info">
+<p class="category-label">Gaming</p>
+<h3 class="product-title">Play One Console</h3>
+<div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span></div>
+<p class="price">$449.00</p>
+<button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="product-card" data-aos="fade-up" data-aos-delay="150" data-aos-duration="600">
+<div class="card-actions">
+<button aria-label="Add to Wishlist" class="wishlist-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+<button aria-label="Quick View" class="quick-view-btn" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+</div>
+<div class="img-container">
+<img alt="Book Air 14 Laptop" loading="lazy" src="assets/img/laptop.webp"/>
+</div>
+<div class="card-info">
+<p class="category-label">Laptops</p>
+<h3 class="product-title">Book Air 14</h3>
+<div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> <span>(4.2)</span></div>
+<p class="price">$799.00</p>
+<button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="product-card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="600">
+<div class="card-actions">
+<button aria-label="Add to Wishlist" class="wishlist-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+<button aria-label="Quick View" class="quick-view-btn" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+</div>
+<div class="img-container">
+<img alt="Mechanical Keys" loading="lazy" src="assets/img/keyboard.webp"/>
+</div>
+<div class="card-info">
+<p class="category-label">Accessories</p>
+<h3 class="product-title">Mechanical Keys</h3>
+<div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.6)</span></div>
+<p class="price">$129.00</p>
+<button class="btn btn-add-cart w-100 mt-2"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Support Features Strip -->
+<section class="features-slider-section">
+<div class="features-track">
+<div class="feature-box">
+<i class="fa-solid fa-truck-fast"></i>
+<div>
+<h4>Fast &amp; Free Delivery</h4>
+<p>Free shipping on qualifying orders.</p>
+</div>
+</div>
+<div class="feature-box">
+<i class="fa-solid fa-shield-halved"></i>
+<div>
+<h4>Secure Payments</h4>
+<p>Safe and protected checkout.</p>
+</div>
+</div>
+<div class="feature-box">
+<i class="fa-solid fa-rotate-left"></i>
+<div>
+<h4>Easy Returns</h4>
+<p>Simple and convenient 30-day returns.</p>
+</div>
+</div>
+<div class="feature-box">
+<i class="fa-solid fa-certificate"></i>
+<div>
+<h4>Genuine Products</h4>
+<p>Authentic products from trusted brands.</p>
+</div>
+</div>
+<div class="feature-box">
+<i class="fa-solid fa-headset"></i>
+<div>
+<h4>24/7 Support</h4>
+<p>We're here whenever you need help.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="newsletter container" id="newsletter">
+<div class="newsletter-content">
+<p class="tagline">STAY IN THE LOOP</p>
+<h2>Stay in the loop.</h2>
+<p>Get curated drops, tech buying guides, and exclusive member discounts delivered straight to your inbox.</p>
+</div>
+<div class="newsletter-form-container">
+<form class="newsletter-form" id="newsletter-form" novalidate="">
+<input aria-label="Email address" id="email-input" placeholder="Enter your email address" required="" type="email"/>
+<button id="newsletter-submit-btn" type="submit">SUBSCRIBE</button>
+</form>
+<div aria-live="polite" class="form-feedback">
+<span class="error-msg" style="display:none;"><i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email address.</span>
+<span class="success-msg" style="display:none;"><i class="fa-solid fa-circle-check"></i> Thank you for subscribing to STACKLY!</span>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col">
+<a class="logo footer-logo" href="index.html">
+<img alt="STACKLY" class="logo-img footer-logo-img" src="assets/img/logo.webp"/>
+</a>
+<p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
+<div class="social-links mt-3">
+<a aria-label="Instagram" href="404.html"><i class="fa-brands fa-instagram"></i></a>
+<a aria-label="Twitter" href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+<a aria-label="Facebook" href="404.html"><i class="fa-brands fa-facebook-f"></i></a>
+<a aria-label="LinkedIn" href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+</div>
+</div>
+<div class="footer-col">
+<h4>QUICK LINKS</h4>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="shipping.html">Order Management</a></li>
+<li><a href="mission.html">About</a></li>
+<li><a href="guides.html">Buying Guides</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>SHOP</h4>
+<ul>
+<li><a href="404.html">Laptops &amp; Computers</a></li>
+<li><a href="404.html">Gaming Consoles</a></li>
+<li><a href="404.html">Monitors &amp; Displays</a></li>
+<li><a href="404.html">Keyboards &amp; Accessories</a></li>
+<li><a href="404.html">Smart Wearables</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>SUPPORT</h4>
+<ul>
+<li><a href="404.html">Order Management</a></li>
+<li><a href="404.html">Track Your Order</a></li>
+<li><a href="404.html">Help Center &amp; FAQs</a></li>
+<li><a href="404.html">Warranty Information</a></li>
+<li><a href="404.html">Contact Customer Care</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>COMPANY</h4>
+<ul>
+<li><a href="404.html">About</a></li>
+<li><a href="404.html">Buying Guides</a></li>
+<li><a href="404.html">Admin Portal</a></li>
+<li><a href="404.html">Customer Dashboard</a></li>
+<li><a href="404.html">Privacy Policy &amp; Terms</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
+<div class="payment-methods">
+<span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+<span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+<span class="pay-tag"><i class="fa-brands fa-apple-pay"></i> Apple Pay</span>
+<span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Interactive Quick View Modal -->
+<div aria-hidden="true" class="quick-view-overlay" id="quick-view-modal" role="dialog">
+<div class="quick-view-card">
+<button aria-label="Close modal" class="modal-close-btn" id="modal-close-btn">×</button>
+<div class="quick-view-grid">
+<div class="qv-img-side">
+<img alt="Product Preview" id="qv-img" src="assets/img/monitor.webp"/>
+</div>
+<div class="qv-info-side">
+<p class="category-label" id="qv-category">Monitors</p>
+<h3 id="qv-title">Pro Display X1</h3>
+<div class="rating" id="qv-rating">
+<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span>
+</div>
+<p class="price" id="qv-price">$899.00</p>
+<p class="desc" id="qv-desc">Premium electronic hardware crafted for maximum productivity, crisp display performance, and long-lasting durability.</p>
+<div class="qv-features">
+<div class="qv-feat-item"><i class="fa-solid fa-shield-check"></i> 2-Year Official Warranty</div>
+<div class="qv-feat-item"><i class="fa-solid fa-truck-fast"></i> Free Express Shipping</div>
+</div>
+<div class="qv-action-row">
+<button class="btn btn-primary btn-add-cart" id="qv-add-cart-btn" style="flex: 1;">
+<i class="fa-solid fa-cart-shopping"></i> ADD TO CART
                         </button>
-                        <button type="button" class="btn btn-secondary wishlist-btn qv-wishlist-btn" id="qv-wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Info / Guide Modal -->
-    <div class="info-modal-overlay" id="info-modal" aria-hidden="true" role="dialog">
-        <div class="info-modal-card">
-            <button class="modal-close-btn" id="info-modal-close" aria-label="Close dialog">&times;</button>
-            <h3 id="info-modal-title">STACKLY Support</h3>
-            <div id="info-modal-body" class="info-modal-body">
-                <!-- Dynamic text populated by JS -->
-            </div>
-            <button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
-        </div>
-    </div>
-
-    <!-- GSAP & Animation Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
-    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
-    <script src="js/lenis-init.js"></script>
-    <!-- Custom JS -->
-    <script src="js/cart.js"></script>
-    <script src="js/wishlist.js"></script>
-    <script src="js/script.js"></script>
+<button aria-label="Add to Wishlist" class="btn btn-secondary wishlist-btn qv-wishlist-btn" id="qv-wishlist-btn" title="Add to Wishlist" type="button">
+<i class="fa-regular fa-heart"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Info / Guide Modal -->
+<div aria-hidden="true" class="info-modal-overlay" id="info-modal" role="dialog">
+<div class="info-modal-card">
+<button aria-label="Close dialog" class="modal-close-btn" id="info-modal-close">×</button>
+<h3 id="info-modal-title">STACKLY Support</h3>
+<div class="info-modal-body" id="info-modal-body">
+<!-- Dynamic text populated by JS -->
+</div>
+<button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
+</div>
+</div>
+<!-- GSAP & Animation Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<!-- Lenis Smooth Scroll -->
+<script src="js/lenis.min.js"></script>
+<script src="js/lenis-init.js"></script>
+<!-- Custom JS -->
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="assets/img/logo.webp">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- AOS Animation CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <!-- Google Fonts Preconnect & Fonts -->
@@ -51,15 +51,6 @@
             </ul>
 
             <div class="nav-icons">
-                <div class="search-box-wrapper" id="search-box-wrapper">
-                    <input type="text" id="header-search-input" placeholder="Search gadgets..." aria-label="Search products">
-                    <button type="button" class="search-submit-btn" id="search-submit-btn" aria-label="Submit search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <button type="button" class="icon-link search-toggle-btn" id="search-toggle-btn" aria-label="Search products" title="Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
                 <a href="wishlist.html" class="icon-link wishlist-icon" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
                     <i class="fa-regular fa-heart"></i>
                     <span class="wishlist-count" id="nav-wishlist-count">0</span>
@@ -72,7 +63,7 @@
                     <i class="fa-regular fa-user"></i>
                     <span>Login</span>
                 </a>
-                <button type="button" class="mobile-toggle icon-link" id="mobile-toggle" aria-label="Open mobile navigation">
+                <button type="button" class="mobile-toggle icon-link" id="mobile-toggle" aria-label="Open mobile navigation" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -90,7 +81,7 @@
         </div>
         <div class="mobile-search-bar">
             <input type="text" id="mobile-search-input" placeholder="Search products...">
-            <button type="button" id="mobile-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button type="button" id="mobile-search-submit" aria-label="Submit search" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <ul class="mobile-nav-links">
             <li><a href="index.html" class="mobile-nav-item">Home</a></li>
@@ -147,9 +138,8 @@
                     <div class="guide-card-meta">
                         <p class="shop-eyebrow">THE BUYING GUIDE &bull; 5 MIN READ</p>
                         <h2 class="guide-card-title">
-                            <button type="button" class="guide-open-btn" data-guide="sound">
+                            <button type="button" class="guide-open-btn" onclick="window.location.href='404.html'">
                                 <span>Find your sound. Find your headphones.</span>
-                                <i class="fa-solid fa-arrow-right"></i>
                             </button>
                         </h2>
                         <p class="guide-card-desc">
@@ -166,9 +156,8 @@
                     <div class="guide-card-meta">
                         <p class="shop-eyebrow">THE LOOKBOOK &bull; 3 MIN READ</p>
                         <h2 class="guide-card-title">
-                            <button type="button" class="guide-open-btn" data-guide="essentials">
+                            <button type="button" class="guide-open-btn" onclick="window.location.href='404.html'">
                                 <span>The everyday essentials edit.</span>
-                                <i class="fa-solid fa-arrow-right"></i>
                             </button>
                         </h2>
                         <p class="guide-card-desc">
@@ -187,9 +176,8 @@
                         <p class="shop-split-desc">
                             Start with a screen that gives you space, a laptop that keeps you moving and accessories that tie it all together.
                         </p>
-                        <a href="shop.html?category=Monitors" class="shop-feature-btn">
+                        <a href="404.html" class="shop-feature-btn">
                             <span>Explore monitors</span>
-                            <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
                     <div class="guides-lookbook-media">
@@ -215,9 +203,8 @@
                     <p class="shop-split-desc">
                         A sharp display. A controller that feels right. Sound that brings the world closer. Build a setup you look forward to coming home to.
                     </p>
-                    <a href="shop.html?category=Gaming Consoles" class="shop-feature-btn">
+                    <a href="404.html" class="shop-feature-btn">
                         <span>Explore gaming consoles</span>
-                        <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -695,7 +682,7 @@
     </section>
 
     <!-- Footer (Same as Home Page) -->
-    <footer class="footer">
+        <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
@@ -704,61 +691,61 @@
                     </a>
                     <p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
                     <div class="social-links mt-3">
-                        <a href="404.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="404.html" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="404.html" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="404.html" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
+<a aria-label="Instagram" href="404.html"><i class="fa-brands fa-instagram"></i></a>
+<a aria-label="Twitter" href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+<a aria-label="Facebook" href="404.html"><i class="fa-brands fa-facebook-f"></i></a>
+<a aria-label="LinkedIn" href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+</div>
                 </div>
                 <div class="footer-col">
-                    <h4>QUICK LINKS</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="shipping.html">Order Management</a></li>
-                        <li><a href="mission.html">About</a></li>
-                        <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>SHOP</h4>
-                    <ul>
-                        <li><a href="shop.html?category=Laptops">Laptops &amp; Computers</a></li>
-                        <li><a href="shop.html?category=Gaming Consoles">Gaming Consoles</a></li>
-                        <li><a href="shop.html?category=Monitors">Monitors &amp; Displays</a></li>
-                        <li><a href="shop.html?category=Accessories">Keyboards &amp; Accessories</a></li>
-                        <li><a href="shop.html?category=Wearables">Smart Wearables</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>SUPPORT</h4>
-                    <ul>
-                        <li><a href="shipping.html">Order Management</a></li>
-                        <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
-                        <li><a href="index.html#faq">Help Center &amp; FAQs</a></li>
-                        <li><a href="404.html">Warranty Information</a></li>
-                        <li><a href="contact.html">Contact Customer Care</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>COMPANY</h4>
-                    <ul>
-                        <li><a href="mission.html">About</a></li>
-                        <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="dashboards/admin-dashboard.html">Admin Portal</a></li>
-                        <li><a href="dashboards/user-dashboard.html">Customer Dashboard</a></li>
-                        <li><a href="404.html">Privacy Policy &amp; Terms</a></li>
-                    </ul>
-                </div>
-            </div>
+<h4>QUICK LINKS</h4>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="shipping.html">Order Management</a></li>
+<li><a href="mission.html">About</a></li>
+<li><a href="guides.html">Buying Guides</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>SHOP</h4>
+<ul>
+<li><a href="404.html">Laptops &amp; Computers</a></li>
+<li><a href="404.html">Gaming Consoles</a></li>
+<li><a href="404.html">Monitors &amp; Displays</a></li>
+<li><a href="404.html">Keyboards &amp; Accessories</a></li>
+<li><a href="404.html">Smart Wearables</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>SUPPORT</h4>
+<ul>
+<li><a href="404.html">Order Management</a></li>
+<li><a href="404.html">Track Your Order</a></li>
+<li><a href="404.html">Help Center &amp; FAQs</a></li>
+<li><a href="404.html">Warranty Information</a></li>
+<li><a href="404.html">Contact Customer Care</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>COMPANY</h4>
+<ul>
+<li><a href="404.html">About</a></li>
+<li><a href="404.html">Buying Guides</a></li>
+<li><a href="404.html">Admin Portal</a></li>
+<li><a href="404.html">Customer Dashboard</a></li>
+<li><a href="404.html">Privacy Policy &amp; Terms</a></li>
+</ul>
+</div>
+</div>
 
             <div class="footer-bottom">
                 <p>&copy; 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
                 <div class="payment-methods">
                     <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
                     <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-apple-pay"></i> Apple Pay</span>
+                    <span class="pay-tag"><i class="fa-brands fa-apple-pay"></i> Apple Pay</span>
                     <span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
                 </div>
             </div>
@@ -837,8 +824,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
-    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
+    <script src="js/lenis.min.js"></script>
     <script src="js/lenis-init.js"></script>
     <!-- Custom JS -->
     <script src="js/cart.js"></script>

@@ -1,434 +1,390 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account — STACKLY Electronic Store</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="assets/img/logo.webp">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS Animation CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <!-- Google Fonts Preconnect & Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Account — STACKLY Electronic Store</title>
+<!-- Favicon -->
+<link href="assets/img/logo.webp" rel="icon" type="image/webp"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- AOS Animation CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+<!-- Google Fonts Preconnect & Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body class="page-signup">
-
-    <!-- Premium Preloader -->
-    <div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading STACKLY Sign Up">
-        <div class="preloader-content">
-            <div class="preloader-logo-wrap">
-                <div class="preloader-circular-spinner" aria-hidden="true"></div>
-                <img src="assets/img/logo.webp" alt="STACKLY" class="preloader-brand-logo">
+<!-- Premium Preloader -->
+<div aria-label="Loading STACKLY Sign Up" aria-live="polite" class="stackly-preloader" id="stackly-preloader" role="status">
+<div class="preloader-content">
+<div class="preloader-logo-wrap">
+<div aria-hidden="true" class="preloader-circular-spinner"></div>
+<img alt="STACKLY" class="preloader-brand-logo" src="assets/img/logo.webp"/>
+</div>
+<div class="preloader-indicator">
+<div class="preloader-progress-bar"></div>
+</div>
+<p class="preloader-text">Preparing Your Experience...</p>
+</div>
+</div>
+<!-- Header & Navigation (Same as Home Page) -->
+<header class="site-header" id="header">
+<nav class="navbar">
+<a class="logo" href="index.html">
+<img alt="STACKLY" class="logo-img" src="assets/img/logo.webp"/>
+</a>
+<ul class="nav-links desktop-only">
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="shipping.html">Order Management</a></li>
+<li><a href="mission.html">About</a></li>
+<li><a href="guides.html">Buying Guides</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<a aria-label="View Wishlist" class="icon-link wishlist-icon" href="wishlist.html" id="nav-wishlist-btn" title="Wishlist">
+<i class="fa-regular fa-heart"></i>
+<span class="wishlist-count" id="nav-wishlist-count">0</span>
+</a>
+<a aria-label="Shopping Cart" class="icon-link cart-icon" href="cart.html" id="nav-cart-btn" title="Cart">
+<i class="fa-solid fa-bag-shopping"></i>
+<span class="cart-count" id="nav-cart-count">0</span>
+</a>
+<a aria-label="Login" class="nav-login-btn desktop-only" href="login.html">
+<i class="fa-regular fa-user"></i>
+<span>Login</span>
+</a>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open mobile navigation" class="mobile-toggle icon-link" id="mobile-toggle" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Mobile Menu Overlay & Drawer (Same as Home Page) -->
+<div class="mobile-overlay" id="mobile-overlay"></div>
+<aside aria-label="Mobile menu" class="mobile-menu" id="mobile-menu">
+<div class="mobile-menu-header">
+<a class="logo" href="index.html">
+<img alt="STACKLY" class="logo-img" src="assets/img/logo.webp"/>
+</a>
+<button aria-label="Close mobile navigation" class="close-mobile" id="close-mobile"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="mobile-search-bar">
+<input id="mobile-search-input" placeholder="Search products..." type="text"/>
+<button aria-label="Submit search" id="mobile-search-submit" title="Search" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+</div>
+<ul class="mobile-nav-links">
+<li><a class="mobile-nav-item" href="index.html">Home</a></li>
+<li><a class="mobile-nav-item" href="shop.html">Shop</a></li>
+<li><a class="mobile-nav-item" href="shipping.html">Order Management</a></li>
+<li><a class="mobile-nav-item" href="mission.html">About</a></li>
+<li><a class="mobile-nav-item" href="guides.html">Buying Guides</a></li>
+<li><a class="mobile-nav-item" href="contact.html">Contact</a></li>
+<li><a class="mobile-nav-item" href="wishlist.html"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
+<li><a class="mobile-nav-item" href="cart.html"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
+<li><a class="mobile-nav-item" href="login.html"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
+</ul>
+<div class="mobile-menu-footer">
+<div class="mobile-contact-pill">
+<i class="fa-solid fa-headset"></i> 24/7 Support Available
             </div>
-            <div class="preloader-indicator">
-                <div class="preloader-progress-bar"></div>
-            </div>
-            <p class="preloader-text">Preparing Your Experience...</p>
-        </div>
-    </div>
-
-    <!-- Header & Navigation (Same as Home Page) -->
-    <header class="site-header" id="header">
-        <nav class="navbar">
-            <a href="index.html" class="logo">
-                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
-            </a>
-            
-            <ul class="nav-links desktop-only">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="shipping.html">Order Management</a></li>
-                <li><a href="mission.html">About</a></li>
-                <li><a href="guides.html">Buying Guides</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-
-            <div class="nav-icons">
-                <div class="search-box-wrapper" id="search-box-wrapper">
-                    <input type="text" id="header-search-input" placeholder="Search gadgets..." aria-label="Search products">
-                    <button type="button" class="search-submit-btn" id="search-submit-btn" aria-label="Submit search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <button type="button" class="icon-link search-toggle-btn" id="search-toggle-btn" aria-label="Search products" title="Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <a href="wishlist.html" class="icon-link wishlist-icon" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
-                    <i class="fa-regular fa-heart"></i>
-                    <span class="wishlist-count" id="nav-wishlist-count">0</span>
-                </a>
-                <a href="cart.html" class="icon-link cart-icon" id="nav-cart-btn" aria-label="Shopping Cart" title="Cart">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-count" id="nav-cart-count">0</span>
-                </a>
-                <a href="login.html" class="nav-login-btn desktop-only" aria-label="Login">
-                    <i class="fa-regular fa-user"></i>
-                    <span>Login</span>
-                </a>
-                <button type="button" class="mobile-toggle icon-link" id="mobile-toggle" aria-label="Open mobile navigation">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Mobile Menu Overlay & Drawer (Same as Home Page) -->
-    <div class="mobile-overlay" id="mobile-overlay"></div>
-    <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
-        <div class="mobile-menu-header">
-            <a href="index.html" class="logo">
-                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
-            </a>
-            <button class="close-mobile" id="close-mobile" aria-label="Close mobile navigation"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="mobile-search-bar">
-            <input type="text" id="mobile-search-input" placeholder="Search products...">
-            <button type="button" id="mobile-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-        <ul class="mobile-nav-links">
-            <li><a href="index.html" class="mobile-nav-item">Home</a></li>
-            <li><a href="shop.html" class="mobile-nav-item">Shop</a></li>
-            <li><a href="shipping.html" class="mobile-nav-item">Order Management</a></li>
-            <li><a href="mission.html" class="mobile-nav-item">About</a></li>
-            <li><a href="guides.html" class="mobile-nav-item">Buying Guides</a></li>
-            <li><a href="contact.html" class="mobile-nav-item">Contact</a></li>
-            <li><a href="wishlist.html" class="mobile-nav-item"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
-            <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
-            <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
-        </ul>
-        <div class="mobile-menu-footer">
-            <div class="mobile-contact-pill">
-                <i class="fa-solid fa-headset"></i> 24/7 Support Available
-            </div>
-        </div>
-    </aside>
-
-    <!-- Main Sign Up Section -->
-    <main class="login-page-section bg-white" id="signup-main">
-        <div class="container">
-
-            <!-- Back to Home Button -->
-            <div class="login-back-nav" data-aos="fade-down" data-aos-duration="600">
-                <a href="index.html" class="login-back-link">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Back to Home</span>
-                </a>
-            </div>
-
-            <div class="login-split-layout">
-
-                <!-- Left Column: Editorial Workspace Image with Overlay Copy & Electronics Perks -->
-                <div class="login-visual-col" data-aos="fade-right" data-aos-duration="800">
-                    <div class="login-visual-card">
-                        <img src="assets/img/login-banner.webp" alt="Clean modern desk setup with laptop, premium audio headphones, and workspace accessories" class="login-visual-img">
-                        <div class="login-visual-overlay">
-                            <p class="login-visual-eyebrow">YOUR EVERYDAY, UPGRADED</p>
-                            <h2 class="login-visual-title">
-                                <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Good tech.</span></span>
-                                <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Great to see you.</span></span>
-                            </h2>
-
-                            <!-- Curated Electronics Store Guarantees -->
-                            <div class="login-visual-perks">
-                                <div class="login-perk-item">
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                    <span>2-Year Comprehensive Hardware Warranty</span>
-                                </div>
-                                <div class="login-perk-item">
-                                    <i class="fa-solid fa-truck-fast"></i>
-                                    <span>Free Express Shipping on Orders $75+</span>
-                                </div>
-                                <div class="login-perk-item">
-                                    <i class="fa-solid fa-rotate-left"></i>
-                                    <span>Hassle-Free 30-Day Return Guarantee</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Registration Form & Interactive Controls -->
-                <div class="login-form-col" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
-                    <div class="login-form-container">
-                        <p class="shop-eyebrow login-eyebrow">STACKLY ACCOUNT</p>
-                        <h1 class="login-main-title">
-                            <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Make yourself at home.</span></span>
-                        </h1>
-                        <p class="login-subtitle">Create your account. Find your next favorite.</p>
-
-                        <!-- Mode Switcher Bar -->
-                        <div class="login-tab-bar" role="tablist" aria-label="Account access tabs">
-                            <a href="login.html" class="login-tab-btn" role="tab" aria-selected="false">
+</div>
+</aside>
+<!-- Main Sign Up Section -->
+<main class="login-page-section bg-white" id="signup-main">
+<div class="container">
+<!-- Back to Home Button -->
+<div class="login-back-nav" data-aos="fade-down" data-aos-duration="600">
+<a class="login-back-link" href="index.html">
+<i class="fa-solid fa-arrow-left"></i>
+<span>Back to Home</span>
+</a>
+</div>
+<div class="login-split-layout">
+<!-- Left Column: Editorial Workspace Image with Overlay Copy & Electronics Perks -->
+<div class="login-visual-col" data-aos="fade-right" data-aos-duration="800">
+<div class="login-visual-card">
+<img alt="Clean modern desk setup with laptop, premium audio headphones, and workspace accessories" class="login-visual-img" fetchpriority="high" loading="eager" src="assets/img/login-banner.webp"/>
+<div class="login-visual-overlay">
+<p class="login-visual-eyebrow">YOUR EVERYDAY, UPGRADED</p>
+<h2 class="login-visual-title">
+<span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Good tech.</span></span>
+<span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Great to see you.</span></span>
+</h2>
+<!-- Curated Electronics Store Guarantees -->
+<div class="login-visual-perks">
+<div class="login-perk-item">
+<i class="fa-solid fa-shield-halved"></i>
+<span>2-Year Comprehensive Hardware Warranty</span>
+</div>
+<div class="login-perk-item">
+<i class="fa-solid fa-truck-fast"></i>
+<span>Free Express Shipping on Orders $75+</span>
+</div>
+<div class="login-perk-item">
+<i class="fa-solid fa-rotate-left"></i>
+<span>Hassle-Free 30-Day Return Guarantee</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Registration Form & Interactive Controls -->
+<div class="login-form-col" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
+<div class="login-form-container">
+<p class="shop-eyebrow login-eyebrow">STACKLY ACCOUNT</p>
+<h1 class="login-main-title">
+<span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Make yourself at home.</span></span>
+</h1>
+<p class="login-subtitle">Create your account. Find your next favorite.</p>
+<!-- Mode Switcher Bar -->
+<div aria-label="Account access tabs" class="login-tab-bar" role="tablist">
+<a aria-selected="false" class="login-tab-btn" href="login.html" role="tab">
                                 Sign in
                             </a>
-                            <a href="signup.html" class="login-tab-btn active" role="tab" aria-selected="true">
+<a aria-selected="true" class="login-tab-btn active" href="signup.html" role="tab">
                                 Create account
                             </a>
-                        </div>
-
-                        <!-- Social Login: Continue with Google (Goes to 404.html) -->
-                        <div class="login-google-wrap">
-                            <a href="404.html" class="btn-google-auth" id="btn-google-auth">
-                                <i class="fa-brands fa-google"></i>
-                                <span>Continue with Google</span>
-                            </a>
-                        </div>
-
-                        <!-- Divider -->
-                        <div class="login-divider">
-                            <span>or continue with email</span>
-                        </div>
-
-                        <!-- Main Registration Form -->
-                        <form class="login-auth-form" id="stackly-signup-form" novalidate>
-
-                            <!-- Role Field with Dropdown (1. Admin, 2. Customer) -->
-                            <div class="login-field-group">
-                                <label for="signup-role" class="login-field-label">
-                                    <i class="fa-solid fa-user-shield"></i>
-                                    <span>Role</span>
-                                </label>
-                                <div class="login-select-wrap">
-                                    <select id="signup-role" name="role" class="login-input login-select" required aria-label="Select user role">
-                                        <option value="customer" selected>Customer</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                    <i class="fa-solid fa-chevron-down login-select-arrow" aria-hidden="true"></i>
-                                </div>
-                            </div>
-
-                            <!-- Full Name Field -->
-                            <div class="login-field-group">
-                                <label for="signup-name" class="login-field-label">
-                                    <i class="fa-regular fa-user"></i>
-                                    <span>Full Name</span>
-                                </label>
-                                <input type="text" id="signup-name" name="name" class="login-input" placeholder="e.g. Swetha Ramakrishnan" required autocomplete="name">
-                                <span class="login-field-error" id="signup-name-error" role="alert"></span>
-                            </div>
-
-                            <!-- Email Address Field -->
-                            <div class="login-field-group">
-                                <label for="signup-email" class="login-field-label">
-                                    <i class="fa-regular fa-envelope"></i>
-                                    <span>Email address</span>
-                                </label>
-                                <input type="email" id="signup-email" name="email" class="login-input" placeholder="name@example.com" required autocomplete="email">
-                                <span class="login-field-error" id="signup-email-error" role="alert"></span>
-                            </div>
-
-                            <!-- Phone Number Field with Country Code -->
-                            <div class="login-field-group">
-                                <label for="signup-phone" class="login-field-label">
-                                    <i class="fa-solid fa-phone"></i>
-                                    <span>Phone Number</span>
-                                </label>
-                                <div class="phone-input-wrap">
-                                    <span class="phone-prefix">+91</span>
-                                    <input type="tel" id="signup-phone" name="phone" class="login-input phone-field" placeholder="10-digit mobile number" maxlength="10" required autocomplete="tel">
-                                </div>
-                                <span class="login-field-error" id="signup-phone-error" role="alert"></span>
-                            </div>
-
-                            <!-- Password Field with Show/Hide Toggle & Guidance -->
-                            <div class="login-field-group">
-                                <label for="signup-password" class="login-field-label">
-                                    <i class="fa-solid fa-lock"></i>
-                                    <span>Password</span>
-                                </label>
-                                <div class="login-password-wrap">
-                                    <input type="password" id="signup-password" name="password" class="login-input" placeholder="Create a strong password" minlength="8" required autocomplete="new-password">
-                                    <button type="button" class="login-eye-btn" id="signup-password-toggle" aria-label="Toggle password visibility" title="Show/Hide Password">
-                                        <i class="fa-regular fa-eye"></i>
-                                    </button>
-                                </div>
-                                <p class="login-password-hint" id="signup-password-hint">At least 8 characters (including at least 1 letter and 1 number).</p>
-                                <span class="login-field-error" id="signup-password-error" role="alert"></span>
-                            </div>
-
-                            <!-- Confirm Password Field with Show/Hide Toggle -->
-                            <div class="login-field-group">
-                                <label for="signup-confirm-password" class="login-field-label">
-                                    <i class="fa-solid fa-lock"></i>
-                                    <span>Confirm Password</span>
-                                </label>
-                                <div class="login-password-wrap">
-                                    <input type="password" id="signup-confirm-password" name="confirmPassword" class="login-input" placeholder="Re-enter your password" minlength="8" required autocomplete="new-password">
-                                    <button type="button" class="login-eye-btn" id="signup-confirm-toggle" aria-label="Toggle confirm password visibility" title="Show/Hide Confirm Password">
-                                        <i class="fa-regular fa-eye"></i>
-                                    </button>
-                                </div>
-                                <span class="login-field-error" id="signup-confirm-error" role="alert"></span>
-                            </div>
-
-                            <!-- Agree to Terms and Conditions Checkbox -->
-                            <div class="login-terms-group">
-                                <label class="login-terms-label" for="signup-terms">
-                                    <input type="checkbox" id="signup-terms" name="terms" required>
-                                    <span class="custom-check-box"></span>
-                                    <span class="terms-text">I agree to STACKLY's <a href="javascript:void(0)" id="terms-modal-link">Terms &amp; Conditions</a> and <a href="javascript:void(0)" id="privacy-modal-link">Privacy Policy</a></span>
-                                </label>
-                                <span class="login-field-error" id="signup-terms-error" role="alert"></span>
-                            </div>
-
-                            <!-- Primary Submit Button -->
-                            <button type="submit" class="login-submit-btn" id="signup-submit-btn">
-                                <span>Create account</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-
-                            <!-- Status / Feedback Banner -->
-                            <div class="login-status-feedback" id="signup-status-feedback" aria-live="polite" hidden></div>
-                        </form>
-
-                        <!-- Switch to Login Link -->
-                        <div class="auth-switch-text-row">
-                            <p class="auth-switch-text">
+</div>
+<!-- Social Login: Continue with Google -->
+<div class="login-google-wrap">
+<a class="btn-google-auth" href="404.html" id="btn-google-auth">
+<i class="fa-brands fa-google"></i>
+<span>Continue with Google</span>
+</a>
+</div>
+<!-- Divider -->
+<div class="login-divider">
+<span>or continue with email</span>
+</div>
+<!-- Main Registration Form -->
+<form class="login-auth-form" id="stackly-signup-form" novalidate="">
+<!-- Role Field with Dropdown (1. Admin, 2. Customer) -->
+<div class="login-field-group">
+<label class="login-field-label" for="signup-role">
+<i class="fa-solid fa-user-shield"></i>
+<span>Role</span>
+</label>
+<div class="login-select-wrap">
+<select aria-label="Select user role" class="login-input login-select" id="signup-role" name="role" required="">
+<option selected="" value="customer">Customer</option>
+<option value="admin">Admin</option>
+</select>
+<i aria-hidden="true" class="fa-solid fa-chevron-down login-select-arrow"></i>
+</div>
+</div>
+<!-- Full Name Field -->
+<div class="login-field-group">
+<label class="login-field-label" for="signup-name">
+<i class="fa-regular fa-user"></i>
+<span>Full Name</span>
+</label>
+<input autocomplete="name" class="login-input" id="signup-name" name="name" placeholder="e.g. Swetha Ramakrishnan" required="" type="text"/>
+<span class="login-field-error" id="signup-name-error" role="alert"></span>
+</div>
+<!-- Email Address Field -->
+<div class="login-field-group">
+<label class="login-field-label" for="signup-email">
+<i class="fa-regular fa-envelope"></i>
+<span>Email address</span>
+</label>
+<input autocomplete="email" class="login-input" id="signup-email" name="email" placeholder="name@example.com" required="" type="email"/>
+<span class="login-field-error" id="signup-email-error" role="alert"></span>
+</div>
+<!-- Phone Number Field with Country Code -->
+<div class="login-field-group">
+<label class="login-field-label" for="signup-phone">
+<i class="fa-solid fa-phone"></i>
+<span>Phone Number</span>
+</label>
+<div class="phone-input-wrap">
+<span class="phone-prefix">+91</span>
+<input autocomplete="tel" class="login-input phone-field" id="signup-phone" maxlength="10" name="phone" placeholder="10-digit mobile number" required="" type="tel"/>
+</div>
+<span class="login-field-error" id="signup-phone-error" role="alert"></span>
+</div>
+<!-- Password Field with Show/Hide Toggle & Guidance -->
+<div class="login-field-group">
+<label class="login-field-label" for="signup-password">
+<i class="fa-solid fa-lock"></i>
+<span>Password</span>
+</label>
+<div class="login-password-wrap">
+<input autocomplete="new-password" class="login-input" id="signup-password" minlength="6" name="password" placeholder="Enter your password" required="" type="password"/>
+<button aria-label="Toggle password visibility" class="login-eye-btn" id="signup-password-toggle" title="Show/Hide Password" type="button">
+<i class="fa-regular fa-eye"></i>
+</button>
+</div>
+<span class="login-field-error" id="signup-password-error" role="alert"></span>
+</div>
+<!-- Confirm Password Field with Show/Hide Toggle -->
+<div class="login-field-group">
+<label class="login-field-label" for="signup-confirm-password">
+<i class="fa-solid fa-lock"></i>
+<span>Confirm Password</span>
+</label>
+<div class="login-password-wrap">
+<input autocomplete="new-password" class="login-input" id="signup-confirm-password" minlength="6" name="confirmPassword" placeholder="Re-enter your password" required="" type="password"/>
+<button aria-label="Toggle confirm password visibility" class="login-eye-btn" id="signup-confirm-toggle" title="Show/Hide Confirm Password" type="button">
+<i class="fa-regular fa-eye"></i>
+</button>
+</div>
+<span class="login-field-error" id="signup-confirm-error" role="alert"></span>
+</div>
+<!-- Agree to Terms and Conditions Checkbox -->
+<div class="login-terms-group">
+<label class="login-terms-label" for="signup-terms">
+<input id="signup-terms" name="terms" required="" type="checkbox"/>
+<span class="custom-check-box"></span>
+<span class="terms-text">I agree to STACKLY's <a class="info-modal-link" data-info="terms" href="shipping.html?tab=shipping" id="terms-modal-link">Terms &amp; Conditions</a> and <a class="info-modal-link" data-info="privacy" href="shipping.html?tab=shipping" id="privacy-modal-link">Privacy Policy</a></span>
+</label>
+<span class="login-field-error" id="signup-terms-error" role="alert"></span>
+</div>
+<!-- Primary Submit Button -->
+<button class="login-submit-btn" id="signup-submit-btn" type="submit">
+<span>Create account</span>
+</button>
+<!-- Status / Feedback Banner -->
+<div aria-live="polite" class="login-status-feedback" hidden="" id="signup-status-feedback"></div>
+</form>
+<!-- Switch to Login Link -->
+<div class="auth-switch-text-row">
+<p class="auth-switch-text">
                                 Already have an account? <a href="login.html">Sign in</a>
-                            </p>
-                        </div>
-
-                        <!-- Guest Checkout Note -->
-                        <div class="login-bottom-meta">
-                            <p class="login-guest-note">
-                                <i class="fa-regular fa-circle-check"></i>
-                                <span>Guest checkout is always available. <a href="shop.html">Continue shopping</a></span>
-                            </p>
-                        </div>
-
-                        <!-- Go Back to Home Button at Bottom -->
-                        <div class="login-bottom-home-nav">
-                            <a href="index.html" class="btn-go-back-home">
-                                <i class="fa-solid fa-house"></i>
-                                <span>Go Back to Home</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
-
-    <!-- Terms and Conditions Modal -->
-    <div class="info-modal-overlay" id="terms-modal" aria-hidden="true" role="dialog">
-        <div class="info-modal-card" style="max-width: 500px;">
-            <button class="modal-close-btn" id="terms-modal-close" aria-label="Close dialog">&times;</button>
-            <h3 style="margin-bottom: 8px;">STACKLY Terms &amp; Conditions</h3>
-            <div style="font-size: 0.88rem; color: #5C5C58; line-height: 1.6; max-height: 320px; overflow-y: auto; padding-right: 8px; margin-bottom: 20px;">
-                <p>Welcome to STACKLY. By creating an account, you agree to comply with our honest shopping policies, genuine warranty coverage, and verified order processing rules.</p>
-                <p style="margin-top: 10px;"><strong>Account Security:</strong> You are responsible for safeguarding your login credentials. We never store raw passwords and utilize local secure hash tokens.</p>
-                <p style="margin-top: 10px;"><strong>Warranty &amp; Service:</strong> All hardware purchases are backed by official 2-year manufacturer coverage and 30-day return support.</p>
-            </div>
-            <button type="button" class="login-submit-btn" id="terms-agree-btn" style="width: 100%;">
-                <span>Understood &amp; Agree</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- Footer (Same as Home Page) -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.html" class="logo footer-logo">
-                        <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img footer-logo-img">
-                    </a>
-                    <p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
-                    <div class="social-links mt-3">
-                        <a href="404.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="404.html" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="404.html" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="404.html" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>QUICK LINKS</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="shipping.html">Order Management</a></li>
-                        <li><a href="mission.html">About</a></li>
-                        <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>SHOP</h4>
-                    <ul>
-                        <li><a href="shop.html?category=Laptops">Laptops &amp; Computers</a></li>
-                        <li><a href="shop.html?category=Gaming Consoles">Gaming Consoles</a></li>
-                        <li><a href="shop.html?category=Monitors">Monitors &amp; Displays</a></li>
-                        <li><a href="shop.html?category=Accessories">Keyboards &amp; Accessories</a></li>
-                        <li><a href="shop.html?category=Wearables">Smart Wearables</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>SUPPORT</h4>
-                    <ul>
-                        <li><a href="shipping.html">Order Management</a></li>
-                        <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
-                        <li><a href="index.html#faq">Help Center &amp; FAQs</a></li>
-                        <li><a href="404.html">Warranty Information</a></li>
-                        <li><a href="contact.html">Contact Customer Care</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>COMPANY</h4>
-                    <ul>
-                        <li><a href="mission.html">About</a></li>
-                        <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="dashboards/admin-dashboard.html">Admin Portal</a></li>
-                        <li><a href="dashboards/user-dashboard.html">Customer Dashboard</a></li>
-                        <li><a href="404.html">Privacy Policy &amp; Terms</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
-                <div class="payment-methods">
-                    <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-apple-pay"></i> Apple Pay</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Info / Guide Modal -->
-    <div class="info-modal-overlay" id="info-modal" aria-hidden="true" role="dialog">
-        <div class="info-modal-card">
-            <button class="modal-close-btn" id="info-modal-close" aria-label="Close dialog">&times;</button>
-            <h3 id="info-modal-title">STACKLY Support</h3>
-            <div id="info-modal-body" class="info-modal-body">
-                <!-- Dynamic text populated by JS -->
-            </div>
-            <button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
-        </div>
-    </div>
-
-    <!-- AOS JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
-    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
-    <script src="js/lenis-init.js"></script>
-    <!-- Custom JS -->
-    <script src="js/cart.js"></script>
-    <script src="js/wishlist.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/login.js"></script>
+</p>
+</div>
+<!-- Guest Checkout Note -->
+<div class="login-bottom-meta">
+<p class="login-guest-note">
+<i class="fa-regular fa-circle-check"></i>
+<span>Guest checkout is always available. <a href="shop.html">Continue shopping</a></span>
+</p>
+</div>
+<!-- Go Back to Home Button at Bottom -->
+<div class="login-bottom-home-nav">
+<a class="btn-go-back-home" href="index.html">
+<i class="fa-solid fa-house"></i>
+<span>Go Back to Home</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Terms and Conditions Modal -->
+<div aria-hidden="true" class="info-modal-overlay" id="terms-modal" role="dialog">
+<div class="info-modal-card" style="max-width: 500px;">
+<button aria-label="Close dialog" class="modal-close-btn" id="terms-modal-close">×</button>
+<h3 style="margin-bottom: 8px;">STACKLY Terms &amp; Conditions</h3>
+<div style="font-size: 0.88rem; color: #5C5C58; line-height: 1.6; max-height: 320px; overflow-y: auto; padding-right: 8px; margin-bottom: 20px;">
+<p>Welcome to STACKLY. By creating an account, you agree to comply with our honest shopping policies, genuine warranty coverage, and verified order processing rules.</p>
+<p style="margin-top: 10px;"><strong>Account Security:</strong> You are responsible for safeguarding your login credentials. We never store raw passwords and utilize local secure hash tokens.</p>
+<p style="margin-top: 10px;"><strong>Warranty &amp; Service:</strong> All hardware purchases are backed by official 2-year manufacturer coverage and 30-day return support.</p>
+</div>
+<button class="login-submit-btn" id="terms-agree-btn" style="width: 100%;" type="button">
+<span>Understood &amp; Agree</span>
+</button>
+</div>
+</div>
+<!-- Footer (Same as Home Page) -->
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col">
+<a class="logo footer-logo" href="index.html">
+<img alt="STACKLY" class="logo-img footer-logo-img" src="assets/img/logo.webp"/>
+</a>
+<p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
+<div class="social-links mt-3">
+<a aria-label="Instagram" href="404.html"><i class="fa-brands fa-instagram"></i></a>
+<a aria-label="Twitter" href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+<a aria-label="Facebook" href="404.html"><i class="fa-brands fa-facebook-f"></i></a>
+<a aria-label="LinkedIn" href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+</div>
+</div>
+<div class="footer-col">
+<h4>QUICK LINKS</h4>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="shipping.html">Order Management</a></li>
+<li><a href="mission.html">About</a></li>
+<li><a href="guides.html">Buying Guides</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>SHOP</h4>
+<ul>
+<li><a href="404.html">Laptops &amp; Computers</a></li>
+<li><a href="404.html">Gaming Consoles</a></li>
+<li><a href="404.html">Monitors &amp; Displays</a></li>
+<li><a href="404.html">Keyboards &amp; Accessories</a></li>
+<li><a href="404.html">Smart Wearables</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>SUPPORT</h4>
+<ul>
+<li><a href="404.html">Order Management</a></li>
+<li><a href="404.html">Track Your Order</a></li>
+<li><a href="404.html">Help Center &amp; FAQs</a></li>
+<li><a href="404.html">Warranty Information</a></li>
+<li><a href="404.html">Contact Customer Care</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>COMPANY</h4>
+<ul>
+<li><a href="404.html">About</a></li>
+<li><a href="404.html">Buying Guides</a></li>
+<li><a href="404.html">Admin Portal</a></li>
+<li><a href="404.html">Customer Dashboard</a></li>
+<li><a href="404.html">Privacy Policy &amp; Terms</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
+<div class="payment-methods">
+<span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+<span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+<span class="pay-tag"><i class="fa-brands fa-apple-pay"></i> Apple Pay</span>
+<span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Info / Guide Modal -->
+<div aria-hidden="true" class="info-modal-overlay" id="info-modal" role="dialog">
+<div class="info-modal-card">
+<button aria-label="Close dialog" class="modal-close-btn" id="info-modal-close">×</button>
+<h3 id="info-modal-title">STACKLY Support</h3>
+<div class="info-modal-body" id="info-modal-body">
+<!-- Dynamic text populated by JS -->
+</div>
+<button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
+</div>
+</div>
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<!-- GSAP & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Lenis Smooth Scroll -->
+<script src="js/lenis.min.js"></script>
+<script src="js/lenis-init.js"></script>
+<!-- Custom JS -->
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/script.js"></script>
+<script src="js/login.js"></script>
 </body>
 </html>

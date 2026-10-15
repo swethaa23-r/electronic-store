@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found | STACKLY Electronic Store</title>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,12 +31,14 @@
 
     <!-- 404 Error Content (Header and Footer completely removed as requested) -->
     <main class="error-page-wrapper standalone-error">
-        <!-- Minimal Brand Header Pill for Context -->
-        <div class="standalone-brand-bar">
-            <a href="index.html#hero" class="logo">
-                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
-            </a>
-        </div>
+        <!-- Clean Brand Header aligned inside container grid -->
+        <header class="standalone-brand-bar">
+            <div class="container standalone-brand-container">
+                <a href="index.html" class="logo" aria-label="STACKLY Home">
+                    <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
+                </a>
+            </div>
+        </header>
 
         <div class="container error-container">
             <div class="error-content">
@@ -44,21 +46,21 @@
                     <i class="fa-solid fa-triangle-exclamation"></i>
                     <span>ERROR 404 &bull; CIRCUIT DISCONNECTED</span>
                 </div>
-                <h1 class="error-code">
-                    <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">404</span></span>
-                </h1>
-                <h2 class="error-title">
-                    <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">Oops! Page Not Found</span></span>
-                </h2>
+                <h1 class="error-code">404</h1>
+                <h2 class="error-title">Oops! Page Not Found</h2>
                 <p class="error-description">
                     Looks like this page has gone offline. Let’s get you back to the latest tech.
                 </p>
                 <div class="error-actions">
-                    <a href="index.html#hero" class="btn btn-error-primary" id="btn-back-home">
+                    <a href="index.html" class="btn btn-error-primary" id="btn-back-home">
                         <i class="fa-solid fa-house"></i>
                         <span>Go to Home</span>
                     </a>
-                    <button type="button" class="btn btn-error-secondary" id="btn-go-back" onclick="if (document.referrer && document.referrer.indexOf(window.location.host) !== -1) { history.back(); } else if (window.history.length > 1) { history.back(); } else { window.location.href = 'index.html#hero'; }">
+                    <a href="shop.html" class="btn btn-error-secondary" id="btn-explore-shop">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Explore Shop</span>
+                    </a>
+                    <button type="button" class="btn btn-error-secondary" id="btn-go-back" onclick="if (document.referrer && document.referrer.indexOf(window.location.host) !== -1) { history.back(); } else if (window.history.length > 1) { history.back(); } else { window.location.href = 'index.html'; }">
                         <i class="fa-solid fa-arrow-left"></i>
                         <span>Go Back</span>
                     </button>
@@ -67,11 +69,13 @@
                 <div class="error-suggestions">
                     <span class="suggestions-label">Popular Destinations:</span>
                     <div class="suggestion-links">
+                        <a href="shop.html">All Products</a>
+                        <span class="sep">&bull;</span>
                         <a href="index.html#freshly-dropped">New Arrivals</a>
                         <span class="sep">&bull;</span>
-                        <a href="index.html#categories">Categories</a>
+                        <a href="guides.html">Buying Guides</a>
                         <span class="sep">&bull;</span>
-                        <a href="index.html#handpicked">Recommended</a>
+                        <a href="contact.html">Customer Support</a>
                     </div>
                 </div>
             </div>
@@ -138,8 +142,7 @@
     <!-- GSAP CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
-    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
+    <script src="js/lenis.min.js"></script>
     <script src="js/lenis-init.js"></script>
     <!-- Custom JS -->
     <script src="js/script.js"></script>
@@ -159,42 +162,14 @@
                 { opacity: 1, y: 0, duration: 0.4 },
                 '-=0.15'
             )
-            // 1. Reveal 404 number using a controlled spotlight reveal
-            .fromTo('.error-code .spotlight-reveal-text, .error-code .text-mask-child',
-                {
-                    clipPath: 'circle(0% at 50% 50%)',
-                    opacity: 0.1,
-                    scale: 0.92,
-                    filter: 'brightness(1.6) blur(5px)'
-                },
-                {
-                    clipPath: 'circle(150% at 50% 50%)',
-                    opacity: 1,
-                    scale: 1,
-                    filter: 'brightness(1) blur(0px)',
-                    duration: 0.85,
-                    ease: 'power3.out',
-                    clearProps: 'clipPath,filter,transform,opacity'
-                },
+            .fromTo('.error-code',
+                { opacity: 0, y: 14, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out', clearProps: 'all' },
                 '-=0.15'
             )
-            // 2. Reveal heading with Spotlight Reveal effect
-            .fromTo('.error-title .spotlight-reveal-text, .error-title .text-mask-child',
-                {
-                    clipPath: 'circle(0% at 50% 50%)',
-                    opacity: 0.1,
-                    scale: 0.95,
-                    filter: 'brightness(1.5) blur(4px)'
-                },
-                {
-                    clipPath: 'circle(150% at 50% 50%)',
-                    opacity: 1,
-                    scale: 1,
-                    filter: 'brightness(1) blur(0px)',
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    clearProps: 'clipPath,filter,transform,opacity'
-                },
+            .fromTo('.error-title',
+                { opacity: 0, y: 12 },
+                { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out', clearProps: 'all' },
                 '-=0.2'
             )
             // 3. Reveal description strictly afterward

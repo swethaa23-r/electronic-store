@@ -1,866 +1,817 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Management - STACKLY Tech For Your Everyday</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="assets/img/logo.webp">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS Animation CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <!-- Google Fonts Preconnect & Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Management - STACKLY Tech For Your Everyday</title>
+<!-- Favicon -->
+<link href="assets/img/logo.webp" rel="icon" type="image/webp"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- AOS Animation CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+<!-- Google Fonts Preconnect & Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body class="page-shipping">
-
-    <!-- Premium Preloader -->
-    <div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading STACKLY store">
-        <div class="preloader-content">
-            <div class="preloader-logo-wrap">
-                <div class="preloader-circular-spinner" aria-hidden="true"></div>
-                <img src="assets/img/logo.webp" alt="STACKLY" class="preloader-brand-logo">
+<!-- Premium Preloader -->
+<div aria-label="Loading STACKLY store" aria-live="polite" class="stackly-preloader" id="stackly-preloader" role="status">
+<div class="preloader-content">
+<div class="preloader-logo-wrap">
+<div aria-hidden="true" class="preloader-circular-spinner"></div>
+<img alt="STACKLY" class="preloader-brand-logo" src="assets/img/logo.webp"/>
+</div>
+<div class="preloader-indicator">
+<div class="preloader-progress-bar"></div>
+</div>
+<p class="preloader-text">Preparing Your Experience...</p>
+</div>
+</div>
+<!-- Header & Navigation (Same as Home Page) -->
+<header class="site-header" id="header">
+<nav class="navbar">
+<a class="logo" href="index.html">
+<img alt="STACKLY" class="logo-img" src="assets/img/logo.webp"/>
+</a>
+<ul class="nav-links desktop-only">
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a class="active" href="shipping.html">Order Management</a></li>
+<li><a href="mission.html">About</a></li>
+<li><a href="guides.html">Buying Guides</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<a aria-label="View Wishlist" class="icon-link wishlist-icon" href="wishlist.html" id="nav-wishlist-btn" title="Wishlist">
+<i class="fa-regular fa-heart"></i>
+<span class="wishlist-count" id="nav-wishlist-count">0</span>
+</a>
+<a aria-label="Shopping Cart" class="icon-link cart-icon" href="cart.html" id="nav-cart-btn" title="Cart">
+<i class="fa-solid fa-bag-shopping"></i>
+<span class="cart-count" id="nav-cart-count">0</span>
+</a>
+<a aria-label="Login" class="nav-login-btn desktop-only" href="login.html">
+<i class="fa-regular fa-user"></i>
+<span>Login</span>
+</a>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open mobile navigation" class="mobile-toggle icon-link" id="mobile-toggle" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Mobile Menu Overlay & Drawer (Same as Home Page) -->
+<div class="mobile-overlay" id="mobile-overlay"></div>
+<aside aria-label="Mobile menu" class="mobile-menu" id="mobile-menu">
+<div class="mobile-menu-header">
+<a class="logo" href="index.html">
+<img alt="STACKLY" class="logo-img" src="assets/img/logo.webp"/>
+</a>
+<button aria-label="Close mobile navigation" class="close-mobile" id="close-mobile"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="mobile-search-bar">
+<input id="mobile-search-input" placeholder="Search products..." type="text"/>
+<button aria-label="Submit search" id="mobile-search-submit" title="Search" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+</div>
+<ul class="mobile-nav-links">
+<li><a class="mobile-nav-item" href="index.html">Home</a></li>
+<li><a class="mobile-nav-item" href="shop.html">Shop</a></li>
+<li><a class="mobile-nav-item active" href="shipping.html">Order Management</a></li>
+<li><a class="mobile-nav-item" href="mission.html">About</a></li>
+<li><a class="mobile-nav-item" href="guides.html">Buying Guides</a></li>
+<li><a class="mobile-nav-item" href="contact.html">Contact</a></li>
+<li><a class="mobile-nav-item" href="wishlist.html"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
+<li><a class="mobile-nav-item" href="cart.html"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
+<li><a class="mobile-nav-item" href="login.html"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
+</ul>
+<div class="mobile-menu-footer">
+<div class="mobile-contact-pill">
+<i class="fa-solid fa-headset"></i> 24/7 Support Available
             </div>
-            <div class="preloader-indicator">
-                <div class="preloader-progress-bar"></div>
-            </div>
-            <p class="preloader-text">Preparing Your Experience...</p>
-        </div>
-    </div>
-
-    <!-- Header & Navigation (Same as Home Page) -->
-    <header class="site-header" id="header">
-        <nav class="navbar">
-            <a href="index.html" class="logo">
-                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
-            </a>
-            
-            <ul class="nav-links desktop-only">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="shipping.html" class="active">Order Management</a></li>
-                <li><a href="mission.html">About</a></li>
-                <li><a href="guides.html">Buying Guides</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-
-            <div class="nav-icons">
-                <div class="search-box-wrapper" id="search-box-wrapper">
-                    <input type="text" id="header-search-input" placeholder="Search gadgets..." aria-label="Search products">
-                    <button type="button" class="search-submit-btn" id="search-submit-btn" aria-label="Submit search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <button type="button" class="icon-link search-toggle-btn" id="search-toggle-btn" aria-label="Search products" title="Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <a href="wishlist.html" class="icon-link wishlist-icon" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
-                    <i class="fa-regular fa-heart"></i>
-                    <span class="wishlist-count" id="nav-wishlist-count">0</span>
-                </a>
-                <a href="cart.html" class="icon-link cart-icon" id="nav-cart-btn" aria-label="Shopping Cart" title="Cart">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-count" id="nav-cart-count">0</span>
-                </a>
-                <a href="login.html" class="nav-login-btn desktop-only" aria-label="Login">
-                    <i class="fa-regular fa-user"></i>
-                    <span>Login</span>
-                </a>
-                <button type="button" class="mobile-toggle icon-link" id="mobile-toggle" aria-label="Open mobile navigation">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Mobile Menu Overlay & Drawer (Same as Home Page) -->
-    <div class="mobile-overlay" id="mobile-overlay"></div>
-    <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
-        <div class="mobile-menu-header">
-            <a href="index.html" class="logo">
-                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
-            </a>
-            <button class="close-mobile" id="close-mobile" aria-label="Close mobile navigation"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="mobile-search-bar">
-            <input type="text" id="mobile-search-input" placeholder="Search products...">
-            <button type="button" id="mobile-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-        <ul class="mobile-nav-links">
-            <li><a href="index.html" class="mobile-nav-item">Home</a></li>
-            <li><a href="shop.html" class="mobile-nav-item">Shop</a></li>
-            <li><a href="shipping.html" class="mobile-nav-item active">Order Management</a></li>
-            <li><a href="mission.html" class="mobile-nav-item">About</a></li>
-            <li><a href="guides.html" class="mobile-nav-item">Buying Guides</a></li>
-            <li><a href="contact.html" class="mobile-nav-item">Contact</a></li>
-            <li><a href="wishlist.html" class="mobile-nav-item"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
-            <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
-            <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
-        </ul>
-        <div class="mobile-menu-footer">
-            <div class="mobile-contact-pill">
-                <i class="fa-solid fa-headset"></i> 24/7 Support Available
-            </div>
-        </div>
-    </aside>
-
-    <!-- Top Promo Announcement Bar -->
-    <div class="shop-announcement-bar" role="region" aria-label="Store Promotion">
-        <div class="container shop-announcement-inner">
-            <span><i class="fa-solid fa-truck-fast"></i> FREE SHIPPING ON ORDERS $100+</span>
-            <span class="announcement-dot">&bull;</span>
-            <span>BETTER TECH. EVERY DAY.</span>
-        </div>
-    </div>
-
-    <!-- 1. Shipping Hero Section ("From our door to yours.") -->
-    <section class="shipping-hero-section" id="shipping-hero">
-        <div class="shipping-hero-bg">
-            <img src="assets/img/shipping-hero.webp" alt="Minimalist STACKLY unboxing and delivery packages" class="shipping-hero-img">
-            <div class="shipping-hero-overlay"></div>
-        </div>
-        <div class="container shipping-hero-container">
-            <div class="shipping-hero-content">
-                <p class="shop-eyebrow">WE'RE HERE FOR THE WHOLE JOURNEY</p>
-                <h1 class="shipping-hero-title">
-                    <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">From our door to yours.</span></span>
-                </h1>
-                <p class="shipping-hero-subtitle">
+</div>
+</aside>
+<!-- Top Promo Announcement Bar -->
+<div aria-label="Store Promotion" class="shop-announcement-bar" role="region">
+<div class="container shop-announcement-inner">
+<span><i class="fa-solid fa-truck-fast"></i> FREE SHIPPING ON ORDERS $100+</span>
+<span class="announcement-dot">•</span>
+<span>BETTER TECH. EVERY DAY.</span>
+</div>
+</div>
+<!-- 1. Shipping Hero Section ("From our door to yours.") -->
+<section class="shipping-hero-section" id="shipping-hero">
+<div class="shipping-hero-bg">
+<img alt="Minimalist STACKLY unboxing and delivery packages" class="shipping-hero-img" fetchpriority="high" loading="eager" src="assets/img/shipping-hero.webp"/>
+<div class="shipping-hero-overlay"></div>
+</div>
+<div class="container shipping-hero-container">
+<div class="shipping-hero-content">
+<p class="shop-eyebrow">WE'RE HERE FOR THE WHOLE JOURNEY</p>
+<h1 class="shipping-hero-title">
+<span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child">From our door to yours.</span></span>
+</h1>
+<p class="shipping-hero-subtitle">
                     Everything you need to know about delivery, returns, and where your next everyday favorite is right now.
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2. Interactive Segmented Tabs Section (Shipping | Returns | Track your order) -->
-    <section class="shipping-tabs-section" id="shipping-tabs-section">
-        <div class="container">
-            <!-- Segmented Tab Bar -->
-            <div class="shipping-tabs-nav-wrap" data-aos="fade-up" data-aos-delay="50">
-                <div class="shipping-tabs-bar" role="tablist" aria-label="Delivery, Returns, and Order Tracking Tabs">
-                    <button type="button" class="shipping-tab-btn active" role="tab" aria-selected="true" aria-controls="panel-shipping" id="tab-btn-shipping" data-tab="shipping">
-                        <i class="fa-solid fa-truck"></i>
-                        <span>Shipping</span>
-                    </button>
-                    <button type="button" class="shipping-tab-btn" role="tab" aria-selected="false" aria-controls="panel-returns" id="tab-btn-returns" data-tab="returns">
-                        <i class="fa-solid fa-rotate-left"></i>
-                        <span>Returns</span>
-                    </button>
-                    <button type="button" class="shipping-tab-btn" role="tab" aria-selected="false" aria-controls="panel-tracking" id="tab-btn-tracking" data-tab="tracking">
-                        <i class="fa-solid fa-box-open"></i>
-                        <span>Track your order</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- TAB PANEL 1: SHIPPING (Default Active - Matches Figma Screenshot) -->
-            <div class="shipping-tab-panel active" id="panel-shipping" role="tabpanel" aria-labelledby="tab-btn-shipping">
-                <div class="shipping-two-col-grid">
-                    <!-- Left Column: A smooth arrival -->
-                    <div class="shipping-main-col" data-aos="fade-right" data-aos-duration="800">
-                        <h2 class="shipping-col-heading">A smooth arrival.</h2>
-                        <p class="shipping-lead-text">
+</div>
+</div>
+</section>
+<!-- 2. Interactive Segmented Tabs Section (Shipping | Returns | Track your order) -->
+<section class="shipping-tabs-section" id="shipping-tabs-section">
+<div class="container">
+<!-- Segmented Tab Bar -->
+<div class="shipping-tabs-nav-wrap" data-aos="fade-up" data-aos-delay="50">
+<div aria-label="Delivery, Returns, and Order Tracking Tabs" class="shipping-tabs-bar" role="tablist">
+<button aria-controls="panel-shipping" aria-selected="true" class="shipping-tab-btn active" data-tab="shipping" id="tab-btn-shipping" role="tab" type="button">
+<i class="fa-solid fa-truck"></i>
+<span>Shipping</span>
+</button>
+<button aria-controls="panel-returns" aria-selected="false" class="shipping-tab-btn" data-tab="returns" id="tab-btn-returns" role="tab" type="button">
+<i class="fa-solid fa-rotate-left"></i>
+<span>Returns</span>
+</button>
+<button aria-controls="panel-tracking" aria-selected="false" class="shipping-tab-btn" data-tab="tracking" id="tab-btn-tracking" role="tab" type="button">
+<i class="fa-solid fa-box-open"></i>
+<span>Track your order</span>
+</button>
+</div>
+</div>
+<!-- TAB PANEL 1: SHIPPING (Default Active - Matches Figma Screenshot) -->
+<div aria-labelledby="tab-btn-shipping" class="shipping-tab-panel active" id="panel-shipping" role="tabpanel">
+<div class="shipping-two-col-grid">
+<!-- Left Column: A smooth arrival -->
+<div class="shipping-main-col" data-aos="fade-right" data-aos-duration="800">
+<h2 class="shipping-col-heading">A smooth arrival.</h2>
+<p class="shipping-lead-text">
                             Our current checkout accepts delivery addresses in the United States. Your delivery progress is available using the private tracking code on your order confirmation.
                         </p>
-
-                        <div class="shipping-info-list">
-                            <div class="shipping-info-block">
-                                <h4>Shipping costs</h4>
-                                <p>Orders of $100 or more ship free. For orders below $100, a $7 delivery fee is shown at checkout.</p>
-                            </div>
-
-                            <div class="shipping-info-block">
-                                <h4>Processing &amp; delivery</h4>
-                                <p>Your order begins with a confirmed status. Once fulfillment is arranged, its progress can be checked on the tracking tab. Delivery dates are not guaranteed at checkout.</p>
-                            </div>
-
-                            <div class="shipping-info-block">
-                                <h4>Payment on delivery</h4>
-                                <p>No payment is taken online. Your order total is due on delivery. We never ask you to enter card details.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Know where it's going -->
-                    <div class="shipping-side-col" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
-                        <h2 class="shipping-col-heading">Know where it's going.</h2>
-                        
-                        <div class="shipping-callout-box">
-                            <p>Save your tracking code after checkout. It is your private key to order status and return requests &mdash; don't share it publicly.</p>
-                        </div>
-
-                        <button type="button" class="shop-feature-btn" id="jump-to-tracking-btn">
-                            <span>Track an order</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB PANEL 2: RETURNS (Interactive Return Policy & Return Review Form) -->
-            <div class="shipping-tab-panel" id="panel-returns" role="tabpanel" aria-labelledby="tab-btn-returns" hidden>
-                <div class="shipping-two-col-grid">
-                    <!-- Left Column -->
-                    <div class="shipping-main-col">
-                        <h2 class="shipping-col-heading">Returns, considered.</h2>
-                        <p class="shipping-lead-text">
+<div class="shipping-info-list">
+<div class="shipping-info-block">
+<h4>Shipping costs</h4>
+<p>Orders of $100 or more ship free. For orders below $100, a $7 delivery fee is shown at checkout.</p>
+</div>
+<div class="shipping-info-block">
+<h4>Processing &amp; delivery</h4>
+<p>Your order begins with a confirmed status. Once fulfillment is arranged, its progress can be checked on the tracking tab. Delivery dates are not guaranteed at checkout.</p>
+</div>
+<div class="shipping-info-block">
+<h4>Payment on delivery</h4>
+<p>No payment is taken online. Your order total is due on delivery. We never ask you to enter card details.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Know where it's going -->
+<div class="shipping-side-col" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
+<h2 class="shipping-col-heading">Know where it's going.</h2>
+<div class="shipping-callout-box">
+<p>Save your tracking code after checkout. It is your private key to order status and return requests — don't share it publicly.</p>
+</div>
+<button class="shop-feature-btn" id="jump-to-tracking-btn" type="button">
+<span>Track an order</span>
+</button>
+</div>
+</div>
+</div>
+<!-- TAB PANEL 2: RETURNS (Interactive Return Policy & Return Review Form) -->
+<div aria-labelledby="tab-btn-returns" class="shipping-tab-panel" hidden="" id="panel-returns" role="tabpanel">
+<div class="shipping-two-col-grid">
+<!-- Left Column -->
+<div class="shipping-main-col">
+<h2 class="shipping-col-heading">Returns, considered.</h2>
+<p class="shipping-lead-text">
                             We want every piece of gear to fit seamlessly into your daily routine. Delivered orders can be submitted for return review within 30 days using your private tracking code.
                         </p>
-
-                        <div class="shipping-info-list">
-                            <div class="shipping-info-block">
-                                <h4>30-day return eligibility</h4>
-                                <p>Hardware must be in clean working condition with its original box, cables, and accessories. Keep all packaging until your return review is confirmed.</p>
-                            </div>
-
-                            <div class="shipping-info-block">
-                                <h4>Simple return review</h4>
-                                <p>Submit your private tracking code and reason using the form on the right. Our team reviews requests within 24 hours and provides a prepaid return label.</p>
-                            </div>
-
-                            <div class="shipping-info-block">
-                                <h4>Fast replacement or refund</h4>
-                                <p>Once your return is inspected at our studio, we issue a full refund or dispatch a brand-new replacement unit at no extra delivery cost.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Interactive Return Request Form -->
-                    <div class="shipping-side-col">
-                        <h2 class="shipping-col-heading">Start a return review.</h2>
-                        <div class="shipping-callout-box">
-                            <p>Only delivered orders are eligible for return review. Enter your private tracking code below to submit your request.</p>
-                        </div>
-
-                        <form class="shipping-interactive-form" id="return-request-form" novalidate>
-                            <div class="ship-form-group">
-                                <label for="return-tracking-code">Private tracking code</label>
-                                <input type="text" id="return-tracking-code" placeholder="e.g. STK-84920" required>
-                            </div>
-                            <div class="ship-form-group">
-                                <label for="return-reason">Reason for return</label>
-                                <select id="return-reason" required>
-                                    <option value="">Select a reason...</option>
-                                    <option value="changed-mind">Changed my mind / Doesn't fit setup</option>
-                                    <option value="exchange">Would like to exchange for another model</option>
-                                    <option value="defective">Hardware issue or transit damage</option>
-                                    <option value="missing-part">Missing accessory in box</option>
-                                </select>
-                            </div>
-                            <div class="ship-form-group">
-                                <label for="return-notes">Additional notes (optional)</label>
-                                <textarea id="return-notes" rows="3" placeholder="Tell us a little more about the item condition..."></textarea>
-                            </div>
-                            <button type="submit" class="shop-feature-btn">
-                                <span>Submit return request</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                            <div class="ship-form-feedback" id="return-form-feedback" aria-live="polite"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB PANEL 3: TRACK YOUR ORDER (Interactive Live Order Tracker) -->
-            <div class="shipping-tab-panel" id="panel-tracking" role="tabpanel" aria-labelledby="tab-btn-tracking" hidden>
-                <div class="shipping-two-col-grid">
-                    <!-- Left Column: Tracking Input -->
-                    <div class="shipping-main-col">
-                        <h2 class="shipping-col-heading">Track your order.</h2>
-                        <p class="shipping-lead-text">
+<div class="shipping-info-list">
+<div class="shipping-info-block">
+<h4>30-day return eligibility</h4>
+<p>Hardware must be in clean working condition with its original box, cables, and accessories. Keep all packaging until your return review is confirmed.</p>
+</div>
+<div class="shipping-info-block">
+<h4>Simple return review</h4>
+<p>Submit your private tracking code and reason using the form on the right. Our team reviews requests within 24 hours and provides a prepaid return label.</p>
+</div>
+<div class="shipping-info-block">
+<h4>Fast replacement or refund</h4>
+<p>Once your return is inspected at our studio, we issue a full refund or dispatch a brand-new replacement unit at no extra delivery cost.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Return Request Form -->
+<div class="shipping-side-col">
+<h2 class="shipping-col-heading">Start a return review.</h2>
+<div class="shipping-callout-box">
+<p>Only delivered orders are eligible for return review. Enter your private tracking code below to submit your request.</p>
+</div>
+<form class="shipping-interactive-form" id="return-request-form" novalidate="">
+<div class="ship-form-group">
+<label for="return-tracking-code">Private tracking code</label>
+<input id="return-tracking-code" placeholder="e.g. STK-84920" required="" type="text"/>
+</div>
+<div class="ship-form-group">
+<label for="return-reason">Reason for return</label>
+<select id="return-reason" required="">
+<option value="">Select a reason...</option>
+<option value="changed-mind">Changed my mind / Doesn't fit setup</option>
+<option value="exchange">Would like to exchange for another model</option>
+<option value="defective">Hardware issue or transit damage</option>
+<option value="missing-part">Missing accessory in box</option>
+</select>
+</div>
+<div class="ship-form-group">
+<label for="return-notes">Additional notes (optional)</label>
+<textarea id="return-notes" placeholder="Tell us a little more about the item condition..." rows="3"></textarea>
+</div>
+<button class="shop-feature-btn" type="submit">
+<span>Submit return request</span>
+</button>
+<div aria-live="polite" class="ship-form-feedback" id="return-form-feedback"></div>
+</form>
+</div>
+</div>
+</div>
+<!-- TAB PANEL 3: TRACK YOUR ORDER (Interactive Live Order Tracker) -->
+<div aria-labelledby="tab-btn-tracking" class="shipping-tab-panel" hidden="" id="panel-tracking" role="tabpanel">
+<div class="shipping-two-col-grid">
+<!-- Left Column: Tracking Input -->
+<div class="shipping-main-col">
+<h2 class="shipping-col-heading">Track your order.</h2>
+<p class="shipping-lead-text">
                             Enter the private tracking code shown on your order confirmation screen to view real-time fulfillment milestones and delivery status.
                         </p>
-
-                        <form class="shipping-interactive-form" id="order-tracking-form" novalidate>
-                            <div class="ship-form-group">
-                                <label for="tracking-code-input">Private tracking code</label>
-                                <div class="tracking-input-row">
-                                    <input type="text" id="tracking-code-input" placeholder="Enter code (e.g. STK-84920)" required>
-                                    <button type="submit" class="shop-feature-btn">
-                                        <span>Track order</span>
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <div class="sample-tracking-pills">
-                            <span class="sample-label">Try a sample code:</span>
-                            <button type="button" class="sample-code-pill" data-code="STK-84920">STK-84920 (In Transit)</button>
-                            <button type="button" class="sample-code-pill" data-code="STK-39104">STK-39104 (Delivered)</button>
-                            <button type="button" class="sample-code-pill" data-code="STK-77219">STK-77219 (Confirmed)</button>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Live Tracking Status Result Card -->
-                    <div class="shipping-side-col">
-                        <div class="live-tracking-card" id="live-tracking-card" aria-live="polite">
-                            <div class="tracking-card-header">
-                                <div>
-                                    <span class="tracking-code-tag" id="trk-display-code">STK-84920</span>
-                                    <h3 id="trk-display-status">In Transit &mdash; On Schedule</h3>
-                                </div>
-                                <span class="tracking-status-badge in-transit" id="trk-display-badge">
-                                    <i class="fa-solid fa-truck-fast"></i> In Transit
+<form class="shipping-interactive-form" id="order-tracking-form" novalidate="">
+<div class="ship-form-group">
+<label for="tracking-code-input">Private tracking code</label>
+<div class="tracking-input-row">
+<input id="tracking-code-input" placeholder="Enter code (e.g. STK-84920)" required="" type="text"/>
+<button class="shop-feature-btn" type="submit">
+<span>Track order</span>
+</button>
+</div>
+</div>
+</form>
+<div class="sample-tracking-pills">
+<span class="sample-label">Try a sample code:</span>
+<button class="sample-code-pill" data-code="STK-84920" type="button">STK-84920 (In Transit)</button>
+<button class="sample-code-pill" data-code="STK-39104" type="button">STK-39104 (Delivered)</button>
+<button class="sample-code-pill" data-code="STK-77219" type="button">STK-77219 (Confirmed)</button>
+</div>
+</div>
+<!-- Right Column: Live Tracking Status Result Card -->
+<div class="shipping-side-col">
+<div aria-live="polite" class="live-tracking-card" id="live-tracking-card">
+<div class="tracking-card-header">
+<div>
+<span class="tracking-code-tag" id="trk-display-code">STK-84920</span>
+<h3 id="trk-display-status">In Transit — On Schedule</h3>
+</div>
+<span class="tracking-status-badge in-transit" id="trk-display-badge">
+<i class="fa-solid fa-truck-fast"></i> In Transit
                                 </span>
-                            </div>
-
-                            <p class="tracking-eta-text" id="trk-display-eta">
-                                Estimated arrival: <strong>2&ndash;3 Business Days</strong> &bull; Payment due on delivery: <strong id="trk-display-total">$249.00</strong>
-                            </p>
-
-                            <div class="tracking-steps-timeline" id="trk-steps-timeline">
-                                <div class="trk-step completed">
-                                    <div class="trk-step-dot"><i class="fa-solid fa-check"></i></div>
-                                    <div class="trk-step-body">
-                                        <h5>Order confirmed</h5>
-                                        <p>Order received and private tracking key generated.</p>
-                                    </div>
-                                </div>
-                                <div class="trk-step completed">
-                                    <div class="trk-step-dot"><i class="fa-solid fa-check"></i></div>
-                                    <div class="trk-step-body">
-                                        <h5>Quality checked &amp; packed</h5>
-                                        <p>Hardware inspected and sealed in protective packaging.</p>
-                                    </div>
-                                </div>
-                                <div class="trk-step active">
-                                    <div class="trk-step-dot"><i class="fa-solid fa-truck"></i></div>
-                                    <div class="trk-step-body">
-                                        <h5>Dispatched with courier</h5>
-                                        <p>En route to your local United States delivery hub.</p>
-                                    </div>
-                                </div>
-                                <div class="trk-step">
-                                    <div class="trk-step-dot"><i class="fa-solid fa-house"></i></div>
-                                    <div class="trk-step-body">
-                                        <h5>Delivered (Pay on delivery)</h5>
-                                        <p>Handed over at your door upon payment confirmation.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tracking-items-mini" id="trk-display-items">
-                                <span><i class="fa-solid fa-box"></i> Items: <strong>View 27 QHD Monitor (x1)</strong></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Divider & "Back to the good stuff ->" link -->
-            <div class="shipping-back-row">
-                <a href="shop.html" class="back-good-stuff-link">
-                    <span>Back to the good stuff</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. Process Steps Section ("Every step, a little clearer.") -->
-    <section class="shop-value-props bg-warm-gray" id="every-step-clearer">
-        <div class="container">
-            <h2 class="shop-value-heading" data-aos="fade-up">Every step, a little clearer.</h2>
-
-            <div class="shop-value-grid">
-                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="50">
-                    <div class="shop-value-icon">
-                        <i class="fa-solid fa-clipboard-check"></i>
-                    </div>
-                    <h4>Order confirmed</h4>
-                    <p>Your confirmation shows the complete total and your private tracking code.</p>
-                </div>
-
-                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="120">
-                    <div class="shop-value-icon">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h4>Your details stay private</h4>
-                    <p>Order tracking shows progress and purchased items, never your contact details or address.</p>
-                </div>
-
-                <div class="shop-value-col" data-aos="fade-up" data-aos-delay="190">
-                    <div class="shop-value-icon">
-                        <i class="fa-solid fa-rotate-left"></i>
-                    </div>
-                    <h4>Return review</h4>
-                    <p>Use the return form on a delivered order. Keep the packaging until next steps are confirmed.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. Delivery FAQ Accordion Section ("Delivery questions, answered.") -->
-    <section class="shop-clarity-section" id="delivery-questions">
-        <div class="container">
-            <div class="shop-clarity-divider"></div>
-            <div class="shop-clarity-grid">
-                <div class="shop-clarity-left" data-aos="fade-right">
-                    <h2>Delivery questions,<br>answered.</h2>
-                </div>
-                <div class="shop-clarity-right" data-aos="fade-left" data-aos-delay="100">
-                    <div class="clarity-accordion-item">
-                        <button type="button" class="clarity-row-btn" aria-expanded="false">
-                            <span>Where do you deliver?</span>
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <div class="clarity-row-content" hidden>
-                            <p>Our checkout currently accepts delivery addresses across the United States. Every shipment is handled by tracked domestic couriers and includes a private tracking code on your confirmation screen.</p>
-                        </div>
-                    </div>
-
-                    <div class="clarity-accordion-item">
-                        <button type="button" class="clarity-row-btn" aria-expanded="false">
-                            <span>When will my order arrive?</span>
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <div class="clarity-row-content" hidden>
-                            <p>Orders begin in a confirmed state and are typically prepared for dispatch within 1&ndash;2 business days. Standard transit takes 3&ndash;5 business days depending on your state. Live progress is always visible in the Track your order tab.</p>
-                        </div>
-                    </div>
-
-                    <div class="clarity-accordion-item">
-                        <button type="button" class="clarity-row-btn" aria-expanded="false">
-                            <span>When do I pay?</span>
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <div class="clarity-row-content" hidden>
-                            <p>You only pay when your order arrives at your door. No online card payment is taken at checkout, and your exact order total (including free shipping on orders $100+ or the $7 delivery fee) is shown upfront before you place your order.</p>
-                        </div>
-                    </div>
-
-                    <div class="clarity-accordion-item">
-                        <button type="button" class="clarity-row-btn" aria-expanded="false">
-                            <span>Can I send an item back immediately?</span>
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <div class="clarity-row-content" hidden>
-                            <p>Once your order status is marked as delivered, submit a return review request using your private tracking code on the Returns tab. Please keep the original packaging and wait for our confirmation and return label before sending an item back.</p>
-                        </div>
-                    </div>
-
-                    <div class="clarity-accordion-item">
-                        <button type="button" class="clarity-row-btn" aria-expanded="false">
-                            <span>How do I track my delivery in real time?</span>
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <div class="clarity-row-content" hidden>
-                            <p>Enter your private 6-digit order tracking code into the tracker tool at the top of this page. You will see your exact courier milestone updates—from order confirmation and packaging to dispatch, out-for-delivery, and final doorstep delivery.</p>
-                        </div>
-                    </div>
-
-                    <div class="clarity-accordion-item">
-                        <button type="button" class="clarity-row-btn" aria-expanded="false">
-                            <span>What should I do if I need to change my delivery address?</span>
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <div class="clarity-row-content" hidden>
-                            <p>If your order is still in the "Confirmed" or "Preparing" state, you can update your delivery destination immediately by contacting our 24/7 support desk with your tracking code. Once an order is dispatched with our courier, rerouting may add 24 hours to transit.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. ADDITIONAL SECTION 1: Sustainable Protective Packaging & Interactive Shipping Calculator -->
-    <section class="shipping-extra-packaging bg-warm-gray border-top-subtle" id="packaging-estimator">
-        <div class="container">
-            <div class="shop-split-grid">
-                <!-- Left: Protective Packaging Visual & Standards -->
-                <div class="shipping-pack-media" data-aos="fade-right" data-aos-duration="850">
-                    <div class="shop-split-img-wrap">
-                        <img src="assets/img/shipping-packaging.webp" alt="Protective STACKLY hardware packaging and desk essentials" loading="lazy">
-                    </div>
-                    <div class="packaging-badges-row">
-                        <div class="pack-pill"><i class="fa-solid fa-box-archive"></i> Double-walled protection</div>
-                        <div class="pack-pill"><i class="fa-solid fa-leaf"></i> 100% recyclable pulp</div>
-                        <div class="pack-pill"><i class="fa-solid fa-lock"></i> Tamper-evident seal</div>
-                    </div>
-                </div>
-
-                <!-- Right: Interactive Delivery Cost & Transit Estimator -->
-                <div class="shipping-estimator-card" data-aos="fade-left" data-aos-duration="850" data-aos-delay="100">
-                    <p class="shop-eyebrow">PACKED FOR THE JOURNEY</p>
-                    <h2 class="shop-split-title">Calculate your delivery in seconds.</h2>
-                    <p class="shop-split-desc">
+</div>
+<p class="tracking-eta-text" id="trk-display-eta">
+                                Estimated arrival: <strong>2–3 Business Days</strong> • Payment due on delivery: <strong id="trk-display-total">$249.00</strong>
+</p>
+<div class="tracking-steps-timeline" id="trk-steps-timeline">
+<div class="trk-step completed">
+<div class="trk-step-dot"><i class="fa-solid fa-check"></i></div>
+<div class="trk-step-body">
+<h5>Order confirmed</h5>
+<p>Order received and private tracking key generated.</p>
+</div>
+</div>
+<div class="trk-step completed">
+<div class="trk-step-dot"><i class="fa-solid fa-check"></i></div>
+<div class="trk-step-body">
+<h5>Quality checked &amp; packed</h5>
+<p>Hardware inspected and sealed in protective packaging.</p>
+</div>
+</div>
+<div class="trk-step active">
+<div class="trk-step-dot"><i class="fa-solid fa-truck"></i></div>
+<div class="trk-step-body">
+<h5>Dispatched with courier</h5>
+<p>En route to your local United States delivery hub.</p>
+</div>
+</div>
+<div class="trk-step">
+<div class="trk-step-dot"><i class="fa-solid fa-house"></i></div>
+<div class="trk-step-body">
+<h5>Delivered (Pay on delivery)</h5>
+<p>Handed over at your door upon payment confirmation.</p>
+</div>
+</div>
+</div>
+<div class="tracking-items-mini" id="trk-display-items">
+<span><i class="fa-solid fa-box"></i> Items: <strong>View 27 QHD Monitor (x1)</strong></span>
+</div>
+</div>
+<!-- Not Found / Error State Card -->
+<div aria-live="assertive" class="live-tracking-not-found" id="live-tracking-not-found" style="display: none;">
+<div class="tracking-not-found-icon">
+<i class="fa-solid fa-circle-exclamation"></i>
+</div>
+<div class="tracking-not-found-body">
+<h4>No Order Found</h4>
+<p id="trk-not-found-msg">We couldn't locate any active delivery matching <strong id="trk-not-found-code">STK-00000</strong>.</p>
+<div class="tracking-not-found-tips">
+<h6>Verification Checklist:</h6>
+<ul>
+<li>Double-check your order code from your confirmation email (e.g., <code>STK-84920</code>).</li>
+<li>If you just completed checkout, order processing may take 1–2 minutes to sync.</li>
+<li>Try our sample tracking codes: <button class="not-found-sample-btn" data-code="STK-84920" type="button">STK-84920</button>, <button class="not-found-sample-btn" data-code="STK-39104" type="button">STK-39104</button>, or <button class="not-found-sample-btn" data-code="STK-77219" type="button">STK-77219</button>.</li>
+</ul>
+</div>
+<div class="tracking-not-found-actions">
+<button class="btn btn-secondary btn-sm" id="btn-reset-tracking" type="button"><i class="fa-solid fa-rotate-left"></i> Clear &amp; Try Again</button>
+<a class="btn btn-outline btn-sm" href="contact.html"><i class="fa-solid fa-headset"></i> Contact Support</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Divider & "Back to the good stuff" link -->
+<div class="shipping-back-row">
+<a class="back-good-stuff-link" href="404.html">
+<span>Back to the good stuff</span>
+</a>
+</div>
+</div>
+</section>
+<!-- 3. Process Steps Section ("Every step, a little clearer.") -->
+<section class="shop-value-props bg-warm-gray" id="every-step-clearer">
+<div class="container">
+<h2 class="shop-value-heading" data-aos="fade-up">Every step, a little clearer.</h2>
+<div class="shop-value-grid">
+<div class="shop-value-col" data-aos="fade-up" data-aos-delay="50">
+<div class="shop-value-icon">
+<i class="fa-solid fa-clipboard-check"></i>
+</div>
+<h4>Order confirmed</h4>
+<p>Your confirmation shows the complete total and your private tracking code.</p>
+</div>
+<div class="shop-value-col" data-aos="fade-up" data-aos-delay="120">
+<div class="shop-value-icon">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+<h4>Your details stay private</h4>
+<p>Order tracking shows progress and purchased items, never your contact details or address.</p>
+</div>
+<div class="shop-value-col" data-aos="fade-up" data-aos-delay="190">
+<div class="shop-value-icon">
+<i class="fa-solid fa-rotate-left"></i>
+</div>
+<h4>Return review</h4>
+<p>Use the return form on a delivered order. Keep the packaging until next steps are confirmed.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Delivery FAQ Accordion Section ("Delivery questions, answered.") -->
+<section class="shop-clarity-section" id="delivery-questions">
+<div class="container">
+<div class="shop-clarity-divider"></div>
+<div class="shop-clarity-grid">
+<div class="shop-clarity-left" data-aos="fade-right">
+<h2>Delivery questions,<br/>answered.</h2>
+</div>
+<div class="shop-clarity-right" data-aos="fade-left" data-aos-delay="100">
+<div class="clarity-accordion-item">
+<button aria-expanded="false" class="clarity-row-btn" type="button">
+<span>Where do you deliver?</span>
+<i class="fa-solid fa-plus"></i>
+</button>
+<div class="clarity-row-content" hidden="">
+<p>Our checkout currently accepts delivery addresses across the United States. Every shipment is handled by tracked domestic couriers and includes a private tracking code on your confirmation screen.</p>
+</div>
+</div>
+<div class="clarity-accordion-item">
+<button aria-expanded="false" class="clarity-row-btn" type="button">
+<span>When will my order arrive?</span>
+<i class="fa-solid fa-plus"></i>
+</button>
+<div class="clarity-row-content" hidden="">
+<p>Orders begin in a confirmed state and are typically prepared for dispatch within 1–2 business days. Standard transit takes 3–5 business days depending on your state. Live progress is always visible in the Track your order tab.</p>
+</div>
+</div>
+<div class="clarity-accordion-item">
+<button aria-expanded="false" class="clarity-row-btn" type="button">
+<span>When do I pay?</span>
+<i class="fa-solid fa-plus"></i>
+</button>
+<div class="clarity-row-content" hidden="">
+<p>You only pay when your order arrives at your door. No online card payment is taken at checkout, and your exact order total (including free shipping on orders $100+ or the $7 delivery fee) is shown upfront before you place your order.</p>
+</div>
+</div>
+<div class="clarity-accordion-item">
+<button aria-expanded="false" class="clarity-row-btn" type="button">
+<span>Can I send an item back immediately?</span>
+<i class="fa-solid fa-plus"></i>
+</button>
+<div class="clarity-row-content" hidden="">
+<p>Once your order status is marked as delivered, submit a return review request using your private tracking code on the Returns tab. Please keep the original packaging and wait for our confirmation and return label before sending an item back.</p>
+</div>
+</div>
+<div class="clarity-accordion-item">
+<button aria-expanded="false" class="clarity-row-btn" type="button">
+<span>How do I track my delivery in real time?</span>
+<i class="fa-solid fa-plus"></i>
+</button>
+<div class="clarity-row-content" hidden="">
+<p>Enter your private 6-digit order tracking code into the tracker tool at the top of this page. You will see your exact courier milestone updates—from order confirmation and packaging to dispatch, out-for-delivery, and final doorstep delivery.</p>
+</div>
+</div>
+<div class="clarity-accordion-item">
+<button aria-expanded="false" class="clarity-row-btn" type="button">
+<span>What should I do if I need to change my delivery address?</span>
+<i class="fa-solid fa-plus"></i>
+</button>
+<div class="clarity-row-content" hidden="">
+<p>If your order is still in the "Confirmed" or "Preparing" state, you can update your delivery destination immediately by contacting our 24/7 support desk with your tracking code. Once an order is dispatched with our courier, rerouting may add 24 hours to transit.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. ADDITIONAL SECTION 1: Sustainable Protective Packaging & Interactive Shipping Calculator -->
+<section class="shipping-extra-packaging bg-warm-gray border-top-subtle" id="packaging-estimator">
+<div class="container">
+<div class="shop-split-grid">
+<!-- Left: Protective Packaging Visual & Standards -->
+<div class="shipping-pack-media" data-aos="fade-right" data-aos-duration="850">
+<div class="shop-split-img-wrap">
+<img alt="Protective STACKLY hardware packaging and desk essentials" loading="lazy" src="assets/img/shipping-packaging.webp"/>
+</div>
+<div class="packaging-badges-row">
+<div class="pack-pill"><i class="fa-solid fa-box-archive"></i> Double-walled protection</div>
+<div class="pack-pill"><i class="fa-solid fa-leaf"></i> 100% recyclable pulp</div>
+<div class="pack-pill"><i class="fa-solid fa-lock"></i> Tamper-evident seal</div>
+</div>
+</div>
+<!-- Right: Interactive Delivery Cost & Transit Estimator -->
+<div class="shipping-estimator-card" data-aos="fade-left" data-aos-delay="100" data-aos-duration="850">
+<p class="shop-eyebrow">PACKED FOR THE JOURNEY</p>
+<h2 class="shop-split-title">Calculate your delivery in seconds.</h2>
+<p class="shop-split-desc">
                         Every monitor, laptop, and audio essential is cushioned in custom-molded recyclable inserts. Use the estimator below to preview shipping costs and transit times for your order.
                     </p>
-
-                    <div class="estimator-widget">
-                        <div class="estimator-control">
-                            <div class="estimator-label-row">
-                                <label for="est-order-slider">Estimated order subtotal</label>
-                                <strong id="est-order-val">$140.00</strong>
-                            </div>
-                            <input type="range" id="est-order-slider" min="25" max="500" step="5" value="140" aria-label="Estimated order subtotal">
-                        </div>
-
-                        <div class="estimator-control">
-                            <label for="est-region-select">United States delivery zone</label>
-                            <select id="est-region-select">
-                                <option value="east" data-days="2–3 business days">East Coast &amp; Mid-Atlantic (NY, MA, PA, VA, FL)</option>
-                                <option value="midwest" data-days="3–4 business days">Midwest &amp; Central (IL, OH, MI, TX, CO)</option>
-                                <option value="west" data-days="3–5 business days">West Coast &amp; Pacific (CA, WA, OR, AZ)</option>
-                            </select>
-                        </div>
-
-                        <div class="estimator-result-box" id="estimator-result-box">
-                            <div class="est-res-item">
-                                <span>Delivery fee</span>
-                                <strong class="est-free-tag" id="est-fee-output"><i class="fa-solid fa-circle-check"></i> FREE ($0.00)</strong>
-                            </div>
-                            <div class="est-res-item">
-                                <span>Estimated transit</span>
-                                <strong id="est-days-output">2&ndash;3 business days</strong>
-                            </div>
-                            <div class="est-res-item">
-                                <span>Total due on delivery</span>
-                                <strong id="est-total-output">$140.00</strong>
-                            </div>
-                        </div>
-                        <p class="est-helper-note" id="est-helper-note">
-                            <i class="fa-solid fa-truck-fast"></i> Your order is $100 or more &mdash; you qualify for <strong>Free Shipping</strong>!
+<div class="estimator-widget">
+<div class="estimator-control">
+<div class="estimator-label-row">
+<label for="est-order-slider">Estimated order subtotal</label>
+<strong id="est-order-val">$140.00</strong>
+</div>
+<input aria-label="Estimated order subtotal" id="est-order-slider" max="500" min="25" step="5" type="range" value="140"/>
+</div>
+<div class="estimator-control">
+<label for="est-region-select">United States delivery zone</label>
+<select id="est-region-select">
+<option data-days="2–3 business days" value="east">East Coast &amp; Mid-Atlantic (NY, MA, PA, VA, FL)</option>
+<option data-days="3–4 business days" value="midwest">Midwest &amp; Central (IL, OH, MI, TX, CO)</option>
+<option data-days="3–5 business days" value="west">West Coast &amp; Pacific (CA, WA, OR, AZ)</option>
+</select>
+</div>
+<div class="estimator-result-box" id="estimator-result-box">
+<div class="est-res-item">
+<span>Delivery fee</span>
+<strong class="est-free-tag" id="est-fee-output"><i class="fa-solid fa-circle-check"></i> FREE ($0.00)</strong>
+</div>
+<div class="est-res-item">
+<span>Estimated transit</span>
+<strong id="est-days-output">2–3 business days</strong>
+</div>
+<div class="est-res-item">
+<span>Total due on delivery</span>
+<strong id="est-total-output">$140.00</strong>
+</div>
+</div>
+<p class="est-helper-note" id="est-helper-note">
+<i class="fa-solid fa-truck-fast"></i> Your order is $100 or more — you qualify for <strong>Free Shipping</strong>!
                         </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. ADDITIONAL SECTION: Self-Service Order Management & Guarantee Shield -->
-    <section class="order-management-hub-section bg-white border-top" id="order-management-hub">
-        <div class="container">
-            <div class="order-hub-header" data-aos="fade-up">
-                <div class="order-hub-title-block">
-                    <p class="shop-eyebrow">SELF-SERVICE &amp; BUYER GUARANTEES</p>
-                    <h2 class="shop-shelf-title">Modify, update, and protect your active orders.</h2>
-                    <p class="order-hub-desc">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. ADDITIONAL SECTION: Self-Service Order Management & Guarantee Shield -->
+<section class="order-management-hub-section bg-white border-top" id="order-management-hub">
+<div class="container">
+<div class="order-hub-header" data-aos="fade-up">
+<div class="order-hub-title-block">
+<p class="shop-eyebrow">SELF-SERVICE &amp; BUYER GUARANTEES</p>
+<h2 class="shop-shelf-title">Modify, update, and protect your active orders.</h2>
+<p class="order-hub-desc">
                         Need to adjust your shipping address, reschedule a delivery window, download an itemized tax invoice, or cancel a pending shipment? Select a self-service action below or explore our 4-point fulfillment protection matrix.
                     </p>
-                </div>
-                <div class="order-hub-header-actions">
-                    <button type="button" class="shop-feature-btn" id="btn-jump-to-tracker">
-                        <i class="fa-solid fa-crosshairs"></i>
-                        <span>Live Shipment Tracker</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Two-Column Interactive Layout: Self-Service Action Center (Left) & Guarantee Shield Cards (Right) -->
-            <div class="order-hub-grid">
-                <!-- Left Column: Interactive Action Portal Card -->
-                <div class="order-portal-card" data-aos="fade-right" data-aos-duration="750">
-                    <div class="order-portal-header">
-                        <div class="order-portal-badge">
-                            <span class="hub-live-dot"></span>
-                            <span>INSTANT ACTION PORTAL</span>
-                        </div>
-                        <h3>Self-Service Order Assistant</h3>
-                        <p>Select your modification request and enter your order code for real-time validation.</p>
-                    </div>
-
-                    <form class="order-portal-form" id="order-portal-form" novalidate>
-                        <!-- Action Selector Radio Pills -->
-                        <div class="order-action-selector" role="radiogroup" aria-label="Order modification action">
-                            <label class="action-pill active">
-                                <input type="radio" name="order-action-type" value="address" checked>
-                                <i class="fa-solid fa-location-dot"></i>
-                                <span>Change Address</span>
-                            </label>
-                            <label class="action-pill">
-                                <input type="radio" name="order-action-type" value="reschedule">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                <span>Reschedule</span>
-                            </label>
-                            <label class="action-pill">
-                                <input type="radio" name="order-action-type" value="invoice">
-                                <i class="fa-solid fa-file-invoice"></i>
-                                <span>Get Invoice</span>
-                            </label>
-                            <label class="action-pill">
-                                <input type="radio" name="order-action-type" value="cancel">
-                                <i class="fa-solid fa-ban"></i>
-                                <span>Cancel Order</span>
-                            </label>
-                        </div>
-
-                        <!-- Order Identifier Field -->
-                        <div class="order-field-group">
-                            <label for="hub-order-code">Order Number / Tracking ID <span class="req-star">*</span></label>
-                            <div class="input-with-preset">
-                                <input type="text" id="hub-order-code" placeholder="e.g. STK-84920 or STK-77219" required autocomplete="off">
-                                <button type="button" class="btn-preset-code" id="btn-use-demo-code" title="Fill active demo order">Demo ID</button>
-                            </div>
-                        </div>
-
-                        <!-- Dynamic Action Context Container -->
-                        <div class="order-dynamic-fields" id="order-dynamic-fields">
-                            <!-- Populated dynamically via JS -->
-                        </div>
-
-                        <!-- Contact / Verification Email -->
-                        <div class="order-field-group">
-                            <label for="hub-contact-email">Account / Order Email Address <span class="req-star">*</span></label>
-                            <input type="email" id="hub-contact-email" placeholder="name@domain.com" required>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn-hub-submit" id="btn-hub-submit">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span id="hub-submit-text">Submit Address Amendment</span>
-                        </button>
-                    </form>
-
-                    <!-- Real-Time Dynamic Confirmation Feedback Banner -->
-                    <div class="order-portal-feedback" id="order-portal-feedback" style="display: none;" role="status" aria-live="polite">
-                        <div class="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
-                        <div class="feedback-text">
-                            <h4 id="feedback-headline">Address Update Confirmed</h4>
-                            <p id="feedback-detail">Your shipping address has been updated in our dispatch queue. Reference: <strong id="feedback-ref">REQ-84920-ADR</strong>.</p>
-                            <span class="feedback-timestamp" id="feedback-time">Updated just now &bull; Confirmation emailed</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: 4 Buyer Guarantees & SLAs -->
-                <div class="order-guarantees-col" data-aos="fade-left" data-aos-duration="750" data-aos-delay="100">
-                    <div class="guarantee-header-box">
-                        <span class="shop-eyebrow">ORDER PROTECTION MATRIX</span>
-                        <h3>Our 4-Point Fulfillment Guarantee</h3>
-                        <p>Every transaction on STACKLY is protected by guaranteed fulfillment SLAs, transparent tracking, and automated customer compensation.</p>
-                    </div>
-
-                    <div class="guarantee-cards-list">
-                        <!-- Guarantee 1 -->
-                        <div class="guarantee-card">
-                            <div class="guarantee-card-icon">
-                                <i class="fa-solid fa-map-location-dot"></i>
-                            </div>
-                            <div class="guarantee-card-content">
-                                <div class="guarantee-card-top">
-                                    <h4>Pre-Dispatch Address Guard</h4>
-                                    <span class="guarantee-badge green">Free Amendment</span>
-                                </div>
-                                <p>Entered the wrong apartment number or postal code? Update your shipping address directly before our 12-point inspection check at zero penalty fee.</p>
-                            </div>
-                        </div>
-
-                        <!-- Guarantee 2 -->
-                        <div class="guarantee-card">
-                            <div class="guarantee-card-icon">
-                                <i class="fa-solid fa-stopwatch-20"></i>
-                            </div>
-                            <div class="guarantee-card-content">
-                                <div class="guarantee-card-top">
-                                    <h4>On-Time Delivery SLA ($15 Credit)</h4>
-                                    <span class="guarantee-badge blue">Automated Credit</span>
-                                </div>
-                                <p>If your package arrives even one business day past your estimated delivery date, we instantly credit $15 back to your account without needing a manual claim.</p>
-                            </div>
-                        </div>
-
-                        <!-- Guarantee 3 -->
-                        <div class="guarantee-card">
-                            <div class="guarantee-card-icon">
-                                <i class="fa-solid fa-shield-halved"></i>
-                            </div>
-                            <div class="guarantee-card-content">
-                                <div class="guarantee-card-top">
-                                    <h4>Transit Impact &amp; Loss Shield</h4>
-                                    <span class="guarantee-badge purple">100% Replacement</span>
-                                </div>
-                                <p>All packages travel under comprehensive carrier loss and shock-proof transit insurance. Any courier delay or carton damage is replaced immediately.</p>
-                            </div>
-                        </div>
-
-                        <!-- Guarantee 4 -->
-                        <div class="guarantee-card">
-                            <div class="guarantee-card-icon">
-                                <i class="fa-solid fa-file-invoice-dollar"></i>
-                            </div>
-                            <div class="guarantee-card-content">
-                                <div class="guarantee-card-top">
-                                    <h4>Instant Tax Invoices &amp; Serial Vault</h4>
-                                    <span class="guarantee-badge dark">Instant PDF</span>
-                                </div>
-                                <p>Need digital receipts for company tax write-offs or warranty registration? Retrieve itemized invoices with hardware serial numbers at any time.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. ADDITIONAL SECTION: Unboxing Care & Direct Delivery Concierge Support -->
-    <section class="shipping-extra-concierge bg-warm-gray border-top" id="delivery-concierge">
-        <div class="container">
-            <div class="shipping-concierge-header" data-aos="fade-up">
-                <div>
-                    <p class="shop-eyebrow">DEDICATED DELIVERY CARE</p>
-                    <h2 class="shop-shelf-title">Real support, from dispatch to unboxing.</h2>
-                </div>
-                <a href="shop.html" class="shop-feature-btn">
-                    <span>Explore all products</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="shipping-concierge-grid">
-                <!-- Card 1 -->
-                <div class="concierge-card" data-aos="fade-up" data-aos-delay="50">
-                    <div class="concierge-card-img">
-                        <img src="assets/img/shipping-care.webp" alt="STACKLY hardware quality inspection workshop" loading="lazy">
-                        <span class="shop-badge">Pre-dispatch check</span>
-                    </div>
-                    <div class="concierge-card-body">
-                        <h4>12-point studio inspection</h4>
-                        <p>Before any package leaves our facility, our technicians verify serial authenticity, accessory completeness, and protective cushioning.</p>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="concierge-card" data-aos="fade-up" data-aos-delay="120">
-                    <div class="concierge-icon-top">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <div class="concierge-card-body">
-                        <h4>Doorstep inspection</h4>
-                        <p>Because you pay on delivery, you can verify that your outer shipping carton arrives sealed and intact right at your doorstep.</p>
-                        <ul class="concierge-checklist">
-                            <li><i class="fa-solid fa-check"></i> Check security tape seal</li>
-                            <li><i class="fa-solid fa-check"></i> Confirm order total matches invoice</li>
-                            <li><i class="fa-solid fa-check"></i> Keep box for 30-day return window</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Card 3: Quick Delivery Assistance -->
-                <div class="concierge-card concierge-contact-card" data-aos="fade-up" data-aos-delay="190">
-                    <div class="concierge-icon-top dark">
-                        <i class="fa-solid fa-headset"></i>
-                    </div>
-                    <div class="concierge-card-body">
-                        <h4>Need help with an active order?</h4>
-                        <p>Send our fulfillment desk a quick note with your private tracking code and we will respond within 2 business hours.</p>
-                        <form class="concierge-mini-form" id="concierge-mini-form" novalidate>
-                            <input type="text" id="concierge-code" placeholder="Tracking code (e.g. STK-84920)" required aria-label="Tracking code">
-                            <input type="text" id="concierge-msg" placeholder="How can we help with your delivery?" required aria-label="Delivery question">
-                            <button type="submit" class="shop-feature-btn w-100" style="justify-content: center;">
-                                <span>Message dispatch desk</span>
-                                <i class="fa-solid fa-paper-plane"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (Same as Home Page) -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.html" class="logo footer-logo">
-                        <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img footer-logo-img">
-                    </a>
-                    <p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
-                    <div class="social-links mt-3">
-                        <a href="404.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="404.html" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="404.html" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="404.html" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>QUICK LINKS</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="shipping.html">Order Management</a></li>
-                        <li><a href="mission.html">About</a></li>
-                        <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>SHOP</h4>
-                    <ul>
-                        <li><a href="shop.html?category=Laptops">Laptops &amp; Computers</a></li>
-                        <li><a href="shop.html?category=Gaming Consoles">Gaming Consoles</a></li>
-                        <li><a href="shop.html?category=Monitors">Monitors &amp; Displays</a></li>
-                        <li><a href="shop.html?category=Accessories">Keyboards &amp; Accessories</a></li>
-                        <li><a href="shop.html?category=Wearables">Smart Wearables</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>SUPPORT</h4>
-                    <ul>
-                        <li><a href="shipping.html">Order Management</a></li>
-                        <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
-                        <li><a href="index.html#faq">Help Center &amp; FAQs</a></li>
-                        <li><a href="404.html">Warranty Information</a></li>
-                        <li><a href="contact.html">Contact Customer Care</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>COMPANY</h4>
-                    <ul>
-                        <li><a href="mission.html">About</a></li>
-                        <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="dashboards/admin-dashboard.html">Admin Portal</a></li>
-                        <li><a href="dashboards/user-dashboard.html">Customer Dashboard</a></li>
-                        <li><a href="404.html">Privacy Policy &amp; Terms</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
-                <div class="payment-methods">
-                    <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-apple-pay"></i> Apple Pay</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Info / Guide Modal -->
-    <div class="info-modal-overlay" id="info-modal" aria-hidden="true" role="dialog">
-        <div class="info-modal-card">
-            <button class="modal-close-btn" id="info-modal-close" aria-label="Close dialog">&times;</button>
-            <h3 id="info-modal-title">STACKLY Support</h3>
-            <div id="info-modal-body" class="info-modal-body">
-                <!-- Dynamic text populated by JS -->
-            </div>
-            <button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
-        </div>
-    </div>
-
-    <!-- AOS JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
-    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
-    <script src="js/lenis-init.js"></script>
-    <!-- Custom JS -->
-    <script src="js/cart.js"></script>
-    <script src="js/wishlist.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/shipping.js"></script>
+</div>
+<div class="order-hub-header-actions">
+<button class="shop-feature-btn" id="btn-jump-to-tracker" type="button">
+<i class="fa-solid fa-crosshairs"></i>
+<span>Live Shipment Tracker</span>
+</button>
+</div>
+</div>
+<!-- Two-Column Interactive Layout: Self-Service Action Center (Left) & Guarantee Shield Cards (Right) -->
+<div class="order-hub-grid">
+<!-- Left Column: Interactive Action Portal Card -->
+<div class="order-portal-card" data-aos="fade-right" data-aos-duration="750">
+<div class="order-portal-header">
+<div class="order-portal-badge">
+<span class="hub-live-dot"></span>
+<span>INSTANT ACTION PORTAL</span>
+</div>
+<h3>Self-Service Order Assistant</h3>
+<p>Select your modification request and enter your order code for real-time validation.</p>
+</div>
+<form class="order-portal-form" id="order-portal-form" novalidate="">
+<!-- Action Selector Radio Pills -->
+<div aria-label="Order modification action" class="order-action-selector" role="radiogroup">
+<label class="action-pill active">
+<input aria-label="Change Address" checked="" name="order-action-type" type="radio" value="address"/>
+<i class="fa-solid fa-location-dot"></i>
+<span>Change Address</span>
+</label>
+<label class="action-pill">
+<input aria-label="Reschedule Delivery" name="order-action-type" type="radio" value="reschedule"/>
+<i class="fa-solid fa-calendar-days"></i>
+<span>Reschedule</span>
+</label>
+<label class="action-pill">
+<input aria-label="Get Invoice" name="order-action-type" type="radio" value="invoice"/>
+<i class="fa-solid fa-file-invoice"></i>
+<span>Get Invoice</span>
+</label>
+<label class="action-pill">
+<input aria-label="Cancel Order" name="order-action-type" type="radio" value="cancel"/>
+<i class="fa-solid fa-ban"></i>
+<span>Cancel Order</span>
+</label>
+</div>
+<!-- Order Identifier Field -->
+<div class="order-field-group">
+<label for="hub-order-code">Order Number / Tracking ID <span class="req-star">*</span></label>
+<div class="input-with-preset">
+<input autocomplete="off" id="hub-order-code" placeholder="e.g. STK-84920 or STK-77219" required="" type="text"/>
+<button class="btn-preset-code" id="btn-use-demo-code" title="Fill active demo order" type="button">Demo ID</button>
+</div>
+</div>
+<!-- Dynamic Action Context Container -->
+<div class="order-dynamic-fields" id="order-dynamic-fields">
+<!-- Populated dynamically via JS -->
+</div>
+<!-- Contact / Verification Email -->
+<div class="order-field-group">
+<label for="hub-contact-email">Account / Order Email Address <span class="req-star">*</span></label>
+<input id="hub-contact-email" placeholder="name@domain.com" required="" type="email"/>
+</div>
+<!-- Submit Button -->
+<button class="btn-hub-submit" id="btn-hub-submit" type="submit">
+<i class="fa-solid fa-circle-check"></i>
+<span id="hub-submit-text">Submit Address Amendment</span>
+</button>
+<div aria-live="assertive" class="ship-form-feedback hub-error-feedback" id="hub-form-error" role="alert" style="display: none; color: #dc2626; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 10px 14px; margin-top: 14px; font-size: 0.88rem; font-weight: 500;">
+<i class="fa-solid fa-circle-exclamation" style="margin-right: 6px;"></i>
+<span id="hub-error-msg">Please enter all required details before submitting.</span>
+</div>
+</form>
+<!-- Real-Time Dynamic Confirmation Feedback Banner -->
+<div aria-live="polite" class="order-portal-feedback" id="order-portal-feedback" role="status" style="display: none;">
+<div class="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
+<div class="feedback-text">
+<h4 id="feedback-headline">Address Update Confirmed</h4>
+<p id="feedback-detail">Your shipping address has been updated in our dispatch queue. Reference: <strong id="feedback-ref">REQ-84920-ADR</strong>.</p>
+<span class="feedback-timestamp" id="feedback-time">Updated just now • Confirmation emailed</span>
+</div>
+</div>
+</div>
+<!-- Right Column: 4 Buyer Guarantees & SLAs -->
+<div class="order-guarantees-col" data-aos="fade-left" data-aos-delay="100" data-aos-duration="750">
+<div class="guarantee-header-box">
+<span class="shop-eyebrow">ORDER PROTECTION MATRIX</span>
+<h3>Our 4-Point Fulfillment Guarantee</h3>
+<p>Every transaction on STACKLY is protected by guaranteed fulfillment SLAs, transparent tracking, and automated customer compensation.</p>
+</div>
+<div class="guarantee-cards-list">
+<!-- Guarantee 1 -->
+<div class="guarantee-card">
+<div class="guarantee-card-icon">
+<i class="fa-solid fa-map-location-dot"></i>
+</div>
+<div class="guarantee-card-content">
+<div class="guarantee-card-top">
+<h4>Pre-Dispatch Address Guard</h4>
+<span class="guarantee-badge green">Free Amendment</span>
+</div>
+<p>Entered the wrong apartment number or postal code? Update your shipping address directly before our 12-point inspection check at zero penalty fee.</p>
+</div>
+</div>
+<!-- Guarantee 2 -->
+<div class="guarantee-card">
+<div class="guarantee-card-icon">
+<i class="fa-solid fa-stopwatch-20"></i>
+</div>
+<div class="guarantee-card-content">
+<div class="guarantee-card-top">
+<h4>On-Time Delivery SLA ($15 Credit)</h4>
+<span class="guarantee-badge blue">Automated Credit</span>
+</div>
+<p>If your package arrives even one business day past your estimated delivery date, we instantly credit $15 back to your account without needing a manual claim.</p>
+</div>
+</div>
+<!-- Guarantee 3 -->
+<div class="guarantee-card">
+<div class="guarantee-card-icon">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+<div class="guarantee-card-content">
+<div class="guarantee-card-top">
+<h4>Transit Impact &amp; Loss Shield</h4>
+<span class="guarantee-badge purple">100% Replacement</span>
+</div>
+<p>All packages travel under comprehensive carrier loss and shock-proof transit insurance. Any courier delay or carton damage is replaced immediately.</p>
+</div>
+</div>
+<!-- Guarantee 4 -->
+<div class="guarantee-card">
+<div class="guarantee-card-icon">
+<i class="fa-solid fa-file-invoice-dollar"></i>
+</div>
+<div class="guarantee-card-content">
+<div class="guarantee-card-top">
+<h4>Instant Tax Invoices &amp; Serial Vault</h4>
+<span class="guarantee-badge dark">Instant PDF</span>
+</div>
+<p>Need digital receipts for company tax write-offs or warranty registration? Retrieve itemized invoices with hardware serial numbers at any time.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. ADDITIONAL SECTION: Unboxing Care & Direct Delivery Concierge Support -->
+<section class="shipping-extra-concierge bg-warm-gray border-top" id="delivery-concierge">
+<div class="container">
+<div class="shipping-concierge-header" data-aos="fade-up">
+<div>
+<p class="shop-eyebrow">DEDICATED DELIVERY CARE</p>
+<h2 class="shop-shelf-title">Real support, from dispatch to unboxing.</h2>
+</div>
+<a class="shop-feature-btn" href="404.html">
+<span>Explore all products</span>
+</a>
+</div>
+<div class="shipping-concierge-grid">
+<!-- Card 1 -->
+<div class="concierge-card" data-aos="fade-up" data-aos-delay="50">
+<div class="concierge-card-img">
+<img alt="STACKLY hardware quality inspection workshop" loading="lazy" src="assets/img/shipping-care.webp"/>
+<span class="shop-badge">Pre-dispatch check</span>
+</div>
+<div class="concierge-card-body">
+<h4>12-point studio inspection</h4>
+<p>Before any package leaves our facility, our technicians verify serial authenticity, accessory completeness, and protective cushioning.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="concierge-card" data-aos="fade-up" data-aos-delay="120">
+<div class="concierge-icon-top">
+<i class="fa-solid fa-box-open"></i>
+</div>
+<div class="concierge-card-body">
+<h4>Doorstep inspection</h4>
+<p>Because you pay on delivery, you can verify that your outer shipping carton arrives sealed and intact right at your doorstep.</p>
+<ul class="concierge-checklist">
+<li><i class="fa-solid fa-check"></i> Check security tape seal</li>
+<li><i class="fa-solid fa-check"></i> Confirm order total matches invoice</li>
+<li><i class="fa-solid fa-check"></i> Keep box for 30-day return window</li>
+</ul>
+</div>
+</div>
+<!-- Card 3: Quick Delivery Assistance -->
+<div class="concierge-card concierge-contact-card" data-aos="fade-up" data-aos-delay="190">
+<div class="concierge-icon-top dark">
+<i class="fa-solid fa-headset"></i>
+</div>
+<div class="concierge-card-body">
+<h4>Need help with an active order?</h4>
+<p>Send our fulfillment desk a quick note with your private tracking code and we will respond within 2 business hours.</p>
+<form class="concierge-mini-form" id="concierge-mini-form" novalidate="">
+<input aria-label="Tracking code" id="concierge-code" placeholder="Tracking code (e.g. STK-84920)" required="" type="text"/>
+<input aria-label="Delivery question" id="concierge-msg" placeholder="How can we help with your delivery?" required="" type="text"/>
+<button class="shop-feature-btn w-100" style="justify-content: center;" type="submit">
+<span>Message dispatch desk</span>
+<i class="fa-solid fa-paper-plane"></i>
+</button>
+<div aria-live="assertive" class="ship-form-feedback concierge-error-feedback" id="concierge-form-error" role="alert" style="display: none; color: #dc2626; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 10px 14px; margin-top: 12px; font-size: 0.85rem; font-weight: 500;">
+<i class="fa-solid fa-circle-exclamation" style="margin-right: 6px;"></i>
+<span id="concierge-error-msg">Please enter both your tracking code and delivery question.</span>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer (Same as Home Page) -->
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col">
+<a class="logo footer-logo" href="index.html">
+<img alt="STACKLY" class="logo-img footer-logo-img" src="assets/img/logo.webp"/>
+</a>
+<p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
+<div class="social-links mt-3">
+<a aria-label="Instagram" href="404.html"><i class="fa-brands fa-instagram"></i></a>
+<a aria-label="Twitter" href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+<a aria-label="Facebook" href="404.html"><i class="fa-brands fa-facebook-f"></i></a>
+<a aria-label="LinkedIn" href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+</div>
+</div>
+<div class="footer-col">
+<h4>QUICK LINKS</h4>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="shipping.html">Order Management</a></li>
+<li><a href="mission.html">About</a></li>
+<li><a href="guides.html">Buying Guides</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>SHOP</h4>
+<ul>
+<li><a href="404.html">Laptops &amp; Computers</a></li>
+<li><a href="404.html">Gaming Consoles</a></li>
+<li><a href="404.html">Monitors &amp; Displays</a></li>
+<li><a href="404.html">Keyboards &amp; Accessories</a></li>
+<li><a href="404.html">Smart Wearables</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>SUPPORT</h4>
+<ul>
+<li><a href="404.html">Order Management</a></li>
+<li><a href="404.html">Track Your Order</a></li>
+<li><a href="404.html">Help Center &amp; FAQs</a></li>
+<li><a href="404.html">Warranty Information</a></li>
+<li><a href="404.html">Contact Customer Care</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>COMPANY</h4>
+<ul>
+<li><a href="404.html">About</a></li>
+<li><a href="404.html">Buying Guides</a></li>
+<li><a href="404.html">Admin Portal</a></li>
+<li><a href="404.html">Customer Dashboard</a></li>
+<li><a href="404.html">Privacy Policy &amp; Terms</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
+<div class="payment-methods">
+<span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+<span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+<span class="pay-tag"><i class="fa-brands fa-apple-pay"></i> Apple Pay</span>
+<span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Info / Guide Modal -->
+<div aria-hidden="true" class="info-modal-overlay" id="info-modal" role="dialog">
+<div class="info-modal-card">
+<button aria-label="Close dialog" class="modal-close-btn" id="info-modal-close">×</button>
+<h3 id="info-modal-title">STACKLY Support</h3>
+<div class="info-modal-body" id="info-modal-body">
+<!-- Dynamic text populated by JS -->
+</div>
+<button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
+</div>
+</div>
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<!-- GSAP & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Lenis Smooth Scroll -->
+<script src="js/lenis.min.js"></script>
+<script src="js/lenis-init.js"></script>
+<!-- Custom JS -->
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/script.js"></script>
+<script src="js/shipping.js"></script>
 </body>
 </html>

@@ -1,433 +1,396 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-doc-title">Sonix Pro Wireless — STACKLY</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="assets/img/logo.webp">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS Animation CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <!-- Google Fonts Preconnect & Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title id="page-doc-title">Sonix Pro Wireless — STACKLY</title>
+<!-- Favicon -->
+<link href="assets/img/logo.webp" rel="icon" type="image/webp"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- AOS Animation CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+<!-- Google Fonts Preconnect & Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body class="page-product-details">
-
-    <!-- Premium Preloader -->
-    <div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading STACKLY product">
-        <div class="preloader-content">
-            <div class="preloader-logo-wrap">
-                <div class="preloader-circular-spinner" aria-hidden="true"></div>
-                <img src="assets/img/logo.webp" alt="STACKLY" class="preloader-brand-logo">
+<!-- Premium Preloader -->
+<div aria-label="Loading STACKLY product" aria-live="polite" class="stackly-preloader" id="stackly-preloader" role="status">
+<div class="preloader-content">
+<div class="preloader-logo-wrap">
+<div aria-hidden="true" class="preloader-circular-spinner"></div>
+<img alt="STACKLY" class="preloader-brand-logo" src="assets/img/logo.webp"/>
+</div>
+<div class="preloader-indicator">
+<div class="preloader-progress-bar"></div>
+</div>
+<p class="preloader-text">Preparing Your Experience...</p>
+</div>
+</div>
+<!-- Header & Navigation (Same as Home Page) -->
+<header class="site-header" id="header">
+<nav class="navbar">
+<a class="logo" href="index.html">
+<img alt="STACKLY" class="logo-img" src="assets/img/logo.webp"/>
+</a>
+<ul class="nav-links desktop-only">
+<li><a href="index.html">Home</a></li>
+<li><a class="active" href="shop.html">Shop</a></li>
+<li><a href="shipping.html">Order Management</a></li>
+<li><a href="mission.html">About</a></li>
+<li><a href="guides.html">Buying Guides</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<a aria-label="View Wishlist" class="icon-link wishlist-icon" href="wishlist.html" id="nav-wishlist-btn" title="Wishlist">
+<i class="fa-regular fa-heart"></i>
+<span class="wishlist-count" id="nav-wishlist-count">0</span>
+</a>
+<a aria-label="Shopping Cart" class="icon-link cart-icon" href="cart.html" id="nav-cart-btn" title="Cart">
+<i class="fa-solid fa-bag-shopping"></i>
+<span class="cart-count" id="nav-cart-count">0</span>
+</a>
+<a aria-label="Login" class="nav-login-btn desktop-only" href="login.html">
+<i class="fa-regular fa-user"></i>
+<span>Login</span>
+</a>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open mobile navigation" class="mobile-toggle icon-link" id="mobile-toggle" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Mobile Menu Overlay & Drawer (Same as Home Page) -->
+<div class="mobile-overlay" id="mobile-overlay"></div>
+<aside aria-label="Mobile menu" class="mobile-menu" id="mobile-menu">
+<div class="mobile-menu-header">
+<a class="logo" href="index.html">
+<img alt="STACKLY" class="logo-img" src="assets/img/logo.webp"/>
+</a>
+<button aria-label="Close mobile navigation" class="close-mobile" id="close-mobile"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="mobile-search-bar">
+<input id="mobile-search-input" placeholder="Search products..." type="text"/>
+<button aria-label="Submit search" id="mobile-search-submit" title="Search" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+</div>
+<ul class="mobile-nav-links">
+<li><a class="mobile-nav-item" href="index.html">Home</a></li>
+<li><a class="mobile-nav-item active" href="shop.html">Shop</a></li>
+<li><a class="mobile-nav-item" href="shipping.html">Order Management</a></li>
+<li><a class="mobile-nav-item" href="mission.html">About</a></li>
+<li><a class="mobile-nav-item" href="guides.html">Buying Guides</a></li>
+<li><a class="mobile-nav-item" href="contact.html">Contact</a></li>
+<li><a class="mobile-nav-item" href="wishlist.html"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
+<li><a class="mobile-nav-item" href="cart.html"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
+<li><a class="mobile-nav-item" href="login.html"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
+</ul>
+<div class="mobile-menu-footer">
+<div class="mobile-contact-pill">
+<i class="fa-solid fa-headset"></i> 24/7 Support Available
             </div>
-            <div class="preloader-indicator">
-                <div class="preloader-progress-bar"></div>
-            </div>
-            <p class="preloader-text">Preparing Your Experience...</p>
-        </div>
-    </div>
-
-    <!-- Header & Navigation (Same as Home Page) -->
-    <header class="site-header" id="header">
-        <nav class="navbar">
-            <a href="index.html" class="logo">
-                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
-            </a>
-            
-            <ul class="nav-links desktop-only">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html" class="active">Shop</a></li>
-                <li><a href="shipping.html">Order Management</a></li>
-                <li><a href="mission.html">About</a></li>
-                <li><a href="guides.html">Buying Guides</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-
-            <div class="nav-icons">
-                <div class="search-box-wrapper" id="search-box-wrapper">
-                    <input type="text" id="header-search-input" placeholder="Search gadgets..." aria-label="Search products">
-                    <button type="button" class="search-submit-btn" id="search-submit-btn" aria-label="Submit search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <button type="button" class="icon-link search-toggle-btn" id="search-toggle-btn" aria-label="Search products" title="Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <a href="wishlist.html" class="icon-link wishlist-icon" id="nav-wishlist-btn" aria-label="View Wishlist" title="Wishlist">
-                    <i class="fa-regular fa-heart"></i>
-                    <span class="wishlist-count" id="nav-wishlist-count">0</span>
-                </a>
-                <a href="cart.html" class="icon-link cart-icon" id="nav-cart-btn" aria-label="Shopping Cart" title="Cart">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-count" id="nav-cart-count">0</span>
-                </a>
-                <a href="login.html" class="nav-login-btn desktop-only" aria-label="Login">
-                    <i class="fa-regular fa-user"></i>
-                    <span>Login</span>
-                </a>
-                <button type="button" class="mobile-toggle icon-link" id="mobile-toggle" aria-label="Open mobile navigation">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Mobile Menu Overlay & Drawer (Same as Home Page) -->
-    <div class="mobile-overlay" id="mobile-overlay"></div>
-    <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
-        <div class="mobile-menu-header">
-            <a href="index.html" class="logo">
-                <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img">
-            </a>
-            <button class="close-mobile" id="close-mobile" aria-label="Close mobile navigation"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="mobile-search-bar">
-            <input type="text" id="mobile-search-input" placeholder="Search products...">
-            <button type="button" id="mobile-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-        <ul class="mobile-nav-links">
-            <li><a href="index.html" class="mobile-nav-item">Home</a></li>
-            <li><a href="shop.html" class="mobile-nav-item active">Shop</a></li>
-            <li><a href="shipping.html" class="mobile-nav-item">Order Management</a></li>
-            <li><a href="mission.html" class="mobile-nav-item">About</a></li>
-            <li><a href="guides.html" class="mobile-nav-item">Buying Guides</a></li>
-            <li><a href="contact.html" class="mobile-nav-item">Contact</a></li>
-            <li><a href="wishlist.html" class="mobile-nav-item"><i class="fa-regular fa-heart"></i> My Wishlist</a></li>
-            <li><a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-bag-shopping"></i> View Cart</a></li>
-            <li><a href="login.html" class="mobile-nav-item"><i class="fa-regular fa-user"></i> Login / My Account</a></li>
-        </ul>
-        <div class="mobile-menu-footer">
-            <div class="mobile-contact-pill">
-                <i class="fa-solid fa-headset"></i> 24/7 Support Available
-            </div>
-        </div>
-    </aside>
-
-    <!-- Top Promo Announcement Bar -->
-    <div class="shop-announcement-bar" role="region" aria-label="Store Promotion">
-        <div class="container shop-announcement-inner">
-            <span><i class="fa-solid fa-truck-fast"></i> FREE SHIPPING ON ORDERS $100+</span>
-            <span class="announcement-dot">&bull;</span>
-            <span>BETTER TECH. EVERY DAY.</span>
-        </div>
-    </div>
-
-    <!-- Main Product Details Section (Screenshot-Matched Layout) -->
-    <main class="pd-main-section bg-white" id="pd-main-section">
-        <div class="container">
-            <!-- Breadcrumb Navigation: Shop / Category / Product Name -->
-            <nav class="pd-breadcrumb" aria-label="Breadcrumb">
-                <a href="shop.html">Shop</a>
-                <span class="pd-bc-sep">/</span>
-                <a href="shop.html?category=Headphones" id="pd-bc-category">Headphones</a>
-                <span class="pd-bc-sep">/</span>
-                <span class="pd-bc-current" id="pd-bc-current">Sonix Pro Wireless</span>
-            </nav>
-
-            <!-- 2-Column Product Hero Grid -->
-            <div class="pd-hero-grid">
-                <!-- Left Column: Product Visual Stage & Gallery Thumbnails -->
-                <div class="pd-media-col" data-aos="fade-right" data-aos-duration="750">
-                    <div class="pd-main-image-box" id="pd-main-image-box">
-                        <img src="assets/img/shop-headphones.webp" alt="Sonix Pro Wireless" id="pd-main-img">
-                    </div>
-                    <!-- Gallery Thumbnails (Updated dynamically per product) -->
-                    <div class="pd-gallery-thumbs" id="pd-gallery-thumbs" role="region" aria-label="Product angle thumbnails">
-                        <!-- Populated dynamically by js/product.js -->
-                    </div>
-                </div>
-
-                <!-- Right Column: Product Info, Actions & Technical Specifications -->
-                <div class="pd-info-col" data-aos="fade-left" data-aos-duration="750" data-aos-delay="80">
-                    <p class="shop-eyebrow pd-eyebrow" id="pd-eyebrow">HEADPHONES / BESTSELLER</p>
-                    <h1 class="pd-title" id="pd-title">
-                        <span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child" id="pd-title-text">Sonix Pro Wireless</span></span>
-                    </h1>
-
-                    <!-- Stock Badge & Genuine Rating Row -->
-                    <div class="pd-status-row">
-                        <div class="pd-stock-badge" id="pd-stock-badge">
-                            <i class="fa-solid fa-check"></i>
-                            <span id="pd-stock-text">Available to order</span>
-                        </div>
-                        <div class="pd-rating-pill" id="pd-rating-pill" title="Customer rating">
-                            <span class="pd-stars" id="pd-stars">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i>
-                            </span>
-                            <span class="pd-rating-num" id="pd-rating-num">4.8</span>
-                            <span class="pd-review-count" id="pd-review-count">(142 reviews)</span>
-                        </div>
-                    </div>
-
-                    <!-- Product Editorial Description -->
-                    <p class="pd-description" id="pd-description">
+</div>
+</aside>
+<!-- Top Promo Announcement Bar -->
+<div aria-label="Store Promotion" class="shop-announcement-bar" role="region">
+<div class="container shop-announcement-inner">
+<span><i class="fa-solid fa-truck-fast"></i> FREE SHIPPING ON ORDERS $100+</span>
+<span class="announcement-dot">•</span>
+<span>BETTER TECH. EVERY DAY.</span>
+</div>
+</div>
+<!-- Main Product Details Section (Screenshot-Matched Layout) -->
+<main class="pd-main-section bg-white" id="pd-main-section">
+<div class="container">
+<!-- Breadcrumb Navigation: Shop / Category / Product Name -->
+<nav aria-label="Breadcrumb" class="pd-breadcrumb">
+<a href="shop.html">Shop</a>
+<span class="pd-bc-sep">/</span>
+<a href="shop.html?category=Headphones" id="pd-bc-category">Headphones</a>
+<span class="pd-bc-sep">/</span>
+<span class="pd-bc-current" id="pd-bc-current">Sonix Pro Wireless</span>
+</nav>
+<!-- 2-Column Product Hero Grid -->
+<div class="pd-hero-grid">
+<!-- Left Column: Product Visual Stage & Gallery Thumbnails -->
+<div class="pd-media-col" data-aos="fade-right" data-aos-duration="750">
+<div class="pd-main-image-box" id="pd-main-image-box">
+<img alt="Sonix Pro Wireless" fetchpriority="high" id="pd-main-img" loading="eager" src="assets/img/shop-headphones.webp"/>
+</div>
+<!-- Gallery Thumbnails (Updated dynamically per product) -->
+<div aria-label="Product angle thumbnails" class="pd-gallery-thumbs" id="pd-gallery-thumbs" role="region">
+<!-- Populated dynamically by js/product.js -->
+</div>
+</div>
+<!-- Right Column: Product Info, Actions & Technical Specifications -->
+<div class="pd-info-col" data-aos="fade-left" data-aos-delay="80" data-aos-duration="750">
+<p class="shop-eyebrow pd-eyebrow" id="pd-eyebrow">HEADPHONES / BESTSELLER</p>
+<h1 class="pd-title" id="pd-title">
+<span class="spotlight-reveal-wrap text-mask-wrap"><span class="spotlight-reveal-text text-mask-child" id="pd-title-text">Sonix Pro Wireless</span></span>
+</h1>
+<!-- Stock Badge & Genuine Rating Row -->
+<div class="pd-status-row">
+<div class="pd-stock-badge" id="pd-stock-badge">
+<i class="fa-solid fa-check"></i>
+<span id="pd-stock-text">Available to order</span>
+</div>
+<div class="pd-rating-pill" id="pd-rating-pill" title="Customer rating">
+<span class="pd-stars" id="pd-stars">
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star-half-stroke"></i>
+</span>
+<span class="pd-rating-num" id="pd-rating-num">4.8</span>
+<span class="pd-review-count" id="pd-review-count">(142 reviews)</span>
+</div>
+</div>
+<!-- Product Editorial Description -->
+<p class="pd-description" id="pd-description">
                         Your own little world of sound. Rich, beautifully balanced audio meets adaptive noise cancellation and a fit that feels as good as it sounds.
                     </p>
-
-                    <!-- Price Row -->
-                    <div class="pd-price-block">
-                        <span class="pd-price-current" id="pd-price">$129.00</span>
-                        <span class="pd-price-old" id="pd-old-price">$199.00</span>
-                        <span class="pd-save-pill" id="pd-save-pill">Save $70</span>
-                    </div>
-
-                    <!-- Finish / Variant Selector & Quantity -->
-                    <div class="pd-options-row">
-                        <div class="pd-finish-group">
-                            <p class="pd-finish-label">Finish: <strong id="pd-finish-name">Graphite</strong></p>
-                            <div class="pd-swatches" id="pd-swatches" role="radiogroup" aria-label="Select finish">
-                                <!-- Populated dynamically by js/product.js -->
-                            </div>
-                        </div>
-
-                        <div class="pd-qty-group">
-                            <span class="pd-qty-label">Qty</span>
-                            <div class="pd-qty-control" aria-label="Select quantity">
-                                <button type="button" class="pd-qty-btn" id="pd-qty-minus" aria-label="Decrease quantity">
-                                    <i class="fa-solid fa-minus"></i>
-                                </button>
-                                <input type="number" id="pd-qty-input" value="1" min="1" max="10" aria-label="Product quantity" readonly>
-                                <button type="button" class="pd-qty-btn" id="pd-qty-plus" aria-label="Increase quantity">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Primary Action Row (Exact Screenshot Match: Full-width Black "Add to bag" + Square Heart Button) -->
-                    <div class="pd-cta-row">
-                        <button type="button" class="pd-add-bag-btn" id="pd-add-bag-btn">
-                            <span>Add to bag</span>
-                            <i class="fa-solid fa-bag-shopping"></i>
+<!-- Price Row -->
+<div class="pd-price-block">
+<span class="pd-price-current" id="pd-price">$129.00</span>
+<span class="pd-price-old" id="pd-old-price">$199.00</span>
+<span class="pd-save-pill" id="pd-save-pill">Save $70</span>
+</div>
+<!-- Finish / Variant Selector & Quantity -->
+<div class="pd-options-row">
+<div class="pd-finish-group">
+<p class="pd-finish-label">Finish: <strong id="pd-finish-name">Graphite</strong></p>
+<div aria-label="Select finish" class="pd-swatches" id="pd-swatches" role="radiogroup">
+<!-- Populated dynamically by js/product.js -->
+</div>
+</div>
+<div class="pd-qty-group">
+<span class="pd-qty-label">Qty</span>
+<div aria-label="Select quantity" class="pd-qty-control">
+<button aria-label="Decrease quantity" class="pd-qty-btn" id="pd-qty-minus" type="button">
+<i class="fa-solid fa-minus"></i>
+</button>
+<input aria-label="Product quantity" id="pd-qty-input" max="10" min="1" readonly="" type="number" value="1"/>
+<button aria-label="Increase quantity" class="pd-qty-btn" id="pd-qty-plus" type="button">
+<i class="fa-solid fa-plus"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Primary Action Row (Exact Screenshot Match: Full-width Black "Add to bag" + Square Heart Button) -->
+<div class="pd-cta-row">
+<button class="pd-add-bag-btn" id="pd-add-bag-btn" type="button">
+<span>Add to bag</span>
+<i class="fa-solid fa-bag-shopping"></i>
+</button>
+<button aria-label="Add to Wishlist" class="pd-wishlist-sq-btn" id="pd-wishlist-btn" title="Add to Wishlist" type="button">
+<i class="fa-regular fa-heart"></i>
+</button>
+</div>
+<!-- Secondary Actions Row: Buy Now + View Wishlist + Continue Shopping -->
+<div class="pd-secondary-actions">
+<button class="pd-buy-now-btn" id="pd-buy-now-btn" type="button">
+<i class="fa-solid fa-bolt"></i>
+<span>Buy Now — Instant Checkout</span>
+</button>
+<div class="pd-quick-links">
+<a class="pd-util-link" href="wishlist.html" id="pd-view-wishlist-link">
+<i class="fa-regular fa-heart"></i>
+<span>View Wishlist</span>
+</a>
+<a class="pd-util-link" href="shop.html" id="pd-continue-shopping-link">
+<i class="fa-solid fa-arrow-left"></i>
+<span>Continue Shopping</span>
+</a>
+</div>
+</div>
+<!-- Trust / Delivery Micro-Strip (Exact Screenshot Match) -->
+<div class="pd-trust-strip">
+<div class="pd-trust-item">
+<i class="fa-solid fa-truck-fast"></i>
+<span>Free shipping $100+</span>
+</div>
+<div class="pd-trust-item">
+<i class="fa-solid fa-rotate-left"></i>
+<span>Return support</span>
+</div>
+<div class="pd-trust-item">
+<i class="fa-solid fa-shield-halved"></i>
+<span>Secure ordering</span>
+</div>
+</div>
+<!-- Technical Specifications Table (Exact 5-Row Screenshot Match) -->
+<div aria-label="Technical specifications" class="pd-specs-list" id="pd-specs-list">
+<div class="pd-spec-row">
+<span class="pd-spec-label">Battery life</span>
+<strong class="pd-spec-val">Up to 40 hours</strong>
+</div>
+<div class="pd-spec-row">
+<span class="pd-spec-label">Connectivity</span>
+<strong class="pd-spec-val">Bluetooth 5.3</strong>
+</div>
+<div class="pd-spec-row">
+<span class="pd-spec-label">Noise cancellation</span>
+<strong class="pd-spec-val">Adaptive ANC</strong>
+</div>
+<div class="pd-spec-row">
+<span class="pd-spec-label">Charging</span>
+<strong class="pd-spec-val">USB-C fast charging</strong>
+</div>
+<div class="pd-spec-row">
+<span class="pd-spec-label">Weight</span>
+<strong class="pd-spec-val">250 g</strong>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Related Products Section ("A little more to love.") — Exact Screenshot 2 Match -->
+<section class="pd-related-section bg-white" id="pd-related-section">
+<div class="container">
+<div class="pd-related-divider"></div>
+<div class="pd-related-header" data-aos="fade-up">
+<h2 class="pd-related-title">A little more to love.</h2>
+<a class="pd-shop-all-link" href="shop.html">
+<span>Shop all</span>
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+<div class="shop-shelf-grid" id="pd-related-grid">
+<!-- Populated dynamically by js/product.js with 4 curated product cards -->
+</div>
+</div>
+</section>
+<!-- Footer (Same as Home Page) -->
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col">
+<a class="logo footer-logo" href="index.html">
+<img alt="STACKLY" class="logo-img footer-logo-img" src="assets/img/logo.webp"/>
+</a>
+<p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
+<div class="social-links mt-3">
+<a aria-label="Instagram" href="404.html"><i class="fa-brands fa-instagram"></i></a>
+<a aria-label="Twitter" href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+<a aria-label="Facebook" href="404.html"><i class="fa-brands fa-facebook-f"></i></a>
+<a aria-label="LinkedIn" href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+</div>
+</div>
+<div class="footer-col">
+<h4>QUICK LINKS</h4>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="shipping.html">Order Management</a></li>
+<li><a href="mission.html">About</a></li>
+<li><a href="guides.html">Buying Guides</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>SHOP</h4>
+<ul>
+<li><a href="404.html">Laptops &amp; Computers</a></li>
+<li><a href="404.html">Gaming Consoles</a></li>
+<li><a href="404.html">Monitors &amp; Displays</a></li>
+<li><a href="404.html">Keyboards &amp; Accessories</a></li>
+<li><a href="404.html">Smart Wearables</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>SUPPORT</h4>
+<ul>
+<li><a href="404.html">Order Management</a></li>
+<li><a href="404.html">Track Your Order</a></li>
+<li><a href="404.html">Help Center &amp; FAQs</a></li>
+<li><a href="404.html">Warranty Information</a></li>
+<li><a href="404.html">Contact Customer Care</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>COMPANY</h4>
+<ul>
+<li><a href="404.html">About</a></li>
+<li><a href="404.html">Buying Guides</a></li>
+<li><a href="404.html">Admin Portal</a></li>
+<li><a href="404.html">Customer Dashboard</a></li>
+<li><a href="404.html">Privacy Policy &amp; Terms</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
+<div class="payment-methods">
+<span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+<span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+<span class="pay-tag"><i class="fa-brands fa-apple-pay"></i> Apple Pay</span>
+<span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Interactive Quick View Modal -->
+<div aria-hidden="true" class="quick-view-overlay" id="quick-view-modal" role="dialog">
+<div class="quick-view-card">
+<button aria-label="Close modal" class="modal-close-btn" id="modal-close-btn">×</button>
+<div class="quick-view-grid">
+<div class="qv-img-side">
+<img alt="Product Preview" id="qv-img" src="assets/img/shop-monitor-qhd.webp"/>
+</div>
+<div class="qv-info-side">
+<p class="category-label" id="qv-category">Monitors</p>
+<h3 id="qv-title">View 27 QHD Monitor</h3>
+<div class="rating" id="qv-rating">
+<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span>
+</div>
+<p class="price" id="qv-price">$249.00</p>
+<p class="desc" id="qv-desc">Thoughtfully selected everyday hardware crafted for crisp performance, seamless connectivity, and lasting comfort.</p>
+<div class="qv-features">
+<div class="qv-feat-item"><i class="fa-solid fa-shield-halved"></i> 2-Year Official Warranty</div>
+<div class="qv-feat-item"><i class="fa-solid fa-truck-fast"></i> Free Shipping on Orders $100+</div>
+</div>
+<div class="qv-action-row">
+<button class="btn btn-primary btn-add-cart" id="qv-add-cart-btn" style="flex: 1;">
+<i class="fa-solid fa-cart-shopping"></i> ADD TO CART
                         </button>
-                        <button type="button" class="pd-wishlist-sq-btn" id="pd-wishlist-btn" aria-label="Add to Wishlist" title="Add to Wishlist">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-
-                    <!-- Secondary Actions Row: Buy Now + View Wishlist + Continue Shopping -->
-                    <div class="pd-secondary-actions">
-                        <button type="button" class="pd-buy-now-btn" id="pd-buy-now-btn">
-                            <i class="fa-solid fa-bolt"></i>
-                            <span>Buy Now &mdash; Instant Checkout</span>
-                        </button>
-                        <div class="pd-quick-links">
-                            <a href="wishlist.html" class="pd-util-link" id="pd-view-wishlist-link">
-                                <i class="fa-regular fa-heart"></i>
-                                <span>View Wishlist</span>
-                            </a>
-                            <a href="shop.html" class="pd-util-link" id="pd-continue-shopping-link">
-                                <i class="fa-solid fa-arrow-left"></i>
-                                <span>Continue Shopping</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Trust / Delivery Micro-Strip (Exact Screenshot Match) -->
-                    <div class="pd-trust-strip">
-                        <div class="pd-trust-item">
-                            <i class="fa-solid fa-truck-fast"></i>
-                            <span>Free shipping $100+</span>
-                        </div>
-                        <div class="pd-trust-item">
-                            <i class="fa-solid fa-rotate-left"></i>
-                            <span>Return support</span>
-                        </div>
-                        <div class="pd-trust-item">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            <span>Secure ordering</span>
-                        </div>
-                    </div>
-
-                    <!-- Technical Specifications Table (Exact 5-Row Screenshot Match) -->
-                    <div class="pd-specs-list" id="pd-specs-list" aria-label="Technical specifications">
-                        <div class="pd-spec-row">
-                            <span class="pd-spec-label">Battery life</span>
-                            <strong class="pd-spec-val">Up to 40 hours</strong>
-                        </div>
-                        <div class="pd-spec-row">
-                            <span class="pd-spec-label">Connectivity</span>
-                            <strong class="pd-spec-val">Bluetooth 5.3</strong>
-                        </div>
-                        <div class="pd-spec-row">
-                            <span class="pd-spec-label">Noise cancellation</span>
-                            <strong class="pd-spec-val">Adaptive ANC</strong>
-                        </div>
-                        <div class="pd-spec-row">
-                            <span class="pd-spec-label">Charging</span>
-                            <strong class="pd-spec-val">USB-C fast charging</strong>
-                        </div>
-                        <div class="pd-spec-row">
-                            <span class="pd-spec-label">Weight</span>
-                            <strong class="pd-spec-val">250 g</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Related Products Section ("A little more to love.") — Exact Screenshot 2 Match -->
-    <section class="pd-related-section bg-white" id="pd-related-section">
-        <div class="container">
-            <div class="pd-related-divider"></div>
-
-            <div class="pd-related-header" data-aos="fade-up">
-                <h2 class="pd-related-title">A little more to love.</h2>
-                <a href="shop.html" class="pd-shop-all-link">
-                    <span>Shop all</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="shop-shelf-grid" id="pd-related-grid">
-                <!-- Populated dynamically by js/product.js with 4 curated product cards -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (Same as Home Page) -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.html" class="logo footer-logo">
-                        <img src="assets/img/logo.webp" alt="STACKLY" class="logo-img footer-logo-img">
-                    </a>
-                    <p>Good tech. Endless possibilities. Curated hardware crafted for everyday productivity and play.</p>
-                    <div class="social-links mt-3">
-                        <a href="404.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="404.html" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="404.html" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="404.html" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>QUICK LINKS</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="shipping.html">Order Management</a></li>
-                        <li><a href="mission.html">About</a></li>
-                        <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>SHOP</h4>
-                    <ul>
-                        <li><a href="shop.html?category=Laptops">Laptops &amp; Computers</a></li>
-                        <li><a href="shop.html?category=Gaming Consoles">Gaming Consoles</a></li>
-                        <li><a href="shop.html?category=Monitors">Monitors &amp; Displays</a></li>
-                        <li><a href="shop.html?category=Accessories">Keyboards &amp; Accessories</a></li>
-                        <li><a href="shop.html?category=Wearables">Smart Wearables</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>SUPPORT</h4>
-                    <ul>
-                        <li><a href="shipping.html">Order Management</a></li>
-                        <li><a href="shipping.html?tab=tracking">Track Your Order</a></li>
-                        <li><a href="index.html#faq">Help Center &amp; FAQs</a></li>
-                        <li><a href="404.html">Warranty Information</a></li>
-                        <li><a href="contact.html">Contact Customer Care</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>COMPANY</h4>
-                    <ul>
-                        <li><a href="mission.html">About</a></li>
-                        <li><a href="guides.html">Buying Guides</a></li>
-                        <li><a href="dashboards/admin-dashboard.html">Admin Portal</a></li>
-                        <li><a href="dashboards/user-dashboard.html">Customer Dashboard</a></li>
-                        <li><a href="404.html">Privacy Policy &amp; Terms</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 STACKLY Inc. All rights reserved. Tech For Your Everyday.</p>
-                <div class="payment-methods">
-                    <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-apple-pay"></i> Apple Pay</span>
-                    <span class="pay-tag"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Interactive Quick View Modal -->
-    <div class="quick-view-overlay" id="quick-view-modal" aria-hidden="true" role="dialog">
-        <div class="quick-view-card">
-            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
-            <div class="quick-view-grid">
-                <div class="qv-img-side">
-                    <img id="qv-img" src="assets/img/shop-monitor-qhd.webp" alt="Product Preview">
-                </div>
-                <div class="qv-info-side">
-                    <p class="category-label" id="qv-category">Monitors</p>
-                    <h3 id="qv-title">View 27 QHD Monitor</h3>
-                    <div class="rating" id="qv-rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span>
-                    </div>
-                    <p class="price" id="qv-price">$249.00</p>
-                    <p class="desc" id="qv-desc">Thoughtfully selected everyday hardware crafted for crisp performance, seamless connectivity, and lasting comfort.</p>
-                    
-                    <div class="qv-features">
-                        <div class="qv-feat-item"><i class="fa-solid fa-shield-halved"></i> 2-Year Official Warranty</div>
-                        <div class="qv-feat-item"><i class="fa-solid fa-truck-fast"></i> Free Shipping on Orders $100+</div>
-                    </div>
-
-                    <div class="qv-action-row">
-                        <button class="btn btn-primary btn-add-cart" id="qv-add-cart-btn" style="flex: 1;">
-                            <i class="fa-solid fa-cart-shopping"></i> ADD TO CART
-                        </button>
-                        <button type="button" class="btn btn-secondary wishlist-btn qv-wishlist-btn" id="qv-wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Info / Guide Modal -->
-    <div class="info-modal-overlay" id="info-modal" aria-hidden="true" role="dialog">
-        <div class="info-modal-card">
-            <button class="modal-close-btn" id="info-modal-close" aria-label="Close dialog">&times;</button>
-            <h3 id="info-modal-title">STACKLY Support</h3>
-            <div id="info-modal-body" class="info-modal-body">
-                <!-- Dynamic text populated by JS -->
-            </div>
-            <button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
-        </div>
-    </div>
-
-    <!-- AOS JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
-    <script>window.Lenis || document.write('<script src="js/lenis.min.js"><\/script>')</script>
-    <script src="js/lenis-init.js"></script>
-    <!-- Custom JS -->
-    <script src="js/cart.js"></script>
-    <script src="js/wishlist.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/product.js"></script>
+<button aria-label="Add to Wishlist" class="btn btn-secondary wishlist-btn qv-wishlist-btn" id="qv-wishlist-btn" title="Add to Wishlist" type="button">
+<i class="fa-regular fa-heart"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Info / Guide Modal -->
+<div aria-hidden="true" class="info-modal-overlay" id="info-modal" role="dialog">
+<div class="info-modal-card">
+<button aria-label="Close dialog" class="modal-close-btn" id="info-modal-close">×</button>
+<h3 id="info-modal-title">STACKLY Support</h3>
+<div class="info-modal-body" id="info-modal-body">
+<!-- Dynamic text populated by JS -->
+</div>
+<button class="btn btn-dark mt-4" id="info-modal-ok">GOT IT</button>
+</div>
+</div>
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<!-- GSAP & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Lenis Smooth Scroll -->
+<script src="js/lenis.min.js"></script>
+<script src="js/lenis-init.js"></script>
+<!-- Custom JS -->
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/script.js"></script>
+<script src="js/product.js"></script>
 </body>
 </html>
