@@ -57,7 +57,8 @@
                 }, {
                     opacity: 1,
                     scale: 1,
-                    duration: 0.55
+                    duration: 0.55,
+                    clearProps: 'transform,opacity'
                 });
             }
 
@@ -69,7 +70,8 @@
                     opacity: 1,
                     y: 0,
                     stagger: 0.06,
-                    duration: 0.45
+                    duration: 0.45,
+                    clearProps: 'transform,opacity'
                 }, '-=0.3');
             }
 
@@ -229,6 +231,14 @@
 
             // Timeline for coordinated cinematic entrance with Spotlight Reveal
             const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.22 });
+
+            if (ambientPrimary || ambientSecondary) {
+                heroTl.fromTo([ambientPrimary, ambientSecondary].filter(Boolean),
+                    { opacity: 0, scale: 0.82 },
+                    { opacity: 0.85, scale: 1, duration: 1.2, ease: 'power2.out', clearProps: 'opacity,scale' },
+                    0
+                );
+            }
 
             if (eyebrow) {
                 heroTl.from(eyebrow, {
@@ -1196,6 +1206,26 @@
                         '-=0.4'
                     );
                 }
+            }
+
+            // Animate customer avatars & author badges
+            const avatars = testSec.querySelectorAll('.avatar-ring, .avatar-ring-sm');
+            if (avatars.length > 0) {
+                testTl.fromTo(avatars,
+                    { scale: 0.86, opacity: 0 },
+                    { scale: 1, opacity: 1, duration: 0.5, stagger: 0.04, ease: 'back.out(1.2)', clearProps: 'transform,opacity' },
+                    '-=0.3'
+                );
+            }
+
+            // Staggered entrance for initial visible carousel review cards
+            const carouselReviewInners = testSec.querySelectorAll('.reviews-viewport .review-card-inner');
+            if (carouselReviewInners.length > 0) {
+                testTl.fromTo(Array.from(carouselReviewInners).slice(0, 3),
+                    { opacity: 0, y: 14 },
+                    { opacity: 1, y: 0, duration: 0.55, stagger: 0.08, ease: 'power2.out', clearProps: 'opacity,transform' },
+                    '-=0.35'
+                );
             }
         }
 

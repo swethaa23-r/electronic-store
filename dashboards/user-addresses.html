@@ -1,113 +1,112 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Addresses - STACKLY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/admin.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Addresses - STACKLY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../css/admin.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="admin-layout">
-        <div class="admin-overlay"></div>
-        <aside class="admin-sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-brand-wrap">
-                    <a href="../index.html" class="sidebar-logo-link" title="Return to STACKLY Store">
-                        <img src="../assets/img/logo.webp" alt="STACKLY" class="sidebar-logo-img">
-                    </a>
-                    <span class="sidebar-role-tag user-tag"><i class="fa-solid fa-user"></i> User Dashboard</span>
-                </div>
-                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class=""><a href="user-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                    <li class=""><a href="user-orders.html"><i class="fa-solid fa-box"></i> My Orders</a></li>
-                    <li class=""><a href="user-wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
-                    <li class="active"><a href="user-addresses.html"><i class="fa-solid fa-location-dot"></i> Addresses</a></li>
-                    <li class=""><a href="user-profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
-                    <li class=""><a href="user-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
-                </ul>
-            </nav>
-
-            <div class="sidebar-footer">
-                <a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
-            </div>
-        </aside>
-
-        <div class="admin-main">
-            <header class="admin-topbar">
-                <div class="topbar-left">
-                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
-                </div>
-                <div class="topbar-right">
-                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
-                    <div class="admin-profile">
-                        <div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
-                        <span class="profile-user-email" id="topbar-user-email">customer@stackly.com</span>
-                    </div>
-                </div>
-            </header>
-
-            <main class="admin-content">
-                
+<div class="admin-layout">
+<div class="admin-overlay"></div>
+<aside class="admin-sidebar">
+<div class="sidebar-header">
+<div class="sidebar-brand-wrap">
+<a class="sidebar-logo-link" href="../index.html" title="Return to STACKLY Store">
+<img alt="STACKLY" class="sidebar-logo-img" src="../assets/img/logo.webp"/>
+</a>
+<span class="sidebar-role-tag user-tag"><i class="fa-solid fa-user"></i> User Dashboard</span>
+</div>
+<button class="close-sidebar mobile-only" aria-label="Close navigation sidebar" title="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<nav class="sidebar-nav">
+<ul>
+<li class=""><a href="user-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+<li class=""><a href="user-orders.html"><i class="fa-solid fa-box"></i> My Orders</a></li>
+<li class=""><a href="user-wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
+<li class="active"><a href="user-addresses.html"><i class="fa-solid fa-location-dot"></i> Addresses</a></li>
+<li class=""><a href="user-profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
+<li class=""><a href="user-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+</ul>
+</nav>
+<div class="sidebar-footer">
+<a class="logout-link" href="../login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+</div>
+</aside>
+<div class="admin-main">
+<header class="admin-topbar">
+<div class="topbar-left">
+<a href="../index.html" class="topbar-mobile-logo" title="STACKLY Store">
+<img src="../assets/img/logo.webp" alt="STACKLY" class="mobile-logo-img">
+</a>
+<button type="button" class="hamburger" aria-label="Open sidebar navigation" aria-expanded="false" aria-controls="admin-sidebar"><i class="fa-solid fa-bars"></i></button>
+<form class="search-bar topbar-search-form" action="../404.html" method="get">
+<button type="submit" class="search-submit-btn" aria-label="Submit search" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+<input placeholder="Search orders, products..." type="text" name="q" class="topbar-search-input" required autocomplete="off"/>
+</form>
+</div>
+<div class="topbar-right">
+<a href="../404.html" class="icon-btn" aria-label="Notifications" title="Notifications"><i class="fa-regular fa-bell"></i></a>
+<div class="admin-profile">
+<div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
+<span class="profile-user-email" id="topbar-user-email">customer@stackly.com</span>
+</div>
+</div>
+</header>
+<main class="admin-content">
 <!-- 1. Address Header -->
 <section class="page-header">
-    <div class="header-left"><h1>My Addresses</h1></div>
-    <div class="header-right"><button class="btn-primary-admin">Add Address</button></div>
+<div class="header-left"><h1>My Addresses</h1></div>
+<div class="header-right"><button class="btn-primary-admin" id="add-address-scroll-btn"><i class="fa-solid fa-plus"></i> Add Address</button></div>
 </section>
-
-<div class="order-details-grid">
-    <!-- 2. Default Address -->
-    <div class="card">
-        <div class="card-header"><h2>Default Address</h2></div>
-        <div class="detail-box" style="background: var(--white); border: none; padding: 0;">
-            <p><strong>Sarah Jenkins</strong></p>
-            <p>123 Tech Avenue, Suite 400</p>
-            <p>New York, NY 10001</p>
-            <p>Phone: +1 (555) 123-4567</p>
-            <div class="export-grid mt-2" style="margin-top: 15px;"><button class="btn-secondary-admin">Edit</button><button class="btn-secondary-admin">Delete</button></div>
-        </div>
-    </div>
-
-    <!-- 3. Saved Addresses -->
-    <div class="card">
-        <div class="card-header"><h2>Saved Address</h2></div>
-        <div class="detail-box" style="background: var(--white); border: none; padding: 0;">
-            <p><strong>Sarah Jenkins (Work)</strong></p>
-            <p>456 Business Park Drive</p>
-            <p>Boston, MA 02110</p>
-            <p>Phone: +1 (555) 987-6543</p>
-            <div class="export-grid mt-2" style="margin-top: 15px;"><button class="btn-secondary-admin">Edit</button><button class="btn-secondary-admin">Delete</button><button class="btn-primary-admin">Set Default</button></div>
-        </div>
-    </div>
+<div class="order-details-grid" id="saved-addresses-grid">
+<!-- 2. Default Address -->
+<div class="card">
+<div class="card-header"><h2>Default Address</h2></div>
+<div class="detail-box" style="background: var(--white); border: none; padding: 0;">
+<p><strong>Sarah Jenkins</strong></p>
+<p>123 Tech Avenue, Suite 400</p>
+<p>New York, NY 10001</p>
+<p>Phone: +1 (555) 123-4567</p>
+<div class="export-grid mt-2" style="margin-top: 15px;"><button class="btn-secondary-admin">Edit</button><button class="btn-secondary-admin">Delete</button></div>
 </div>
-
+</div>
+<!-- 3. Saved Addresses -->
+<div class="card">
+<div class="card-header"><h2>Saved Address</h2></div>
+<div class="detail-box" style="background: var(--white); border: none; padding: 0;">
+<p><strong>Sarah Jenkins (Work)</strong></p>
+<p>456 Business Park Drive</p>
+<p>Boston, MA 02110</p>
+<p>Phone: +1 (555) 987-6543</p>
+<div class="export-grid mt-2" style="margin-top: 15px;"><button class="btn-secondary-admin">Edit</button><button class="btn-secondary-admin">Delete</button><button class="btn-primary-admin">Set Default</button></div>
+</div>
+</div>
+</div>
 <!-- 4. Add/Edit Form & 5. Actions -->
 <section class="card" style="max-width: 600px;">
-    <div class="card-header"><h2>Add New Address</h2></div>
-    <form id="address-form">
-        <div class="form-grid">
-            <div class="form-group"><label>Full Name</label><input type="text" required></div>
-            <div class="form-group"><label>Phone</label><input type="text" required></div>
-            <div class="form-group full-width"><label>Address</label><input type="text" required></div>
-            <div class="form-group"><label>City</label><input type="text" required></div>
-            <div class="form-group"><label>State</label><input type="text" required></div>
-            <div class="form-group"><label>Pincode</label><input type="text" required></div>
-        </div>
-        <div class="export-grid mt-2" style="margin-top: 20px; justify-content: flex-end;">
-            <button type="submit" class="btn-primary-admin">Save Address</button>
-        </div>
-    </form>
+<div class="card-header"><h2>Add New Address</h2></div>
+<form id="address-form">
+<div class="form-grid">
+<div class="form-group"><label for="inp-full-name">Full Name</label><input aria-label="Full Name" id="inp-full-name" required="" type="text"/></div>
+<div class="form-group"><label for="inp-phone">Phone</label><input aria-label="Phone" id="inp-phone" required="" type="text"/></div>
+<div class="form-group full-width"><label for="inp-address">Address</label><input aria-label="Address" id="inp-address" required="" type="text"/></div>
+<div class="form-group"><label for="inp-city">City</label><input aria-label="City" id="inp-city" required="" type="text"/></div>
+<div class="form-group"><label for="inp-state">State</label><input aria-label="State" id="inp-state" required="" type="text"/></div>
+<div class="form-group"><label for="inp-pincode">Pincode</label><input aria-label="Pincode" id="inp-pincode" required="" type="text"/></div>
+</div>
+<div class="export-grid mt-2" style="margin-top: 20px; justify-content: flex-end;">
+<button class="btn-primary-admin" type="submit">Save Address</button>
+</div>
+</form>
 </section>
-
-            </main>
-        </div>
-    </div>
-    <script src="../js/user.js"></script>
-    <script src="../js/global-validation.js"></script>
+</main>
+</div>
+</div>
+<script src="../js/user.js"></script>
+<script src="../js/global-validation.js"></script>
 </body>
 </html>

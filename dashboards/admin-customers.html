@@ -1,144 +1,145 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customers - Admin Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/admin.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customers - Admin Dashboard</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../css/admin.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="admin-layout">
-        <div class="admin-overlay"></div>
-        <aside class="admin-sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-brand-wrap">
-                    <a href="../index.html" class="sidebar-logo-link" title="Return to STACKLY Store">
-                        <img src="../assets/img/logo.webp" alt="STACKLY" class="sidebar-logo-img">
-                    </a>
-                    <span class="sidebar-role-tag admin-tag"><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</span>
-                </div>
-                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                    <li><a href="admin-products.html"><i class="fa-solid fa-box"></i> Products</a></li>
-                    <li><a href="admin-orders.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
-                    <li class="active"><a href="admin-customers.html"><i class="fa-solid fa-users"></i> Customers</a></li>
-                    <li><a href="admin-categories.html"><i class="fa-solid fa-tags"></i> Categories</a></li>
-                    <li><a href="admin-reports.html"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
-                    <li><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
-                </ul>
-            </nav>
-            <div class="sidebar-footer"><a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></div>
-        </aside>
-
-        <div class="admin-main">
-            <header class="admin-topbar">
-                <div class="topbar-left">
-                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
-                    <div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search customers..."></div>
-                </div>
-                <div class="topbar-right">
-                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
-                    <div class="admin-profile">
-                        <div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
-                        <span class="profile-user-email" id="topbar-user-email">admin@stackly.com</span>
-                    </div>
-                </div>
-            </header>
-
-            <main class="admin-content">
-                <!-- Section 1 - Customer Header -->
-                <section class="page-header">
-                    <div class="header-left">
-                        <div class="breadcrumb"><a href="admin-dashboard.html">Dashboard</a> <span>/</span> <strong>Customers</strong></div>
-                        <h1>Customers</h1>
-                    </div>
-                    <div class="header-right">
-                        <button class="btn-primary-admin"><i class="fa-solid fa-plus"></i> Add Customer</button>
-                    </div>
-                </section>
-
-                <!-- Section 2 - Customer Statistics -->
-                <section class="statistics-grid grid-4-stats">
-                    <div class="stat-card"><p class="stat-label">Total Customers</p><h3 class="stat-val">8,920</h3></div>
-                    <div class="stat-card"><p class="stat-label">Active</p><h3 class="stat-val">7,850</h3></div>
-                    <div class="stat-card"><p class="stat-label">New (This Month)</p><h3 class="stat-val">342</h3></div>
-                    <div class="stat-card"><p class="stat-label">Suspended</p><h3 class="stat-val">12</h3></div>
-                </section>
-
-                <!-- Section 3 - Search & Filters -->
-                <section class="filters-section card">
-                    <div class="filters-bar">
-                        <div class="filter-search" style="width: auto; flex: 1;">
-                            <i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search by Name or Email...">
-                        </div>
-                        <div class="filter-dropdowns">
-                            <input type="date" class="filter-date" title="Registration Date">
-                            <select><option value="">Status</option><option value="active">Active</option><option value="suspended">Suspended</option></select>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 4 - Customer Table -->
-                <section class="products-table-section card">
-                    <div class="table-responsive">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Orders</th>
-                                    <th>Total Spent</th>
-                                    <th>Status</th>
-                                    <th>Reg Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>#CST-092</td><td>Sarah Jenkins</td><td>sarah.jenkins@example.com</td><td>14</td><td>$3,450.00</td><td><span class="badge badge-paid">Active</span></td><td>Jan 12, 2025</td>
-                                    <td><button class="action-btn view-customer-btn">View Details</button></td>
-                                </tr>
-                                <tr>
-                                    <td>#CST-093</td><td>Michael Reed</td><td>michael.reed@example.com</td><td>5</td><td>$899.00</td><td><span class="badge badge-paid">Active</span></td><td>Mar 24, 2026</td>
-                                    <td><button class="action-btn view-customer-btn">View Details</button></td>
-                                </tr>
-                                <tr>
-                                    <td>#CST-094</td><td>David Torres</td><td>david.t@example.com</td><td>1</td><td>$45.00</td><td><span class="badge badge-cancelled">Suspended</span></td><td>Oct 1, 2026</td>
-                                    <td><button class="action-btn view-customer-btn">View Details</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </main>
-        </div>
-    </div>
-
-    <!-- Section 5 - Customer Details Modal -->
-    <div class="modal-overlay-ui" id="customer-modal">
-        <div class="modal-container order-modal-container">
-            <div class="modal-header">
-                <div><h2>Sarah Jenkins</h2><span class="badge badge-paid mt-1" style="display:inline-block; margin-top:5px;">Active</span></div>
-                <button class="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body">
-                <div class="order-details-grid">
-                    <div class="detail-box"><h4>Profile & Contact</h4><p><strong>Name:</strong> Sarah Jenkins</p><p><strong>Email:</strong> sarah.jenkins@example.com</p><p><strong>Phone:</strong> +1 (555) 123-4567</p></div>
-                    <div class="detail-box"><h4>Spending & Orders</h4><p><strong>Total Orders:</strong> 14</p><p><strong>Total Spent:</strong> $3,450.00</p><p><strong>Avg Order Value:</strong> $246.42</p></div>
-                    <div class="detail-box"><h4>Account Status</h4><select class="status-select"><option value="active" selected>Active</option><option value="suspended">Suspended</option></select><button class="btn-primary-admin mt-1" style="padding: 6px 12px; font-size: 0.8rem; margin-top: 10px;">Update</button></div>
-                    <div class="detail-box"><h4>Recent Activity</h4><p><strong>Last Login:</strong> Oct 8, 2026</p><p><strong>Last Order:</strong> Oct 8, 2026 (#ORD-7392)</p><p><strong>Reg Date:</strong> Jan 12, 2025</p></div>
-                </div>
-            </div>
-            <div class="modal-footer"><button type="button" class="btn-secondary-admin close-modal-btn">Close</button><button type="button" class="btn-primary-admin">Contact Customer</button></div>
-        </div>
-    </div>
-    <script src="../js/admin-customers.js"></script>
-    <script src="../js/global-validation.js"></script>
+<div class="admin-layout">
+<div class="admin-overlay"></div>
+<aside class="admin-sidebar">
+<div class="sidebar-header">
+<div class="sidebar-brand-wrap">
+<a class="sidebar-logo-link" href="../index.html" title="Return to STACKLY Store">
+<img alt="STACKLY" class="sidebar-logo-img" src="../assets/img/logo.webp"/>
+</a>
+<span class="sidebar-role-tag admin-tag"><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</span>
+</div>
+<button class="close-sidebar mobile-only" aria-label="Close navigation sidebar" title="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<nav class="sidebar-nav">
+<ul>
+<li><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+<li><a href="admin-products.html"><i class="fa-solid fa-box"></i> Products</a></li>
+<li><a href="admin-orders.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
+<li class="active"><a href="admin-customers.html"><i class="fa-solid fa-users"></i> Customers</a></li>
+<li><a href="admin-categories.html"><i class="fa-solid fa-tags"></i> Categories</a></li>
+<li><a href="admin-reports.html"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
+<li><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+</ul>
+</nav>
+<div class="sidebar-footer"><a class="logout-link" href="../login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></div>
+</aside>
+<div class="admin-main">
+<header class="admin-topbar">
+<div class="topbar-left">
+<a href="../index.html" class="topbar-mobile-logo" title="STACKLY Store">
+<img src="../assets/img/logo.webp" alt="STACKLY" class="mobile-logo-img">
+</a>
+<button type="button" class="hamburger" aria-label="Open sidebar navigation" aria-expanded="false" aria-controls="admin-sidebar"><i class="fa-solid fa-bars"></i></button>
+<form class="search-bar topbar-search-form" action="../404.html" method="get">
+<button type="submit" class="search-submit-btn" aria-label="Submit search" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+<input placeholder="Search orders, products..." type="text" name="q" class="topbar-search-input" required autocomplete="off"/>
+</form>
+</div>
+<div class="topbar-right">
+<a href="../404.html" class="icon-btn" aria-label="Notifications" title="Notifications"><i class="fa-regular fa-bell"></i></a>
+<div class="admin-profile">
+<div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
+<span class="profile-user-email" id="topbar-user-email">admin@stackly.com</span>
+</div>
+</div>
+</header>
+<main class="admin-content">
+<!-- Section 1 - Customer Header -->
+<section class="page-header">
+<div class="header-left">
+<div class="breadcrumb"><a href="admin-dashboard.html">Dashboard</a> <span>/</span> <strong>Customers</strong></div>
+<h1>Customers</h1>
+</div>
+<div class="header-right">
+<button class="btn-primary-admin" id="add-customer-btn"><i class="fa-solid fa-plus"></i> Add Customer</button>
+</div>
+</section>
+<!-- Section 2 - Customer Statistics -->
+<section class="statistics-grid grid-4-stats">
+<div class="stat-card"><p class="stat-label">Total Customers</p><h3 class="stat-val">8,920</h3></div>
+<div class="stat-card"><p class="stat-label">Active</p><h3 class="stat-val">7,850</h3></div>
+<div class="stat-card"><p class="stat-label">New (This Month)</p><h3 class="stat-val">342</h3></div>
+<div class="stat-card"><p class="stat-label">Suspended</p><h3 class="stat-val">12</h3></div>
+</section>
+<!-- Section 3 - Search & Filters -->
+<section class="filters-section card">
+<div class="filters-bar">
+<div class="filter-search" style="width: auto; flex: 1;">
+<i class="fa-solid fa-magnifying-glass"></i><input id="customer-search-input" placeholder="Search by Name or Email..." type="text"/>
+</div>
+<div class="filter-dropdowns">
+<input aria-label="Filter by date" class="filter-date" title="Registration Date" type="date"/>
+<select id="customer-status-filter" aria-label="Select Status"><option value="">Status</option><option value="active">Active</option><option value="suspended">Suspended</option></select>
+</div>
+</div>
+</section>
+<!-- Section 4 - Customer Table -->
+<section class="products-table-section card">
+<div class="table-responsive">
+<table class="admin-table">
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Orders</th>
+<th>Total Spent</th>
+<th>Status</th>
+<th>Reg Date</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#CST-092</td><td>Sarah Jenkins</td><td>sarah.jenkins@example.com</td><td>14</td><td>$3,450.00</td><td><span class="badge badge-paid">Active</span></td><td>Jan 12, 2025</td>
+<td><button class="action-btn view-customer-btn">View Details</button></td>
+</tr>
+<tr>
+<td>#CST-093</td><td>Michael Reed</td><td>michael.reed@example.com</td><td>5</td><td>$899.00</td><td><span class="badge badge-paid">Active</span></td><td>Mar 24, 2026</td>
+<td><button class="action-btn view-customer-btn">View Details</button></td>
+</tr>
+<tr>
+<td>#CST-094</td><td>David Torres</td><td>david.t@example.com</td><td>1</td><td>$45.00</td><td><span class="badge badge-cancelled">Suspended</span></td><td>Oct 1, 2026</td>
+<td><button class="action-btn view-customer-btn">View Details</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</div>
+</div>
+<!-- Section 5 - Customer Details Modal -->
+<div class="modal-overlay-ui" id="customer-modal">
+<div class="modal-container order-modal-container">
+<div class="modal-header">
+<div><h2>Sarah Jenkins</h2><span class="badge badge-paid mt-1" style="display:inline-block; margin-top:5px;">Active</span></div>
+<button class="close-modal-btn" aria-label="Close modal dialog" title="Close"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="modal-body">
+<div class="order-details-grid">
+<div class="detail-box"><h4>Profile &amp; Contact</h4><p><strong>Name:</strong> Sarah Jenkins</p><p><strong>Email:</strong> sarah.jenkins@example.com</p><p><strong>Phone:</strong> +1 (555) 123-4567</p></div>
+<div class="detail-box"><h4>Spending &amp; Orders</h4><p><strong>Total Orders:</strong> 14</p><p><strong>Total Spent:</strong> $3,450.00</p><p><strong>Avg Order Value:</strong> $246.42</p></div>
+<div class="detail-box"><h4>Account Status</h4><select aria-label="Select Active" class="status-select"><option selected="" value="active">Active</option><option value="suspended">Suspended</option></select><button class="btn-primary-admin mt-1" style="padding: 6px 12px; font-size: 0.8rem; margin-top: 10px;">Update</button></div>
+<div class="detail-box"><h4>Recent Activity</h4><p><strong>Last Login:</strong> Oct 8, 2026</p><p><strong>Last Order:</strong> Oct 8, 2026 (#ORD-7392)</p><p><strong>Reg Date:</strong> Jan 12, 2025</p></div>
+</div>
+</div>
+<div class="modal-footer"><button class="btn-secondary-admin close-modal-btn" type="button">Close</button><button class="btn-primary-admin" type="button">Contact Customer</button></div>
+</div>
+</div>
+<script src="../js/admin-customers.js"></script>
+<script src="../js/global-validation.js"></script>
 </body>
 </html>

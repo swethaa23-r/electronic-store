@@ -349,15 +349,7 @@
             });
         }
 
-        // Additional Support Banner "Contact Support" button
-        const bannerContactBtn = document.getElementById('banner-contact-btn');
-        if (bannerContactBtn && formSection) {
-            bannerContactBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                focusFirstFormField();
-            });
-        }
+        // Additional Support Banner "Contact Support" button links directly to 404.html
     }
 
     function focusFirstFormField() {
@@ -564,42 +556,15 @@
                 return;
             }
 
-            // Prepare Payload (Trimming unnecessary whitespace)
-            const payload = {
-                fullName: nameInput.value.trim(),
-                email: emailInput.value.trim(),
-                phoneNumber: phoneInput.value.trim() || null,
-                subject: subjectInput.value.trim(),
-                enquiryType: enquirySelect.value,
-                orderNumber: orderNumInput.value.trim() || null,
-                message: messageInput.value.trim(),
-                privacyConsent: consentCheckbox.checked,
-                submittedAt: new Date().toISOString()
-            };
-
-            // Loading state to prevent duplicate submissions
+            // Valid submission: navigate to 404.html
             submitBtn.classList.add('is-loading');
             submitBtn.setAttribute('disabled', 'true');
             if (resetBtn) resetBtn.setAttribute('disabled', 'true');
 
-            try {
-                // Call API or demo dispatcher
-                const response = await submitContactForm(payload);
-
-                if (response && response.success) {
-                    displayDemoSuccessState(payload, response);
-                    form.reset();
-                } else {
-                    displaySubmissionError(response ? response.message : 'Submission failed. Please try again.');
-                }
-            } catch (err) {
-                console.error('[STACKLY Contact Error]:', err);
-                displaySubmissionError('A network or unexpected error occurred. Please try again.');
-            } finally {
-                submitBtn.classList.remove('is-loading');
-                submitBtn.removeAttribute('disabled');
-                if (resetBtn) resetBtn.removeAttribute('disabled');
+            if (typeof window.showToast === 'function') {
+                window.showToast('Message sent successfully!', 'fa-paper-plane');
             }
+            window.location.href = '404.html';
         });
 
         /**

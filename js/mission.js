@@ -350,7 +350,7 @@ function initCurationExplorer() {
             title: 'True-to-life sound and color accuracy.',
             desc: 'We reject overly boosted bass and oversaturated panels. Every monitor and headphone in our store is measured for natural, fatigue-free clarity during long creative sessions.',
             linkText: 'Browse studio-tested gear',
-            linkHref: 'shop.html?category=Headphones'
+            linkHref: '404.html'
         },
         {
             img: 'assets/img/mission-workshop.webp',
@@ -360,7 +360,7 @@ function initCurationExplorer() {
             title: 'Designed to disappear while you work.',
             desc: 'From plush memory-foam ear cushions to low-profile scissor switches, our team tests every physical touchpoint across full workdays so nothing gets between you and your flow.',
             linkText: 'Explore ergonomic essentials',
-            linkHref: 'shop.html?category=Accessories'
+            linkHref: '404.html'
         },
         {
             img: 'assets/img/mission-carry.webp',
@@ -370,7 +370,7 @@ function initCurationExplorer() {
             title: 'Built for years, not a single season.',
             desc: 'We test battery longevity with active noise cancellation and high-brightness workloads switched on—making sure our portable gear handles daily commutes and weekend trips effortlessly.',
             linkText: 'Shop portable & travel tech',
-            linkHref: 'shop.html?category=Earbuds'
+            linkHref: '404.html'
         },
         {
             img: 'assets/img/mission-desk.webp',
@@ -380,7 +380,7 @@ function initCurationExplorer() {
             title: 'One calm workspace. Zero adapter clutter.',
             desc: 'Every display, laptop, and accessory in the STACKLY lineup is chosen to work together right out of the box—with clean USB-C power delivery and instant wireless switching.',
             linkText: 'Build your workspace setup',
-            linkHref: 'shop.html?category=Monitors'
+            linkHref: '404.html'
         }
     ];
 
@@ -487,7 +487,7 @@ function initSetupMatcher() {
             desc: 'Start with a sharp 27-inch QHD screen that gives your ideas room to breathe, a featherlight laptop that keeps you moving, and tactile wireless accessories that tie your workspace together.',
             tags: ['View 27 QHD Monitor', 'Book Air 14', 'Desk Duo Keyboard & Mouse'],
             ctaText: 'Explore desk essentials in Shop',
-            ctaHref: 'shop.html?category=Monitors'
+            ctaHref: '404.html'
         },
         commute: {
             img: 'assets/img/mission-listening.webp',
@@ -496,7 +496,7 @@ function initSetupMatcher() {
             desc: 'Block out train platforms and busy cafes with adaptive hybrid noise cancellation, pocketable wireless earbuds, and an AMOLED smart wearable that keeps notifications effortless.',
             tags: ['Studio ANC Headphones', 'Air Buds Pro', 'Watch One'],
             ctaText: 'Explore audio & wearables in Shop',
-            ctaHref: 'shop.html?category=Headphones'
+            ctaHref: '404.html'
         },
         play: {
             img: 'assets/img/mission-setup.webp',
@@ -505,7 +505,7 @@ function initSetupMatcher() {
             desc: 'Pair fast-loading 4K gaming with a dual-controller couch setup and warm, room-filling sound so every co-op campaign and movie marathon feels larger than life.',
             tags: ['Play Station S Duo Bundle', 'View 27 Pro 4K', 'Sound Home Speaker'],
             ctaText: 'Explore gaming & sound in Shop',
-            ctaHref: 'shop.html?category=Gaming Consoles'
+            ctaHref: '404.html'
         }
     };
 

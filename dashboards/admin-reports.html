@@ -1,124 +1,130 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports - Admin Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="../css/admin.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports - Admin Dashboard</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="../css/admin.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="admin-layout">
-        <div class="admin-overlay"></div>
-        <aside class="admin-sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-brand-wrap">
-                    <a href="../index.html" class="sidebar-logo-link" title="Return to STACKLY Store">
-                        <img src="../assets/img/logo.webp" alt="STACKLY" class="sidebar-logo-img">
-                    </a>
-                    <span class="sidebar-role-tag admin-tag"><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</span>
-                </div>
-                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                    <li><a href="admin-products.html"><i class="fa-solid fa-box"></i> Products</a></li>
-                    <li><a href="admin-orders.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
-                    <li><a href="admin-customers.html"><i class="fa-solid fa-users"></i> Customers</a></li>
-                    <li><a href="admin-categories.html"><i class="fa-solid fa-tags"></i> Categories</a></li>
-                    <li class="active"><a href="admin-reports.html"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
-                    <li><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
-                </ul>
-            </nav>
-            <div class="sidebar-footer"><a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></div>
-        </aside>
-
-        <div class="admin-main">
-            <header class="admin-topbar">
-                <div class="topbar-left"><button class="hamburger"><i class="fa-solid fa-bars"></i></button></div>
-                <div class="topbar-right"><div class="admin-profile">
-                        <div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
-                        <span class="profile-user-email" id="topbar-user-email">admin@stackly.com</span>
-                    </div>
-                </div>
-            </header>
-
-            <main class="admin-content">
-                <!-- Section 1 - Reports Header -->
-                <section class="page-header">
-                    <div class="header-left">
-                        <div class="breadcrumb"><a href="admin-dashboard.html">Dashboard</a> <span>/</span> <strong>Reports</strong></div>
-                        <h1>Reports & Analytics</h1>
-                    </div>
-                    <div class="header-right">
-                        <select class="status-select" style="padding: 10px; font-weight: 600;">
-                            <option>Last 30 Days</option><option>Last 90 Days</option><option>This Year</option>
-                        </select>
-                    </div>
-                </section>
-
-                <!-- Section 2 - Sales Statistics -->
-                <section class="statistics-grid grid-4-stats">
-                    <div class="stat-card"><p class="stat-label">Total Revenue</p><h3 class="stat-val">$124,500</h3></div>
-                    <div class="stat-card"><p class="stat-label">Total Orders</p><h3 class="stat-val">1,245</h3></div>
-                    <div class="stat-card"><p class="stat-label">Average Order Value</p><h3 class="stat-val">$100.00</h3></div>
-                    <div class="stat-card"><p class="stat-label">Growth (YoY)</p><h3 class="stat-val">+14.5%</h3></div>
-                </section>
-
-                <!-- Section 3 - Sales Chart -->
-                <section class="analytics-section">
-                    <div class="card">
-                        <div class="card-header"><h2>Revenue & Growth Trends</h2></div>
-                        <div class="chart-container"><canvas id="reportsChart"></canvas></div>
-                    </div>
-                </section>
-
-                <!-- Section 4 - Product & Category Performance -->
-                <section class="product-performance grid-3">
-                    <div class="card">
-                        <div class="card-header"><h2>Best Sellers</h2></div>
-                        <ul class="perf-list">
-                            <li><span>Pro Display X1</span><strong>$45k</strong></li>
-                            <li><span>Book Air 14</span><strong>$32k</strong></li>
-                            <li><span>Mechanical Keys</span><strong>$15k</strong></li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="card-header"><h2>Top Categories</h2></div>
-                        <ul class="perf-list">
-                            <li><span>Monitors</span><strong>35% Rev</strong></li>
-                            <li><span>Laptops</span><strong>30% Rev</strong></li>
-                            <li><span>Accessories</span><strong>20% Rev</strong></li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="card-header"><h2>Low-Performing</h2></div>
-                        <ul class="perf-list">
-                            <li><span>Basic Mouse</span><strong>$120</strong></li>
-                            <li><span>Mousepad XL</span><strong>$340</strong></li>
-                            <li><span>Screen Wipes</span><strong>$50</strong></li>
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Section 5 - Export Reports -->
-                <section class="card">
-                    <div class="card-header" style="border-bottom: none; margin-bottom: 0;"><h2>Export Reports Data</h2></div>
-                    <p style="color: #666; margin-bottom: 20px;">Download complete CSV datasets for external analysis.</p>
-                    <div class="export-grid">
-                        <button class="btn-primary-admin"><i class="fa-solid fa-file-csv"></i> Sales Report</button>
-                        <button class="btn-primary-admin"><i class="fa-solid fa-file-csv"></i> Product Report</button>
-                        <button class="btn-primary-admin"><i class="fa-solid fa-file-csv"></i> Customer Report</button>
-                        <button class="btn-primary-admin"><i class="fa-solid fa-file-csv"></i> Order Report</button>
-                    </div>
-                </section>
-            </main>
-        </div>
-    </div>
-    <script src="../js/admin-reports.js"></script>
-    <script src="../js/global-validation.js"></script>
+<div class="admin-layout">
+<div class="admin-overlay"></div>
+<aside class="admin-sidebar">
+<div class="sidebar-header">
+<div class="sidebar-brand-wrap">
+<a class="sidebar-logo-link" href="../index.html" title="Return to STACKLY Store">
+<img alt="STACKLY" class="sidebar-logo-img" src="../assets/img/logo.webp"/>
+</a>
+<span class="sidebar-role-tag admin-tag"><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</span>
+</div>
+<button class="close-sidebar mobile-only" aria-label="Close navigation sidebar" title="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<nav class="sidebar-nav">
+<ul>
+<li><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+<li><a href="admin-products.html"><i class="fa-solid fa-box"></i> Products</a></li>
+<li><a href="admin-orders.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
+<li><a href="admin-customers.html"><i class="fa-solid fa-users"></i> Customers</a></li>
+<li><a href="admin-categories.html"><i class="fa-solid fa-tags"></i> Categories</a></li>
+<li class="active"><a href="admin-reports.html"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
+<li><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+</ul>
+</nav>
+<div class="sidebar-footer"><a class="logout-link" href="../login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></div>
+</aside>
+<div class="admin-main">
+<header class="admin-topbar">
+<div class="topbar-left">
+<a href="../index.html" class="topbar-mobile-logo" title="STACKLY Store">
+<img src="../assets/img/logo.webp" alt="STACKLY" class="mobile-logo-img">
+</a>
+<button type="button" class="hamburger" aria-label="Open sidebar navigation" aria-expanded="false" aria-controls="admin-sidebar"><i class="fa-solid fa-bars"></i></button>
+<form class="search-bar topbar-search-form" action="../404.html" method="get">
+<button type="submit" class="search-submit-btn" aria-label="Submit search" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+<input placeholder="Search orders, products..." type="text" name="q" class="topbar-search-input" required autocomplete="off"/>
+</form>
+</div>
+<div class="topbar-right">
+<a href="../404.html" class="icon-btn" aria-label="Notifications" title="Notifications"><i class="fa-regular fa-bell"></i></a>
+<div class="admin-profile">
+<div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
+<span class="profile-user-email" id="topbar-user-email">admin@stackly.com</span>
+</div>
+</div>
+</header>
+<main class="admin-content">
+<!-- Section 1 - Reports Header -->
+<section class="page-header">
+<div class="header-left">
+<div class="breadcrumb"><a href="admin-dashboard.html">Dashboard</a> <span>/</span> <strong>Reports</strong></div>
+<h1>Reports &amp; Analytics</h1>
+</div>
+<div class="header-right">
+<select id="report-period-select" aria-label="Select Last 30 Days" class="status-select" style="padding: 10px; font-weight: 600;">
+<option value="30">Last 30 Days</option><option value="90">Last 90 Days</option><option value="year">This Year</option>
+</select>
+</div>
+</section>
+<!-- Section 2 - Sales Statistics -->
+<section class="statistics-grid grid-4-stats">
+<div class="stat-card"><p class="stat-label">Total Revenue</p><h3 class="stat-val">$124,500</h3></div>
+<div class="stat-card"><p class="stat-label">Total Orders</p><h3 class="stat-val">1,245</h3></div>
+<div class="stat-card"><p class="stat-label">Average Order Value</p><h3 class="stat-val">$100.00</h3></div>
+<div class="stat-card"><p class="stat-label">Growth (YoY)</p><h3 class="stat-val">+14.5%</h3></div>
+</section>
+<!-- Section 3 - Sales Chart -->
+<section class="analytics-section">
+<div class="card">
+<div class="card-header"><h2>Revenue &amp; Growth Trends</h2></div>
+<div class="chart-container"><canvas id="reportsChart"></canvas></div>
+</div>
+</section>
+<!-- Section 4 - Product & Category Performance -->
+<section class="product-performance grid-3">
+<div class="card">
+<div class="card-header"><h2>Best Sellers</h2></div>
+<ul class="perf-list">
+<li><span>Pro Display X1</span><strong>$45k</strong></li>
+<li><span>Book Air 14</span><strong>$32k</strong></li>
+<li><span>Mechanical Keys</span><strong>$15k</strong></li>
+</ul>
+</div>
+<div class="card">
+<div class="card-header"><h2>Top Categories</h2></div>
+<ul class="perf-list">
+<li><span>Monitors</span><strong>35% Rev</strong></li>
+<li><span>Laptops</span><strong>30% Rev</strong></li>
+<li><span>Accessories</span><strong>20% Rev</strong></li>
+</ul>
+</div>
+<div class="card">
+<div class="card-header"><h2>Low-Performing</h2></div>
+<ul class="perf-list">
+<li><span>Basic Mouse</span><strong>$120</strong></li>
+<li><span>Mousepad XL</span><strong>$340</strong></li>
+<li><span>Screen Wipes</span><strong>$50</strong></li>
+</ul>
+</div>
+</section>
+<!-- Section 5 - Export Reports -->
+<section class="card">
+<div class="card-header" style="border-bottom: none; margin-bottom: 0;"><h2>Export Reports Data</h2></div>
+<p style="color: #666; margin-bottom: 20px;">Download complete CSV datasets for external analysis.</p>
+<div class="export-grid">
+<button class="btn-primary-admin"><i class="fa-solid fa-file-csv"></i> Sales Report</button>
+<button class="btn-primary-admin"><i class="fa-solid fa-file-csv"></i> Product Report</button>
+<button class="btn-primary-admin"><i class="fa-solid fa-file-csv"></i> Customer Report</button>
+<button class="btn-primary-admin"><i class="fa-solid fa-file-csv"></i> Order Report</button>
+</div>
+</section>
+</main>
+</div>
+</div>
+<script src="../js/admin-reports.js"></script>
+<script src="../js/global-validation.js"></script>
 </body>
 </html>

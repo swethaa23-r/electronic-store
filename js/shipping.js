@@ -307,27 +307,103 @@
         const displayItems = document.getElementById('trk-display-items');
         const timelineSteps = Array.from(document.querySelectorAll('#trk-steps-timeline .trk-step'));
         const trackingCard = document.getElementById('live-tracking-card');
+        const notFoundCard = document.getElementById('live-tracking-not-found');
+        const notFoundCode = document.getElementById('trk-not-found-code');
+        const resetTrackingBtn = document.getElementById('btn-reset-tracking');
+
+        function findOrderRecord(cleanCode) {
+            // 1. Check known demonstration tracking database
+            if (TRACKING_DATABASE[cleanCode]) {
+                return TRACKING_DATABASE[cleanCode];
+            }
+
+            // 2. Check live orders placed in checkout (localStorage 'stacklyOrders')
+            try {
+                const storedOrders = JSON.parse(localStorage.getItem('stacklyOrders')) || [];
+                const matchedOrder = storedOrders.find(ord => {
+                    if (!ord || !ord.orderId) return false;
+                    const ordId = String(ord.orderId).trim().toUpperCase();
+                    return ordId === cleanCode || ordId.replace(/[^A-Z0-9]/g, '') === cleanCode.replace(/[^A-Z0-9]/g, '');
+                });
+
+                if (matchedOrder) {
+                    const itemsDesc = Array.isArray(matchedOrder.items) && matchedOrder.items.length
+                        ? matchedOrder.items.map(it => `${it.name} (x${it.quantity || 1})`).join(', ')
+                        : 'STACKLY Tech Hardware';
+
+                    return {
+                        code: matchedOrder.orderId,
+                        headline: 'Order Confirmed — Preparing for Dispatch',
+                        badgeText: 'Confirmed',
+                        badgeIcon: 'fa-clipboard-check',
+                        badgeClass: 'in-transit',
+                        eta: '3–5 Business Days',
+                        total: matchedOrder.total || '$0.00',
+                        stepIndex: 1,
+                        items: itemsDesc
+                    };
+                }
+            } catch (err) {
+                console.warn('[STACKLY Tracking] Error checking stored orders:', err);
+            }
+
+            // Not found in any active database
+            return null;
+        }
 
         function renderTrackingCode(rawCode) {
             const cleanCode = (rawCode || '').trim().toUpperCase();
+
+            // 1. Validate Input
             if (!cleanCode) {
                 if (typeof window.showToast === 'function') {
-                    window.showToast('Please enter a valid private tracking code', 'fa-circle-exclamation');
+                    window.showToast('Please enter an order ID or tracking code', 'fa-circle-exclamation');
+                }
+                if (trackingInput) {
+                    trackingInput.focus();
+                    trackingInput.classList.add('is-invalid');
+                    setTimeout(() => trackingInput.classList.remove('is-invalid'), 2000);
                 }
                 return;
             }
 
-            const record = TRACKING_DATABASE[cleanCode] || {
-                code: cleanCode,
-                headline: 'In Transit — Carrier Handoff Complete',
-                badgeText: 'In Transit',
-                badgeIcon: 'fa-truck-fast',
-                badgeClass: 'in-transit',
-                eta: '2–4 Business Days',
-                total: '$199.00',
-                stepIndex: 2,
-                items: 'STACKLY Curated Tech Order (x1)'
-            };
+            if (cleanCode.length < 4) {
+                if (typeof window.showToast === 'function') {
+                    window.showToast('Order ID must be at least 4 characters long', 'fa-circle-exclamation');
+                }
+                if (trackingInput) trackingInput.focus();
+                return;
+            }
+
+            // 2. Query Genuine Order Record (Never fabricate fake tracking records)
+            const record = findOrderRecord(cleanCode);
+
+            if (!record) {
+                // Show verified Not Found Error state
+                if (trackingCard) trackingCard.style.display = 'none';
+                if (notFoundCard) {
+                    notFoundCard.style.display = 'block';
+                    if (notFoundCode) notFoundCode.textContent = cleanCode;
+
+                    if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                        gsap.fromTo(notFoundCard,
+                            { opacity: 0, y: 12, scale: 0.98 },
+                            { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: 'power2.out' }
+                        );
+                    }
+                }
+
+                if (typeof window.showToast === 'function') {
+                    window.showToast(`No order found matching ${cleanCode}`, 'fa-circle-exclamation');
+                }
+                return;
+            }
+
+            // 3. Render Verified Order Result
+            if (notFoundCard) notFoundCard.style.display = 'none';
+            if (trackingCard) {
+                trackingCard.style.display = 'block';
+            }
 
             if (displayCode) displayCode.textContent = record.code;
             if (displayStatus) displayStatus.textContent = record.headline;
@@ -336,12 +412,13 @@
                 displayBadge.innerHTML = `<i class="fa-solid ${record.badgeIcon}"></i> ${record.badgeText}`;
             }
             if (displayEta) {
-                displayEta.innerHTML = `Estimated arrival: <strong>${record.eta}</strong> &bull; Payment due on delivery: <strong id="trk-display-total">${record.total}</strong>`;
+                displayEta.innerHTML = `Estimated arrival: <strong>${record.eta}</strong> &bull; Total: <strong id="trk-display-total">${record.total}</strong>`;
             }
             if (displayItems) {
                 displayItems.innerHTML = `<span><i class="fa-solid fa-box"></i> Items: <strong>${record.items}</strong></span>`;
             }
 
+            // Step-by-step timeline transitions
             timelineSteps.forEach((step, idx) => {
                 step.classList.remove('completed', 'active');
                 if (idx < record.stepIndex) {
@@ -351,7 +428,7 @@
                 }
             });
 
-            if (trackingCard && typeof gsap !== 'undefined') {
+            if (trackingCard && typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 gsap.fromTo(trackingCard,
                     { opacity: 0.4, scale: 0.98 },
                     { opacity: 1, scale: 1, duration: 0.32, ease: 'power2.out' }
@@ -379,6 +456,26 @@
         samplePills.forEach((pill) => {
             pill.addEventListener('click', () => {
                 const code = pill.getAttribute('data-code') || 'STK-84920';
+                if (trackingInput) trackingInput.value = code;
+                renderTrackingCode(code);
+            });
+        });
+
+        // Wire reset tracking action inside error state
+        if (resetTrackingBtn) {
+            resetTrackingBtn.addEventListener('click', () => {
+                if (trackingInput) {
+                    trackingInput.value = '';
+                    trackingInput.focus();
+                }
+                renderTrackingCode('STK-84920'); // Reset to default sample
+            });
+        }
+
+        // Wire sample buttons in error state
+        document.querySelectorAll('.not-found-sample-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const code = btn.getAttribute('data-code') || 'STK-84920';
                 if (trackingInput) trackingInput.value = code;
                 renderTrackingCode(code);
             });
@@ -508,24 +605,50 @@
     // ==========================================
     function initConciergeForm() {
         const form = document.getElementById('concierge-mini-form');
+        const codeInput = document.getElementById('concierge-code');
+        const msgInput = document.getElementById('concierge-msg');
+        const errorBox = document.getElementById('concierge-form-error');
+        const errorMsg = document.getElementById('concierge-error-msg');
         if (!form) return;
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const code = (document.getElementById('concierge-code')?.value || '').trim();
-            const msg = (document.getElementById('concierge-msg')?.value || '').trim();
+            const code = (codeInput?.value || '').trim();
+            const msg = (msgInput?.value || '').trim();
 
             if (!code || !msg) {
-                if (typeof window.showToast === 'function') {
-                    window.showToast('Please enter your tracking code and message', 'fa-circle-exclamation');
+                if (errorBox) {
+                    errorBox.style.display = 'block';
+                    if (errorMsg) {
+                        if (!code && !msg) {
+                            errorMsg.textContent = 'Please enter both your tracking code and delivery question.';
+                        } else if (!code) {
+                            errorMsg.textContent = 'Please enter your tracking code (e.g. STK-84920).';
+                        } else {
+                            errorMsg.textContent = 'Please enter your delivery question.';
+                        }
+                    }
                 }
+                if (typeof window.showToast === 'function') {
+                    window.showToast('Please enter tracking code and question.', 'fa-circle-exclamation');
+                }
+                if (!code && codeInput) codeInput.focus();
+                else if (!msg && msgInput) msgInput.focus();
                 return;
             }
+
+            if (errorBox) errorBox.style.display = 'none';
 
             if (typeof window.showToast === 'function') {
                 window.showToast(`Dispatch desk notified for ${code.toUpperCase()}!`, 'fa-paper-plane');
             }
-            form.reset();
+            window.location.href = '404.html';
+        });
+
+        [codeInput, msgInput].forEach(inp => {
+            inp?.addEventListener('input', () => {
+                if (errorBox) errorBox.style.display = 'none';
+            });
         });
     }
 
@@ -683,6 +806,9 @@
                 if (cityState) cityState.value = 'New York, NY 10017';
                 if (phone) phone.value = '(212) 555-0198';
 
+                const errorBox = document.getElementById('hub-form-error');
+                if (errorBox) errorBox.style.display = 'none';
+
                 if (typeof window.showToast === 'function') {
                     window.showToast('Demo order STK-84920 filled!', 'fa-circle-check');
                 }
@@ -692,61 +818,77 @@
         // Jump to live shipment tracker
         if (jumpTrackerBtn) {
             jumpTrackerBtn.addEventListener('click', () => {
-                const trackTab = document.getElementById('track-tab-btn');
+                const trackTab = document.getElementById('tab-btn-tracking');
                 if (trackTab) trackTab.click();
-                const trackSection = document.getElementById('shipping-tabs');
+                const trackSection = document.getElementById('shipping-tabs-section');
                 if (trackSection) {
                     trackSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         }
 
-        // Form submission
+        // Form submission with validation and 404 redirect
         hubForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const orderCode = (document.getElementById('hub-order-code')?.value || '').trim().toUpperCase();
-            const email = (document.getElementById('hub-contact-email')?.value || '').trim();
+            const orderInput = document.getElementById('hub-order-code');
+            const emailInput = document.getElementById('hub-contact-email');
+            const errorBox = document.getElementById('hub-form-error');
+            const errorMsg = document.getElementById('hub-error-msg');
 
-            if (!orderCode || !email) {
-                if (typeof window.showToast === 'function') {
-                    window.showToast('Please enter both Order ID and Email address.', 'fa-circle-exclamation');
+            const orderCode = (orderInput?.value || '').trim().toUpperCase();
+            const email = (emailInput?.value || '').trim();
+
+            let isMissing = !orderCode || !email;
+            let missingDetail = '';
+            let firstInvalid = null;
+
+            if (!orderCode) {
+                firstInvalid = orderInput;
+                missingDetail = 'Please enter your Order ID / Tracking code.';
+            } else if (!email || !email.includes('@')) {
+                firstInvalid = emailInput;
+                missingDetail = 'Please enter a valid Account / Order Email address.';
+            }
+
+            const requiredDynamicInputs = dynamicFields.querySelectorAll('input[required], select[required], textarea[required]');
+            requiredDynamicInputs.forEach(input => {
+                if (!input.value || !input.value.trim()) {
+                    isMissing = true;
+                    if (!firstInvalid) {
+                        firstInvalid = input;
+                        const group = input.closest('.order-field-group');
+                        const labelText = group?.querySelector('label')?.textContent?.replace('*', '').trim() || 'required details';
+                        missingDetail = `Please enter ${labelText}.`;
+                    }
                 }
+            });
+
+            if (isMissing || !orderCode || !email) {
+                if (errorBox) {
+                    errorBox.style.display = 'block';
+                    if (errorMsg) {
+                        errorMsg.textContent = missingDetail || 'Please enter all required details before submitting.';
+                    }
+                }
+                if (typeof window.showToast === 'function') {
+                    window.showToast(missingDetail || 'Please enter all required details.', 'fa-circle-exclamation');
+                }
+                if (firstInvalid) firstInvalid.focus();
                 return;
             }
 
-            // Generate action-specific reference code
-            const suffixes = { address: 'ADR', reschedule: 'SCH', invoice: 'INV', cancel: 'CNL' };
-            const suffix = suffixes[currentAction] || 'REQ';
-            const cleanCode = orderCode.replace(/[^A-Z0-9]/g, '') || 'STK84920';
-            const generatedRef = `REQ-${cleanCode}-${suffix}`;
-
-            const headlines = {
-                address: 'Shipping Address Amendment Confirmed',
-                reschedule: 'Delivery Slot Rescheduled',
-                invoice: 'Digital Tax Invoice Dispatched',
-                cancel: 'Order Cancellation Request Queued'
-            };
-
-            const details = {
-                address: `Your updated delivery address has been verified and registered in the dispatch queue for order <strong>${orderCode}</strong>.`,
-                reschedule: `Your preferred delivery window has been synchronized with the courier dispatch desk for order <strong>${orderCode}</strong>.`,
-                invoice: `An itemized PDF invoice with serialized hardware certificates has been generated and sent to <strong>${email}</strong>.`,
-                cancel: `Your cancellation request for order <strong>${orderCode}</strong> is being processed with zero cancellation fee.`
-            };
-
-            if (feedbackHeadline) feedbackHeadline.textContent = headlines[currentAction] || 'Request Submitted';
-            if (feedbackDetail) feedbackDetail.innerHTML = `${details[currentAction]} Reference code: <strong id="feedback-ref">${generatedRef}</strong>.`;
-            if (feedbackTime) feedbackTime.textContent = `Updated just now &bull; Confirmation sent to ${email}`;
-
-            if (feedbackBox) {
-                feedbackBox.style.display = 'flex';
-                feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
+            if (errorBox) errorBox.style.display = 'none';
 
             if (typeof window.showToast === 'function') {
-                window.showToast(`Request ${generatedRef} registered successfully!`, 'fa-circle-check');
+                window.showToast('Order details submitted successfully!', 'fa-circle-check');
             }
+            window.location.href = '404.html';
+        });
+
+        hubForm.addEventListener('input', () => {
+            const errorBox = document.getElementById('hub-form-error');
+            if (errorBox) errorBox.style.display = 'none';
         });
     }
 

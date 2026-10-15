@@ -21,19 +21,22 @@
 
         setTimeout(() => {
             preloader.style.display = 'none';
-        }, 500);
+        }, 400);
     }
 
-    if (document.readyState === 'complete') {
-        setTimeout(dismissPreloader, 350);
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(dismissPreloader, 100);
     } else {
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(dismissPreloader, 120);
+        });
         window.addEventListener('load', () => {
-            setTimeout(dismissPreloader, 350);
+            dismissPreloader();
         });
     }
 
     // Safety failsafe: guarantee preloader never hangs indefinitely
-    setTimeout(dismissPreloader, 2200);
+    setTimeout(dismissPreloader, 1200);
 })();
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -728,30 +731,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const categoryCards = document.querySelectorAll('.category-item');
     categoryCards.forEach(card => {
         card.addEventListener('click', (e) => {
-            const cat = card.getAttribute('data-category') || '';
-            const exploreLink = card.querySelector('.explore-link');
-            const targetFilter = exploreLink ? exploreLink.getAttribute('data-filter') : 'all';
-
-            // Find matching filter button
-            const matchBtn = document.querySelector(`.filter-btn[data-filter="${targetFilter}"]`);
-            if (matchBtn) {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                matchBtn.classList.add('active');
-                renderFilteredProducts(targetFilter, true);
-            }
-
-            // Smooth scroll to freshly-dropped
-            const dropSection = document.getElementById('freshly-dropped');
-            if (dropSection) {
-                if (window.lenis) {
-                    window.lenis.scrollTo(dropSection, { offset: -85, duration: 1.2 });
-                } else {
-                    window.scrollTo({
-                        top: dropSection.offsetTop - 85,
-                        behavior: 'smooth'
-                    });
-                }
-            }
+            window.location.href = '404.html';
         });
     });
 
@@ -826,33 +806,109 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // ==========================================
-    // 8. Mobile Navigation Drawer
+    // 8. Mobile Navigation Drawer (Accessible & Responsive)
     // ==========================================
     const mobileToggle = document.getElementById('mobile-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileOverlay = document.getElementById('mobile-overlay');
     const closeMobileBtn = document.getElementById('close-mobile');
     const mobileLinks = document.querySelectorAll('.mobile-nav-item');
+    const mobileSearchInput = document.getElementById('mobile-search-input');
+    const mobileSearchSubmit = document.getElementById('mobile-search-submit');
 
     function openMobileMenu() {
-        if (mobileMenu) mobileMenu.classList.add('active');
+        if (mobileMenu) {
+            mobileMenu.classList.add('active');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+        }
         if (mobileOverlay) mobileOverlay.classList.add('active');
+        if (mobileToggle) {
+            mobileToggle.setAttribute('aria-expanded', 'true');
+        }
         document.body.classList.add('no-scroll');
+        document.documentElement.classList.add('no-scroll');
     }
 
     function closeMobileMenu() {
-        if (mobileMenu) mobileMenu.classList.remove('active');
+        if (mobileMenu) {
+            mobileMenu.classList.remove('active');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+        }
         if (mobileOverlay) mobileOverlay.classList.remove('active');
+        if (mobileToggle) {
+            mobileToggle.setAttribute('aria-expanded', 'false');
+        }
         document.body.classList.remove('no-scroll');
+        document.documentElement.classList.remove('no-scroll');
     }
 
-    if (mobileToggle) mobileToggle.addEventListener('click', openMobileMenu);
+    function toggleMobileMenu(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        const isOpen = mobileMenu && mobileMenu.classList.contains('active');
+        if (isOpen) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    }
+
+    if (mobileToggle) {
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.setAttribute('aria-controls', 'mobile-menu');
+        mobileToggle.addEventListener('click', toggleMobileMenu);
+    }
     if (closeMobileBtn) closeMobileBtn.addEventListener('click', closeMobileMenu);
     if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileMenu);
 
+    // Close when tapping any navigation link
     mobileLinks.forEach(link => {
         link.addEventListener('click', closeMobileMenu);
     });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' || e.key === 'Esc') {
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+                if (mobileToggle) mobileToggle.focus();
+            }
+        }
+    });
+
+    // Mobile Search inside Drawer
+    function executeMobileDrawerSearch() {
+        if (!mobileSearchInput) return;
+        const query = mobileSearchInput.value.trim();
+        if (!query) {
+            if (typeof showToast === 'function') showToast('Please enter a search query', 'fa-magnifying-glass');
+            mobileSearchInput.focus();
+            return;
+        }
+        closeMobileMenu();
+        window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+    }
+
+    if (mobileSearchSubmit) {
+        mobileSearchSubmit.addEventListener('click', executeMobileDrawerSearch);
+    }
+    if (mobileSearchInput) {
+        mobileSearchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeMobileDrawerSearch();
+            }
+        });
+    }
+
+    // Automatically close drawer when resizing to desktop (> 992px)
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 992 && mobileMenu && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    }, { passive: true });
 
     // ==========================================
     // 9. Smooth Scrolling with Sticky Nav Offset
@@ -925,16 +981,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (nlError) nlError.style.display = 'flex';
                 if (nlSuccess) nlSuccess.style.display = 'none';
                 nlEmail.style.borderColor = '#DC2626';
+                showToast("Please enter a valid email address.", "fa-circle-exclamation");
             } else {
-                if (nlError) nlError.style.display = 'none';
-                if (nlSuccess) nlSuccess.style.display = 'flex';
-                nlEmail.style.borderColor = '';
-                nlEmail.value = '';
-                showToast("Subscribed! Thank you for joining STACKLY.", "fa-circle-check");
-
-                setTimeout(() => {
-                    if (nlSuccess) nlSuccess.style.display = 'none';
-                }, 4500);
+                window.location.href = '404.html';
             }
         });
 
@@ -977,6 +1026,14 @@ document.addEventListener("DOMContentLoaded", function() {
         'mission': {
             title: 'Our Mission',
             body: '<p>At STACKLY, our mission is to deliver thoughtfully selected, premium hardware engineered to elevate your daily productivity, gaming, and creative flow.</p><br><p>We partner directly with verified electronics manufacturers to offer authentic innovation, high endurance, and honest technology built for everyday life.</p>'
+        },
+        'privacy': {
+            title: 'Privacy Policy & Terms of Service',
+            body: '<p><strong>Data Privacy & Protection:</strong> STACKLY adheres to international data protection principles (GDPR & CCPA). Your customer details and purchase history are kept secure and never sold to third parties.</p><br><p><strong>Secure Checkout:</strong> All online payments are encrypted through industry-standard 256-bit SSL checkout gateways. We never store raw credit card details.</p><br><p><strong>Warranty & Returns:</strong> All products are backed by authentic manufacturer guarantees and a 30-day hassle-free return policy. For inquiries, reach out to support@stacklytech.com.</p>'
+        },
+        'terms': {
+            title: 'Terms of Service',
+            body: '<p><strong>Authenticity Guarantee:</strong> All electronics offered on STACKLY are 100% genuine and sourced directly from verified manufacturer partners.</p><br><p><strong>Order Fulfillment:</strong> Orders are verified and dispatched within 24 hours of payment authorization. Express tracking updates are automatically sent via email.</p>'
         }
     };
 
@@ -1010,34 +1067,44 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Color Swatch Selection & Product Image Synchronization
-    document.querySelectorAll('.color').forEach(swatch => {
-        swatch.addEventListener('click', function() {
-            const card = this.closest('.large-card');
-            const siblings = this.parentElement.querySelectorAll('.color');
-            siblings.forEach(s => {
-                s.classList.remove('active');
-                s.setAttribute('aria-checked', 'false');
-            });
-            this.classList.add('active');
-            this.setAttribute('aria-checked', 'true');
+    // Color Swatch Selection & Product Image Synchronization (Global Event Delegation)
+    document.addEventListener('click', function(e) {
+        const swatch = e.target.closest('.color');
+        if (!swatch) return;
 
-            // Swap card image if data-img is provided
-            const newImgSrc = this.getAttribute('data-img');
-            const colorName = this.getAttribute('data-color') || 'Selected';
-            if (newImgSrc && card) {
-                const imgEl = card.querySelector('.large-card-img img');
-                if (imgEl && imgEl.getAttribute('src') !== newImgSrc) {
-                    imgEl.style.opacity = '0';
-                    setTimeout(() => {
-                        imgEl.src = newImgSrc;
-                        const title = card.querySelector('.product-title');
-                        if (title) imgEl.alt = `${title.textContent} - ${colorName}`;
-                        imgEl.style.opacity = '1';
-                    }, 120);
-                }
-            }
+        const card = swatch.closest('.large-card, .product-card, .shelf-card, .card');
+        if (!card) return;
+
+        const siblings = swatch.parentElement.querySelectorAll('.color');
+        siblings.forEach(s => {
+            s.classList.remove('active');
+            s.setAttribute('aria-checked', 'false');
         });
+        swatch.classList.add('active');
+        swatch.setAttribute('aria-checked', 'true');
+
+        if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            gsap.fromTo(swatch, { scale: 0.88 }, { scale: 1, duration: 0.22, ease: 'back.out(2)', clearProps: 'transform' });
+        }
+
+        // Swap card image if data-img is provided
+        const newImgSrc = swatch.getAttribute('data-img');
+        const colorName = swatch.getAttribute('data-color') || 'Selected';
+        if (newImgSrc && card) {
+            const imgEl = card.querySelector('.large-card-img img, .img-container img, .product-img img');
+            if (imgEl && imgEl.getAttribute('src') !== newImgSrc) {
+                imgEl.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+                imgEl.style.opacity = '0.3';
+                imgEl.style.transform = 'scale(0.96)';
+                setTimeout(() => {
+                    imgEl.src = newImgSrc;
+                    const title = card.querySelector('.product-title, h3, h4');
+                    if (title) imgEl.alt = `${title.textContent} - ${colorName}`;
+                    imgEl.style.opacity = '1';
+                    imgEl.style.transform = 'scale(1)';
+                }, 120);
+            }
+        }
     });
 
     // ==========================================
@@ -1141,7 +1208,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Close Modals on ESC
     window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
+        if (e.key === 'Escape' || e.key === 'Esc') {
             closeQuickView();
             closeInfoModal();
             closeMobileMenu();

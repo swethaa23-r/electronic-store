@@ -1,263 +1,253 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - STACKLY</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/admin.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard - STACKLY</title>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Custom CSS -->
+<link href="../css/admin.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <div class="admin-layout">
-        
-        <!-- Mobile Overlay -->
-        <div class="admin-overlay"></div>
-
-        <!-- Sidebar -->
-        <aside class="admin-sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-brand-wrap">
-                    <a href="../index.html" class="sidebar-logo-link" title="Return to STACKLY Store">
-                        <img src="../assets/img/logo.webp" alt="STACKLY" class="sidebar-logo-img">
-                    </a>
-                    <span class="sidebar-role-tag admin-tag"><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</span>
-                </div>
-                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="active"><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                    <li><a href="admin-products.html"><i class="fa-solid fa-box"></i> Products</a></li>
-                    <li><a href="admin-orders.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
-                    <li><a href="admin-customers.html"><i class="fa-solid fa-users"></i> Customers</a></li>
-                    <li><a href="admin-categories.html"><i class="fa-solid fa-tags"></i> Categories</a></li>
-                    <li><a href="admin-reports.html"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
-                    <li><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
-                </ul>
-            </nav>
-            <div class="sidebar-footer">
-                <a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <div class="admin-main">
-            <!-- Topbar -->
-            <header class="admin-topbar">
-                <div class="topbar-left">
-                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
-                    <div class="search-bar">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Search orders, products...">
-                    </div>
-                </div>
-                <div class="topbar-right">
-                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
-                    <div class="admin-profile">
-                        <div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
-                        <span class="profile-user-email" id="topbar-user-email">admin@stackly.com</span>
-                    </div>
-                </div>
-            </header>
-
-            <main class="admin-content">
-                
-                <!-- Section 1 - Dashboard Header -->
-                <section class="dashboard-header">
-                    <div>
-                        <h1>Dashboard</h1>
-                        <p>Monitor your store performance, orders, products and customers.</p>
-                    </div>
-                    <div class="date-selector">
-                        <select>
-                            <option>Last 7 Days</option>
-                            <option>Last 30 Days</option>
-                            <option>This Month</option>
-                            <option>This Year</option>
-                        </select>
-                    </div>
-                </section>
-
-                <!-- Section 2 - Statistics -->
-                <section class="statistics-grid">
-                    <div class="stat-card">
-                        <p class="stat-label">Total Sales</p>
-                        <h3 class="stat-val">$124,500</h3>
-                    </div>
-                    <div class="stat-card">
-                        <p class="stat-label">Total Orders</p>
-                        <h3 class="stat-val">1,245</h3>
-                    </div>
-                    <div class="stat-card">
-                        <p class="stat-label">Customers</p>
-                        <h3 class="stat-val">8,920</h3>
-                    </div>
-                    <div class="stat-card">
-                        <p class="stat-label">Products</p>
-                        <h3 class="stat-val">425</h3>
-                    </div>
-                    <div class="stat-card">
-                        <p class="stat-label">Pending Orders</p>
-                        <h3 class="stat-val">34</h3>
-                    </div>
-                </section>
-
-                <!-- Section 3 - Sales Analytics -->
-                <section class="analytics-section">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Sales & Orders Overview</h2>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="salesChart"></canvas>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 4 - Recent Orders -->
-                <section class="recent-orders">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Recent Orders</h2>
-                            <a href="javascript:void(0)" class="view-all">View All</a>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="admin-table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Customer</th>
-                                        <th>Products</th>
-                                        <th>Amount</th>
-                                        <th>Payment</th>
-                                        <th>Status</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#ORD-7392</td>
-                                        <td>Sarah Jenkins</td>
-                                        <td>Pro Display X1</td>
-                                        <td>$899.00</td>
-                                        <td>Credit Card</td>
-                                        <td><span class="badge badge-paid">Paid</span></td>
-                                        <td>Oct 8, 2026</td>
-                                        <td><button class="action-btn">View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD-7391</td>
-                                        <td>Michael Reed</td>
-                                        <td>Book Air 14 Laptop</td>
-                                        <td>$799.00</td>
-                                        <td>PayPal</td>
-                                        <td><span class="badge badge-pending">Pending</span></td>
-                                        <td>Oct 8, 2026</td>
-                                        <td><button class="action-btn">View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD-7390</td>
-                                        <td>David Torres</td>
-                                        <td>Play One Console</td>
-                                        <td>$449.00</td>
-                                        <td>Credit Card</td>
-                                        <td><span class="badge badge-cancelled">Cancelled</span></td>
-                                        <td>Oct 7, 2026</td>
-                                        <td><button class="action-btn">View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD-7389</td>
-                                        <td>Emma Watson</td>
-                                        <td>Mechanical Keys</td>
-                                        <td>$129.00</td>
-                                        <td>Debit Card</td>
-                                        <td><span class="badge badge-paid">Paid</span></td>
-                                        <td>Oct 7, 2026</td>
-                                        <td><button class="action-btn">View</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 5 - Product Performance -->
-                <section class="product-performance grid-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Best-Selling Products</h2>
-                        </div>
-                        <ul class="perf-list">
-                            <li>
-                                <span>Book Air 14 Laptop</span>
-                                <strong>124 Sold</strong>
-                            </li>
-                            <li>
-                                <span>Pro Display X1</span>
-                                <strong>98 Sold</strong>
-                            </li>
-                            <li>
-                                <span>Sonix Pro Headphones</span>
-                                <strong>85 Sold</strong>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Low-Stock Products</h2>
-                        </div>
-                        <ul class="perf-list">
-                            <li>
-                                <span>Mechanical Keys</span>
-                                <strong style="color: #666;">3 Left</strong>
-                            </li>
-                            <li>
-                                <span>Gaming Mouse X</span>
-                                <strong style="color: #666;">5 Left</strong>
-                            </li>
-                            <li>
-                                <span>USB-C Hub Hub</span>
-                                <strong style="color: #666;">8 Left</strong>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Top Categories</h2>
-                        </div>
-                        <ul class="perf-list">
-                            <li>
-                                <span>Laptops</span>
-                                <strong>$45k Rev</strong>
-                            </li>
-                            <li>
-                                <span>Monitors</span>
-                                <strong>$32k Rev</strong>
-                            </li>
-                            <li>
-                                <span>Gaming</span>
-                                <strong>$28k Rev</strong>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-
-            </main>
-        </div>
-    </div>
-
-    <!-- Custom JS -->
-    <script src="../js/admin.js"></script>
-    <script src="../js/global-validation.js"></script>
+<div class="admin-layout">
+<!-- Mobile Overlay -->
+<div class="admin-overlay"></div>
+<!-- Sidebar -->
+<aside class="admin-sidebar">
+<div class="sidebar-header">
+<div class="sidebar-brand-wrap">
+<a class="sidebar-logo-link" href="../index.html" title="Return to STACKLY Store">
+<img alt="STACKLY" class="sidebar-logo-img" src="../assets/img/logo.webp"/>
+</a>
+<span class="sidebar-role-tag admin-tag"><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</span>
+</div>
+<button class="close-sidebar mobile-only" aria-label="Close navigation sidebar" title="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<nav class="sidebar-nav">
+<ul>
+<li class="active"><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+<li><a href="admin-products.html"><i class="fa-solid fa-box"></i> Products</a></li>
+<li><a href="admin-orders.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
+<li><a href="admin-customers.html"><i class="fa-solid fa-users"></i> Customers</a></li>
+<li><a href="admin-categories.html"><i class="fa-solid fa-tags"></i> Categories</a></li>
+<li><a href="admin-reports.html"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
+<li><a href="admin-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+</ul>
+</nav>
+<div class="sidebar-footer">
+<a class="logout-link" href="../login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="admin-main">
+<!-- Topbar -->
+<header class="admin-topbar">
+<div class="topbar-left">
+<a href="../index.html" class="topbar-mobile-logo" title="STACKLY Store">
+<img src="../assets/img/logo.webp" alt="STACKLY" class="mobile-logo-img">
+</a>
+<button type="button" class="hamburger" aria-label="Open sidebar navigation" aria-expanded="false" aria-controls="admin-sidebar"><i class="fa-solid fa-bars"></i></button>
+<form class="search-bar topbar-search-form" action="../404.html" method="get">
+<button type="submit" class="search-submit-btn" aria-label="Submit search" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+<input placeholder="Search orders, products..." type="text" name="q" class="topbar-search-input" required autocomplete="off"/>
+</form>
+</div>
+<div class="topbar-right">
+<a href="../404.html" class="icon-btn" aria-label="Notifications" title="Notifications"><i class="fa-regular fa-bell"></i></a>
+<div class="admin-profile">
+<div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
+<span class="profile-user-email" id="topbar-user-email">admin@stackly.com</span>
+</div>
+</div>
+</header>
+<main class="admin-content">
+<!-- Section 1 - Dashboard Header -->
+<section class="dashboard-header">
+<div>
+<h1>Dashboard</h1>
+<p>Monitor your store performance, orders, products and customers.</p>
+</div>
+<div class="date-selector">
+<select aria-label="Select Last 7 Days">
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+<option>This Month</option>
+<option>This Year</option>
+</select>
+</div>
+</section>
+<!-- Section 2 - Statistics -->
+<section class="statistics-grid">
+<div class="stat-card">
+<p class="stat-label">Total Sales</p>
+<h3 class="stat-val">$124,500</h3>
+</div>
+<div class="stat-card">
+<p class="stat-label">Total Orders</p>
+<h3 class="stat-val">1,245</h3>
+</div>
+<div class="stat-card">
+<p class="stat-label">Customers</p>
+<h3 class="stat-val">8,920</h3>
+</div>
+<div class="stat-card">
+<p class="stat-label">Products</p>
+<h3 class="stat-val">425</h3>
+</div>
+<div class="stat-card">
+<p class="stat-label">Pending Orders</p>
+<h3 class="stat-val">34</h3>
+</div>
+</section>
+<!-- Section 3 - Sales Analytics -->
+<section class="analytics-section">
+<div class="card">
+<div class="card-header">
+<h2>Sales &amp; Orders Overview</h2>
+</div>
+<div class="chart-container">
+<canvas id="salesChart"></canvas>
+</div>
+</div>
+</section>
+<!-- Section 4 - Recent Orders -->
+<section class="recent-orders">
+<div class="card">
+<div class="card-header">
+<h2>Recent Orders</h2>
+<a class="view-all" href="admin-orders.html">View All</a>
+</div>
+<div class="table-responsive">
+<table class="admin-table">
+<thead>
+<tr>
+<th>Order ID</th>
+<th>Customer</th>
+<th>Products</th>
+<th>Amount</th>
+<th>Payment</th>
+<th>Status</th>
+<th>Date</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#ORD-7392</td>
+<td>Sarah Jenkins</td>
+<td>Pro Display X1</td>
+<td>$899.00</td>
+<td>Credit Card</td>
+<td><span class="badge badge-paid">Paid</span></td>
+<td>Oct 8, 2026</td>
+<td><button class="action-btn">View</button></td>
+</tr>
+<tr>
+<td>#ORD-7391</td>
+<td>Michael Reed</td>
+<td>Book Air 14 Laptop</td>
+<td>$799.00</td>
+<td>PayPal</td>
+<td><span class="badge badge-pending">Pending</span></td>
+<td>Oct 8, 2026</td>
+<td><button class="action-btn">View</button></td>
+</tr>
+<tr>
+<td>#ORD-7390</td>
+<td>David Torres</td>
+<td>Play One Console</td>
+<td>$449.00</td>
+<td>Credit Card</td>
+<td><span class="badge badge-cancelled">Cancelled</span></td>
+<td>Oct 7, 2026</td>
+<td><button class="action-btn">View</button></td>
+</tr>
+<tr>
+<td>#ORD-7389</td>
+<td>Emma Watson</td>
+<td>Mechanical Keys</td>
+<td>$129.00</td>
+<td>Debit Card</td>
+<td><span class="badge badge-paid">Paid</span></td>
+<td>Oct 7, 2026</td>
+<td><button class="action-btn">View</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Section 5 - Product Performance -->
+<section class="product-performance grid-3">
+<div class="card">
+<div class="card-header">
+<h2>Best-Selling Products</h2>
+</div>
+<ul class="perf-list">
+<li>
+<span>Book Air 14 Laptop</span>
+<strong>124 Sold</strong>
+</li>
+<li>
+<span>Pro Display X1</span>
+<strong>98 Sold</strong>
+</li>
+<li>
+<span>Sonix Pro Headphones</span>
+<strong>85 Sold</strong>
+</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-header">
+<h2>Low-Stock Products</h2>
+</div>
+<ul class="perf-list">
+<li>
+<span>Mechanical Keys</span>
+<strong style="color: #666;">3 Left</strong>
+</li>
+<li>
+<span>Gaming Mouse X</span>
+<strong style="color: #666;">5 Left</strong>
+</li>
+<li>
+<span>USB-C Hub Hub</span>
+<strong style="color: #666;">8 Left</strong>
+</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-header">
+<h2>Top Categories</h2>
+</div>
+<ul class="perf-list">
+<li>
+<span>Laptops</span>
+<strong>$45k Rev</strong>
+</li>
+<li>
+<span>Monitors</span>
+<strong>$32k Rev</strong>
+</li>
+<li>
+<span>Gaming</span>
+<strong>$28k Rev</strong>
+</li>
+</ul>
+</div>
+</section>
+</main>
+</div>
+</div>
+<!-- Custom JS -->
+<script src="../js/admin.js"></script>
+<script src="../js/global-validation.js"></script>
 </body>
 </html>

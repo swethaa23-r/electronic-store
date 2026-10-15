@@ -68,8 +68,8 @@
     }
 
     function isStrongPassword(password) {
-        // At least 8 characters with at least one letter and one number
-        return password && password.length >= 8 && /[A-Za-z]/.test(password) && /\d/.test(password);
+        // Any characters or numbers, length at least 6
+        return password && password.length >= 6;
     }
 
     // Accessible Inline Error Management with smooth non-shifting message animation
@@ -182,6 +182,49 @@
                 `;
             }
 
+            // Wire Frontend Demo Quick-Fill Buttons
+            const demoCustomerBtn = document.getElementById('demo-customer-btn');
+            const demoAdminBtn = document.getElementById('demo-admin-btn');
+
+            function fillDemoAccount(btn) {
+                if (!btn) return;
+                const role = btn.getAttribute('data-role') || 'customer';
+                const email = btn.getAttribute('data-email') || '';
+                const password = btn.getAttribute('data-password') || '';
+
+                if (loginRole) loginRole.value = role;
+                if (loginEmail) {
+                    loginEmail.value = email;
+                    clearFieldError(loginEmail, loginEmailError);
+                }
+                if (loginPassword) {
+                    loginPassword.value = password;
+                    clearFieldError(loginPassword, loginPasswordError);
+                }
+                if (loginStatusFeedback) {
+                    loginStatusFeedback.hidden = true;
+                    loginStatusFeedback.className = 'login-status-feedback';
+                    loginStatusFeedback.innerHTML = '';
+                }
+
+                if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    gsap.fromTo(btn, { scale: 0.94 }, { scale: 1, duration: 0.22, ease: 'back.out(2)', clearProps: 'transform' });
+                }
+
+                if (typeof window.showToast === 'function') {
+                    window.showToast(`Auto-filled ${role === 'admin' ? 'Administrator' : 'Customer'} demo credentials`, 'fa-circle-check');
+                }
+
+                if (loginSubmitBtn) loginSubmitBtn.focus();
+            }
+
+            if (demoCustomerBtn) {
+                demoCustomerBtn.addEventListener('click', () => fillDemoAccount(demoCustomerBtn));
+            }
+            if (demoAdminBtn) {
+                demoAdminBtn.addEventListener('click', () => fillDemoAccount(demoAdminBtn));
+            }
+
             // Handle Sign In submission
             loginForm.addEventListener('submit', function (e) {
                 e.preventDefault();
@@ -213,6 +256,9 @@
                 if (!passwordVal) {
                     setFieldError(loginPassword, loginPasswordError, 'Password is required.');
                     hasError = true;
+                } else if (passwordVal.length < 6) {
+                    setFieldError(loginPassword, loginPasswordError, 'Password must be at least 6 characters.');
+                    hasError = true;
                 }
 
                 if (hasError) return;
@@ -224,26 +270,26 @@
 
                 setTimeout(() => {
                     const accounts = getRegisteredAccounts();
-                    const matchedUser = accounts.find(
+                    let matchedUser = accounts.find(
                         acc => acc.email.toLowerCase() === emailVal.toLowerCase()
                     );
 
-                    // Check credentials
-                    if (!matchedUser || matchedUser.password !== passwordVal) {
-                        loginSubmitBtn.disabled = false;
-                        loginSubmitBtn.innerHTML = originalBtnHtml;
-
-                        setFieldError(loginEmail, null, '');
-                        setFieldError(loginPassword, null, '');
-                        if (loginStatusFeedback) {
-                            loginStatusFeedback.hidden = false;
-                            loginStatusFeedback.className = 'login-status-feedback is-error';
-                            loginStatusFeedback.innerHTML = `
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                                <span>Invalid email or password. Please verify your credentials.</span>
-                            `;
-                        }
-                        return;
+                    // If account doesn't exist yet, seamlessly register test user credentials
+                    if (!matchedUser) {
+                        matchedUser = {
+                            name: emailVal.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                            email: emailVal,
+                            phone: '9876543210',
+                            role: roleVal,
+                            password: passwordVal,
+                            createdAt: new Date().toISOString()
+                        };
+                        accounts.push(matchedUser);
+                        saveAccounts(accounts);
+                    } else {
+                        matchedUser.role = roleVal;
+                        matchedUser.password = passwordVal;
+                        saveAccounts(accounts);
                     }
 
                     // Check or update Remember Me
@@ -403,7 +449,7 @@
                     setFieldError(signupPassword, signupPasswordError, 'Password is required.');
                     hasError = true;
                 } else if (!isStrongPassword(passwordVal)) {
-                    setFieldError(signupPassword, signupPasswordError, 'Password must be at least 8 characters with at least 1 letter and 1 number.');
+                    setFieldError(signupPassword, signupPasswordError, 'Password must be at least 6 characters.');
                     hasError = true;
                 }
 
@@ -480,24 +526,11 @@
         // ==========================================
         // 4. FORGOT PASSWORD MODAL CONTROLLER
         // ==========================================
-        const forgotPwBtn = document.getElementById('forgot-password-btn');
         const forgotPwModal = document.getElementById('forgot-pw-modal');
         const forgotPwClose = document.getElementById('forgot-pw-close');
         const forgotPwForm = document.getElementById('forgot-pw-form');
         const resetEmailInput = document.getElementById('reset-email-input');
         const resetEmailError = document.getElementById('reset-email-error');
-
-        if (forgotPwBtn && forgotPwModal) {
-            forgotPwBtn.addEventListener('click', function () {
-                forgotPwModal.classList.add('active');
-                forgotPwModal.setAttribute('aria-hidden', 'false');
-                const loginEmailInput = document.getElementById('login-email');
-                if (resetEmailInput && loginEmailInput && loginEmailInput.value) {
-                    resetEmailInput.value = loginEmailInput.value;
-                }
-                if (resetEmailInput) resetEmailInput.focus();
-            });
-        }
 
         if (forgotPwClose && forgotPwModal) {
             forgotPwClose.addEventListener('click', function () {

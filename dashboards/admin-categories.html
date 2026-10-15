@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories - Admin Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -21,7 +21,7 @@
                     </a>
                     <span class="sidebar-role-tag admin-tag"><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</span>
                 </div>
-                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
+                <button class="close-sidebar mobile-only" aria-label="Close navigation sidebar" title="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <nav class="sidebar-nav">
                 <ul>
@@ -35,7 +35,7 @@
                 </ul>
             </nav>
             <div class="sidebar-footer">
-                <a href="javascript:void(0)" id="logout-btn" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                <a href="../login.html" id="logout-btn" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
             </div>
         </aside>
 
@@ -43,10 +43,17 @@
             <!-- Topbar -->
             <header class="admin-topbar">
                 <div class="topbar-left">
-                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
+                    <a href="../index.html" class="topbar-mobile-logo" title="STACKLY Store">
+                        <img src="../assets/img/logo.webp" alt="STACKLY" class="mobile-logo-img">
+                    </a>
+                    <button type="button" class="hamburger" aria-label="Open sidebar navigation" aria-expanded="false" aria-controls="admin-sidebar"><i class="fa-solid fa-bars"></i></button>
+                    <form class="search-bar topbar-search-form" action="../404.html" method="get">
+                        <button type="submit" class="search-submit-btn" aria-label="Submit search" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input placeholder="Search orders, products..." type="text" name="q" class="topbar-search-input" required autocomplete="off"/>
+                    </form>
                 </div>
                 <div class="topbar-right">
-                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <a href="../404.html" class="icon-btn" aria-label="Notifications" title="Notifications"><i class="fa-regular fa-bell"></i></a>
                     <div class="admin-profile">
                         <div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
                         <span class="profile-user-email" id="topbar-user-email">admin@stackly.com</span>
@@ -99,12 +106,12 @@
                             <input type="text" id="search-input" placeholder="Search by category name...">
                         </div>
                         <div class="filter-dropdowns">
-                            <select id="filter-status">
+                            <select id="filter-status" aria-label="Filter categories by status">
                                 <option value="All">All Statuses</option>
                                 <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>
                             </select>
-                            <select id="sort-select">
+                            <select id="sort-select" aria-label="Sort categories">
                                 <option value="Name A-Z">Name A–Z</option>
                                 <option value="Name Z-A">Name Z–A</option>
                                 <option value="Most Products">Most Products</option>
@@ -150,7 +157,7 @@
         <div class="modal-container" style="max-width: 500px;">
             <div class="modal-header">
                 <h2 id="modal-title">Add Category</h2>
-                <button class="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+                <button class="close-modal-btn" aria-label="Close modal dialog" title="Close"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <form id="category-form">
                 <div class="modal-body">
@@ -172,11 +179,11 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Display Order</label>
-                            <input type="number" id="cat-order" value="1">
+                            <input type="number" id="cat-order" value="1" aria-label="Display order">
                         </div>
                         <div class="form-group">
                             <label>Status</label>
-                            <select id="cat-status">
+                            <select id="cat-status" aria-label="Category status">
                                 <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>
                             </select>

@@ -385,6 +385,7 @@
                                 <button type="button" class="btn-remove-cart-item" data-action="remove-item" title="Remove ${item.name} from cart" aria-label="Remove item">
                                     <i class="fa-regular fa-trash-can"></i>
                                 </button>
+                            </div>
                         </div>
                     `;
                 });
@@ -521,6 +522,14 @@
             const product = StacklyCart.extractProductFromCard(addBtn);
             if (product) {
                 StacklyCart.addItem(product, 1);
+            }
+
+            // On home page, clicking Add to Cart navigates to the cart page
+            const path = (window.location.pathname || '').toLowerCase();
+            const isHomePage = path.endsWith('index.html') || path.endsWith('/') || path.endsWith('/electric') || !path.includes('.html');
+            if (isHomePage) {
+                window.location.href = 'cart.html';
+                return;
             }
             return;
         }

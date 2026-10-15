@@ -278,9 +278,49 @@
                 const cat = (card.getAttribute('data-category') || '').trim();
                 const title = (card.querySelector('.product-title')?.textContent || '').toLowerCase();
                 const badge = (card.querySelector('.shop-badge')?.textContent || '').toLowerCase();
+                const priceVal = parseFloat(card.getAttribute('data-price')) || 0;
+                const oldPriceText = (card.querySelector('.old-price')?.textContent || '').trim();
 
                 const matchesCategory = (activeCategory === 'all') || (cat.toLowerCase() === activeCategory.toLowerCase());
-                const matchesSearch = !query || title.includes(query) || cat.toLowerCase().includes(query) || badge.includes(query);
+
+                let matchesSearch = true;
+                if (query) {
+                    // Check direct text matching
+                    const textMatch = title.includes(query) || cat.toLowerCase().includes(query) || badge.includes(query);
+
+                    // Check price query expressions (e.g. "under 100", "under $200", "< 500", "> 200")
+                    let priceMatch = false;
+                    const underMatch = query.match(/(?:under|<|less than)\s*\$?(\d+)/);
+                    const aboveMatch = query.match(/(?:above|>|more than)\s*\$?(\d+)/);
+                    const exactPriceMatch = query.match(/^\$?(\d+(?:\.\d+)?)$/);
+
+                    if (underMatch) {
+                        const maxP = parseFloat(underMatch[1]);
+                        priceMatch = priceVal <= maxP;
+                    } else if (aboveMatch) {
+                        const minP = parseFloat(aboveMatch[1]);
+                        priceMatch = priceVal >= minP;
+                    } else if (exactPriceMatch) {
+                        priceMatch = Math.abs(priceVal - parseFloat(exactPriceMatch[1])) < 5;
+                    }
+
+                    // Check sale / deals
+                    const saleMatch = (query === 'sale' || query === 'deal' || query === 'deals' || query === 'discount' || query === 'save') && Boolean(oldPriceText);
+
+                    // Check color / finish match from global products DB
+                    let colorMatch = false;
+                    if (window.StacklyProductsDB) {
+                        const pId = Object.keys(window.StacklyProductsDB).find(k => {
+                            const pName = (window.StacklyProductsDB[k].name || '').toLowerCase();
+                            return pName === title || title.includes(pName);
+                        });
+                        if (pId && window.StacklyProductsDB[pId].finishes) {
+                            colorMatch = window.StacklyProductsDB[pId].finishes.some(f => (f.name || '').toLowerCase().includes(query));
+                        }
+                    }
+
+                    matchesSearch = textMatch || priceMatch || saleMatch || colorMatch;
+                }
 
                 if (matchesCategory && matchesSearch) {
                     matchingCards.push(card);

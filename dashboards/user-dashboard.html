@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Dashboard - STACKLY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -19,7 +19,7 @@
                     </a>
                     <span class="sidebar-role-tag user-tag"><i class="fa-solid fa-user"></i> User Dashboard</span>
                 </div>
-                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
+                <button class="close-sidebar mobile-only" aria-label="Close navigation sidebar" title="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
             <nav class="sidebar-nav">
@@ -41,10 +41,17 @@
         <div class="admin-main">
             <header class="admin-topbar">
                 <div class="topbar-left">
-                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
+                    <a href="../index.html" class="topbar-mobile-logo" title="STACKLY Store">
+                        <img src="../assets/img/logo.webp" alt="STACKLY" class="mobile-logo-img">
+                    </a>
+                    <button type="button" class="hamburger" aria-label="Open sidebar navigation" aria-expanded="false" aria-controls="admin-sidebar"><i class="fa-solid fa-bars"></i></button>
+                    <form class="search-bar topbar-search-form" action="../404.html" method="get">
+                        <button type="submit" class="search-submit-btn" aria-label="Submit search" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input placeholder="Search orders, products..." type="text" name="q" class="topbar-search-input" required autocomplete="off"/>
+                    </form>
                 </div>
                 <div class="topbar-right">
-                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <a href="../404.html" class="icon-btn" aria-label="Notifications" title="Notifications"><i class="fa-regular fa-bell"></i></a>
                     <div class="admin-profile">
                         <div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
                         <span class="profile-user-email" id="topbar-user-email">customer@stackly.com</span>
@@ -115,10 +122,10 @@
 <section class="card">
     <div class="card-header"><h2>Quick Actions</h2></div>
     <div class="quick-actions-grid">
-        <a href="../index.html" class="btn-primary-admin">Shop Products</a>
-        <a href="user-orders.html" class="btn-secondary-admin">View Orders</a>
-        <a href="user-wishlist.html" class="btn-secondary-admin">View Wishlist</a>
-        <a href="user-profile.html" class="btn-secondary-admin">Edit Profile</a>
+        <a href="../404.html" class="btn-primary-admin">Shop Products</a>
+        <a href="../404.html" class="btn-secondary-admin">View Orders</a>
+        <a href="../404.html" class="btn-secondary-admin">View Wishlist</a>
+        <a href="../404.html" class="btn-secondary-admin">Edit Profile</a>
     </div>
 </section>
 

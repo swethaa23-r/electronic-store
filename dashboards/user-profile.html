@@ -1,117 +1,115 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - STACKLY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/admin.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile - STACKLY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../css/admin.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="admin-layout">
-        <div class="admin-overlay"></div>
-        <aside class="admin-sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-brand-wrap">
-                    <a href="../index.html" class="sidebar-logo-link" title="Return to STACKLY Store">
-                        <img src="../assets/img/logo.webp" alt="STACKLY" class="sidebar-logo-img">
-                    </a>
-                    <span class="sidebar-role-tag user-tag"><i class="fa-solid fa-user"></i> User Dashboard</span>
-                </div>
-                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class=""><a href="user-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                    <li class=""><a href="user-orders.html"><i class="fa-solid fa-box"></i> My Orders</a></li>
-                    <li class=""><a href="user-wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
-                    <li class=""><a href="user-addresses.html"><i class="fa-solid fa-location-dot"></i> Addresses</a></li>
-                    <li class="active"><a href="user-profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
-                    <li class=""><a href="user-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
-                </ul>
-            </nav>
-
-            <div class="sidebar-footer">
-                <a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
-            </div>
-        </aside>
-
-        <div class="admin-main">
-            <header class="admin-topbar">
-                <div class="topbar-left">
-                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
-                </div>
-                <div class="topbar-right">
-                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
-                    <div class="admin-profile">
-                        <div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
-                        <span class="profile-user-email" id="topbar-user-email">customer@stackly.com</span>
-                    </div>
-                </div>
-            </header>
-
-            <main class="admin-content">
-                
+<div class="admin-layout">
+<div class="admin-overlay"></div>
+<aside class="admin-sidebar">
+<div class="sidebar-header">
+<div class="sidebar-brand-wrap">
+<a class="sidebar-logo-link" href="../index.html" title="Return to STACKLY Store">
+<img alt="STACKLY" class="sidebar-logo-img" src="../assets/img/logo.webp"/>
+</a>
+<span class="sidebar-role-tag user-tag"><i class="fa-solid fa-user"></i> User Dashboard</span>
+</div>
+<button class="close-sidebar mobile-only" aria-label="Close navigation sidebar" title="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<nav class="sidebar-nav">
+<ul>
+<li class=""><a href="user-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+<li class=""><a href="user-orders.html"><i class="fa-solid fa-box"></i> My Orders</a></li>
+<li class=""><a href="user-wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
+<li class=""><a href="user-addresses.html"><i class="fa-solid fa-location-dot"></i> Addresses</a></li>
+<li class="active"><a href="user-profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
+<li class=""><a href="user-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+</ul>
+</nav>
+<div class="sidebar-footer">
+<a class="logout-link" href="../login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+</div>
+</aside>
+<div class="admin-main">
+<header class="admin-topbar">
+<div class="topbar-left">
+<a href="../index.html" class="topbar-mobile-logo" title="STACKLY Store">
+<img src="../assets/img/logo.webp" alt="STACKLY" class="mobile-logo-img">
+</a>
+<button type="button" class="hamburger" aria-label="Open sidebar navigation" aria-expanded="false" aria-controls="admin-sidebar"><i class="fa-solid fa-bars"></i></button>
+<form class="search-bar topbar-search-form" action="../404.html" method="get">
+<button type="submit" class="search-submit-btn" aria-label="Submit search" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+<input placeholder="Search orders, products..." type="text" name="q" class="topbar-search-input" required autocomplete="off"/>
+</form>
+</div>
+<div class="topbar-right">
+<a href="../404.html" class="icon-btn" aria-label="Notifications" title="Notifications"><i class="fa-regular fa-bell"></i></a>
+<div class="admin-profile">
+<div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
+<span class="profile-user-email" id="topbar-user-email">customer@stackly.com</span>
+</div>
+</div>
+</header>
+<main class="admin-content">
 <!-- 1. Profile Overview -->
 <div class="user-profile-header">
-    <div class="user-avatar-large">SJ</div>
-    <div class="user-info-text">
-        <h2>Sarah Jenkins</h2>
-        <p>sarah.jenkins@example.com</p>
-        <p style="margin-top: 5px;"><span class="badge badge-paid">Active Account</span></p>
-    </div>
+<div class="user-avatar-large">SJ</div>
+<div class="user-info-text">
+<h2>Sarah Jenkins</h2>
+<p>sarah.jenkins@example.com</p>
+<p style="margin-top: 5px;"><span class="badge badge-paid">Active Account</span></p>
 </div>
-
+</div>
 <div class="card" style="max-width: 800px; padding: 40px;">
-    <form>
-        <!-- 2. Personal Information -->
-        <div class="settings-section">
-            <h2>Personal Information</h2>
-            <div class="form-grid">
-                <div class="form-group"><label>Full Name</label><input type="text" value="Sarah Jenkins" required></div>
-                <div class="form-group"><label>Email Address</label><input type="email" value="sarah.jenkins@example.com" required></div>
-                <div class="form-group"><label>Phone Number</label><input type="tel" id="user-phone" value="+1 (555) 123-4567" required></div>
-            </div>
-        </div>
-
-        <!-- 3. Password & Security -->
-        <div class="settings-section">
-            <h2>Password & Security</h2>
-            <div class="form-grid">
-                <div class="form-group full-width"><label>Current Password</label><input type="password"></div>
-                <div class="form-group"><label>New Password</label><input type="password"></div>
-                <div class="form-group"><label>Confirm Password</label><input type="password"></div>
-            </div>
-            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px;">Password strength: <strong>Strong</strong></p>
-        </div>
-
-        <!-- 4. Notification Preferences -->
-        <div class="settings-section">
-            <h2>Notification Preferences</h2>
-            <div class="setting-row"><div class="setting-info"><h4>Order Updates</h4></div><label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-            <div class="setting-row"><div class="setting-info"><h4>Delivery Updates</h4></div><label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-            <div class="setting-row"><div class="setting-info"><h4>Promotions</h4></div><label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label></div>
-            <div class="setting-row" style="border-bottom: none;"><div class="setting-info"><h4>Security Alerts</h4></div><label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-        </div>
-
-        <!-- 5. Account Management -->
-        <div class="settings-section" style="border-top: 1px solid var(--border); padding-top: 30px; margin-bottom: 0;">
-            <h2>Account Management</h2>
-            <div class="export-grid" style="margin-top: 20px;">
-                <button type="submit" class="btn-primary-admin">Save Changes</button>
-                <a href="../login.html" class="btn-secondary-admin">Logout</a>
-                <button type="button" class="btn-secondary-admin" style="color: red; border-color: red;">Delete Account</button>
-            </div>
-        </div>
-    </form>
+<form id="profile-form">
+<!-- 2. Personal Information -->
+<div class="settings-section">
+<h2>Personal Information</h2>
+<div class="form-grid">
+<div class="form-group"><label for="inp-full-name">Full Name</label><input aria-label="Full Name" id="inp-full-name" required="" type="text" value="Sarah Jenkins"/></div>
+<div class="form-group"><label for="inp-email-address">Email Address</label><input aria-label="Email Address" id="inp-email-address" required="" type="email" value="sarah.jenkins@example.com"/></div>
+<div class="form-group"><label for="user-phone">Phone Number</label><input aria-label="Phone Number" id="user-phone" required="" type="tel" value="+1 (555) 123-4567"/></div>
 </div>
-
-            </main>
-        </div>
-    </div>
-    <script src="../js/user.js"></script>
-    <script src="../js/global-validation.js"></script>
+</div>
+<!-- 3. Password & Security -->
+<div class="settings-section">
+<h2>Password &amp; Security</h2>
+<div class="form-grid">
+<div class="form-group full-width"><label for="inp-current-password">Current Password</label><input aria-label="Current Password" id="inp-current-password" type="password"/></div>
+<div class="form-group"><label for="inp-new-password">New Password</label><input aria-label="New Password" id="inp-new-password" type="password"/></div>
+<div class="form-group"><label for="inp-confirm-password">Confirm Password</label><input aria-label="Confirm Password" id="inp-confirm-password" type="password"/></div>
+</div>
+<p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px;">Password strength: <strong>Strong</strong></p>
+</div>
+<!-- 4. Notification Preferences -->
+<div class="settings-section">
+<h2>Notification Preferences</h2>
+<div class="setting-row"><div class="setting-info"><h4>Order Updates</h4></div><label class="toggle-switch"><input checked="" type="checkbox" aria-label="Order Updates"/><span class="slider"></span></label></div>
+<div class="setting-row"><div class="setting-info"><h4>Delivery Updates</h4></div><label class="toggle-switch"><input checked="" type="checkbox" aria-label="Delivery Updates"/><span class="slider"></span></label></div>
+<div class="setting-row"><div class="setting-info"><h4>Promotions</h4></div><label class="toggle-switch"><input type="checkbox" aria-label="Promotions"/><span class="slider"></span></label></div>
+<div class="setting-row" style="border-bottom: none;"><div class="setting-info"><h4>Security Alerts</h4></div><label class="toggle-switch"><input checked="" type="checkbox" aria-label="Security Alerts"/><span class="slider"></span></label></div>
+</div>
+<!-- 5. Account Management -->
+<div class="settings-section" style="border-top: 1px solid var(--border); padding-top: 30px; margin-bottom: 0;">
+<h2>Account Management</h2>
+<div class="export-grid" style="margin-top: 20px;">
+<button class="btn-primary-admin" type="submit">Save Changes</button>
+<a class="btn-secondary-admin" href="../login.html">Logout</a>
+<button class="btn-secondary-admin" style="color: red; border-color: red;" type="button">Delete Account</button>
+</div>
+</div>
+</form>
+</div>
+</main>
+</div>
+</div>
+<script src="../js/user.js"></script>
+<script src="../js/global-validation.js"></script>
 </body>
 </html>

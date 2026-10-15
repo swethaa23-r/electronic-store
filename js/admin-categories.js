@@ -208,33 +208,42 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('no-scroll');
     }
 
-    document.getElementById('cancel-delete-btn').addEventListener('click', () => {
-        deleteModal.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-        deleteTargetId = null;
-    });
-
-    document.getElementById('confirm-delete-btn').addEventListener('click', () => {
-        if(deleteTargetId) {
-            categories = categories.filter(c => c.id !== deleteTargetId);
-            saveData();
-            renderCategories();
-            showToast("Category deleted successfully.");
+    const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+    if (cancelDeleteBtn) {
+        cancelDeleteBtn.addEventListener('click', () => {
             deleteModal.classList.remove('active');
             document.body.classList.remove('no-scroll');
             deleteTargetId = null;
-        }
-    });
+        });
+    }
+
+    const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+    if (confirmDeleteBtn) {
+        confirmDeleteBtn.addEventListener('click', () => {
+            if(deleteTargetId) {
+                categories = categories.filter(c => c.id !== deleteTargetId);
+                saveData();
+                renderCategories();
+                showToast("Category deleted successfully.");
+                deleteModal.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+                deleteTargetId = null;
+            }
+        });
+    }
 
     // 7. Add / Edit Modal Logic
-    document.getElementById('open-add-modal').addEventListener('click', () => {
-        form.reset();
-        document.getElementById('cat-id').value = '';
-        modalTitle.textContent = 'Add Category';
-        clearErrors();
-        catModal.classList.add('active');
-        document.body.classList.add('no-scroll');
-    });
+    const openAddModalBtn = document.getElementById('open-add-modal');
+    if (openAddModalBtn) {
+        openAddModalBtn.addEventListener('click', () => {
+            form.reset();
+            document.getElementById('cat-id').value = '';
+            modalTitle.textContent = 'Add Category';
+            clearErrors();
+            catModal.classList.add('active');
+            document.body.classList.add('no-scroll');
+        });
+    }
 
     function openEditModal(id) {
         const cat = categories.find(c => c.id === id);

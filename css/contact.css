@@ -1016,6 +1016,26 @@ html.aos-init [data-aos].aos-animate {
         padding-left: 0;
         margin-top: 8px;
     }
+
+    .contact-support-banner::before {
+        width: 260px;
+        height: 260px;
+        right: 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .contact-form-card {
+        padding: 16px 12px;
+    }
+    
+    .contact-info-card {
+        padding: 18px 14px;
+    }
+    
+    .office-info-card {
+        padding: 18px 14px;
+    }
 }
 
 /* Reduced Motion Support */

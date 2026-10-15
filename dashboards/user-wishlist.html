@@ -1,117 +1,117 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Wishlist - STACKLY Customer Dashboard</title>
-    <link rel="icon" type="image/webp" href="../assets/img/logo.webp">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/admin.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Wishlist - STACKLY Customer Dashboard</title>
+<link href="../assets/img/logo.webp" rel="icon" type="image/webp"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../css/admin.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="admin-layout">
-        <div class="admin-overlay"></div>
-        <aside class="admin-sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-brand-wrap">
-                    <a href="../index.html" class="sidebar-logo-link" title="Return to STACKLY Store">
-                        <img src="../assets/img/logo.webp" alt="STACKLY" class="sidebar-logo-img">
+<div class="admin-layout">
+<div class="admin-overlay"></div>
+<aside class="admin-sidebar">
+<div class="sidebar-header">
+<div class="sidebar-brand-wrap">
+<a class="sidebar-logo-link" href="../index.html" title="Return to STACKLY Store">
+<img alt="STACKLY" class="sidebar-logo-img" src="../assets/img/logo.webp"/>
+</a>
+<span class="sidebar-role-tag user-tag"><i class="fa-solid fa-user"></i> User Dashboard</span>
+</div>
+<button aria-label="Close navigation sidebar" class="close-sidebar mobile-only" title="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<nav class="sidebar-nav">
+<ul>
+<li class=""><a href="../index.html"><i class="fa-solid fa-store"></i> Storefront</a></li>
+<li class=""><a href="user-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+<li class=""><a href="user-orders.html"><i class="fa-solid fa-box"></i> My Orders</a></li>
+<li class="active"><a href="user-wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
+<li class=""><a href="user-addresses.html"><i class="fa-solid fa-location-dot"></i> Addresses</a></li>
+<li class=""><a href="user-profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
+<li class=""><a href="user-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+</ul>
+</nav>
+<div class="sidebar-footer">
+<a class="logout-link" href="../login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+</div>
+</aside>
+<div class="admin-main">
+<header class="admin-topbar">
+<div class="topbar-left">
+<a href="../index.html" class="topbar-mobile-logo" title="STACKLY Store">
+<img src="../assets/img/logo.webp" alt="STACKLY" class="mobile-logo-img">
+</a>
+<button aria-controls="admin-sidebar" aria-expanded="false" aria-label="Open sidebar navigation" class="hamburger" type="button"><i class="fa-solid fa-bars"></i></button>
+<form class="search-bar topbar-search-form" action="../404.html" method="get">
+<button type="submit" class="search-submit-btn" aria-label="Submit search" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+<input placeholder="Search orders, products..." type="text" name="q" class="topbar-search-input" required autocomplete="off"/>
+</form>
+</div>
+<div class="topbar-right">
+<a href="../404.html" class="icon-btn" aria-label="Notifications" title="Notifications"><i class="fa-regular fa-bell"></i></a>
+<a class="icon-btn" href="../404.html" title="View Wishlist"><i class="fa-solid fa-heart" style="color: #EF4444;"></i></a>
+<a class="btn-primary-admin" href="../404.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+<i class="fa-solid fa-arrow-left"></i> Continue Shopping
                     </a>
-                    <span class="sidebar-role-tag user-tag"><i class="fa-solid fa-user"></i> User Dashboard</span>
-                </div>
-                <button class="close-sidebar mobile-only"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class=""><a href="../index.html"><i class="fa-solid fa-store"></i> Storefront</a></li>
-                    <li class=""><a href="user-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                    <li class=""><a href="user-orders.html"><i class="fa-solid fa-box"></i> My Orders</a></li>
-                    <li class="active"><a href="user-wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
-                    <li class=""><a href="user-addresses.html"><i class="fa-solid fa-location-dot"></i> Addresses</a></li>
-                    <li class=""><a href="user-profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
-                    <li class=""><a href="user-settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
-                </ul>
-            </nav>
-
-            <div class="sidebar-footer">
-                <a href="../login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
-            </div>
-        </aside>
-
-        <div class="admin-main">
-            <header class="admin-topbar">
-                <div class="topbar-left">
-                    <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
-                </div>
-                <div class="topbar-right">
-                    <a href="../wishlist.html" class="icon-btn" title="View Full Wishlist Page"><i class="fa-solid fa-heart" style="color: #EF4444;"></i></a>
-                    <a href="../index.html#freshly-dropped" class="btn-primary-admin" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-                        <i class="fa-solid fa-arrow-left"></i> Continue Shopping
-                    </a>
-                    <div class="admin-profile">
-                        <div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
-                        <span class="profile-user-email" id="topbar-user-email">customer@stackly.com</span>
-                    </div>
-                </div>
-            </header>
-
-            <main class="admin-content">
-                
-                <!-- 1. Wishlist Header -->
-                <section class="page-header">
-                    <div class="header-left">
-                        <h1>My Wishlist</h1>
-                        <p style="color: var(--text-secondary); margin-top: 4px;">Products saved for later consideration.</p>
-                    </div>
-                    <div class="header-right">
-                        <a href="../index.html#freshly-dropped" class="btn-primary-admin" style="text-decoration:none;">
-                            <i class="fa-solid fa-bag-shopping"></i> Continue Shopping
+<div class="admin-profile">
+<div class="avatar profile-avatar-icon"><i class="fa-solid fa-user"></i></div>
+<span class="profile-user-email" id="topbar-user-email">customer@stackly.com</span>
+</div>
+</div>
+</header>
+<main class="admin-content">
+<!-- 1. Wishlist Header -->
+<section class="page-header">
+<div class="header-left">
+<h1>My Wishlist</h1>
+<p style="color: var(--text-secondary); margin-top: 4px;">Products saved for later consideration.</p>
+</div>
+<div class="header-right">
+<a class="btn-primary-admin" href="../404.html" style="text-decoration:none;">
+<i class="fa-solid fa-bag-shopping"></i> Continue Shopping
                         </a>
-                    </div>
-                </section>
-
-                <!-- 2. Wishlist Statistics -->
-                <section class="statistics-grid grid-4-stats">
-                    <div class="stat-card"><p class="stat-label">Total Items</p><h3 class="stat-val" id="stat-total-items">0</h3></div>
-                    <div class="stat-card"><p class="stat-label">Available</p><h3 class="stat-val" id="stat-available">0</h3></div>
-                    <div class="stat-card"><p class="stat-label">Out of Stock</p><h3 class="stat-val" id="stat-out-of-stock">0</h3></div>
-                    <div class="stat-card"><p class="stat-label">Price Drops</p><h3 class="stat-val" id="stat-price-drops">0</h3></div>
-                </section>
-
-                <!-- 3. Dynamic Wishlist Grid -->
-                <section class="wishlist-grid" id="dashboard-wishlist-grid">
-                    <!-- Populated dynamically by js/wishlist.js -->
-                </section>
-
-                <!-- 5. Recommendations -->
-                <section class="card" style="margin-top: 30px;">
-                    <div class="card-header"><h2>Recommended for You</h2></div>
-                    <div class="wishlist-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px;">
-                        <div class="wishlist-card">
-                            <div class="wishlist-img-wrap" style="height:110px; background:#F8FAFC; border-radius:8px; display:flex; align-items:center; justify-content:center;">
-                                <img src="../assets/img/tag.webp" alt="Smart Tag Pro" style="max-height:80px; object-fit:contain;">
-                            </div>
-                            <h4 style="font-size:0.95rem; margin-top:8px;">Smart Tag Pro</h4>
-                            <p class="price" style="font-weight:700;">$29.00</p>
-                        </div>
-                        <div class="wishlist-card">
-                            <div class="wishlist-img-wrap" style="height:110px; background:#F8FAFC; border-radius:8px; display:flex; align-items:center; justify-content:center;">
-                                <img src="../assets/img/band.webp" alt="Fitness Band X" style="max-height:80px; object-fit:contain;">
-                            </div>
-                            <h4 style="font-size:0.95rem; margin-top:8px;">Fitness Band X</h4>
-                            <p class="price" style="font-weight:700;">$59.00</p>
-                        </div>
-                    </div>
-                </section>
-
-            </main>
-        </div>
-    </div>
-    <script src="../js/cart.js"></script>
-    <script src="../js/wishlist.js"></script>
-    <script src="../js/user.js"></script>
-    <script src="../js/global-validation.js"></script>
+</div>
+</section>
+<!-- 2. Wishlist Statistics -->
+<section class="statistics-grid grid-4-stats">
+<div class="stat-card"><p class="stat-label">Total Items</p><h3 class="stat-val" id="stat-total-items">0</h3></div>
+<div class="stat-card"><p class="stat-label">Available</p><h3 class="stat-val" id="stat-available">0</h3></div>
+<div class="stat-card"><p class="stat-label">Out of Stock</p><h3 class="stat-val" id="stat-out-of-stock">0</h3></div>
+<div class="stat-card"><p class="stat-label">Price Drops</p><h3 class="stat-val" id="stat-price-drops">0</h3></div>
+</section>
+<!-- 3. Dynamic Wishlist Grid -->
+<section class="wishlist-grid" id="dashboard-wishlist-grid">
+<!-- Populated dynamically by js/wishlist.js -->
+</section>
+<!-- 5. Recommendations -->
+<section class="card" style="margin-top: 30px;">
+<div class="card-header"><h2>Recommended for You</h2></div>
+<div class="wishlist-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px;">
+<div class="wishlist-card">
+<div class="wishlist-img-wrap" style="height:110px; background:#F8FAFC; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+<img alt="Smart Tag Pro" loading="lazy" src="../assets/img/tag.webp" style="max-height:80px; object-fit:contain;"/>
+</div>
+<h4 style="font-size:0.95rem; margin-top:8px;">Smart Tag Pro</h4>
+<p class="price" style="font-weight:700;">$29.00</p>
+</div>
+<div class="wishlist-card">
+<div class="wishlist-img-wrap" style="height:110px; background:#F8FAFC; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+<img alt="Fitness Band X" loading="lazy" src="../assets/img/band.webp" style="max-height:80px; object-fit:contain;"/>
+</div>
+<h4 style="font-size:0.95rem; margin-top:8px;">Fitness Band X</h4>
+<p class="price" style="font-weight:700;">$59.00</p>
+</div>
+</div>
+</section>
+</main>
+</div>
+</div>
+<script src="../js/cart.js"></script>
+<script src="../js/wishlist.js"></script>
+<script src="../js/user.js"></script>
+<script src="../js/global-validation.js"></script>
 </body>
 </html>
