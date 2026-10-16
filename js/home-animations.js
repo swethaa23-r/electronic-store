@@ -690,13 +690,15 @@
 
             // 2. Coordinated reveal of images from opposite directions (Left: image frame; Right: points)
             const contentStartTime = heading ? '-=0.15' : 0;
+            const isMobile = window.innerWidth <= 768;
 
             if (imageFrame) {
                 tl.fromTo(imageFrame, 
-                    { opacity: 0, x: -45, scale: 0.96 },
+                    { opacity: 0, x: isMobile ? 0 : -45, y: isMobile ? 24 : 0, scale: 0.96 },
                     {
                         opacity: 1,
                         x: 0,
+                        y: 0,
                         scale: 1,
                         duration: 0.85,
                         ease: 'power3.out',
@@ -708,10 +710,11 @@
 
             if (pointCards && pointCards.length > 0) {
                 tl.fromTo(pointCards, 
-                    { opacity: 0, x: 40 },
+                    { opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 20 : 0 },
                     {
                         opacity: 1,
                         x: 0,
+                        y: 0,
                         stagger: 0.1,
                         duration: 0.7,
                         ease: 'power3.out',

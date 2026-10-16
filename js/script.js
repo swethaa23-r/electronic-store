@@ -720,6 +720,46 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+        // Touch & Swipe navigation for mobile devices
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        const SWIPE_THRESHOLD = 35;
+
+        sequenceFrame.addEventListener('touchstart', (e) => {
+            if (e.touches && e.touches.length === 1) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                touchEndX = touchStartX;
+                touchEndY = touchStartY;
+                if (isPlaying) stopAutoPlay();
+            }
+        }, { passive: true });
+
+        sequenceFrame.addEventListener('touchmove', (e) => {
+            if (e.touches && e.touches.length === 1) {
+                touchEndX = e.touches[0].clientX;
+                touchEndY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        sequenceFrame.addEventListener('touchend', () => {
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+
+            // Horizontal swipe with minimum threshold and horizontal dominance
+            if (Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > Math.abs(deltaY) * 1.1) {
+                if (deltaX < 0) {
+                    nextFrame(true);
+                } else {
+                    prevFrame(true);
+                }
+            } else if (isPlaying) {
+                resetAutoPlayTimer();
+            }
+        }, { passive: true });
+
         // Initialize frame 0 and start auto-play
         startAutoPlay();
     }

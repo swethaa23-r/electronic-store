@@ -2249,6 +2249,7 @@ h4 {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     position: relative;
+    overflow-x: clip;
 }
 
 .setup-content-grid {
@@ -2704,6 +2705,356 @@ h4 {
 
 .setup-action {
     margin-top: 10px;
+}
+
+/* ==========================================================================
+   Workspace Setup Feature - Responsive & Mobile View Optimization
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    .setup-content-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        margin-top: 36px;
+    }
+
+    .setup-image-frame {
+        height: clamp(340px, 52vw, 440px);
+        min-height: unset;
+    }
+}
+
+@media (max-width: 768px) {
+    .setup-feature {
+        padding: clamp(38px, 7vw, 52px) 0;
+        overflow-x: clip;
+    }
+
+    .setup-feature .section-heading {
+        margin-bottom: 1.5rem;
+    }
+
+    .setup-feature .section-heading h2 {
+        font-size: clamp(1.45rem, 5.5vw, 1.95rem);
+        line-height: 1.22;
+        margin-bottom: 0.45rem;
+    }
+
+    .setup-feature .section-heading .subtitle {
+        font-size: 0.92rem;
+        line-height: 1.5;
+        padding: 0 4px;
+    }
+
+    .setup-content-grid {
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .setup-image-column {
+        gap: 12px;
+    }
+
+    /* Responsive Frame Height: fits mobile screens perfectly without dominating viewport */
+    .setup-image-frame {
+        height: clamp(250px, 64vw, 320px);
+        min-height: unset;
+        border-radius: 16px;
+    }
+
+    .sequence-frame[data-index="1"] .seq-img,
+    .sequence-frame[data-index="2"] .seq-img,
+    .sequence-frame[data-index="3"] .seq-img {
+        padding: 16px;
+    }
+
+    /* Compact Top HUD */
+    .sequence-hud {
+        top: 10px;
+        left: 12px;
+        right: 12px;
+        gap: 8px;
+    }
+
+    .sequence-live-tag {
+        padding: 4px 10px;
+        font-size: 0.62rem;
+        letter-spacing: 0.8px;
+        gap: 6px;
+    }
+
+    .sequence-live-tag .live-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .sequence-frame-counter {
+        padding: 4px 10px;
+        font-size: 0.66rem;
+        letter-spacing: 0.6px;
+    }
+
+    /* Hotspot Pin & Tooltip - Centered column prevents horizontal overflow */
+    .sequence-hotspot-pin {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .hotspot-dot {
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+    }
+
+    .hotspot-pulse {
+        width: 28px;
+        height: 28px;
+    }
+
+    .hotspot-tooltip {
+        margin-left: 0;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 4px 10px;
+        max-width: min(200px, 80vw);
+        white-space: normal;
+        text-align: center;
+        line-height: 1.25;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Status Glass Chip */
+    .setup-glass-chip {
+        bottom: 12px;
+        left: 12px;
+        max-width: calc(100% - 24px);
+        padding: 6px 12px;
+        font-size: 0.74rem;
+        gap: 6px;
+        border-radius: var(--radius-full);
+    }
+
+    .setup-glass-chip span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .setup-glass-chip i {
+        font-size: 0.86rem;
+        flex-shrink: 0;
+    }
+
+    /* Sequence Playback Controls Console */
+    .sequence-controls-bar {
+        padding: 8px 12px;
+        gap: 10px;
+        border-radius: 12px;
+    }
+
+    .sequence-playback-btns {
+        gap: 6px;
+    }
+
+    .seq-nav-btn {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        font-size: 0.76rem;
+    }
+
+    .seq-play-btn {
+        padding: 6px 12px;
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+        gap: 5px;
+    }
+
+    .sequence-step-dots {
+        gap: 6px;
+    }
+
+    .seq-step-dot {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        font-size: 0.72rem;
+        border-radius: 6px;
+    }
+
+    /* Point Cards - Zero horizontal overflow & comfortable tap layout */
+    .setup-points-column {
+        gap: 10px;
+    }
+
+    .setup-point-card {
+        padding: 14px 16px;
+        gap: 14px;
+        border-radius: 12px;
+        /* Disable desktop translateX which bleeds past viewport edge */
+        transform: none !important;
+    }
+
+    .setup-point-card:hover {
+        transform: none !important;
+        border-color: #94A3B8;
+    }
+
+    .setup-point-card.active {
+        transform: none !important;
+        border-color: var(--primary);
+        background: #F8FAFC;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    .setup-point-card.active::before {
+        width: 3px;
+        border-radius: 3px 0 0 3px;
+    }
+
+    .setup-point-card .point-badge {
+        width: 30px;
+        height: 30px;
+        font-size: 0.78rem;
+    }
+
+    .setup-point-card .point-body h4 {
+        font-size: 0.94rem;
+        margin-bottom: 3px;
+    }
+
+    .setup-point-card .point-body p {
+        font-size: 0.82rem;
+        line-height: 1.45;
+    }
+
+    .point-card-progress {
+        margin-top: 8px;
+        height: 2.5px;
+    }
+
+    .setup-action {
+        margin-top: 8px;
+    }
+
+    .setup-action .btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 13px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .setup-feature {
+        padding: 34px 0;
+    }
+
+    .setup-image-frame {
+        height: clamp(220px, 60vw, 260px);
+        border-radius: 14px;
+    }
+
+    .sequence-controls-bar {
+        padding: 7px 10px;
+        gap: 8px;
+    }
+
+    .seq-nav-btn {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+        font-size: 0.72rem;
+    }
+
+    .seq-play-btn {
+        padding: 5px 10px;
+        font-size: 0.68rem;
+    }
+
+    .seq-step-dot {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+        font-size: 0.68rem;
+        border-radius: 6px;
+    }
+
+    .setup-point-card {
+        padding: 12px 14px;
+        gap: 12px;
+    }
+
+    .setup-point-card .point-badge {
+        width: 28px;
+        height: 28px;
+        font-size: 0.74rem;
+    }
+
+    .setup-point-card .point-body h4 {
+        font-size: 0.9rem;
+    }
+
+    .setup-point-card .point-body p {
+        font-size: 0.78rem;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 360px) {
+    .sequence-hud {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+    }
+
+    .sequence-live-tag {
+        padding: 3px 8px;
+        font-size: 0.58rem;
+        letter-spacing: 0.5px;
+    }
+
+    .sequence-frame-counter {
+        padding: 3px 8px;
+        font-size: 0.62rem;
+    }
+
+    .sequence-controls-bar {
+        padding: 6px 8px;
+        gap: 6px;
+    }
+
+    .seq-play-btn .seq-play-text {
+        display: none;
+    }
+
+    .seq-play-btn {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+        padding: 0;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .seq-step-dot {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        font-size: 0.66rem;
+    }
+
+    .setup-glass-chip {
+        bottom: 8px;
+        left: 8px;
+        max-width: calc(100% - 16px);
+        padding: 4px 9px;
+        font-size: 0.66rem;
+    }
 }
 
 /* 13. HANDPICKED FOR YOU (Section 5: Clean White background) */
